@@ -8,5 +8,5 @@ pip install -e .
 ### conda installation 
 This installation will create a env as well
 ```bash
-conda
+conda env create -f environment.yaml
 ```
