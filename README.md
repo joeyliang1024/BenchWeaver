@@ -1,2 +1,12 @@
 # Benchmark-Merging
-碩論研究
+
+## Installation
+### python installation
+```bash
+pip install -e .
+```
+### conda installation 
+This installation will create a env as well
+```bash
+conda
+```
