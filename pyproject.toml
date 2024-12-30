@@ -1,0 +1,23 @@
+[project]
+name = "bench_weaver"
+version = "0.0.0"
+dependencies = [
+    # inference
+    "vllm>=v0.6.6.post1",
+    "transformers",
+    "datasets",
+    # pytorch
+    "torch",
+    "torchvision",
+    "torchaudio",
+    # api related
+    "openai",
+    "google-generativeai",
+]
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+ipy = ["ipykernel", "ipywidgets"]
+
+[project.scripts]
+bench-weaver-cli = "BenchWeaver.cli:main"
