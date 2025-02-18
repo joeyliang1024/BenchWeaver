@@ -1,0 +1,14 @@
+{
+    "diamond": {
+      "name": "diamond",
+      "category": "diamond"
+    },
+    "extended": {
+      "name": "extended",
+      "category": "extended"
+    },
+    "main": {
+      "name": "main",
+      "category": "main"
+    }
+}

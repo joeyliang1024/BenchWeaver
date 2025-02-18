@@ -6,14 +6,27 @@ dependencies = [
     "vllm>=v0.6.6.post1",
     "transformers",
     "datasets",
+    "hf_transfer",
+
     # pytorch
     "torch",
     "torchvision",
     "torchaudio",
+
     # api related
-    "tenacity",
     "openai",
     "google-generativeai",
+
+    # code from llama-factory
+    "av",
+    "trl",
+    "peft",
+    "matplotlib",
+    "liger-kernel",
+    "bitsandbytes",
+
+    # yaml needed
+    "pyyaml",
 ]
 requires-python = ">=3.10"
 
@@ -21,4 +34,4 @@ requires-python = ">=3.10"
 ipy = ["ipykernel", "ipywidgets"]
 
 [project.scripts]
-bench-weaver-cli = "BenchWeaver.cli:main"
+bench-weaver-cli = "BenchWeaver.cli.cli:main"

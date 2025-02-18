@@ -1,0 +1,10 @@
+{
+    "main": {
+      "name": "main",
+      "category": "main"
+    },
+    "socratic": {
+      "name": "socratic",
+      "category": "socratic"
+    }
+}

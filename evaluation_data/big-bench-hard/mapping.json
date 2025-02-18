@@ -1,0 +1,34 @@
+{
+    "disambiguation_qa": {
+      "name": "disambiguation_qa",
+      "category": "disambiguation_qa"
+    },
+    "formal_fallacies": {
+      "name": "formal_fallacies",
+      "category": "formal_fallacies"
+    },
+    "geometric_shapes": {
+      "name": "geometric_shapes",
+      "category": "geometric_shapes"
+    },
+    "hyperbaton": {
+      "name": "hyperbaton",
+      "category": "hyperbaton"
+    },
+    "object_counting": {
+      "name": "object_counting",
+      "category": "object_counting"
+    },
+    "penguins_in_a_table": {
+      "name": "penguins_in_a_table",
+      "category": "penguins_in_a_table"
+    },
+    "salient_translation_error_detection": {
+      "name": "salient_translation_error_detection",
+      "category": "salient_translation_error_detection"
+    },
+    "tracking_shuffled_objects_five_objects": {
+      "name": "tracking_shuffled_objects_five_objects",
+      "category": "tracking_shuffled_objects_five_objects"
+    }
+}

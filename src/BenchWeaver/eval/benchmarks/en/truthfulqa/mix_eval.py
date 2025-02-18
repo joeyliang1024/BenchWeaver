@@ -1,0 +1,242 @@
+import asyncio
+import os
+from typing import Any, Dict, List, Literal, Tuple, Union
+from datasets import load_dataset
+import numpy as np
+from tqdm.auto import tqdm
+from ....evaluator import Evaluator
+from .....extras.constants import PROJECT_BASE_PATH, TRUTHFULQA_SCORES
+from ....template import get_truthfulqa_eval_template
+
+class TruthfulQAEvaluator(Evaluator):
+    server_process: asyncio.subprocess.Process
+    def __init__(self, args):
+        super().__init__(args=args)
+        self.eval_template = get_truthfulqa_eval_template(self.eval_args.lang)
+        self.categories:List[str] = TRUTHFULQA_SCORES[1:] # override
+    
+    def load_data(self, 
+                  mode = Literal['inference', 'check'],
+                  ) -> Union[Dict[str, list], Tuple[Dict[str, list], Dict[str, list]]]:
+        """Load and format data for evaluation."""
+        # init data
+        inference_datas = {subj: [] for subj in self.categories}
+        checked_answers = {subj: [] for subj in self.categories}
+        checked_prompts = {subj: [] for subj in self.categories}
+        # Load datasets
+        for data_type in tqdm(self.categories, desc="Loading subjects"):
+            # load dataset from folder
+            dataset = load_dataset(
+                path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.eval_task),
+                name="merge",
+                cache_dir=self.model_args.cache_dir,
+                download_mode=self.eval_args.download_mode,
+                token=self.hf_token,
+                trust_remote_code=True,
+            )
+            # Prepare examples for evaluation
+            if mode == "inference":
+                for i in range(len(dataset[self.eval_split])): 
+                    if dataset.get("train"):
+                        support_set = (
+                            dataset["train"]
+                            .shuffle()
+                            .select(range(min(self.eval_args.n_shot, len(dataset["train"]))))
+                        )
+                    else:
+                        support_set = None
+                    messages = self.eval_template.format_inference_example(
+                        target_data=dataset[self.eval_split][i],
+                        type=data_type,
+                        support_set=support_set,
+                        user_prompt=self.eval_args.user_prompt,
+                        use_cot=self.eval_args.cot,
+                    )
+                    inference_datas[data_type].append(messages)
+            
+            elif mode == "check":
+                assert self.inference_results is not None
+                if data_type == "generation":
+                    for i in range(len(dataset[self.eval_split])):
+                        check_msg_list = self.eval_template.format_checker_example(
+                            target_data=dataset[self.eval_split][i],
+                            type=data_type,
+                            llm_response=self.inference_results[data_type][i],
+                        )
+                        checked_prompts[data_type].append(check_msg_list)
+                else:
+                    for i in range(len(dataset[self.eval_split])):
+                        check_msg_list, answer_list = self.eval_template.format_checker_example(
+                            target_data=dataset[self.eval_split][i],
+                            type=data_type,
+                            llm_response=self.inference_results[data_type][i],
+                        )
+                        checked_answers[data_type] += answer_list
+                        checked_prompts[data_type] += check_msg_list
+            else:
+                raise ValueError(f"Input mode {mode} is invalid. Please specify one of 'inference' or 'check' instead.")
+        
+        if mode == "inference":
+            return inference_datas
+        elif mode == "check":
+            return checked_answers, checked_prompts
+    
+    def comput_score(self, checked_answers: Dict[str, List[Any]], check_results: Dict[str, List[Any]], subjects: List[str]) -> Dict[str, float]:
+        category_corrects = {subj: np.array([], dtype="bool") for subj in subjects}
+
+        for subject in tqdm(self.categories, desc="Compute subjects"):
+            if subject == "generation":
+                corrects = np.array(['true'] * len(check_results[subject])) == np.array([self.retrieve_answer(answer) for answer in check_results[subject]])
+            else:
+                corrects = np.array(checked_answers[subject]) == np.array([self.retrieve_answer(answer) for answer in check_results[subject]])
+            category_corrects[subject] = np.concatenate([category_corrects[subject], corrects], axis=0)
+            category_corrects["Average"] = np.concatenate([category_corrects["Average"], corrects], axis=0)
+
+        return {category_name: round(100 * np.mean(category_array), 4) 
+                for category_name, category_array in category_corrects.items()}
+    
+    async def process_subjects(
+        self,
+        server_process: asyncio.subprocess.Process,
+        model_name: str,
+        data: Dict[str, List[Any]],
+        prompt_key: str,
+        output_path: str,
+        progress_desc: str,
+    ) -> Dict[str, List[Any]]:
+        """Process subjects using the specified client and data."""
+        results = {subj: [] for subj in self.categories}
+        total_progress_bar = tqdm(self.categories, desc=progress_desc)
+
+        # Define maximum concurrency
+        max_concurrency = 32
+        semaphore = asyncio.Semaphore(max_concurrency)
+
+        async def process_item(idx: int, messages: Any, subject: str, progress_bar: tqdm):
+            """Process a single item using semaphore."""
+            async with semaphore:
+                try:
+                    result, origin_idx = await self.generate(
+                        model=model_name,
+                        system_prompt=getattr(self.eval_args, prompt_key),
+                        example=messages,
+                        idx=idx,
+                        generating_args=self.generating_args,
+                    )
+                    progress_bar.update(1)
+                    return origin_idx, result
+                except Exception as e:
+                    progress_bar.update(1)
+                    print(f"Error processing item {idx} in subject {subject}: {e}")
+                    return idx, None
+
+        try:
+            for subject in self.categories:
+                subject_results = [None] * len(data[subject])
+                with tqdm(
+                    total=len(data[subject]),
+                    desc=subject,
+                    dynamic_ncols=True,
+                ) as subject_progress_bar:
+                    # Create tasks for all items under the subject
+                    tasks = [
+                        asyncio.create_task(process_item(idx, messages, subject, subject_progress_bar))
+                        for idx, messages in enumerate(data[subject])
+                    ]
+
+                    # Process tasks as they complete
+                    for coro in asyncio.as_completed(tasks):
+                        origin_idx, result = await coro
+                        if result is not None:
+                            subject_results[origin_idx] = result
+
+                results[subject] = subject_results
+                total_progress_bar.update(1)
+
+        finally:
+            print(f"Terminating server process: {server_process}")
+            await self.terminate_server(process=server_process)
+            print(f"Server process terminated: {server_process}")
+            self.save_data(data=results, output_path=os.path.join(self.save_folder, output_path))
+            total_progress_bar.close()
+
+        return results
+
+    
+    async def eval(self):
+        """Perform evaluation using inference and checker models with a progress bar."""
+        # ensure save folder exists
+        os.makedirs(self.save_folder, exist_ok=False)
+        print(f"Data path created: {self.save_folder}")
+        
+        # inference
+        inference_data = self.load_data(mode="inference")
+        if self.inference_mode == "local":
+            print("Setting server...")
+            inference_process = await self.server.setup_server(
+                model_path=getattr(self.model_args, "model_name_or_path"),
+                model_name=self.inference_model_name,
+                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+            )
+            print("Server setup complete.")
+            self.set_client(mode="inference")
+            print("Client setup complete.")
+            self.inference_results  = await self.process_subjects(
+                server_process=inference_process,
+                model_name=self.inference_model_name,
+                data=inference_data,
+                prompt_key="system_prompt",
+                output_path="inference_results.json",
+                progress_desc="Inference Progress",
+            )
+        else:
+            self.set_client(mode="inference")
+            print("Client setup complete.")
+            self.inference_results  = await self.process_subjects(
+                server_process=None,
+                model_name=getattr(self.model_args, "model_name_or_path"),
+                data=inference_data,
+                prompt_key="system_prompt",
+                output_path="inference_results.json",
+                progress_desc="Inference Progress",
+            )
+        print("Inference complete.")
+
+        # check
+        checked_answers, checked_prompts = self.load_data(mode="check")
+        
+        if self.check_mode == "local":
+            checker_process = await self.server.setup_server(
+                model_path=getattr(self.model_args, "checker_model_name_or_path"),
+                model_name="checker_model",
+                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+            )
+            print("Server setup complete.")
+            self.set_client(mode="check")
+            print("Client setup complete.")
+            check_results = await self.process_subjects(
+                server_process=checker_process,
+                model_name="checker_model",
+                data=checked_prompts,
+                prompt_key="criteria_system_prompt",
+                output_path="check_results.json",
+                progress_desc="Check Progress",
+            )
+        else:
+            self.set_client(mode="check")
+            print("Client setup complete.")
+            check_results = await self.process_subjects(
+                server_process=None,
+                model_name=getattr(self.model_args, "checker_model_name_or_path"),
+                data=checked_prompts,
+                prompt_key="criteria_system_prompt",
+                output_path="check_results.json",
+                progress_desc="Check Progress",
+            )
+        print("Check complete.")
+        # compute score
+        score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=TRUTHFULQA_SCORES)
+        self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
+    
+    
+        
