@@ -280,8 +280,8 @@ class ModelArguments(QuantizationArguments, ProcessorArguments, ExportArguments,
         default=True,
         metadata={"help": "Whether or not to use KV cache in generation."},
     )
-    infer_dtype: Literal["auto", "float16", "bfloat16", "float32"] = field(
-        default="auto",
+    infer_dtype: Literal["float16", "bfloat16", "float32"] = field(
+        default="bfloat16",
         metadata={"help": "Data type for model weights and activations at inference."},
     )
     print_param_status: bool = field(

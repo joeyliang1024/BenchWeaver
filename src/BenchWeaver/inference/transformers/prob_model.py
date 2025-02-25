@@ -20,21 +20,24 @@ def load_model(model_args: "ModelArguments", finetuning_args: "FinetuningArgumen
         return model
     
 def casting_compute_type(model: "PreTrainedModel", model_args: "ModelArguments") -> "PreTrainedModel":
-    if model_args.infer_dtype == "bf16":
+    if model_args.infer_dtype == "bfloat16":
         if not torch.cuda.is_bf16_supported():
             print("BF16 not supported, switching to float16.")
             target_dtype = torch.float16
         else:
             target_dtype = torch.bfloat16
-    elif model_args.infer_dtype == "fp16":
+    elif model_args.infer_dtype == "float16":
         target_dtype = torch.float16
     else:
         target_dtype = torch.float32
+    print("=====================================================")
     print(f"Casting model compute type to {target_dtype}.")
+    print("=====================================================")
     
     for param in model.parameters():
         if param.data.dtype != target_dtype:
-            print(f"Converting parameter of shape {param.data.shape} to {target_dtype}")
+            if model_args.print_param_status:
+                print(f"Converting parameter of shape {param.data.shape} to {target_dtype}")
             param.data = param.data.to(target_dtype)
 
     return model
