@@ -39,6 +39,7 @@ def balance_datasets(df_A: pd.DataFrame, df_B: pd.DataFrame, difficulty_col='dif
     wass = compute_wasserstein_distance(np.cumsum(pA), np.cumsum(pB))
     print(f"Chi-Square: {chi2:.4f}, p-value: {p_value:.4f}, Wasserstein: {wass:.4f}")
     print("=====================================================")
+    
     p_target = (pA + pB) / 2
     N_target = np.round(min(len(df_A), len(df_B)) * p_target).astype(int)
     d_levels = {k: i for i, k in enumerate(difficulty_levels)}

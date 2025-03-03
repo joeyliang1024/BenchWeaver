@@ -40,21 +40,29 @@ logger = logging.getLogger(__name__)
 @unique
 class Command(str, Enum):
     ENV = "env"
-    EVAL = "eval"
     VER = "version"
     HELP = "help"
+    WEBUI = "webui"
+    EVAL = "eval"
+    OTH_LANG_EVAL = "ol_eval"
     
 def main():
     command = sys.argv.pop(1) if len(sys.argv) != 1 else Command.HELP
 
     if command == Command.ENV:
         print_env()
-    elif command == Command.EVAL:
-        run_eval()
     elif command == Command.VER:
         print(WELCOME)
     elif command == Command.HELP:
         print(USAGE)
+    elif command == Command.WEBUI:
+        # not implemented yet
+        pass
+    elif command == Command.EVAL:
+        run_eval()
+    elif command == Command.OTH_LANG_EVAL:
+        # not implemented yet
+        pass
     else:
         raise NotImplementedError(f"Unknown command: {command}.")
 
