@@ -91,7 +91,9 @@ class Client:
         example: List[Dict[str, Any]],
         generating_args: Namespace,
     ) -> str:
-        """Generate a response using the provided client and example."""
+        """
+        Generate a response using the provided client and example.
+        """
         if self.client is None:
             raise ValueError("Client not initialized. Call 'initialize()' first.")
 

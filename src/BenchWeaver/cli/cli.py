@@ -1,30 +1,23 @@
-import os
-import random
-import subprocess
 import sys
+from tabulate import tabulate
 from enum import Enum, unique
 import logging
 from ..extras.print_env import VERSION, print_env
 from .eval_score import run_eval
+from .display_bench import display_benchmark_table
 # this is a temp cli usage
-USAGE = (
-    "-" * 70
-    + "\n"
-    + "| Usage:                                                             |\n"
-    + "|   bench-weaver-cli api -h: launch an OpenAI-style API server       |\n"
-    + "|   bench-weaver-cli chat -h: launch a chat interface in CLI         |\n"
-    + "|   bench-weaver-cli eval -h: evaluate models                        |\n"
-    + "|   bench-weaver-cli export -h: merge LoRA adapters and export model |\n"
-    + "|   bench-weaver-cli train -h: train models                          |\n"
-    + "|   bench-weaver-cli webchat -h: launch a chat interface in Web UI   |\n"
-    + "|   bench-weaver-cli webui: launch LlamaBoard                        |\n"
-    + "|   bench-weaver-cli version: show version info                      |\n"
-    + "|   bench-weaver-cli env: show dependency info                       |\n"
-    + "-" * 70
-)
+USAGE = [
+    ["Command", "Description"],
+    ["bench-weaver-cli eval -h", "Evaluate models"],
+    ["bench-weaver-cli webui", "Launch Gradio Webui for eval (planning)"],
+    ["bench-weaver-cli version", "Show version info"],
+    ["bench-weaver-cli benchmark", "Show supported benchmarks"],
+    ["bench-weaver-cli env", "Show dependency info"],
+    ["bench-weaver-cli help", "Show CLI usage"]
+]
 
 WELCOME = (
-    "-" * 62
+    "+" + "-" * 60 + "+"
     + "\n"
     + f"| Welcome to BenchWeaver, version {VERSION}"
     + " " * (27 - len(VERSION))
@@ -32,9 +25,12 @@ WELCOME = (
     + " " * 60
     + "|\n"
     + "| Project page: https://github.com/joeyliang1024/BenchWeaver |\n"
-    + "-" * 62
+    + "+" + "-" * 60 + "+"
 )
 
+def display_usage_table():
+    print(tabulate(USAGE, headers="firstrow", tablefmt="grid"))
+    
 logger = logging.getLogger(__name__)
 
 @unique
@@ -45,6 +41,7 @@ class Command(str, Enum):
     WEBUI = "webui"
     EVAL = "eval"
     OTH_LANG_EVAL = "ol_eval"
+    BENCHMARK = "benchmark"
     
 def main():
     command = sys.argv.pop(1) if len(sys.argv) != 1 else Command.HELP
@@ -54,10 +51,12 @@ def main():
     elif command == Command.VER:
         print(WELCOME)
     elif command == Command.HELP:
-        print(USAGE)
+        display_usage_table()
     elif command == Command.WEBUI:
         # not implemented yet
         pass
+    elif command == Command.BENCHMARK:
+        display_benchmark_table()
     elif command == Command.EVAL:
         run_eval()
     elif command == Command.OTH_LANG_EVAL:
