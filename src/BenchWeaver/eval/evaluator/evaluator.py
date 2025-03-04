@@ -81,9 +81,6 @@ class Evaluator:
 
         print(f"Data saved to {output_path}")
     
-    async def setup_server(self, model_path: str, model_name: str, max_model_len:str) -> asyncio.subprocess.Process:
-        return await self.server.setup_server(model_path, model_name, max_model_len)
-    
     def set_client(self, mode: Literal['inference', 'check']):            
         if mode == "inference":
             self.client = Client(
@@ -105,25 +102,18 @@ class Evaluator:
                 max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
                 openai_source=getattr(self.model_args, "openai_source", "openai"),
             )
-        
-    async def terminate_server(self, process: asyncio.subprocess.Process):
+    
+    async def setup_server(self, model_path: str, model_name: str, max_model_len:str) -> asyncio.subprocess.Process:
+        """
+        Set up the local server with the specified model and parameters.
+        """
+        return await self.server.setup_server(model_path, model_name, max_model_len)
+    
+    async def terminate_server(self, process: asyncio.subprocess.Process) -> None:
         """
         Terminates the local server process if running.
         """
-        if process:
-            kill_pids = [proc.pid for proc in  psutil.Process(process.pid).children(recursive=True)]
-            print(f"Killing child processes: {kill_pids}")
-            for proc_pid in kill_pids:
-                try:
-                    proc = psutil.Process(proc_pid)
-                    proc.terminate()
-                    print(f"Child Process {proc.pid} has been terminated.")
-                except psutil.NoSuchProcess as e:
-                    print(e)
-            print(f"Killing parent process: {process.pid}")
-            process.terminate()
-            await process.wait()
-            await asyncio.sleep(0.1)
+        await self.server.terminate_server(process)
         
     async def generate(
         self,
