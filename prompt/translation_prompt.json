@@ -1,0 +1,17 @@
+{
+    "direct_trans": {
+        "language":"en",
+        "description": "",
+        "prompt": ""
+    },
+    "few-shot-examples": {
+        "language":"en",
+        "description": "",
+        "prompt": ""
+    },
+    "tmp": {
+        "language":"en",
+        "description": "",
+        "prompt": ""
+    }
+}
