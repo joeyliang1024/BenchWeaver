@@ -18,9 +18,9 @@ To evaluate models using BenchWeaver, you can use the following command:
 ```bash
 bench-weaver-cli eval \
     --task mmlu \
-    --mode $MODE \
-    --pipeline $PIPELINE \
-    --config $CONFIG_PATH
+    --mode opqa \
+    --pipeline same \
+    --config example.yaml
 ```
 Parameters:
 - `--task`: Specifies the task to evaluate. In this example, `mmlu` is the task.
