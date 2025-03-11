@@ -16,12 +16,17 @@ conda env create -f environment.yaml
 ### Evaluation models
 To evaluate models using BenchWeaver, you can use the following command:
 ```bash
-bench-weaver-cli eval --task mmlu --mode mcqa-oq --config example.yaml
+bench-weaver-cli eval \
+    --task mmlu \
+    --mode $MODE \
+    --pipeline $PIPELINE \
+    --config $CONFIG_PATH
 ```
 Parameters:
 - `--task`: Specifies the task to evaluate. In this example, `mmlu` is the task.
 - `--mode`: Specifies the mode of evaluation. You can check by [this](#show-supported-benchmarks).
 - `--config`: Path to the configuration file. In this example, `example.yaml` is the configuration file used.
+- `--pipeline`: Indicate whether to run the same language or different language evaluation.
 
 Make sure to replace `example.yaml` with the path to your actual configuration file.
 

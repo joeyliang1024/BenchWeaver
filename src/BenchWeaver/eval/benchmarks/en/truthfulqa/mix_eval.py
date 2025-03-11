@@ -17,7 +17,8 @@ class TruthfulQAEvaluator(Evaluator):
     
     def load_data(self, 
                   mode = Literal['inference', 'check'],
-                  ) -> Union[Dict[str, list], Tuple[Dict[str, list], Dict[str, list]]]:
+                  choices = None,
+                  ) -> Tuple[Dict[str, list], Dict[str, list]]:
         """Load and format data for evaluation."""
         # init data
         inference_datas = {subj: [] for subj in self.categories}
@@ -77,7 +78,7 @@ class TruthfulQAEvaluator(Evaluator):
                 raise ValueError(f"Input mode {mode} is invalid. Please specify one of 'inference' or 'check' instead.")
         
         if mode == "inference":
-            return inference_datas
+            return None, inference_datas
         elif mode == "check":
             return checked_answers, checked_prompts
     
@@ -163,80 +164,80 @@ class TruthfulQAEvaluator(Evaluator):
         return results
 
     
-    async def eval(self):
-        """Perform evaluation using inference and checker models with a progress bar."""
-        # ensure save folder exists
-        os.makedirs(self.save_folder, exist_ok=False)
-        print(f"Data path created: {self.save_folder}")
-        
-        # inference
-        inference_data = self.load_data(mode="inference")
-        if self.inference_mode == "local":
-            print("Setting server...")
-            inference_process = await self.server.setup_server(
-                model_path=getattr(self.model_args, "model_name_or_path"),
-                model_name=self.inference_model_name,
-                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
-            )
-            print("Server setup complete.")
-            self.set_client(mode="inference")
-            print("Client setup complete.")
-            self.inference_results  = await self.process_subjects(
-                server_process=inference_process,
-                model_name=self.inference_model_name,
-                data=inference_data,
-                prompt_key="system_prompt",
-                output_path="inference_results.json",
-                progress_desc="Inference Progress",
-            )
-        else:
-            self.set_client(mode="inference")
-            print("Client setup complete.")
-            self.inference_results  = await self.process_subjects(
-                server_process=None,
-                model_name=getattr(self.model_args, "model_name_or_path"),
-                data=inference_data,
-                prompt_key="system_prompt",
-                output_path="inference_results.json",
-                progress_desc="Inference Progress",
-            )
-        print("Inference complete.")
-
-        # check
-        checked_answers, checked_prompts = self.load_data(mode="check")
-        
-        if self.check_mode == "local":
-            checker_process = await self.server.setup_server(
-                model_path=getattr(self.model_args, "checker_model_name_or_path"),
-                model_name="checker_model",
-                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
-            )
-            print("Server setup complete.")
-            self.set_client(mode="check")
-            print("Client setup complete.")
-            check_results = await self.process_subjects(
-                server_process=checker_process,
-                model_name="checker_model",
-                data=checked_prompts,
-                prompt_key="criteria_system_prompt",
-                output_path="check_results.json",
-                progress_desc="Check Progress",
-            )
-        else:
-            self.set_client(mode="check")
-            print("Client setup complete.")
-            check_results = await self.process_subjects(
-                server_process=None,
-                model_name=getattr(self.model_args, "checker_model_name_or_path"),
-                data=checked_prompts,
-                prompt_key="criteria_system_prompt",
-                output_path="check_results.json",
-                progress_desc="Check Progress",
-            )
-        print("Check complete.")
-        # compute score
-        score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=TRUTHFULQA_SCORES)
-        self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
+    # async def eval(self):
+    #     """Perform evaluation using inference and checker models with a progress bar."""
+    #     # ensure save folder exists
+    #     os.makedirs(self.save_folder, exist_ok=False)
+    #     print(f"Data path created: {self.save_folder}")
+    #     
+    #     # inference
+    #     inference_data = self.load_data(mode="inference")
+    #     if self.inference_mode == "local":
+    #         print("Setting server...")
+    #         inference_process = await self.server.setup_server(
+    #             model_path=getattr(self.model_args, "model_name_or_path"),
+    #             model_name=self.inference_model_name,
+    #             max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+    #         )
+    #         print("Server setup complete.")
+    #         self.set_client(mode="inference")
+    #         print("Client setup complete.")
+    #         self.inference_results  = await self.process_subjects(
+    #             server_process=inference_process,
+    #             model_name=self.inference_model_name,
+    #             data=inference_data,
+    #             prompt_key="system_prompt",
+    #             output_path="inference_results.json",
+    #             progress_desc="Inference Progress",
+    #         )
+    #     else:
+    #         self.set_client(mode="inference")
+    #         print("Client setup complete.")
+    #         self.inference_results  = await self.process_subjects(
+    #             server_process=None,
+    #             model_name=getattr(self.model_args, "model_name_or_path"),
+    #             data=inference_data,
+    #             prompt_key="system_prompt",
+    #             output_path="inference_results.json",
+    #             progress_desc="Inference Progress",
+    #         )
+    #     print("Inference complete.")
+    # 
+    #     # check
+    #     checked_answers, checked_prompts = self.load_data(mode="check")
+    #     
+    #     if self.check_mode == "local":
+    #         checker_process = await self.server.setup_server(
+    #             model_path=getattr(self.model_args, "checker_model_name_or_path"),
+    #             model_name="checker_model",
+    #             max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+    #         )
+    #         print("Server setup complete.")
+    #         self.set_client(mode="check")
+    #         print("Client setup complete.")
+    #         check_results = await self.process_subjects(
+    #             server_process=checker_process,
+    #             model_name="checker_model",
+    #             data=checked_prompts,
+    #             prompt_key="criteria_system_prompt",
+    #             output_path="check_results.json",
+    #             progress_desc="Check Progress",
+    #         )
+    #     else:
+    #         self.set_client(mode="check")
+    #         print("Client setup complete.")
+    #         check_results = await self.process_subjects(
+    #             server_process=None,
+    #             model_name=getattr(self.model_args, "checker_model_name_or_path"),
+    #             data=checked_prompts,
+    #             prompt_key="criteria_system_prompt",
+    #             output_path="check_results.json",
+    #             progress_desc="Check Progress",
+    #         )
+    #     print("Check complete.")
+    #     # compute score
+    #     score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=TRUTHFULQA_SCORES)
+    #     self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
     
     
         

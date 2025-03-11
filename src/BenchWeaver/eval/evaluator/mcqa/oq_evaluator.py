@@ -29,7 +29,7 @@ class OQEvaluator(Evaluator):
     def load_data(self, 
                   mode = Literal['inference', 'check'],
                   choices = List[str],
-                  ) -> Union[Dict[str, list], Tuple[Dict[str, list], Dict[str, list]]]:
+                  ) -> Tuple[Dict[str, list], Dict[str, list]]:
         """Load and format data for evaluation."""
         # init data
         inference_datas = {subj: [] for subj in self.categories.keys()}
@@ -83,6 +83,6 @@ class OQEvaluator(Evaluator):
                 raise ValueError(f"Input mode {mode} is invalid. Please specify one of 'inference' or 'check' instead.")
         
         if mode == "inference":
-            return inference_datas
+            return None, inference_datas
         elif mode == "check":
             return checked_answers, checked_prompts

@@ -1,11 +1,11 @@
 from tabulate import tabulate
-from ..eval.benchmarks.configs import benchmark_configs
+from ..eval.benchmarks.configs import BENCHMARK_CONFIG
 
 def display_benchmark_table():
     table = []
     headers = ["Supported Benchmark", "Language", "Evaluators", "Suggest num shots", "Cot"]
     
-    for benchmark, config in benchmark_configs.items():
+    for benchmark, config in BENCHMARK_CONFIG.items():
         table.append([
             benchmark,
             config["language"],

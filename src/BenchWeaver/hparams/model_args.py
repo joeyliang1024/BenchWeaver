@@ -146,6 +146,19 @@ class VllmArguments:
     )
     
 @dataclass
+class InferenceArguments:
+    inference_model_name_or_path: Optional[str] = field(
+        default=None,
+        metadata={
+            "help": "Path to the checker model weight or identifier from huggingface.co/models or modelscope.cn/models."
+        },
+    )
+    inference_mode: Literal["api", "local"] = field(
+        default="local",
+        metadata={"help": "Mode for the checker model."},
+    )
+    
+@dataclass
 class CheckerArguments:
     checker_model_name_or_path: Optional[str] = field(
         default=None,
@@ -157,28 +170,32 @@ class CheckerArguments:
         default="local",
         metadata={"help": "Mode for the checker model."},
     )
+    
+@dataclass
+class TranlsatorArguments:
+    translation_model_name_or_path: Optional[str] = field(
+        default=None,
+        metadata={
+            "help": "Path to the translator model weight or identifier from huggingface.co/models or modelscope.cn/models."
+        },
+    )
+    translation_mode: Literal["api", "local"] = field(
+        default="local",
+        metadata={"help": "Mode for the translator model."},
+    )
+    
 @dataclass
 class OpenAIArguments:
     openai_source: Literal["openai", "azure"] = field(
         default="openai",
         metadata={"help": "The OpenAI source for the inference."},
     )
+    
 @dataclass
-class ModelArguments(QuantizationArguments, ProcessorArguments, ExportArguments, VllmArguments, CheckerArguments, OpenAIArguments):
+class ModelArguments(QuantizationArguments, ProcessorArguments, ExportArguments, VllmArguments, InferenceArguments, CheckerArguments, TranlsatorArguments, OpenAIArguments):
     r"""
     Arguments pertaining to which model/config/tokenizer we are going to fine-tune or infer.
     """
-
-    model_name_or_path: Optional[str] = field(
-        default=None,
-        metadata={
-            "help": "Path to the model weight or identifier from huggingface.co/models or modelscope.cn/models."
-        },
-    )
-    inference_mode: Literal['api', 'local'] = field(
-        default='local',
-        metadata={"help": "Inference mode for the model."},
-    )
     adapter_name_or_path: Optional[str] = field(
         default=None,
         metadata={
@@ -305,8 +322,8 @@ class ModelArguments(QuantizationArguments, ProcessorArguments, ExportArguments,
     )
 
     def __post_init__(self):
-        if self.model_name_or_path is None:
-            raise ValueError("Please provide `model_name_or_path`.")
+        if self.inference_model_name_or_path is None:
+            raise ValueError("Please provide `inference_model_name_or_path`.")
 
         if self.split_special_tokens and self.use_fast_tokenizer:
             raise ValueError("`split_special_tokens` is only supported for slow tokenizers.")

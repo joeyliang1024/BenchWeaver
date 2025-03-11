@@ -1,6 +1,6 @@
 import os
 import asyncio
-from typing import Any, Dict, List, Literal
+from typing import Any, Dict, List, Literal, Tuple, Union
 import numpy as np
 from tqdm.auto import tqdm
 from datasets import load_dataset
@@ -28,7 +28,8 @@ class OPQAEvaluator(Evaluator):
             
     def load_data(self, 
                   mode = Literal['inference', 'check'],
-                  ) -> List[Dict[str, list]]:
+                  choices = None,
+                  ) -> Tuple[Dict[str, list], Dict[str, list]]:
         """Load and format data for evaluation."""
         # init data
         inference_datas = {subj: [] for subj in self.categories.keys()}
@@ -65,6 +66,7 @@ class OPQAEvaluator(Evaluator):
                     inference_datas[subject].append(messages)
             
             elif mode == "check":
+                # answers are already in the check prompts
                 assert self.inference_results is not None
                 for i in range(len(dataset[self.eval_split])):
                     check_msg_list = self.eval_template.format_checker_example(
@@ -78,7 +80,7 @@ class OPQAEvaluator(Evaluator):
                 raise ValueError(f"Input mode {mode} is invalid. Please specify one of 'inference' or 'check' instead.")
         
         if mode == "inference":
-            return inference_datas
+            return None, inference_datas
         elif mode == "check":
-            return checked_prompts
+            return None, checked_prompts
     
