@@ -18,3 +18,7 @@
 - [ ] 是否有跨語言的測試結果
 
 
+## 需要解決的問題
+- [ ] 問題是 messsage list, 需要完整的翻譯，可能不適合直接打包成 str 直翻 (不能確定番後格式會不會跑掉，尤其是長文本)
+    - 可能解法: few shot 的先翻，因此只需要翻譯最後一個 user prompt 欄位？
+- [ ] reference benchmark 的 subject 可能選擇相關的會更好，而不是 random
