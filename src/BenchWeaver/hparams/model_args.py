@@ -183,6 +183,18 @@ class TranlsatorArguments:
         default="local",
         metadata={"help": "Mode for the translator model."},
     )
+    transation_templates_name: Optional[str] = field(
+        default=None,
+        metadata={"help": "Name of the translation templates."},
+    )
+    source_lang: Optional[str] = field(
+        default=None,
+        metadata={"help": "Source language for translation."},
+    )
+    target_lang: Optional[str] = field(
+        default=None,
+        metadata={"help": "Target language for translation."},
+    )
     
 @dataclass
 class OpenAIArguments:

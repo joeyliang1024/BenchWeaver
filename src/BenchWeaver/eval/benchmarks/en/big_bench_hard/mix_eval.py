@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import random
 from typing import Any, Dict, List, Literal, Tuple, Union
 from datasets import load_dataset
 import numpy as np
@@ -16,13 +17,15 @@ class BigBenchHardEvaluator(Evaluator):
         super().__init__(args=args)
     
     def load_data(self, 
-                  mode = Literal['inference', 'check'],
+                  mode = Literal['inference', 'check', 'translation'],
                   choices = None,
+                  responses_trans: bool = False,
                   ) -> Tuple[Dict[str, list], Dict[str, list]]:
         # init data
-        inference_datas = {subj: [] for subj in self.categories.keys()}
-        checked_answers = {subj: [] for subj in self.categories.keys()}
-        checked_prompts = {subj: [] for subj in self.categories.keys()}
+        inference_prompts = {subj: [] for subj in self.categories.keys()}
+        checker_answers = {subj: [] for subj in self.categories.keys()}
+        checker_prompts = {subj: [] for subj in self.categories.keys()}
+        translate_prompts = {subj: [] for subj in self.categories.keys()}
         # Load datasets
         for subject in tqdm(self.categories.keys(), desc="Loading subjects"):
             costume_eval_template = get_big_bench_hard_eval_template(name=subject)
@@ -52,7 +55,8 @@ class BigBenchHardEvaluator(Evaluator):
                         user_prompt=self.eval_args.user_prompt,
                         use_cot=self.eval_args.cot,
                     )
-                    inference_datas[subject].append(messages)
+                    inference_prompts[subject].append(messages)
+                    
             elif mode == "check":
                 assert self.inference_results is not None
                 # opqa
@@ -63,7 +67,7 @@ class BigBenchHardEvaluator(Evaluator):
                             is_mcqa=False,
                             llm_response=self.inference_results[subject][i],
                         )
-                        checked_prompts[subject].append(check_msg_list)
+                        checker_prompts[subject].append(check_msg_list)
                 # mcqa
                 else:
                     for i in range(len(dataset[self.eval_split])):
@@ -72,15 +76,56 @@ class BigBenchHardEvaluator(Evaluator):
                             is_mcqa=True,
                             llm_response=self.inference_results[subject][i],
                         )
-                        checked_answers[subject] += answer_list
-                        checked_prompts[subject] += check_msg_list
+                        checker_answers[subject] += answer_list
+                        checker_prompts[subject] += check_msg_list
+                        
+            elif mode == "translation":
+                # check is question or repsponse translation
+                if responses_trans:
+                    assert self.inference_results is not None
+                    source_type = "response"
+                else:
+                    source_type = "question"
+                    
+                # load object benchmark examples
+                if self.ref_task is not None:
+                    ref_dataset = load_dataset(
+                        path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.ref_task),
+                        name=random.choice(self.ref_categories.keys()),
+                        cache_dir=self.model_args.cache_dir,
+                        download_mode=self.eval_args.download_mode,
+                        token=self.hf_token,
+                        trust_remote_code=True,
+                    )
+                    support_set = (
+                            dataset["test"]
+                            .shuffle()
+                            .select(range(min(self.eval_args.n_shot, len(ref_dataset["test"]))))
+                        )
+                else:
+                    support_set = None
+                
+                for i in range(len(dataset[self.ref_split])):
+                    # format translation example
+                    trans_messages = self.trans_template.format_translation_example(
+                        trans_source=json.dumps(self.inference_prompts[subject][i]) if source_type == "question" else self.inference_results[subject][i],
+                        source_type=source_type,
+                        source_lang=self.eval_args.source_lang,
+                        target_lang=self.eval_args.target_lang,
+                        choices=choices,
+                        support_set=support_set,
+                        use_cot=self.eval_args.cot,
+                    )
+                    translate_prompts[subject].append(trans_messages)
             else:
                 raise ValueError(f"Input mode {mode} is invalid. Please specify one of 'inference' or 'check' instead.")
     
         if mode == "inference":
-            return None, inference_datas
+            return None, inference_prompts
         elif mode == "check":
-            return checked_answers, checked_prompts
+            return checker_answers, checker_prompts
+        elif mode == "translation":
+            return None, translate_prompts
          
     def comput_score(self, checked_answers: Dict[str, List[Any]], check_results: Dict[str, List[Any]], subjects: List[str]) -> Dict[str, float]:
         category_corrects = {subj: np.array([], dtype="bool") for subj in subjects}

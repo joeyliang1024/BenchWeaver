@@ -1,5 +1,7 @@
+import os
 from pathlib import Path
 PROJECT_BASE_PATH = str(Path(__file__).resolve().parents[3])
+TRANSLATION_PROMPT_PATH = os.path.join(PROJECT_BASE_PATH, "prompt", "translation_prompt.json")
 
 # MMLU
 MMLU_CHOICES = ["A", "B", "C", "D"]

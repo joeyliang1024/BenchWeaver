@@ -28,6 +28,9 @@ class EvaluationArguments:
     task: str = field(
         metadata={"help": "Name of the evaluation task."},
     )
+    ref_task: str = field(
+        metadata={"help": "Name of the reference task."},
+    )
     task_dir: str = field(
         default="evaluation",
         metadata={"help": "Path to the folder containing the evaluation datasets."},

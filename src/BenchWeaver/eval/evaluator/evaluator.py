@@ -3,7 +3,7 @@ import os
 import re
 import json
 import asyncio
-from typing import Any, Dict, List, Literal, Optional, Tuple
+from typing import Any, Dict, List, Literal, Optional, Tuple, Union
 from tqdm.auto import tqdm
 from transformers.utils import cached_file
 from ...extras.load_env import load_env_variables
@@ -11,7 +11,8 @@ from ...extras.constants import PROJECT_BASE_PATH
 from ...hparams import get_infer_eval_args
 from ...inference.vllm.server import VLLMServer
 from ...inference.client import Client
-
+from ..template import AdvancedTransTemplate, get_translation_template
+from ...data.data_utils import Role
 load_env_variables()
 
 class Evaluator:
@@ -30,6 +31,7 @@ class Evaluator:
         # laod task
         self.eval_task = self.eval_args.task.split("_")[0]
         self.eval_split = self.eval_args.task.split("_")[1]
+        # load categories
         self.categories = self.load_catagorys(self.eval_task)
         # set save folder
         self.save_folder = os.path.join(PROJECT_BASE_PATH, getattr(self.eval_args, "save_dir"))
@@ -46,7 +48,13 @@ class Evaluator:
         self.port = 8001
         self.server = VLLMServer(hostname=self.host_name, port=self.port)
         self.client:Client = None
-             
+        # load trans parms
+        if getattr(self.eval_args, "ref_task", None):   
+            self.ref_task = self.eval_args.ref_task.split("_")[0]     
+            self.ref_split = self.eval_args.ref_task.split("_")[1]
+            self.ref_categories = self.load_catagorys(self.ref_task)
+            self.trans_template: AdvancedTransTemplate = get_translation_template(getattr(self.model_args, "transation_templates_name", ""))
+            
     def set_hf_token(self):
         token = os.getenv("HF_TOKEN", None)
         if token:
@@ -75,6 +83,27 @@ class Evaluator:
         match = re.search(r'\b(true|false)\b', text)
         return match.group(0) if match else ""
     
+    @staticmethod
+    def retrieve_translation(translated_text: str, source_type: Literal['question', 'response']) -> Union[List[Dict[str, str]], str]:
+        """
+        Retrieve the translated text based on the source type.
+        Only the question is formatted as a list of dictionaries with roles.
+        Args:
+            translated_text: The translated text.
+            source_type: The type of the source text.
+        Returns:
+            Union[List[Dict[str, str]], str]: The formatted translated text.
+        """
+        if source_type == "question":
+            try: 
+                return json.loads(translated_text)
+            except json.JSONDecodeError:
+                return [
+                    {"role": Role.USER.value, "content": translated_text}
+                ]
+        else:
+            return translated_text
+        
     def save_data(self, data, output_path: str) -> None:
         """
         Save the formatted data to a JSON file.
@@ -247,7 +276,7 @@ class Evaluator:
         os.makedirs(self.save_folder, exist_ok=True)
         print(f"Data path created: {self.save_folder}")
         ######################################### inference #########################################
-        _, inference_prompts = self.load_data(mode="inference", choices=choices)
+        _, self.inference_prompts = self.load_data(mode="inference", choices=choices)
         
         if self.inference_mode == "local":
             inference_process = await self.server.setup_server(
@@ -266,14 +295,14 @@ class Evaluator:
         self.inference_results = await self.process_subjects(
             server_process=inference_process,
             model_name=self.inference_model_name if self.inference_mode == "local" else self.model_args.model_name_or_path,
-            data=inference_prompts,
+            data=self.inference_prompts,
             prompt_key="system_prompt",
             output_path="inference_results.json",
             progress_desc="Inference Progress",
         )
 
         print("Inference complete.")
-        ########################################### check ##############3############################
+        ########################################### check ###########################################
         checked_answers, checked_prompts = self.load_data(mode="check", choices=choices)
 
         if self.check_mode == "local":

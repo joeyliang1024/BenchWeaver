@@ -4,7 +4,7 @@ import numpy as np
 from typing import TYPE_CHECKING, Dict, List
 from transformers import PreTrainedModel
 from ..evaluator import Evaluator
-from ...template.mcqa_template import MCQA_Template
+from ...template.eval.mcqa_template import MCQA_Template
 from ....data.template import get_template_and_fix_tokenizer
 from ....extras.constants import PROJECT_BASE_PATH
 from ....inference.transformers.prob_model import load_model

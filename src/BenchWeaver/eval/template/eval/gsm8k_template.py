@@ -1,5 +1,5 @@
 from typing import Dict
-from .template import _register_eval_template
+from ..template import _register_eval_template
 from .opqa_template import OPQA_Template
 
 gsm8k_eval_templates: Dict[str, "OPQA_Template"] = {}

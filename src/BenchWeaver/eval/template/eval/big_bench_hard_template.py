@@ -1,9 +1,9 @@
 import json
 import ast
 from typing import Dict, List, Literal, Sequence, Tuple, Union
-from .template import EvalTemplate, _register_eval_template
-from ...data.data_utils import Role
-from ...extras.constants import OPTION_CODES
+from ..template import EvalTemplate, _register_eval_template
+from ....data.data_utils import Role
+from ....extras.constants import OPTION_CODES
 
 class BigBenchHard_Template(EvalTemplate):
     def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str):

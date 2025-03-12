@@ -1,6 +1,6 @@
 from typing import Dict, List, Sequence, Tuple
-from .template import EvalTemplate
-from ...data.data_utils import Role
+from ..template import EvalTemplate
+from ....data.data_utils import Role
 
 class OPQA_Template(EvalTemplate):
     def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str):

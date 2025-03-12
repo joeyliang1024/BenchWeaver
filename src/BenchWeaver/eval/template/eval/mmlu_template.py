@@ -1,6 +1,6 @@
 from typing import Dict
 from .mcqa_template import MCQA_Template
-from .template import _register_eval_template
+from ..template import _register_eval_template
 
 mmlu_eval_templates: Dict[str, "MCQA_Template"] = {}
 

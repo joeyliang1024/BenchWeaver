@@ -1,5 +1,5 @@
-from .template import EvalTemplate
-from ...data.data_utils import Role
+from ..template import EvalTemplate
+from ....data.data_utils import Role
 from typing import Dict, List, Sequence, Tuple
 
 class MCQA_Template(EvalTemplate):
