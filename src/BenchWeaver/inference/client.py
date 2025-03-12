@@ -1,7 +1,7 @@
 from argparse import Namespace
 import asyncio
 import os
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Tuple, Union
 from openai import AsyncOpenAI, AsyncAzureOpenAI
 from openai import RateLimitError, NotFoundError, APITimeoutError, APIConnectionError, BadRequestError
 from asyncio.subprocess import Process
@@ -90,9 +90,18 @@ class Client:
         system_prompt: Optional[str],
         example: List[Dict[str, Any]],
         generating_args: Namespace,
-    ) -> str:
+    ) -> Union[str, Tuple[str, int, str]]:
         """
         Generate a response using the provided client and example.
+
+        Args:
+            model (str): The model to use for generation.
+            system_prompt (Optional[str]): The system prompt to use.
+            example (List[Dict[str, Any]]): The example messages to use.
+            generating_args (Namespace): The arguments for generation.
+
+        Returns:
+            Union[str, Tuple[str, int, str]]: The generated response, and optionally the index and UUID if present.
         """
         if self.client is None:
             raise ValueError("Client not initialized. Call 'initialize()' first.")
@@ -112,7 +121,10 @@ class Client:
                 top_p=getattr(generating_args, "top_p"),
                 n=getattr(generating_args, "num_beams"),
             )
-            return c.choices[0].message.content.strip()
+            if messages[-1].get("idx") and messages[-1].get("uuid"):
+                return c.choices[0].message.content.strip(), messages[-1].get("idx"), messages[-1].get("uuid")
+            else:
+                return c.choices[0].message.content.strip()
         
         except RateLimitError as e:
             print("Rate limit error. Waiting for 30 seconds.")

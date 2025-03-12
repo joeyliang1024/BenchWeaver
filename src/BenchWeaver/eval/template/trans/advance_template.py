@@ -1,4 +1,5 @@
-from typing import Dict, List, Literal, Sequence
+import uuid
+from typing import Dict, List, Literal, Sequence, Tuple
 from ..template import TransTemplate
 from ....data.data_utils import Role
 
@@ -25,28 +26,34 @@ class AdvancedTransTemplate(TransTemplate):
                 "The correct answer is ({answer}).".format(answer=example.get("answer"))).strip()
     
     def format_translation_example(self, 
-                                   trans_source:str,
-                                   source_type: Literal['question', 'response'],
-                                   source_lang, 
-                                   target_lang, 
-                                   choices: List[str], 
-                                   support_set: Sequence[Dict[str, str]], 
-                                   use_cot:bool
-                                   ) -> List[Dict[str, str]]:
+                               trans_source: str | List[Dict[str, str]],
+                               source_type: Literal['question', 'response'],
+                               source_lang, 
+                               target_lang, 
+                               choices: List[str], 
+                               support_set: Sequence[Dict[str, str]], 
+                               use_cot: bool
+                               ) -> List[Dict[str, str]] | List[List[Dict[str, str]]]:
         """
         Format a few-shot translation example.
         Few-shot translation example will be in-context of a single turn conversation.
         Args:
-            trans_source: the source sentence of the translation
+            trans_source: the source sentence or messages of the translation
+                - If str: a single text to translate
+                - If List[Dict[str, str]]: a list of conversation messages with "role" and "content" keys
+            source_type: the source language of the translation
             source_lang: the source language of the translation
             target_lang: the target language of the translation
             choices: the choices of the MCQA question, for OPQA, just None.
             support_set: the support set for the translation
             use_cot: whether to use the chain of thought in the question
         Returns:
-            A messages list of translation example.
+            If trans_source is str: A messages list of translation example.
+            
+            If trans_source is List[Dict[str, str]]: A list of messages lists,
+                where each messages list is a translation request for one message in the conversation.
         """
-        messages = []
+        # Prepare in-context examples
         in_context_examples = ""
         if support_set is not None:
             for k in range(len(support_set)):
@@ -55,13 +62,60 @@ class AdvancedTransTemplate(TransTemplate):
                 else:
                     example = self._parse_ref_answer(support_set[k], use_cot)
                 in_context_examples += f"Q{k+1}:\n{example}\n"
+    
+        # Format the translation prompt based on the type of trans_source
+        if isinstance(trans_source, str):
+            # Handle single text string case
+            messages = []
+            if self.system_prompt:
+                messages.append({"role": Role.SYSTEM.value, "content": self.system_prompt})
                 
-        if self.system_prompt:
-            messages.append({"role": Role.SYSTEM.value, "content": self.system_prompt})
-        messages.append({"role": Role.USER.value, "content": 
-                "\n".join([self.guide_line, 
-                           in_context_examples,
-                           self.trans_prompt.format(trans_source=trans_source, source_lang=source_lang, target_lang=target_lang)
-                           ])
+            trans_prompt = self.trans_prompt.format(
+                trans_source=trans_source, 
+                source_lang=source_lang, 
+                target_lang=target_lang
+            )
+            
+            messages.append({
+                "role": Role.USER.value, 
+                "content": "\n".join([
+                    self.guide_line, 
+                    in_context_examples,
+                    trans_prompt
+                ])
             })
-        
+            
+            return messages
+        else:
+            # Handle list of conversation messages case
+            # Create a separate translation request for each message
+            list_of_messages = []
+            for i, msg in enumerate(trans_source):
+                messages = []
+                # Generate a unique ID for each message
+                msg_uuid = str(uuid.uuid4())
+                
+                if self.system_prompt:
+                    messages.append({"role": Role.SYSTEM.value, "content": self.system_prompt})
+                
+                trans_prompt = self.trans_prompt.format(
+                    trans_source=trans_source, 
+                    source_lang=source_lang, 
+                    target_lang=target_lang
+                )
+                
+                messages.append({
+                    "idx": i,
+                    "uuid": msg_uuid,
+                    "role": Role.USER.value, 
+                    "content": "\n".join([
+                        self.guide_line, 
+                        in_context_examples,
+                        trans_prompt
+                    ])
+                })
+                
+                list_of_messages.append(messages)
+            
+            # Return both the list of message requests and the metadata for reconstruction
+            return list_of_messages
