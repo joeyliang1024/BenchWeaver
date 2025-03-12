@@ -90,7 +90,7 @@ class Client:
         system_prompt: Optional[str],
         example: List[Dict[str, Any]],
         generating_args: Namespace,
-    ) -> Union[str, Tuple[str, int, str]]:
+    ) -> str:
         """
         Generate a response using the provided client and example.
 
@@ -101,12 +101,12 @@ class Client:
             generating_args (Namespace): The arguments for generation.
 
         Returns:
-            Union[str, Tuple[str, int, str]]: The generated response, and optionally the index and UUID if present.
+            str: The generated response
         """
         if self.client is None:
             raise ValueError("Client not initialized. Call 'initialize()' first.")
 
-        messages = []
+        messages: List[dict] = []
 
         if system_prompt:
             messages.append({"role": "system", "content": system_prompt})
@@ -121,10 +121,7 @@ class Client:
                 top_p=getattr(generating_args, "top_p"),
                 n=getattr(generating_args, "num_beams"),
             )
-            if messages[-1].get("idx") and messages[-1].get("uuid"):
-                return c.choices[0].message.content.strip(), messages[-1].get("idx"), messages[-1].get("uuid")
-            else:
-                return c.choices[0].message.content.strip()
+            return c.choices[0].message.content.strip()
         
         except RateLimitError as e:
             print("Rate limit error. Waiting for 30 seconds.")

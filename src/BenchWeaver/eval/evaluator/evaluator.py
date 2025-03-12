@@ -84,25 +84,46 @@ class Evaluator:
         return match.group(0) if match else ""
     
     @staticmethod
-    def retrieve_translation(translated_text: str, source_type: Literal['question', 'response']) -> Union[List[Dict[str, str]], str]:
+    def recover_trans_messages(
+        translated_messages: Union[List[Dict[str, str]], List[str]]
+        ) -> Union[List[List[Dict[str, str]]], List[str]]:
         """
-        Retrieve the translated text based on the source type.
-        Only the question is formatted as a list of dictionaries with roles.
+        Group translated messages by UUID and sort by index to reconstruct conversation messages.
+
         Args:
-            translated_text: The translated text.
-            source_type: The type of the source text.
+            translated_messages: Either:
+                - List of dictionaries, each containing 'role', 'content', 'idx', and 'uuid' keys
+                  representing translated messages from conversations
+                - List of strings representing simple translated texts
+
         Returns:
-            Union[List[Dict[str, str]], str]: The formatted translated text.
+            Either:
+                - A list of conversation message lists, where each inner list contains
+                  ordered messages for a single conversation (when input is list of dicts)
+                - The original list of strings (when input is list of strings)
         """
-        if source_type == "question":
-            try: 
-                return json.loads(translated_text)
-            except json.JSONDecodeError:
-                return [
-                    {"role": Role.USER.value, "content": translated_text}
-                ]
-        else:
-            return translated_text
+        if isinstance(translated_messages[0], str):
+            return translated_messages
+        # Group messages by UUID
+        conversations = {}
+        for message in translated_messages:
+            uuid = message.get("uuid")
+            if uuid not in conversations:
+                conversations[uuid] = []
+            conversations[uuid].append(message)
+
+        # Sort each conversation's messages by index
+        for uuid in conversations:
+            conversations[uuid].sort(key=lambda x: x.get("idx", 0))
+
+        # Convert to list of lists and clean up the format
+        result = []
+        for uuid, messages in conversations.items():
+            # Remove metadata fields and keep only role and content
+            clean_messages = [{"role": msg["role"], "content": msg["content"]} for msg in messages]
+            result.append(clean_messages)
+
+        return result
         
     def save_data(self, data, output_path: str) -> None:
         """
@@ -177,7 +198,7 @@ class Evaluator:
             example=example,
             generating_args=generating_args,
         ), idx
-    
+        
     async def process_subjects(
         self,
         server_process: asyncio.subprocess.Process,
@@ -236,6 +257,86 @@ class Evaluator:
                             subject_results[origin_idx] = result
 
                 results[subject] = subject_results
+                total_progress_bar.update(1)
+
+        finally:
+            # Ensure cleanup and save results
+            await self.terminate_server(process=server_process)
+            self.client = None
+            self.save_data(data=results, output_path=os.path.join(self.save_folder, output_path))
+            total_progress_bar.close()
+
+        return results
+    
+    async def translation(
+        self,
+        server_process: asyncio.subprocess.Process,
+        model_name: str,
+        data: Dict[str, List[Any]],
+        prompt_key: str,
+        output_path: str,
+        progress_desc: str,
+    ) -> Dict[str, List[Any]]:
+        """Process subjects using the specified client and data with concurrency control."""
+        results = {subj: [] for subj in self.categories.keys()}
+        total_progress_bar = tqdm(self.categories.keys(), desc=progress_desc)
+
+        # Define maximum concurrency
+        max_concurrency = getattr(self.model_args, "vllm_max_concurrency", 100)
+        semaphore = asyncio.Semaphore(max_concurrency)
+
+        async def process_single_item(idx:int, messages: List[dict], subject: str, progress_bar: tqdm):
+            """Processes a single item with semaphore-based concurrency control."""
+            async with semaphore:
+                try:
+                    translation_text = await self.generate(
+                        model=model_name,
+                        system_prompt=getattr(self.eval_args, prompt_key),
+                        example=messages,
+                        idx=idx,
+                        generating_args=self.generating_args,
+                    )
+                    progress_bar.update(1)
+                    return idx, translation_text, messages[-1].get("role", None), messages[-1].get("idx", None), messages[-1].get("uuid", None)
+                except Exception as e:
+                    progress_bar.update(1)
+                    print(f"Error translating messages {json.dumps(messages, ensure_ascii=False, indent=2)}\n Error: {e}")
+                    # return original text before translation
+                    return idx, messages[-1].get("content", None), messages[-1].get("role", None), messages[-1].get("idx", None), messages[-1].get("uuid", None)
+
+        try:
+            for subject in self.categories.keys():
+                subject_results = [None] * len(data[subject])
+
+                with tqdm(
+                    total=len(data[subject]),
+                    desc=self.categories[subject]["name"],
+                    dynamic_ncols=True,
+                ) as subject_progress_bar:
+
+                    # Create tasks for all items under a subject
+                    tasks = [
+                        asyncio.create_task(process_single_item(idx, messages, subject, subject_progress_bar))
+                        for idx, messages in enumerate(data[subject])
+                    ]
+
+                    # Collect results as tasks complete
+                    for task in asyncio.as_completed(tasks):
+                        origin_idx, translation_text, role, sen_idx, sen_uuid = await task
+                        # for question
+                        if sen_idx is not None and sen_uuid is not None:
+                            subject_results[origin_idx] = {
+                                "role": role,
+                                "content": translation_text,
+                                "idx": sen_idx,
+                                "uuid": sen_uuid,
+                            }
+                        # for answer
+                        elif translation_text is not None:
+                            subject_results[origin_idx] = translation_text
+                            
+                # TODO: handle not grouped question results
+                results[subject] = self.recover_trans_messages(subject_results)
                 total_progress_bar.update(1)
 
         finally:

@@ -109,16 +109,30 @@ class OPQAEvaluator(Evaluator):
                 
                 for i in range(len(dataset[self.ref_split])):
                     # format translation example
-                    trans_messages = self.trans_template.format_translation_example(
-                        trans_source=json.dumps(self.inference_prompts[subject][i]) if source_type == "question" else self.inference_results[subject][i],
-                        source_type=source_type,
-                        source_lang=self.eval_args.source_lang,
-                        target_lang=self.eval_args.target_lang,
-                        choices=choices,
-                        support_set=support_set,
-                        use_cot=self.eval_args.cot,
-                    )
-                    translate_prompts[subject].append(trans_messages)
+                    if source_type == "question":
+                        trans_messages = self.trans_template.format_translation_example(
+                            trans_source=self.inference_prompts[subject][i],
+                            source_type=source_type,
+                            source_lang=self.eval_args.source_lang,
+                            target_lang=self.eval_args.target_lang,
+                            choices=choices,
+                            support_set=support_set,
+                            use_cot=self.eval_args.cot,
+                        )
+                        # list of messages
+                        translate_prompts[subject] += trans_messages
+                    elif source_type == "response":
+                        trans_messages = self.trans_template.format_translation_example(
+                            trans_source=self.inference_results[subject][i],
+                            source_type=source_type,
+                            source_lang=self.eval_args.source_lang,
+                            target_lang=self.eval_args.target_lang,
+                            choices=choices,
+                            support_set=support_set,
+                            use_cot=self.eval_args.cot,
+                        )
+                        # message list
+                        translate_prompts[subject].append(trans_messages)
             else:
                 raise ValueError(f"Input mode {mode} is invalid. Please specify one of 'inference' or 'check' instead.")
         
