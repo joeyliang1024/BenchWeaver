@@ -32,6 +32,7 @@ class OPQAEvaluator(Evaluator):
                   mode = Literal['inference', 'check', 'translation'],
                   choices = None, 
                   responses_trans: bool = False,
+                  check_source: Literal['original', 'translated'] = "original",
                   ) -> Tuple[Dict[str, list], Dict[str, list]]:
         """Load and format data for evaluation."""
         # init data
@@ -76,7 +77,7 @@ class OPQAEvaluator(Evaluator):
                 for i in range(len(dataset[self.eval_split])):
                     check_msg_list = self.eval_template.format_checker_example(
                         target_data=dataset[self.eval_split][i],
-                        llm_response=self.inference_results[subject][i],
+                        llm_response=self.inference_results[subject][i] if check_source == "original" else self.translated_responses[subject][i],
                         criteria_prompt=self.eval_args.criteria_prompt,
                     )
                     checker_prompts[subject].append(check_msg_list)

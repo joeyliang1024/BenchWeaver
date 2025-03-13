@@ -21,6 +21,7 @@ class TruthfulQAEvaluator(Evaluator):
                   mode = Literal['inference', 'check', 'translation'],
                   choices = None,
                   responses_trans: bool = False,
+                  check_source: Literal['original', 'translated'] = "original"
                   ) -> Tuple[Dict[str, list], Dict[str, list]]:
         """Load and format data for evaluation."""
         # init data
@@ -66,7 +67,7 @@ class TruthfulQAEvaluator(Evaluator):
                         check_msg_list = self.eval_template.format_checker_example(
                             target_data=dataset[self.eval_split][i],
                             type=data_type,
-                            llm_response=self.inference_results[data_type][i],
+                            llm_response=self.inference_results[data_type][i] if check_source == "original" else self.translated_responses[data_type][i],
                         )
                         checker_prompts[data_type].append(check_msg_list)
                 else:
@@ -74,7 +75,7 @@ class TruthfulQAEvaluator(Evaluator):
                         check_msg_list, answer_list = self.eval_template.format_checker_example(
                             target_data=dataset[self.eval_split][i],
                             type=data_type,
-                            llm_response=self.inference_results[data_type][i],
+                            llm_response=self.inference_results[data_type][i] if check_source == "original" else self.translated_responses[data_type][i],
                         )
                         checker_answers[data_type] += answer_list
                         checker_prompts[data_type] += check_msg_list

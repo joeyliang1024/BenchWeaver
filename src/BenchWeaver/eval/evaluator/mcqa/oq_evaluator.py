@@ -32,6 +32,7 @@ class OQEvaluator(Evaluator):
                   mode = Literal['inference', 'check', 'translation'],
                   choices = List[str],
                   responses_trans: bool = False,
+                  check_source: Literal['original', 'translated'] = "original"
                   ) -> Tuple[Dict[str, list], Dict[str, list]]:
         """Load and format data for evaluation."""
         # init data
@@ -77,11 +78,12 @@ class OQEvaluator(Evaluator):
                     check_msg_list, answer_list = self.eval_template.format_checker_example(
                         choices=choices,
                         target_data=dataset[self.eval_split][i],
-                        llm_response=self.inference_results[subject][i],
+                        llm_response=self.inference_results[subject][i] if check_source == "original" else self.translated_responses[subject][i],
                         criteria_prompt=self.eval_args.criteria_prompt,
                     )
                     checker_answers[subject] += answer_list
                     checker_prompts[subject] += check_msg_list
+                    
             elif mode == "translation":
                 # check is question or repsponse translation
                 if responses_trans:

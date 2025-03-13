@@ -17,6 +17,9 @@ load_env_variables()
 
 class Evaluator:
     hf_token: str
+    inference_prompt: Dict[str, List[Any]]
+    inference_results: Dict[str, List[Any]]
+    translated_responses: Dict[str, List[Any]]
     def __init__(self, args: Optional[Dict[str, Any]] = None) -> None:
         # laod args
         (
@@ -273,7 +276,6 @@ class Evaluator:
         server_process: asyncio.subprocess.Process,
         model_name: str,
         data: Dict[str, List[Any]],
-        prompt_key: str,
         output_path: str,
         progress_desc: str,
     ) -> Dict[str, List[Any]]:
@@ -291,7 +293,7 @@ class Evaluator:
                 try:
                     translation_text = await self.generate(
                         model=model_name,
-                        system_prompt=getattr(self.eval_args, prompt_key),
+                        system_prompt=None,
                         example=messages,
                         idx=idx,
                         generating_args=self.generating_args,
@@ -348,7 +350,7 @@ class Evaluator:
 
         return results
     
-    def load_data(self, mode: Literal['inference', 'check', 'translation'], choices: List[str]) -> Tuple[Dict[str, list], Dict[str, list]]:
+    def load_data(self, mode: Literal['inference', 'check', 'translation'], choices: List[str], responses_trans: bool = False, check_source: Literal['original', 'translated'] = "original") -> Tuple[Dict[str, list], Dict[str, list]]:
         """
         Load data based on the specified mode. This should be defined by your benchmark. 
 
@@ -395,7 +397,7 @@ class Evaluator:
 
         self.inference_results = await self.process_subjects(
             server_process=inference_process,
-            model_name=self.inference_model_name if self.inference_mode == "local" else self.model_args.model_name_or_path,
+            model_name=self.inference_model_name if self.inference_mode == "local" else self.model_args.inference_model_name_or_path,
             data=self.inference_prompts,
             prompt_key="system_prompt",
             output_path="inference_results.json",
@@ -434,7 +436,116 @@ class Evaluator:
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
     
-    async def diff_lang_eval(self, choices: List[str], subjects: List[str]) -> None:...
+    async def diff_lang_eval(self, choices: List[str], subjects: List[str]) -> None:
         # specific evaluation pipeline
         # need: trranslator model, inference model, checker model
-        # TODO
+        # ensure save folder exists
+        os.makedirs(self.save_folder, exist_ok=True)
+        print(f"Data path created: {self.save_folder}")
+        ######################################## translation ########################################
+        _, self.inference_prompts = self.load_data(mode="inference", choices=choices)
+        _, ques_trans_prompts = self.load_data(mode="translation", choices=choices, responses_trans=False)
+        if self.translation_mode == "local":
+            translation_process = await self.server.setup_server(
+                model_path=self.model_args.translation_model_name_or_path,
+                model_name=self.translation_model_name,
+                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+            )
+            print("Local vLLM server setup complete.")
+        else:
+            translation_process = None
+            print("Using OpenAI API for inference.")
+
+        self.set_client(mode="translation")
+        print("Client setup complete.")
+        
+        translated_questions = await self.translation(
+            server_process=translation_process,
+            model_name=self.translation_model_name if self.translation_mode == "local" else self.model_args.translation_model_name_or_path,
+            data=ques_trans_prompts,
+            output_path="translated_question_record.json",
+            progress_desc="Trans Question Progress",
+        )
+
+        print("Question translated complete.")
+        ######################################### inference #########################################
+        if self.inference_mode == "local":
+            inference_process = await self.server.setup_server(
+                model_path=self.model_args.inference_model_name_or_path,
+                model_name=self.inference_model_name,
+                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+            )
+            print("Local vLLM server setup complete.")
+        else:
+            inference_process = None
+            print("Using OpenAI API for inference.")
+
+        self.set_client(mode="inference")
+        print("Client setup complete.")
+
+        self.inference_results = await self.process_subjects(
+            server_process=inference_process,
+            model_name=self.inference_model_name if self.inference_mode == "local" else self.model_args.inference_model_name_or_path,
+            data=translated_questions,
+            prompt_key="system_prompt",
+            output_path="inference_results.json",
+            progress_desc="Inference Progress",
+        )
+
+        print("Inference complete.")
+        ######################################## translation ########################################
+        _, resp_trans_prompts = self.load_data(mode="translation", choices=choices, responses_trans=True)
+        
+        if self.translation_mode == "local":
+            translation_process = await self.server.setup_server(
+                model_path=self.model_args.translation_model_name_or_path,
+                model_name=self.translation_model_name,
+                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+            )
+            print("Local vLLM server setup complete.")
+        else:
+            translation_process = None
+            print("Using OpenAI API for inference.")
+
+        self.set_client(mode="translation")
+        print("Client setup complete.")
+        
+        self.translated_responses = await self.translation(
+            server_process=translation_process,
+            model_name=self.translation_model_name if self.translation_mode == "local" else self.model_args.translation_model_name_or_path,
+            data=resp_trans_prompts,
+            output_path="translated_response_record.json",
+            progress_desc="Trans Response Progress",
+        )
+
+        print("Question translated complete.")
+        ########################################### check ###########################################
+        checked_answers, checked_prompts = self.load_data(mode="check", choices=choices, check_source="translated")
+
+        if self.check_mode == "local":
+            checker_process = await self.server.setup_server(
+                model_path=self.model_args.checker_model_name_or_path,
+                model_name=self.checker_model_name,
+                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+            )
+            print("Local vLLM server setup complete.")
+        else:
+            checker_process = None
+            print("Using OpenAI API for checking.")
+
+        self.set_client(mode="check")
+        print("Client setup complete.")
+
+        check_results = await self.process_subjects(
+            server_process=checker_process,
+            model_name=self.checker_model_name if self.check_mode == "local" else self.model_args.checker_model_name_or_path,
+            data=checked_prompts,
+            prompt_key="criteria_system_prompt",
+            output_path="check_results.json",
+            progress_desc="Check Progress",
+        )
+
+        print("Check complete.")
+        ####################################### compute score #######################################
+        score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
+        self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))

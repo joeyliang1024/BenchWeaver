@@ -20,6 +20,7 @@ class BigBenchHardEvaluator(Evaluator):
                   mode = Literal['inference', 'check', 'translation'],
                   choices = None,
                   responses_trans: bool = False,
+                  check_source: Literal['original', 'translated'] = "original"
                   ) -> Tuple[Dict[str, list], Dict[str, list]]:
         # init data
         inference_prompts = {subj: [] for subj in self.categories.keys()}
@@ -65,7 +66,7 @@ class BigBenchHardEvaluator(Evaluator):
                         check_msg_list = costume_eval_template.format_checker_example(
                             target_data=dataset[self.eval_split][i],
                             is_mcqa=False,
-                            llm_response=self.inference_results[subject][i],
+                            llm_response=self.inference_results[subject][i] if check_source == "original" else self.translated_responses[subject][i],
                         )
                         checker_prompts[subject].append(check_msg_list)
                 # mcqa
@@ -74,7 +75,7 @@ class BigBenchHardEvaluator(Evaluator):
                         check_msg_list, answer_list = costume_eval_template.format_checker_example(
                             target_data=dataset[self.eval_split][i],
                             is_mcqa=True,
-                            llm_response=self.inference_results[subject][i],
+                            llm_response=self.inference_results[subject][i] if check_source == "original" else self.translated_responses[subject][i],
                         )
                         checker_answers[subject] += answer_list
                         checker_prompts[subject] += check_msg_list
