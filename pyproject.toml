@@ -28,10 +28,15 @@ dependencies = [
     # yaml needed
     "pyyaml",
 
-    # balance datasets
-    "POT",
-    "numpy",
-    "scipy",
+    # eval difficulty
+    "jieba",
+    "nltk",
+    "konlpy",
+    "langdetect",
+
+    # eval translation Error
+    "evaluate",
+
 ]
 requires-python = ">=3.10"
 

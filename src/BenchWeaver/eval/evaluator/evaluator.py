@@ -3,6 +3,7 @@ import os
 import re
 import json
 import asyncio
+import numpy as np
 from typing import Any, Dict, List, Literal, Optional, Tuple, Union
 from tqdm.auto import tqdm
 from transformers.utils import cached_file
@@ -12,7 +13,8 @@ from ...hparams import get_infer_eval_args
 from ...inference.vllm.server import VLLMServer
 from ...inference.client import Client
 from ..template import AdvancedTransTemplate, get_translation_template
-from ...data.data_utils import Role
+from ..difficulty import compute_difficulty
+
 load_env_variables()
 
 class Evaluator:
@@ -368,6 +370,32 @@ class Evaluator:
     
     def comput_score(self, checked_answers: Dict[str, List[str]], check_results: Dict[str, List[str]], subjects: List[str]) -> Dict[str, Any]:...
     
+    def measure_difficulty(self, inference_result: Dict[str, List[str]]) -> Tuple[Dict[str, Any], Dict[str, List[float]]]:
+        """
+        Compute the difficulty score for each response based on the inference results.
+        """
+        # Initialize difficulty records first
+        difficulty_record = {subj: [compute_difficulty(result) for result in results] 
+                            for subj, results in inference_result.items()}
+        
+        # Compute scores based on records
+        difficulty_score = {
+            subj: {
+                "average": np.mean(scores),
+                "variance": np.var(scores)
+            }
+            for subj, scores in difficulty_record.items()
+        }
+        
+        # Add overall scores
+        all_scores = [score for scores in difficulty_record.values() for score in scores]
+        difficulty_score["overall"] = {
+            "average": np.mean(all_scores),
+            "variance": np.var(all_scores)
+        }
+        
+        return difficulty_score, difficulty_record
+    
     def eval(self) -> None:...
         # this is for same language evaluation for prob output.
 
@@ -434,7 +462,9 @@ class Evaluator:
         print("Check complete.")
         ####################################### compute score #######################################
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
+        difficulty_score, difficulty_record = self.measure_difficulty(inference_result=self.inference_results)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
+        self.save_data(difficulty_score, os.path.join(self.save_folder, "difficulty_score.json"))
     
     async def diff_lang_eval(self, choices: List[str], subjects: List[str]) -> None:
         # specific evaluation pipeline
@@ -548,4 +578,6 @@ class Evaluator:
         print("Check complete.")
         ####################################### compute score #######################################
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
+        difficulty_score, difficulty_record = self.measure_difficulty(inference_result=self.inference_results)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
+        self.save_data(difficulty_score, os.path.join(self.save_folder, "difficulty_score.json"))

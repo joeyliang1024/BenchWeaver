@@ -1,11 +1,19 @@
 # TODO Record
 
 ## Function TODO
-- [ ] 不同語言的評估流程。
-- [ ] 評估兩個不同但相關的基準的難度流程。
-    - [ ] 記錄：
-        - [ ] 每個主題的難度計數和總和
-        - [ ] 難度變異數
+- [X] 不同語言的評估流程。
+- [X] 評估兩個不同但相關的基準的難度流程。
+    - [X] 記錄：
+        - [X] 每個主題的難度計數和總和
+        - [X] 難度變異數
+    - [X] 可以直接使用現成的 pipeline 修改就行 (需要 inference_model)
+        - [X] 更新：可以套在現成的 pipeline.
+
+- [ ] 翻譯品質評估流程。
+    - 可以直接使用現成的 pipeline 修改就行（需要提供路徑）
+
+## Benchmark TODO
+待新增...
 
 ## Template TODO
 - [ ] 新增不同的 template 在以下檔案:
@@ -27,3 +35,4 @@
     - 可能解法: few shot 的先翻，因此只需要翻譯最後一個 user prompt 欄位？ (更新：已修改完成，一起翻譯，翻完再重排回去)
 - [ ] reference benchmark 的 subject 可能選擇相關的會更好，而不是 random
     - 可能要等 Benchmark 都加完成後再看看
+- [ ] 翻譯的 GPT Eval 該如何評估？
