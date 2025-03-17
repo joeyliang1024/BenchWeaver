@@ -28,7 +28,8 @@ class EvaluationArguments:
     task: str = field(
         metadata={"help": "Name of the evaluation task."},
     )
-    ref_task: str = field(
+    ref_task: Optional[str] = field(
+        default=None,
         metadata={"help": "Name of the reference task."},
     )
     task_dir: str = field(
@@ -79,7 +80,22 @@ class EvaluationArguments:
         default=False,
         metadata={"help": "Enable or disable chain of thought reasoning to enhance the open question inference model's response quality."}
     )
-
+    benchmark_mode: Literal["mcqa-prob", "mcqa-oq", "opqa", "mix"] = field(
+        default="opqa",
+        metadata={"help": "Evaluation mode."},
+    )
+    pipeline: Literal["same", "diff"] = field(
+        default=None,
+        metadata={"help": "Indicate whether to run the same language or different language evaluation."}
+    )
+    testing_size: Optional[int] = field(
+        default=1_000_000_000,
+        metadata={"help": "Number of examples to evaluate on. If None, evaluate on the entire dataset."}
+    )
+    record_all: bool = field(
+        default=False,
+        metadata={"help": "Record all the intermediate steps of the reasoning process."}
+    )
     
     def __post_init__(self):
         if self.save_dir is not None and os.path.exists(self.save_dir):

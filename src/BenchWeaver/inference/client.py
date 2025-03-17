@@ -50,9 +50,6 @@ class Client:
             load_env_variables()
             if self.openai_source == "azure":
                 print("Using Azure OpenAI API.")
-                print(f'azure_endpoint={os.getenv("AZURE_ENDPOINT_URL")}')
-                print(f'api_key={os.getenv("AZURE_OPENAI_API_KEY")}')
-                print(f'api_version={os.getenv("AZURE_API_VERSION")}')
                 return AsyncAzureOpenAI(
                     azure_endpoint=os.getenv("AZURE_ENDPOINT_URL"),
                     api_key=os.getenv("AZURE_OPENAI_API_KEY"),

@@ -6,29 +6,16 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from ...extras.lang_detect import detect_language
 
-nltk.download('punkt')
-nltk.download('stopwords')
+nltk.download('punkt', quiet=True)
+nltk.download('punkt_tab', quiet=True)
+nltk.download('wordnet', quiet=True)
+nltk.download('stopwords', quiet=True)
 
 okt = Okt()
 lemmatizer = WordNetLemmatizer()
 
-def tokenize_text(text):
-    """Tokenizes text based on detected language."""
-    lang = detect_language(text)
-    if lang == "en":
-        words = nltk.word_tokenize(text.lower())
-        words = [lemmatizer.lemmatize(word) for word in words if word.isalnum()]
-        return [word for word in words if word not in stopwords.words("english")]
-    elif lang in ["zh-cn", "zh-tw"]:
-        return list(jieba.cut(text))
-    elif lang == "ko":
-        return okt.morphs(text)
-    else:
-        return text.split()
-
-def clean_text(text):
+def clean_text(text, lang):
     """Cleans and tokenizes text based on language (English, Chinese, Korean)."""
-    lang = detect_language(text)  # Detect the language of the text
     text = text.strip()
 
     # Remove HTML tags and URLs
@@ -45,13 +32,13 @@ def clean_text(text):
         words = [word for word in words if not word.isdigit()]  # Remove numbers
         return words
 
-    elif lang in ["zh-cn", "zh-tw"]:
+    elif lang in ["zh-cn", "zh-tw", "zh"]:
         text = re.sub(r'[^\u4e00-\u9fff]', '', text)  # Keep only Chinese characters
         words = list(jieba.cut(text))  # Use Jieba for segmentation
         words = [word.strip() for word in words if word.strip()]  # Remove empty tokens
         return words
 
-    elif lang == "ko":
+    elif lang in ["ko", "kor"]:
         text = re.sub(r'[^가-힣\s]', '', text)  # Keep only Korean characters
         words = okt.morphs(text)  # Use Okt for tokenization
         words = [word.strip() for word in words if word.strip()]  # Remove empty tokens

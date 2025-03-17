@@ -1,0 +1,40 @@
+### OpenAI Source
+openai_source: "azure"
+
+### inference model
+inference_model_name_or_path: taide/Llama3-TAIDE-LX-8B-Chat-Alpha1
+inference_mode: local
+cot: true
+
+### checker model
+checker_model_name_or_path: Qwen/Qwen2.5-32B-Instruct
+check_mode: local
+
+### translation model
+translation_model_name_or_path: gpt-4o-mini
+translation_mode: api
+transation_templates_name: test
+source_lang: en
+target_lang: zh-tw
+
+### dataset
+task: mmlu_test  
+task_dir: evaluation_data
+template: fewshot
+lang: en
+n_shot: 5
+benchmark_mode: mcqa-oq
+pipeline: diff
+batch_size: 4
+
+### output
+save_dir: score/mmlu/diff_lang/pipeline-testing
+
+### VLLM
+vllm_maxlen: 8192
+vllm_max_concurrency: 100
+
+### debug
+testing_size: 5
+record_all: true
+# print_param_status: false

@@ -1,57 +1,32 @@
-# BenchWeaver
+# BenchWeaver 🏆🚀🐍
+Welcome to BenchWeaver! 🎉🔬 This Python project provides a specialized benchmarking pipeline, supporting various models and benchmarks. ⚙️🔧📈
 
-## Installation
-### python installation
+## Installation 💻⚡
+
+| Method        | Description                                               | Status          |
+|---------------|-----------------------------------------------------------|-----------------|
+| Python (pip)  | Clean installation using conda environment and pip        | ✅ Ready        |
+| Conda         | One-step installation using environment.yaml              | 🚧 In Progress  |
+
+### Python Installation 🐍
+Create a new conda environment and install the package:
 ```bash
 conda create --name BenchWeaver python=3.11 -y
 pip install -e .
 ```
-### conda installation (Not Done)
-This installation will create a env as well
+
+### Conda Installation (In Progress) 🏗️
+Direct installation using conda environment file:
 ```bash
 conda env create -f environment.yaml
 ```
 
-## CLI Usage
-### Evaluation models
-To evaluate models using BenchWeaver, you can use the following command:
-```bash
-bench-weaver-cli eval \
-    --task mmlu \
-    --mode opqa \
-    --pipeline same \
-    --config example.yaml
-```
-Parameters:
-- `--task`: Specifies the task to evaluate. In this example, `mmlu` is the task.
-- `--mode`: Specifies the mode of evaluation. You can check by [this](#show-supported-benchmarks).
-- `--config`: Path to the configuration file. In this example, `example.yaml` is the configuration file used.
-- `--pipeline`: Indicate whether to run the same language or different language evaluation.
+## Documentation 📚📝
+Access detailed documentation through these links:
 
-Make sure to replace `example.yaml` with the path to your actual configuration file.
-
-### Launch Gradio Webui (planning):
-```bash
-bench-weaver-cli webui
-```
-### Show Supported Benchmarks
-```bash
-bench-weaver-cli benchmark
-```
-### Show Version Info
-```bash
-bench-weaver-cli version
-```
-### how Dependency Info
-```bash
-bench-weaver-cli env
-```
-### Show CLI Usage
-```bash
-bench-weaver-cli help
-```
-## Evaluation Data
-
-### Upload Format
-
-### Load from HuggingFace
+| Component   | Description                         | Link                                         |
+|-------------|-------------------------------------|----------------------------------------------|
+| CLI         | Command-line interface guide        | [CLI](./doc/cli.md)                          |
+| Config      | Evaluation configuration details    | [Config](./doc/config_doc.md)               |
+| Evaluation  | Methods and metrics explanation     | [Evaluation Method](./doc/evaluation_method.md) |
+| Benchmarks  | List of supported benchmarks        | [Support Benchmark](./doc/supported_benchmark.md) |

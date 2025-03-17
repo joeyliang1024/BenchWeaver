@@ -2,16 +2,29 @@
     "direct_trans": {
         "language":"en",
         "description": "",
-        "prompt": ""
+        "trans_prompt": "",
+        "system_prompt": "",
+        "guide_line": ""
     },
     "few-shot-examples": {
         "language":"en",
         "description": "",
-        "prompt": ""
+        "trans_prompt": "",
+        "system_prompt": "",
+        "guide_line": ""
     },
-    "tmp": {
+    "test": {
+        "language":"en",
+        "description": "This is for testing the different language translation pipeline.",
+        "trans_prompt": "Translate the given sentence from {source_lang} into the {target_lang}.\n\nSource sentence: {trans_source}\n\nTarget sentence:",
+        "system_prompt": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information.",
+        "guide_line": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style."
+    },
+    "empty": {
         "language":"en",
         "description": "",
-        "prompt": ""
+        "trans_prompt": "",
+        "system_prompt": "",
+        "guide_line": ""
     }
 }

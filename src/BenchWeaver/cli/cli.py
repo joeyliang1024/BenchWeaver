@@ -40,7 +40,6 @@ class Command(str, Enum):
     HELP = "help"
     WEBUI = "webui"
     EVAL = "eval"
-    OTH_LANG_EVAL = "ol_eval"
     BENCHMARK = "benchmark"
     
 def main():
@@ -59,9 +58,6 @@ def main():
         display_benchmark_table()
     elif command == Command.EVAL:
         run_eval()
-    elif command == Command.OTH_LANG_EVAL:
-        # not implemented yet
-        pass
     else:
         raise NotImplementedError(f"Unknown command: {command}.")
 

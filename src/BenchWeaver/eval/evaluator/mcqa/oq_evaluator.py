@@ -53,7 +53,7 @@ class OQEvaluator(Evaluator):
             )
             # Prepare examples for evaluation
             if mode == "inference":
-                for i in range(len(dataset[self.eval_split])): 
+                for i in range(min(len(dataset[self.eval_split]), self.testing_size)): 
                     if dataset.get("train"):
                         support_set = (
                             dataset["train"]
@@ -74,7 +74,7 @@ class OQEvaluator(Evaluator):
             
             elif mode == "check":
                 assert self.inference_results is not None
-                for i in range(len(dataset[self.eval_split])):
+                for i in range(min(len(dataset[self.eval_split]), self.testing_size)):
                     check_msg_list, answer_list = self.eval_template.format_checker_example(
                         choices=choices,
                         target_data=dataset[self.eval_split][i],
@@ -110,14 +110,14 @@ class OQEvaluator(Evaluator):
                 else:
                     support_set = None
                 
-                for i in range(len(dataset[self.ref_split])):
+                for i in range(min(len(dataset[self.eval_split]), self.testing_size)):
                     # format translation example
                     if source_type == "question":
                         trans_messages = self.trans_template.format_translation_example(
                             trans_source=self.inference_prompts[subject][i],
                             source_type=source_type,
-                            source_lang=self.eval_args.source_lang,
-                            target_lang=self.eval_args.target_lang,
+                            source_lang=self.model_args.source_lang,
+                            target_lang=self.model_args.target_lang,
                             choices=choices,
                             support_set=support_set,
                             use_cot=self.eval_args.cot,
@@ -128,8 +128,8 @@ class OQEvaluator(Evaluator):
                         trans_messages = self.trans_template.format_translation_example(
                             trans_source=self.inference_results[subject][i],
                             source_type=source_type,
-                            source_lang=self.eval_args.source_lang,
-                            target_lang=self.eval_args.target_lang,
+                            source_lang=self.model_args.target_lang,
+                            target_lang=self.model_args.source_lang,
                             choices=choices,
                             support_set=support_set,
                             use_cot=self.eval_args.cot,

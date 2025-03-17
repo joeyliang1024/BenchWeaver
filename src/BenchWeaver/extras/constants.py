@@ -3,6 +3,9 @@ from pathlib import Path
 PROJECT_BASE_PATH = str(Path(__file__).resolve().parents[3])
 TRANSLATION_PROMPT_PATH = os.path.join(PROJECT_BASE_PATH, "prompt", "translation_prompt.json")
 
+# COMET model
+COMET_MODEL_NAME_OR_PATH = "Unbabel/wmt20-comet-qe-da"
+
 # MMLU
 MMLU_CHOICES = ["A", "B", "C", "D"]
 MMLU_SUBJECTS = ["Average", "STEM", "Social Sciences", "Humanities", "Other"]

@@ -1,8 +1,6 @@
-from .utils import tokenize_text, clean_text
-from ...extras.lang_detect import detect_language
+from .utils import clean_text
 
-def compute_semantic_complexity(text:str) -> int:
+def compute_semantic_complexity(text:str, lang) -> int:
     """Computes semantic complexity based on unique token richness."""
-    lang = detect_language(text)
-    clean_txt = clean_text(text)
-    return len(set(tokenize_text(clean_txt, lang)))  # Semantic complexity is measured by unique token count
+    clean_tokens = clean_text(text, lang)
+    return len(set(clean_tokens))  # Semantic complexity is measured by unique token count

@@ -90,16 +90,16 @@ class AdvancedTransTemplate(TransTemplate):
             # Handle list of conversation messages case
             # Create a separate translation request for each message
             list_of_messages = []
+            msg_uuid = str(uuid.uuid4())
             for i, msg in enumerate(trans_source):
                 messages = []
                 # Generate a unique ID for each message
-                msg_uuid = str(uuid.uuid4())
                 
                 if self.system_prompt:
                     messages.append({"role": Role.SYSTEM.value, "content": self.system_prompt})
                 
                 trans_prompt = self.trans_prompt.format(
-                    trans_source=trans_source, 
+                    trans_source=msg["content"], 
                     source_lang=source_lang, 
                     target_lang=target_lang
                 )
@@ -107,6 +107,7 @@ class AdvancedTransTemplate(TransTemplate):
                 messages.append({
                     "idx": i,
                     "uuid": msg_uuid,
+                    "origin_role": msg["role"],
                     "role": Role.USER.value, 
                     "content": "\n".join([
                         self.guide_line, 

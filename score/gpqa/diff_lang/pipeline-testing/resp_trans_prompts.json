@@ -1,0 +1,158 @@
+{
+    "diamond": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 為了清楚地區分兩個能量階層，需要測量它們的能量差。如果兩個能量階層的能量差很大，則可以在較短的時間尺度上區分它們。能量差越大，在較短的時間內就越容易從一個能量階層躍遷到另一個能量階層。\n\n考慮到給定的壽命，10^-8秒比10^-9秒大，因此我們可以推斷出E2比E1的能量差比E1比E2的能量差大。然而，具體的能量差值需要知道E1和E2的精確值。\n\n一般來說，為了在量子系統中清楚地區分能量階層，可以嘗試使能量差值最大化。這可以通過施加外部電磁場、改變系統參數或引入雜質來實現。能量差值越大，在量測和操縱量子系統時，就越容易區分能量階層。\n\n基於所提供的資訊，無法確定是否能量差值足夠大以清楚地區分兩個能量階層。為了回答這個問題，需要知道E1和E2的具體值。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 解決這個問題，我們先找出各步驟反應中的中間物及最終產物，然後再計算各碳原子的數量。以下是各步驟反應的中間物及最終產物:\n\n1.反式肉桂醛與溴化鎂甲基反應，形成產物1。\n2.產物1與氯鉻酸吡啶處理，形成產物2。\n3.產物2在DMSO中於高溫下與(dimethyl(oxa)thio)methane反應，形成產物3。\n\n現在，我們來計算各步驟中碳原子的數量:\n\n步驟1:反式肉桂醛(C6H5COCH3)與溴化鎂甲基(CH3MgBr)反應，形成C6H5COCH2CH3。\n步驟2:C6H5COCH2CH3與氯鉻酸吡啶(CrCl3(py))反應，形成C6H5COCH2Cl。\n步驟3:C6H5COCH2Cl在DMSO中於高溫下與(dimethyl(oxa)thio)methane(CH3SOMe2)反應，形成C6H5COCH2SMe2。\n\n現在，我們來計算各步驟中碳原子的總數:\n\n步驟1:6(來自肉桂醛)+1(來自甲基)=7個碳原子\n步驟2:6(來自肉桂醛)+1(來自甲基)+1(來自氯鉻酸吡啶)=8個碳原子\n步驟3:6(來自肉桂醛)+1(來自甲基)+1(來自硫醇)+2(來自二甲基硫醇)=9個碳原子\n\n所以，產物3中有9個碳原子。\n因此，答案是(9)。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 解決這個問題，我們先找出$\\sigma_z$與$\\sigma_x$對應的矩陣，再找出它們的線性組合的本徵向量與對應的能量。\n\n1$\\sigma_z$與$\\sigma_x$的矩陣表示如下：\nσz=│1-1│\n│-1 1│\nσx=│0 1│\n│1  0│\n\n接著，我們找出它們的本徵向量與對應的能量。對於$\\sigma_z$，本徵向量是│1-1│與│-1 1│，對應的能量是±1。對於$\\sigma_x$，本徵向量是│1 0│與│0 1│，對應的能量是±1。\n\n由於它們是線性組合，因此新的本徵向量是線性組合的本徵向量的線性組合：\n0.5(│1-1│+√3│-1 1│)+√(10/5)(│1 0│-│0 1│)\n\n要找出期望值，我們把本徵向量乘以對應的能量，再把結果相加：\nE=0.5((1-1)(1+√3)+(−1)(√3))+(10/5)((1)(1)+(0)(0))=0.5(1+√3−√3+10/5)=10/5\n\n所以，運算子10σz+5σx的期望值是10/5。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 在磁單極的平行宇宙中，磁場會比我們所熟知的、磁單極相互作用產生的磁場更為複雜。麥斯威爾方程式是描述磁場與電場的關係，在這個平行宇宙中，方程式的形式可能不同，內容也可能不同。\n\n1.$\\nabla\\cdotB=0$這個高斯磁定律，在所有宇宙中都成立，不變。\n\n2.$curl\\ B=\\mu_0-j/\\epsilon_0$這個高斯磁定律，在所有宇宙中也都成立，不變。\n\n但在磁單極存在的宇宙中，可能需要額外的方程式來描述磁單極的行為。磁單極是一種磁單位電荷，它擁有北極和南極兩種極性。根據磁單極理論，磁單極可以像電單位電荷一樣自由移動，在物質中傳播。\n\n在這樣的宇宙中，可能需要額外的方程式來描述磁單極的運動、相互作用，以及它們如何產生磁場。這些方程式可能涉及到描述電荷和電流如何影響磁單極的運動，以及磁單極如何影響電場和電流。\n\n此外，由於磁單極是理論構想，在目前的物理理論中並不存在，因此描述磁單極的方程式也尚未被發展出來。發展這樣的方程式，需要對磁單極的性質和行為有更深入的理解。\n\n總結來說，在磁單極的平行宇宙中，麥斯威爾方程式可能需要額外的修正或方程式來描述磁單極的行為。然而，由於磁單極是理論構想，這些方程式目前仍未被發展出來。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 給定的算符P符合旋量算符的性質，特別是旋量算符的共軛伴隨部分，記作σ=1/2Σ(Π_iε_i)，其中Π_i是P的分量，ε_i是相應的單位向量。在這種情況下，算符P位於x-z平面，因此有三個非零分量:P_x、P_y、P_z。\n\n給定的P_x、P_y、P_z的矩陣表示式，分別對應於旋量算符的σ_x、σ_y、σ_z，且具有以下的形式:\n\nσ_x = |0 1|\n        |1  0|\nσ_y = |0 -i|\n        |-i  0|\nσ_z = |1  0|\n        |0 -1|\n\n根據旋量算符的性質，我們可以寫出它們的共軛伴隨部分:\n\nσ^± = σ_x ± σ_y - σ_z\n\n計算σ^±的e向量，我們需要找出它們的本徵向量。設λ是σ^±的本徵值，v是其本徵向量，則根據線性代數，σ^+v = λv。這等價於說，v是σ^+的本徵向量。\n\n對於σ^+,我們有:\n\nσ^+ = |0 1|\n        |1  0|\n\n假設v是[x,y]T的2維列向量，則我們有:\n\n|0 1| * [x]\n|1  0| * [y] = λ[x]\n[0 -i] * [x] = -iλ[y]\n\n解這個系統方程，我們得到:\n\ny = (1/i)(x - λ)\nx = 0\n或\ny = (1/i)(x - λ)\nx = 1\n這兩個方程的解並沒有非零的實數解。因此，σ^+沒有非零的本徵向量。\n\n對於σ^-，我們有:\n\nσ^- = |1  0|\n        |0 -1|\n\n假設v是[x,y]T的2維列向量，則我們有:\n\n|1  0| * [x]\n|0 -1| * [y] =\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "extended": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 這個問題在問，哪一個結構不受所提及的Morpholino療法影響。根據問題描述，Morpholino識別並防止剪接體辨認缺失外顯子，藉此跳過缺失的外顯子，確保正確的蛋白質被轉譯出來。\n\n選項(A)細胞骨架連結蛋白，與微管結合，是由數個外顯子編碼的蛋白質，包括提及的三螺旋重複序列。這個蛋白質不受Morpholino療法影響，因為它不是由缺失的外顯子編碼的。\n\n選項(B)肌膜，不是由特定基因或其蛋白質產物所組成，是細胞膜組成，包圍著細胞，包括肌肉細胞。這個結構也不受Morpholino療法影響，因為它不是由蛋白質所組成，蛋白質才是受影響的。\n\n選項(C)細胞外空間，是細胞外部的空間，不是由特定基因或其蛋白質產物所組成，是細胞與環境互動的空間。這個結構也不受Morpholino療法影響，因為它不是由蛋白質所組成，蛋白質才是受影響的。\n\n因此，正確的答案是(ALL)。所有的結構──細胞骨架連結蛋白、肌膜、細胞外空間──都涉及所提及的療法。這個療法是針對缺失的外顯子，藉由跳過它們，確保正確的蛋白質被轉譯出來，以維持這些結構的正常功能。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 為了清楚地區分兩個能量水平，我們需要測量它們的能量差。如果兩個能量水平相近，則需要高解析度的測量才能區分它們。如果能量差較大，則較容易區分，也較不需要高解析度的測量。\n給定的資訊無法直接計算能量差。然而，我們可以說，若能量差(E2 - E1)大於或等於能量水平的絕對值除以自然對數(即∆E ≥ |E|/ln(10))，則可以相對容易地區分這兩個能量水平。這來自於衰變速率與能量差成指數關係的概念。\n因此，根據給定的資訊，我們無法確定是否能區分這兩個能量水平，除非還有其他相關資訊。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 根據所提供的化學式，產品3(C19H12O7)是一個由19個碳原子、12個氫原子、以及7個氧原子所組成的化合物。要找出產品3中碳原子的個數，可將碳原子的計數數值(C)從化學式中取出，然後加總。\n\n步驟1：從化學式中取出碳原子的計數數值(C)。\n在所提供的化學式中，碳原子的計數數值(C)為C19。\n\n步驟2：加總碳原子的計數數值。\n將碳原子的計數數值(C)加總，得到：19(個碳原子)+12(個氫原子)+7(個氧原子)= 38個原子。\n\n結論：\n產品3中有38個原子，其中包含19個碳原子。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 這個問題要求找出具有光學活性的化合物，光學活性是指分子具有不對稱性，因此分子有手性。\n\n1. 1-甲基-4-(丙-1-烯-2-基)環己烯：這個化合物具有不對稱碳原子，因此是光學活性化合物。\n2. 2,3,3,3-四氟丙-1-烯：這個化合物也具有不對稱碳原子，因此是光學活性化合物。\n3. 二(環己-2-烯-1-基)甲烷：這個化合物具有不對稱碳原子，因此是光學活性化合物。\n4. 5-(5-甲基己烯-2-基)環戊-1,3-二烯：這個化合物具有不對稱碳原子，因此是光學活性化合物。\n5. 3-(2-甲基丁-1-烯-1-基)環己烯：這個化合物具有不對稱碳原子，因此是光學活性化合物。\n6. [1,1'-聯苯]-3,3'-二醇：這個化合物具有不對稱碳原子，因此是光學活性化合物。\n7. 8,8-二氯雙環[4.2.0]八烷-7-酮：這個化合物具有不對稱碳原子，因此是光學活性化合物。\n8. 環戊-2-烯-1-酮：這個化合物具有不對稱碳原子，因此是光學活性化合物。\n\n因此，答案是1、2、3、4、5、6、7、8。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 在粗糙表面上，油滴的接觸角通常會比水滴大，這是因為油分子比水分子有較低的極性，因此較容易在粗糙表面上形成氣泡-液體介面。\n\n給定的塗層組成沒有具體的數值，我們無法給出精確的油滴接觸角值。然而，我們可以根據Cassie-Baxter方程式估計接觸角:\n\ncos(θoff) = f * cos(θh) - g\n\n其中θoff是油滴在粗糙表面上的接觸角，θh是油在平滑表面上的接觸角，f是粗糙表面的孔隙度，g是粗糙表面的凹凸度。\n\n我們知道θoff > θh(因為是粗糙表面)，θh是102度，θoff是148度(給定的)。我們還知道f和g都是正數(因為粗糙表面比平滑表面有較高的接觸角)。\n\n由於方程式是非線性，我們需要數值解方程式才能得到精確的值。但是，我們可以根據給定的接觸角做一個粗略的估計。如果我們假設f和g都等於1(這是個低估，因為它們通常比1大很多),那麼根據Cassie-Baxter方程式計算出的油滴接觸角大約是141度。這比給定的水接觸角148度小，表示油滴在粗糙表面上仍然會形成一些氣泡-液體介面。重要的是，這個估計值是根據許多假設得到的，實際值可能大不相同。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "main": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 所提及的療法涉及mRNA的選擇性剪接，不影響蛋白質的編碼序列，因此最終產生的蛋白質結構不會受到影響。\n\n正確的答案是：(C)\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 為了清楚地區分兩個能量水平，我們需要測量它們之間的能量差。如果能量差足夠大，就能夠輕易地將它們分離並鑑定。不過，如果能量差很小，就需要精密的測量技術才能分離它們。\n\n關於如何測量能量差，有幾種常見的技術，包括:\n\n1. 光譜學: 這是一種測量物質中原子或分子能量水平的方法。常見的光譜技術包括紫外線-可見光光譜、紅外線光譜、核磁共振光譜。\n2.質譜: 這是一種測量離子質量-電荷比的分析技術。它可以用來測定能量差，因為不同的能量水平會對離子的穩定性產生影響。\n3. 電子束光譜: 這是一種測量電子從物質中射出的能量的分析技術。它可以用來測定能量差，因為不同的能量水平會對電子束的吸收產生影響。\n4. 熱分析(如DSC、TGA): 這些技術測量物質隨著溫度的變化所吸收或釋放的熱量。能量差會表現為熱圖譜上的特徵峰值。\n\n重要的是要注意，測量能量差所使用的技術取決於許多因素，包括樣品的性質、樣品的濃度、欲測量的能量差的大小等。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 解決這個問題，我們先找出各步驟反應中的中間物或產物結構，然後再計算最終產物3中碳原子的數量。\n\n1.Reaction1:\n反式肉桂醛與溴化鎂甲基反應，形成4-甲基-3-溴苯甲醛。\n\n2.Reaction2:\n4-甲基-3-溴苯甲醛與吡啶氯鉻酸鹽反應，形成4-甲基-3-(吡啶-2-基)苯甲醛。\n\n3.Reaction3:\n4-甲基-3-(吡啶-2-基)苯甲醛在DMSO中於高溫下，與(dimethyl(oxa)thio)methane反應，形成最終產物3。\n\n現在我們來計算產物3中碳原子的數量。在產物3的結構中，我們有2個碳原子(來自(dimethyl(oxa)thio)methane)和1個碳原子(來自吡啶基)，加上原來的苯環有6個碳原子，總共有9個碳原子。\n\n因此，最終答案是產物3中有9個碳原子。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 為了決定哪些化合物顯示光學活性，我們需要知道它們的結構，並判斷它們是否具有不對稱碳原子。光學活性分子必須有不對稱碳原子，也就是說，它的分子結構不能是鏡像對稱的。\n\n1. 1-甲基-4-(丙-1-烯-2-基)環己烯：這個化合物有一個不對稱碳原子，因此顯示光學活性。\n2. 2,3,3,3-四氟丙-1-烯：這個化合物有一個不對稱碳原子，因此顯示光學活性。\n3. 二(環己-2-烯-1-基)甲烷：這個化合物有兩個不對稱碳原子，因此顯示光學活性。\n4. 5-(5-甲基己烯-2-基)環戊-1,3-二烯：這個化合物有一個不對稱碳原子，因此顯示光學活性。\n5. 3-(2-甲基丁-1-烯-1-基)環己烯：這個化合物有一個不對稱碳原子，因此顯示光學活性。\n6. [1,1'-聯苯]-3,3'-二醇：這個化合物沒有不對稱碳原子，因此不顯示光學活性。\n7. 8,8-二氯雙環[4.2.0]八烷-7-酮：這個化合物有一個不對稱碳原子，因此顯示光學活性。\n8. 環戊-2-烯-1-酮：這個化合物有一個不對稱碳原子，因此顯示光學活性。\n\n總結來說，有6個化合物顯示光學活性：1-甲基-4-(丙-1-烯-2-基)環己烯、2,3,3,3-四氟丙-1-烯、二(環己-2-烯-1-基)甲烷\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the en.\n\nSource sentence: 在羅斯-梅爾文接觸角理論中，接觸角可以用來推斷出表面是親水性還是疏水性，接觸角小於90度表示表面親水，大於90度表示表面疏水。不過在Cassie-Baxter狀態下，情況稍微不同，在這種狀態下，液滴並不是完全鋪在粗糙表面上，而是部分懸浮在空氣泡中，因此接觸角可以大於或小於90度，依據粗糙表面的特性而定。\n給定的粗糙表面對水的接觸角為148度，這表示這個表面是疏水性的。不過對油而言，由於十六烷是疏水性物質，因此我們預期接觸角會比水高。由於粗糙表面對水的接觸角為148度，因此可以推斷出粗糙表面對十六烷的接觸角會比148度高。\n由於沒有給定十六烷在粗糙表面上的精確接觸角，我們無法給出精確的數值。不過可以確定的是，粗糙表面對十六烷的接觸角會比水高，這表示表面對油的疏水性比對水強。\n\nTarget sentence:"
+            }
+        ]
+    ]
+}

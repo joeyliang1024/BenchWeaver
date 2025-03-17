@@ -14,8 +14,9 @@ from ...inference.vllm.server import VLLMServer
 from ...inference.client import Client
 from ..template import AdvancedTransTemplate, get_translation_template
 from ..difficulty import compute_difficulty
-
+from ...extras.logging import get_logger
 load_env_variables()
+logger = get_logger(__name__)
 
 class Evaluator:
     hf_token: str
@@ -54,12 +55,20 @@ class Evaluator:
         self.server = VLLMServer(hostname=self.host_name, port=self.port)
         self.client:Client = None
         # load trans parms
-        if getattr(self.eval_args, "ref_task", None):   
-            self.ref_task = self.eval_args.ref_task.split("_")[0]     
-            self.ref_split = self.eval_args.ref_task.split("_")[1]
-            self.ref_categories = self.load_catagorys(self.ref_task)
-            self.trans_template: AdvancedTransTemplate = get_translation_template(getattr(self.model_args, "transation_templates_name", ""))
+        if getattr(self.model_args, "translation_model_name_or_path", None):   
+            try:
+                self.ref_task = self.eval_args.ref_task.split("_")[0]     
+                self.ref_split = self.eval_args.ref_task.split("_")[1]
+                self.ref_categories = self.load_catagorys(self.ref_task)
+            except AttributeError:
+                self.ref_task = None
+                self.ref_split = None
+            except TypeError:
+                self.ref_categories = {}
             
+            self.trans_template: AdvancedTransTemplate = get_translation_template(getattr(self.model_args, "transation_templates_name", ""))
+        # testing_size
+        self.testing_size = getattr(self.eval_args, "testing_size", 1_000_000_000)
     def set_hf_token(self):
         token = os.getenv("HF_TOKEN", None)
         if token:
@@ -100,7 +109,7 @@ class Evaluator:
                 - List of dictionaries, each containing 'role', 'content', 'idx', and 'uuid' keys
                   representing translated messages from conversations
                 - List of strings representing simple translated texts
-
+ 
         Returns:
             Either:
                 - A list of conversation message lists, where each inner list contains
@@ -293,20 +302,20 @@ class Evaluator:
             """Processes a single item with semaphore-based concurrency control."""
             async with semaphore:
                 try:
-                    translation_text = await self.generate(
+                    translation_text, _ = await self.generate(
                         model=model_name,
                         system_prompt=None,
                         example=messages,
                         idx=idx,
                         generating_args=self.generating_args,
                     )
-                    progress_bar.update(1)
-                    return idx, translation_text, messages[-1].get("role", None), messages[-1].get("idx", None), messages[-1].get("uuid", None)
+                    progress_bar.update(1) 
+                    return idx, translation_text, messages[-1].get("origin_role", None), messages[-1].get("idx", None), messages[-1].get("uuid", None)
                 except Exception as e:
                     progress_bar.update(1)
                     print(f"Error translating messages {json.dumps(messages, ensure_ascii=False, indent=2)}\n Error: {e}")
                     # return original text before translation
-                    return idx, messages[-1].get("content", None), messages[-1].get("role", None), messages[-1].get("idx", None), messages[-1].get("uuid", None)
+                    return idx, messages[-1].get("content", None), messages[-1].get("origin_role", None), messages[-1].get("idx", None), messages[-1].get("uuid", None)
 
         try:
             for subject in self.categories.keys():
@@ -375,7 +384,7 @@ class Evaluator:
         Compute the difficulty score for each response based on the inference results.
         """
         # Initialize difficulty records first
-        difficulty_record = {subj: [compute_difficulty(result) for result in results] 
+        difficulty_record = {subj: [compute_difficulty(result, lang=self.model_args.source_lang) for result in results] 
                             for subj, results in inference_result.items()}
         
         # Compute scores based on records
@@ -408,6 +417,8 @@ class Evaluator:
         print(f"Data path created: {self.save_folder}")
         ######################################### inference #########################################
         _, self.inference_prompts = self.load_data(mode="inference", choices=choices)
+        if getattr(self.eval_args, "record_all", False): 
+            self.save_data(data=self.inference_prompts, output_path=os.path.join(self.save_folder, "inference_prompts.json"))
         
         if self.inference_mode == "local":
             inference_process = await self.server.setup_server(
@@ -435,7 +446,10 @@ class Evaluator:
         print("Inference complete.")
         ########################################### check ###########################################
         checked_answers, checked_prompts = self.load_data(mode="check", choices=choices)
-
+        if getattr(self.eval_args, "record_all", False): 
+            self.save_data(data=checked_prompts, output_path=os.path.join(self.save_folder, "checked_prompts.json"))
+            self.save_data(data=checked_answers, output_path=os.path.join(self.save_folder, "checked_answers.json"))
+        
         if self.check_mode == "local":
             checker_process = await self.server.setup_server(
                 model_path=self.model_args.checker_model_name_or_path,
@@ -465,7 +479,9 @@ class Evaluator:
         difficulty_score, difficulty_record = self.measure_difficulty(inference_result=self.inference_results)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
         self.save_data(difficulty_score, os.path.join(self.save_folder, "difficulty_score.json"))
-    
+        if getattr(self.eval_args, "record_all", False):
+            self.save_data(data=difficulty_record, output_path=os.path.join(self.save_folder, "difficulty_record.json"))
+            
     async def diff_lang_eval(self, choices: List[str], subjects: List[str]) -> None:
         # specific evaluation pipeline
         # need: trranslator model, inference model, checker model
@@ -473,8 +489,13 @@ class Evaluator:
         os.makedirs(self.save_folder, exist_ok=True)
         print(f"Data path created: {self.save_folder}")
         ######################################## translation ########################################
+        logger.info("============ Start question translation process. ============")
         _, self.inference_prompts = self.load_data(mode="inference", choices=choices)
         _, ques_trans_prompts = self.load_data(mode="translation", choices=choices, responses_trans=False)
+        if getattr(self.eval_args, "record_all", False): 
+            self.save_data(data=self.inference_prompts, output_path=os.path.join(self.save_folder, "inference_prompts.json"))
+            self.save_data(data=ques_trans_prompts, output_path=os.path.join(self.save_folder, "ques_trans_prompts.json"))
+        
         if self.translation_mode == "local":
             translation_process = await self.server.setup_server(
                 model_path=self.model_args.translation_model_name_or_path,
@@ -498,7 +519,9 @@ class Evaluator:
         )
 
         print("Question translated complete.")
+        
         ######################################### inference #########################################
+        logger.info("============ Start inference process. ============")
         if self.inference_mode == "local":
             inference_process = await self.server.setup_server(
                 model_path=self.model_args.inference_model_name_or_path,
@@ -524,7 +547,10 @@ class Evaluator:
 
         print("Inference complete.")
         ######################################## translation ########################################
+        logger.info("============ Start response translation process. ============")
         _, resp_trans_prompts = self.load_data(mode="translation", choices=choices, responses_trans=True)
+        if getattr(self.eval_args, "record_all", False): 
+            self.save_data(data=resp_trans_prompts, output_path=os.path.join(self.save_folder, "resp_trans_prompts.json"))
         
         if self.translation_mode == "local":
             translation_process = await self.server.setup_server(
@@ -550,8 +576,12 @@ class Evaluator:
 
         print("Question translated complete.")
         ########################################### check ###########################################
+        logger.info("============ Start checking process. ============")
         checked_answers, checked_prompts = self.load_data(mode="check", choices=choices, check_source="translated")
-
+        if getattr(self.eval_args, "record_all", False):
+            self.save_data(data=checked_prompts, output_path=os.path.join(self.save_folder, "checked_prompts.json"))
+            self.save_data(data=checked_answers, output_path=os.path.join(self.save_folder, "checked_answers.json"))
+        
         if self.check_mode == "local":
             checker_process = await self.server.setup_server(
                 model_path=self.model_args.checker_model_name_or_path,
@@ -577,7 +607,10 @@ class Evaluator:
 
         print("Check complete.")
         ####################################### compute score #######################################
+        logger.info("============ Computing Score ============")
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
         difficulty_score, difficulty_record = self.measure_difficulty(inference_result=self.inference_results)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
         self.save_data(difficulty_score, os.path.join(self.save_folder, "difficulty_score.json"))
+        if getattr(self.eval_args, "record_all", False):
+            self.save_data(data=difficulty_record, output_path=os.path.join(self.save_folder, "difficulty_record.json"))
