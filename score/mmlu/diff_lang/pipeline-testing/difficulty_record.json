@@ -1,0 +1,401 @@
+{
+    "abstract_algebra": [
+        2,
+        6,
+        2,
+        2,
+        2
+    ],
+    "anatomy": [
+        2,
+        2,
+        2,
+        0,
+        6
+    ],
+    "astronomy": [
+        2,
+        3,
+        5,
+        2,
+        6
+    ],
+    "business_ethics": [
+        0,
+        7,
+        0,
+        2,
+        0
+    ],
+    "clinical_knowledge": [
+        6,
+        0,
+        2,
+        2,
+        6
+    ],
+    "college_biology": [
+        2,
+        2,
+        0,
+        6,
+        2
+    ],
+    "college_chemistry": [
+        21,
+        2,
+        6,
+        16,
+        11
+    ],
+    "college_computer_science": [
+        4,
+        14,
+        2,
+        2,
+        8
+    ],
+    "college_mathematics": [
+        9,
+        22,
+        16,
+        17,
+        6
+    ],
+    "college_medicine": [
+        2,
+        19,
+        2,
+        7,
+        8
+    ],
+    "college_physics": [
+        2,
+        0,
+        3,
+        0,
+        12
+    ],
+    "computer_security": [
+        3,
+        2,
+        11,
+        0,
+        2
+    ],
+    "conceptual_physics": [
+        2,
+        0,
+        0,
+        2,
+        2
+    ],
+    "econometrics": [
+        4,
+        2,
+        2,
+        2,
+        2
+    ],
+    "electrical_engineering": [
+        0,
+        6,
+        10,
+        45,
+        5
+    ],
+    "elementary_mathematics": [
+        29,
+        2,
+        2,
+        2,
+        8
+    ],
+    "formal_logic": [
+        2,
+        0,
+        3,
+        2,
+        20
+    ],
+    "global_facts": [
+        2,
+        16,
+        2,
+        6,
+        15
+    ],
+    "high_school_biology": [
+        2,
+        2,
+        2,
+        0,
+        2
+    ],
+    "high_school_chemistry": [
+        0,
+        0,
+        2,
+        8,
+        6
+    ],
+    "high_school_computer_science": [
+        4,
+        8,
+        0,
+        4,
+        4
+    ],
+    "high_school_european_history": [
+        2,
+        2,
+        0,
+        0,
+        2
+    ],
+    "high_school_geography": [
+        5,
+        0,
+        2,
+        3,
+        0
+    ],
+    "high_school_government_and_politics": [
+        2,
+        2,
+        2,
+        4,
+        0
+    ],
+    "high_school_macroeconomics": [
+        3,
+        2,
+        2,
+        0,
+        0
+    ],
+    "high_school_mathematics": [
+        35,
+        4,
+        2,
+        5,
+        20
+    ],
+    "high_school_microeconomics": [
+        5,
+        2,
+        2,
+        0,
+        0
+    ],
+    "high_school_physics": [
+        19,
+        2,
+        4,
+        2,
+        2
+    ],
+    "high_school_psychology": [
+        0,
+        2,
+        0,
+        14,
+        0
+    ],
+    "high_school_statistics": [
+        10,
+        8,
+        0,
+        2,
+        4
+    ],
+    "high_school_us_history": [
+        2,
+        0,
+        0,
+        2,
+        2
+    ],
+    "high_school_world_history": [
+        0,
+        12,
+        0,
+        0,
+        0
+    ],
+    "human_aging": [
+        5,
+        2,
+        2,
+        0,
+        2
+    ],
+    "human_sexuality": [
+        5,
+        0,
+        2,
+        2,
+        2
+    ],
+    "international_law": [
+        11,
+        2,
+        2,
+        18,
+        2
+    ],
+    "jurisprudence": [
+        2,
+        2,
+        2,
+        2,
+        0
+    ],
+    "logical_fallacies": [
+        8,
+        0,
+        2,
+        0,
+        2
+    ],
+    "machine_learning": [
+        0,
+        0,
+        2,
+        2,
+        23
+    ],
+    "management": [
+        0,
+        2,
+        2,
+        2,
+        0
+    ],
+    "marketing": [
+        14,
+        2,
+        5,
+        2,
+        4
+    ],
+    "medical_genetics": [
+        0,
+        4,
+        6,
+        0,
+        2
+    ],
+    "miscellaneous": [
+        5,
+        0,
+        4,
+        2,
+        0
+    ],
+    "moral_disputes": [
+        3,
+        2,
+        2,
+        2,
+        7
+    ],
+    "moral_scenarios": [
+        4,
+        2,
+        2,
+        2,
+        0
+    ],
+    "nutrition": [
+        2,
+        4,
+        2,
+        0,
+        2
+    ],
+    "philosophy": [
+        0,
+        0,
+        0,
+        0,
+        7
+    ],
+    "prehistory": [
+        2,
+        0,
+        2,
+        5,
+        2
+    ],
+    "professional_accounting": [
+        2,
+        0,
+        2,
+        0,
+        2
+    ],
+    "professional_law": [
+        2,
+        3,
+        2,
+        2,
+        6
+    ],
+    "professional_medicine": [
+        0,
+        4,
+        4,
+        2,
+        0
+    ],
+    "professional_psychology": [
+        0,
+        2,
+        9,
+        0,
+        0
+    ],
+    "public_relations": [
+        2,
+        0,
+        2,
+        13,
+        0
+    ],
+    "security_studies": [
+        3,
+        0,
+        0,
+        2,
+        2
+    ],
+    "sociology": [
+        2,
+        2,
+        0,
+        0,
+        0
+    ],
+    "us_foreign_policy": [
+        0,
+        2,
+        0,
+        0,
+        0
+    ],
+    "virology": [
+        8,
+        0,
+        2,
+        2,
+        3
+    ],
+    "world_religions": [
+        0,
+        4,
+        2,
+        2,
+        0
+    ]
+}

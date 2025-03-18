@@ -1,0 +1,38 @@
+{
+    "disambiguation_qa": {
+        "average": 6.6,
+        "variance": 17.440000000000005
+    },
+    "formal_fallacies": {
+        "average": 2.4,
+        "variance": 9.04
+    },
+    "geometric_shapes": {
+        "average": 9.8,
+        "variance": 24.160000000000004
+    },
+    "hyperbaton": {
+        "average": 1.8,
+        "variance": 0.9600000000000002
+    },
+    "object_counting": {
+        "average": 0.0,
+        "variance": 0.0
+    },
+    "penguins_in_a_table": {
+        "average": 2.0,
+        "variance": 0.0
+    },
+    "salient_translation_error_detection": {
+        "average": 26.8,
+        "variance": 248.56
+    },
+    "tracking_shuffled_objects_five_objects": {
+        "average": 1.2,
+        "variance": 0.9600000000000002
+    },
+    "overall": {
+        "average": 6.325,
+        "variance": 106.66937499999999
+    }
+}

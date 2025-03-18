@@ -18,7 +18,7 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 5,
         "support_chain_of_thought": True,   
         },     
-    "arc_challenge":{
+    "arc-challenge":{
         "language": "en",
         "evaluators": {
             "mcqa-prob": ArcChallengeProbEvaluator,
@@ -59,7 +59,7 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 0,
         "support_chain_of_thought": True,   
         }, 
-    "big_bench_hard":{
+    "big-bench-hard":{
         "language": "en",
         "evaluators": {
             "mix": BigBenchHardEvaluator,

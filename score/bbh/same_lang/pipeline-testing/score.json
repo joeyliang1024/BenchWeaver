@@ -1,0 +1,11 @@
+{
+    "Average": 75.4491,
+    "disambiguation_qa": 53.3333,
+    "formal_fallacies": 20.0,
+    "geometric_shapes": 88.4615,
+    "hyperbaton": 60.0,
+    "object_counting": 40.0,
+    "penguins_in_a_table": 76.0,
+    "salient_translation_error_detection": 83.3333,
+    "tracking_shuffled_objects_five_objects": 76.0
+}

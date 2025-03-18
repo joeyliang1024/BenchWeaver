@@ -30,7 +30,7 @@ class TruthfulQA_Template(EvalTemplate):
             choices:list = ast.literal_eval(example['mc1_choices'])
             question_candidates = [self.choice.format(choice=option, content=content) for option, content in zip(OPTION_CODES, choices)]
             # format answer
-            lables:list = json.loads(example['mc1_labels'].replace(" ", ", "))
+            lables:list = json.loads(example['mc1_labels'])
             answer_candidates = [option for option, label in zip(OPTION_CODES, lables) if label == 1]
             return "".join([example["question"]] + question_candidates + [self.answer]), " ,".join(answer_candidates)
         elif type =="mcqa-mc2":
@@ -38,7 +38,7 @@ class TruthfulQA_Template(EvalTemplate):
             choices:list = ast.literal_eval(example['mc2_choices'])
             question_candidates = [self.choice.format(choice=option, content=content) for option, content in zip(OPTION_CODES, choices)]
             # format answer
-            lables:list = json.loads(example['mc2_labels'].replace(" ", ", "))
+            lables:list = json.loads(example['mc2_labels'])
             answer_candidates = [option for option, label in zip(OPTION_CODES, lables) if label == 1]
             return "".join([example["question"]] + question_candidates + [self.answer]), " ,".join(answer_candidates)
         else:
@@ -84,7 +84,7 @@ class TruthfulQA_Template(EvalTemplate):
             check_msg_list = []
             answer_list = []
             choices:list =  ast.literal_eval(target_data['mc1_choices'])
-            lables:list = json.loads(target_data['mc1_labels'].replace(" ", ", "))
+            lables:list = json.loads(target_data['mc1_labels'])
             for content, label in zip(choices, lables):
                 check_msg_list.append([
                     {
@@ -104,7 +104,7 @@ class TruthfulQA_Template(EvalTemplate):
             check_msg_list = []
             answer_list = []
             choices:list =  ast.literal_eval(target_data['mc2_choices'])
-            lables:list = json.loads(target_data['mc2_labels'].replace(" ", ", "))
+            lables:list = json.loads(target_data['mc2_labels'])
             for content, label in zip(choices, lables):
                 check_msg_list.append([
                     {

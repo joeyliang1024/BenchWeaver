@@ -25,10 +25,10 @@ class TruthfulQAEvaluator(Evaluator):
                   ) -> Tuple[Dict[str, list], Dict[str, list]]:
         """Load and format data for evaluation."""
         # init data
-        inference_prompts = {subj: [] for subj in self.categories.keys()}
+        inference_prompts = {subj: [] for subj in self.categories}
         checker_answers = {subj: [] for subj in self.categories}
         checker_prompts = {subj: [] for subj in self.categories}
-        translate_prompts = {subj: [] for subj in self.categories.keys()}
+        translate_prompts = {subj: [] for subj in self.categories}
         # Load datasets
         for data_type in tqdm(self.categories, desc="Loading subjects"):
             # load dataset from folder

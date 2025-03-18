@@ -290,9 +290,16 @@ class Evaluator:
         output_path: str,
         progress_desc: str,
     ) -> Dict[str, List[Any]]:
-        """Process subjects using the specified client and data with concurrency control."""
-        results = {subj: [] for subj in self.categories.keys()}
-        total_progress_bar = tqdm(self.categories.keys(), desc=progress_desc)
+        """
+        Process subjects using the specified client and data with concurrency control.
+        """
+        if isinstance(self.categories, dict):
+            catogories = self.categories.keys()
+        elif isinstance(self.categories, list):
+            catogories = self.categories
+        results = {subj: [] for subj in catogories}
+            
+        total_progress_bar = tqdm(catogories, desc=progress_desc)
 
         # Define maximum concurrency
         max_concurrency = getattr(self.model_args, "vllm_max_concurrency", 100)
@@ -318,12 +325,12 @@ class Evaluator:
                     return idx, messages[-1].get("content", None), messages[-1].get("origin_role", None), messages[-1].get("idx", None), messages[-1].get("uuid", None)
 
         try:
-            for subject in self.categories.keys():
+            for subject in catogories:
                 subject_results = [None] * len(data[subject])
 
                 with tqdm(
                     total=len(data[subject]),
-                    desc=self.categories[subject]["name"],
+                    desc=catogories[subject]["name"] if isinstance(catogories, dict) else subject,
                     dynamic_ncols=True,
                 ) as subject_progress_bar:
 

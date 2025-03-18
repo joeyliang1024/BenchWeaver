@@ -1,0 +1,58 @@
+{
+    "disambiguation_qa": [
+        2,
+        8,
+        13,
+        8,
+        2
+    ],
+    "formal_fallacies": [
+        0,
+        0,
+        0,
+        7,
+        5
+    ],
+    "geometric_shapes": [
+        17,
+        12,
+        2,
+        8,
+        10
+    ],
+    "hyperbaton": [
+        3,
+        2,
+        2,
+        2,
+        0
+    ],
+    "object_counting": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "penguins_in_a_table": [
+        2,
+        2,
+        2,
+        2,
+        2
+    ],
+    "salient_translation_error_detection": [
+        32,
+        52,
+        19,
+        4,
+        27
+    ],
+    "tracking_shuffled_objects_five_objects": [
+        2,
+        2,
+        0,
+        2,
+        0
+    ]
+}
