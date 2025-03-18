@@ -24,11 +24,11 @@ template: fewshot
 lang: en
 n_shot: 0
 benchmark_mode: mix
-pipeline: diff
+pipeline: same
 batch_size: 4
 
 ### output
-save_dir: score/truthfulqa/diff_lang/pipeline-testing
+save_dir: score/truthfulqa/same_lang/pipeline-testing
 
 ### VLLM
 vllm_maxlen: 8192
