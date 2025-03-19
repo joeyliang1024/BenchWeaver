@@ -11,7 +11,7 @@ from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 from vllm.utils import is_cpu
 from vllm.distributed import destroy_distributed_environment, destroy_model_parallel
-from ..extras.load_env import load_env_variables
+from ...extras.load_env import load_env_variables
 
 # Set up logging to show the downloading process
 logging.basicConfig(level=logging.INFO)

@@ -1,10 +1,13 @@
 from ...extras.constants import OPTION_CODES
+# EN Benchmarks
 from .en.mmlu import MMLUOQEvaluator, MMLUProbEvaluator
 from .en.arc_challenge import ArcChallengeOQEvaluator, ArcChallengeProbEvaluator
 from .en.gpqa import GPQAEvaluator
 from .en.gsm8k import GSM8KEvaluator
 from .en.truthfulqa import TruthfulQAEvaluator
 from .en.big_bench_hard.mix_eval import BigBenchHardEvaluator
+# KO Benchmarks
+from .ko.click.oq_eval import CLIcKEvaluator
 
 BENCHMARK_CONFIG = {
     "mmlu":{
@@ -68,5 +71,15 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": OPTION_CODES,
         "sugguest_num_shots": 3,
         "support_chain_of_thought": True,   
-    }
+    },
+    "click":{
+        "language": "ko",
+        "evaluators": {
+            "mcqa-oq": CLIcKEvaluator,
+        },
+        "display_scores": ["Average", "TK", "Kedu", "PSE", "PSAT", "CSAT", "KHB", "KIIP"],
+        "mcqa_choices": OPTION_CODES,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
 }

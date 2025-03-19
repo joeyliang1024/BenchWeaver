@@ -1,6 +1,8 @@
+import ast
 from ..template import EvalTemplate
 from ....data.data_utils import Role
 from typing import Dict, List, Sequence, Tuple
+from ....extras.constants import OPTION_CODES
 
 class MCQA_Template(EvalTemplate):
     def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str):
@@ -77,19 +79,35 @@ class MCQA_Template(EvalTemplate):
             self.criteria_prompt = criteria_prompt
         assert self.criteria_prompt is not None, ValueError("`criteria_prompt` should not be empty.")
         parsed_question, _ = self._parse_example(target_data, choices)
-        for idx in range(len(choices)):
-            
-            check_msg_list.append([
-                {
-                    "role": Role.USER.value, 
-                    "content": self.criteria_prompt.format(
-                        option=target_data[chr(ord("A") + idx)],
-                        question=parsed_question,
-                        llm_response=llm_response,
-                        )
-                }
-            ])
-            answer_list.append(
-                "True".lower() if chr(ord("A") + idx) == target_data["answer"] else "False".lower()
-            )
+        if "choices" in target_data.keys():
+            for candidate in ast.literal_eval(target_data["choices"]):
+                check_msg_list.append([
+                    {
+                        "role": Role.USER.value, 
+                        "content": self.criteria_prompt.format(
+                            option=candidate,
+                            question=parsed_question,
+                            llm_response=llm_response,
+                            )
+                    }
+                ])
+                answer_list.append(
+                    "True".lower() if candidate == target_data["answer"] else "False".lower()
+                )
+        else:
+            for idx in range(len(choices)):
+
+                check_msg_list.append([
+                    {
+                        "role": Role.USER.value, 
+                        "content": self.criteria_prompt.format(
+                            option=target_data[chr(ord("A") + idx)],
+                            question=parsed_question,
+                            llm_response=llm_response,
+                            )
+                    }
+                ])
+                answer_list.append(
+                    "True".lower() if chr(ord("A") + idx) == target_data["answer"] else "False".lower()
+                )
         return check_msg_list, answer_list

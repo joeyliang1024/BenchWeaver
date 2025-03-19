@@ -18,7 +18,7 @@ _register_eval_template(
     cot="\nLet's think step by step.\nAnswer:",
     templates=mmlu_eval_templates,
     template_class=MCQA_Template,
-    criteria_prompt='Determine whether the following response correctly identifies "{option}" as the answer to the multiple-choice question.\n\nQuestion: {question}\n\nLLM Response: {llm_response}\n\nIf the LLM Response is correct, just response \'True\', else response \'False\'.',
+    criteria_prompt='Determine whether the following response identifies "{option}" as the answer to the multiple-choice question.\n\nQuestion: {question}\n\nLLM Response: {llm_response}\n\nIf the LLM Response is correct, just response \'True\', else response \'False\'.',
 )
 
 _register_eval_template(
@@ -29,7 +29,7 @@ _register_eval_template(
     cot="\n讓我們一步一步來思考。\n答案：",
     templates=mmlu_eval_templates,
     template_class=MCQA_Template,
-    criteria_prompt='判斷以下 LLM 回應是否正確識別 "{option}" 為多項選擇題的答案。\n\n問題: {question}\n\nLLM 回應: {llm_response}\n\n如果 LLM 回應正確，請回答 \'True\'，否則回答 \'False\'。',
+    criteria_prompt='判斷以下 LLM 回應是否識別 "{option}" 為多項選擇題的答案。\n\n問題: {question}\n\nLLM 回應: {llm_response}\n\n如果 LLM 回應正確，請回答 \'True\'，否則回答 \'False\'。',
 )
 
 _register_eval_template(
@@ -40,5 +40,5 @@ _register_eval_template(
     cot="\n让我们一步一步来思考。\n答案：",
     templates=mmlu_eval_templates,
     template_class=MCQA_Template,
-    criteria_prompt='判断以下 LLM 回答是否正确识别 "{option}" 为多项选择题的答案。\n\n问题: {question}\n\nLLM 回答: {llm_response}\n\n如果 LLM 回答正确，请回答 \'True\'，否则回答 \'False\'。',
+    criteria_prompt='判断以下 LLM 回答是否识别 "{option}" 为多项选择题的答案。\n\n问题: {question}\n\nLLM 回答: {llm_response}\n\n如果 LLM 回答正确，请回答 \'True\'，否则回答 \'False\'。',
 )

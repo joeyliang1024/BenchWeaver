@@ -2,6 +2,7 @@ import uuid
 from typing import Dict, List, Literal, Sequence, Tuple
 from ..template import TransTemplate
 from ....data.data_utils import Role
+from ....extras.constants import OPTION_CODES
 
 class AdvancedTransTemplate(TransTemplate):
     def __init__(self, template_lang: str, trans_prompt: str, system_prompt: str, guide_line: str):
@@ -11,12 +12,29 @@ class AdvancedTransTemplate(TransTemplate):
         self.guide_line = guide_line
     
     def _parse_ref_question(self, example: Dict[str, str], choices: List[str], use_cot: bool=False) -> str:
-        if choices:
+        # needs to use origin template class
+        if choices and choices != OPTION_CODES:
+            # MCQA with certain choices
             question = "".join([example["question"]] +
                            [self.choice.format(choice=ch, content=example[ch]) for ch in choices if ch in example] +
                            [self.cot if use_cot else self.answer]
                            ).strip()
+        elif "choices" in example or "mc1_choices" in example or "mc2_choices" in example:
+            # MCQA wtth uncertain choices
+            question = " ".join(
+                [
+                    example.get("paragraph", ""),
+                    example["question"],
+                ] +
+                [
+                    "\n{choice}.  {content}".format(choice=option, content=content) for option, content in zip(OPTION_CODES, (example.get("choices", []) or example.get("mc1_choices", []) or example.get("mc2_choices", [])))
+                ] +
+                [
+                    self.cot if use_cot else self.answer
+                ]
+            ).strip()
         else:
+            # OPQA
             question = (example["question"] + (self.cot if use_cot else self.answer)).strip()
         return question
     

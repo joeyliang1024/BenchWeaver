@@ -1,0 +1,34 @@
+{
+    "TK": {
+        "average": 0.0,
+        "variance": 0.0
+    },
+    "Kedu": {
+        "average": 0.0,
+        "variance": 0.0
+    },
+    "PSE": {
+        "average": 0.0,
+        "variance": 0.0
+    },
+    "PSAT": {
+        "average": 0.0,
+        "variance": 0.0
+    },
+    "CSAT": {
+        "average": 0.0,
+        "variance": 0.0
+    },
+    "KHB": {
+        "average": 0.0,
+        "variance": 0.0
+    },
+    "KIIP": {
+        "average": 0.0,
+        "variance": 0.0
+    },
+    "overall": {
+        "average": 0.0,
+        "variance": 0.0
+    }
+}

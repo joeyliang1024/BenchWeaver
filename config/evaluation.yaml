@@ -14,21 +14,21 @@ check_mode: local
 translation_model_name_or_path: gpt-4o-mini
 translation_mode: api
 transation_templates_name: test
-source_lang: en
+source_lang: ko
 target_lang: zh-tw
 
 ### dataset
-task: truthfulqa_test  
+task: click_test  
 task_dir: evaluation_data
 template: fewshot
-lang: en
+lang: ko
 n_shot: 0
-benchmark_mode: mix
-pipeline: same
+benchmark_mode: mcqa-oq
+pipeline: diff
 batch_size: 4
 
 ### output
-save_dir: score/truthfulqa/same_lang/pipeline-testing
+save_dir: score/click/diff_lang/pipeline-testing
 
 ### VLLM
 vllm_maxlen: 8192

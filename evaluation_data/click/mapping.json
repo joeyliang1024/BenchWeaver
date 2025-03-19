@@ -1,0 +1,30 @@
+{
+    "TK": {
+      "name": "TK",
+      "category": "TK"
+    },
+    "Kedu": {
+      "name": "Kedu",
+      "category": "Kedu"
+    },
+    "PSE": {
+      "name": "PSE",
+      "category": "PSE"
+    },
+    "PSAT": {
+      "name": "PSAT",
+      "category": "PSAT"
+    },
+    "CSAT": {
+      "name": "CSAT",
+      "category": "CSAT"
+    },
+    "KHB": {
+      "name": "KHB",
+      "category": "KHB"
+    },
+    "KIIP": {
+      "name": "KIIP",
+      "category": "KIIP"
+    }
+}
