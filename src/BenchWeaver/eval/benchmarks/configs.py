@@ -8,6 +8,7 @@ from .en.truthfulqa import TruthfulQAEvaluator
 from .en.big_bench_hard.mix_eval import BigBenchHardEvaluator
 # KO Benchmarks
 from .ko.click.oq_eval import CLIcKEvaluator
+from .ko.hae_rae_bench.mix_eval import HAE_RAE_BENCHEvaluator
 
 BENCHMARK_CONFIG = {
     "mmlu":{
@@ -82,4 +83,14 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
     },
+    "hae-rae-bench":{
+        "language": "ko",
+        "evaluators": {
+            "mix":HAE_RAE_BENCHEvaluator,
+        },
+        "display_scores": ['Average', 'lyrics_denoising', 'proverbs_denoising', 'correct_definition_matching', 'csat_geo', 'csat_law', 'csat_socio', 'date_understanding', 'general_knowledge', 'history', 'loan_words', 'rare_words', 'standard_nomenclature', 'reading_comprehension'],
+        "mcqa_choices": ["A", "B", "C", "D", "E"],
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False
+    }
 }

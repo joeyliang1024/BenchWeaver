@@ -1,0 +1,93 @@
+{
+    "lyrics_denoising": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "proverbs_denoising": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "correct_definition_matching": [
+        3,
+        0,
+        6,
+        0,
+        0
+    ],
+    "csat_geo": [
+        0,
+        0,
+        0,
+        19,
+        0
+    ],
+    "csat_law": [
+        0,
+        0,
+        87,
+        0,
+        0
+    ],
+    "csat_socio": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "date_understanding": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "general_knowledge": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "history": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "loan_words": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "rare_words": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "standard_nomenclature": [
+        4,
+        0,
+        0,
+        0,
+        0
+    ],
+    "reading_comprehension": [
+        0,
+        0,
+        0,
+        0,
+        0
+    ]
+}

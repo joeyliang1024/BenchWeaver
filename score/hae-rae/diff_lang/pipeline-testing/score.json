@@ -1,0 +1,16 @@
+{
+    "Average": 74.7368,
+    "lyrics_denoising": 0.0,
+    "proverbs_denoising": 0.0,
+    "correct_definition_matching": 68.0,
+    "csat_geo": 84.0,
+    "csat_law": 80.0,
+    "csat_socio": 80.0,
+    "date_understanding": 80.0,
+    "general_knowledge": 80.0,
+    "history": 72.0,
+    "loan_words": 68.0,
+    "rare_words": 76.0,
+    "standard_nomenclature": 84.0,
+    "reading_comprehension": 80.0
+}

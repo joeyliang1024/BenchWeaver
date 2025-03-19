@@ -18,17 +18,17 @@ source_lang: ko
 target_lang: zh-tw
 
 ### dataset
-task: click_test  
+task: hae-rae-bench_test  
 task_dir: evaluation_data
 template: fewshot
 lang: ko
 n_shot: 0
-benchmark_mode: mcqa-oq
+benchmark_mode: mix
 pipeline: diff
 batch_size: 4
 
 ### output
-save_dir: score/click/diff_lang/pipeline-testing
+save_dir: score/hae-rae/diff_lang/pipeline-testing
 
 ### VLLM
 vllm_maxlen: 8192

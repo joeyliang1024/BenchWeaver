@@ -1,0 +1,678 @@
+{
+    "lyrics_denoising": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 根據給定的單詞，填入歌詞為：\n它沒有沒有你的愛\n[MASK][MASK][MASK] [MASK] [MASK] [MASK]\n相信它 你最好相信\n情感的流動消失了，我被困在空間中\n沒有你的愛\n陽光照耀 雨水降下\n把陽光和星星裝進來，尋找我想像中的理想\n它沒有沒有你的愛。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 根據給定的單詞，填入歌詞為：\n變成我的時間 one 10 MINUTES\nJust 一個 10 MINUTES 成為我的時間\n我說，你的她現在正在看鏡子\n不知為何想擁有你，在她離開的那10分鐘內\n變成我的時間 one 10 MINUTES\nJust 一個 10 MINUTES 成為我的時間。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: [MASK] [MASK] [MASK] 我準備好 [MASK] [MASK]。\n我準備好 [MASK] [MASK] [MASK] [MASK]。\n我準備好 [MASK] 你 [MASK] [MASK]。\n我準備好 [MASK] 你 [MASK] [MASK]。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 我想要避開太陽，無論\n我想要避開太陽，無論\n不斷哭泣，眼淚流成河\n如果能把你全部流出來就好了\n我太討厭思念你了，真的太討厭了。\n我跑過去，卻又退後\n試著忘記你，卻越想越多。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 雖然不太合適，而不是，令人沮喪的，男生們，真的。\n。\n我在舞池中，果然吸引了眾人目光，已經過了很久，哦，哦哦哦哦。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "proverbs_denoising": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 話說在前，做在後，話說在前，做在後。\n此諺語意指事物的先後順序被弄反了，常用來形容人言不顧行，或是行動與言辭不一致的情況。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 那人所擁有的，在世上出生，那就是人。\n那人所擁有的，在世上出生，那就是人。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 根據所提供的單詞，可以造出以下諺語：\n別人的父母，要孝敬必須我做父母。\n\n這句諺語的意思是，要好好照顧和孝順他人的父母，就必須先從自己父母開始做起。這體現了中華文化中重視孝道的價值觀。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 沒錯，根據所提供的單詞，可創造出的諺語為：「人無我棄，物無我棄。」\n這句諺語的意思是說，人如果被拋棄，就會變得毫無價值；而物品如果被丟掉，也就失去了它的用途。這句諺語提醒人們要善待身邊的人和事物，因為你永不知道什麼時候會需要它們。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 話中有物，人得其狂。\n這個諺語的意思是，在對話中，如果能仔細聆聽並理解他人的話語，就能從中獲得有價值的知識或見解，甚至可能因此而變得更加聰明或瘋狂。這句諺語提醒我們，溝通的重要性，以及認真對待他人意見的價值。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "correct_definition_matching": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n這個問題是問「가노」的正確含義，而選項中與長野縣相關的描述是：(E) 日本長野縣北部的城市。印刷、食品、電器等工業和商業發達。郊區則積極種植蘋果和蔬菜。縣政府所在地。\n所以，「가노」的正確含義是日本長野縣北部的城市。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (C).\n解釋：\n原文中提到「手上戴著金製的戒指」，其中「戒指」這個詞彙強調了手上戴著的飾品是環狀的，且是用金製成的。選項中，(A) 是指一對戒指，可能不是強調戒指的部分；(B) 是指銀製的戒指，與原文中提到的金製戒指不符；(D) 是指防火環，與戒指無關；(E) 是指玉製的戒指，與原文中提到的金製戒指不符。因此，正確的答案是(C)。\n思路：\n在分析這個問題時，我們首先要明確問題所問的是關於「戒指」的含義，而不是關於戒指的材質或具體情況。原文中提到「手上戴著金製的戒指」，這句話強調了戒指的材質是金製的，且是戴在手上的飾品。因此，我們需要從這些資訊中推斷出「戒指」的正確含義。在選項中，只有(C) 選項強調了「戒指」的說法，其他選項都與戒指的材質或具體情況有關。因此，我們選擇(C) 作為正確答案。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n思路：首先，我們應該理解「 가마니 」的意思。在問題中，「 가마尼 」被描述為用稻草編織的東西，現在也指用塑膠或紙等製作的大袋子。這讓我們推斷出「 가마尼 」很可能是一種容器。\n其次，我們看選項（E）也是容器的意思，符合「 가마니 」的描述。因此，我選擇（E）為正確答案。\n正確答案是（E）。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E).\n思路：首先，我們應該理解「中間」這個詞的含義。在描述位置時，「中間」通常指的是兩端之間的中間部分，沒有偏向一側。在給定的選項中，(E) 是關於大腦的結構，描述了大腦的中間部分，即腦幹。在這個選項中，「中間」指的是在大腦的結構中，位於中腦和橋腦之間的部分。\n其餘選項不符合「中間」的定義：\n(A) 是關於昆蟲的第二胸節，描述了昆蟲身體的部位，與「中間」無關。\n(B) 是關於物體的中間部分，描述了物體的位置，但沒有具體說明物體是什麼。\n(C) 是關於三角形的中間嵌入的栗子，描述了三角形和栗子之間的關係，但沒有明確說明「中間」是什麼。\n(D) 是關於兩層裙子之間橫著綁住的木頭，描述了木頭的位置，但沒有明確說明「中間」是什麼。\n因此，正確答案是(E)。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n思路：在所給出的選項中，(E) 是唯一一個描述「加害」行為的選項。其他選項都與《金剛經》或相關書籍有關，並沒有涉及「加害」行為的描述。因此，正確答案是(E)。\n解釋：在語言學中，「加害」一般指對他人或物造成傷害、損害或不利影響。在法律上，「加害」行為是指違反法律或道德規範，對他人或社會造成實際損害的行為。在選項中，(E) 選項描述了對他人的生命、身體、財產、名譽等造成傷害，這符合「加害」行為的普遍意義。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "csat_geo": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你所提的並非一個具體的問題，而是關於製作大東輿地圖的虛擬對話場景的描述，我將為你整理出相關資訊，供你參考。\n\n在製作大東輿地圖的過程中，可能涉及到以下步驟和考量：\n\n1. 資料蒐集：收集有關東亞地區的地形、地貌、河流、湖泊、山脈、城市和其他重要地標的資料。這可透過閱讀地圖書、使用網路資源、諮詢專家等方式實現。\n2. 基礎圖層製作：根據蒐集到的資料，繪製基本的地圖基礎結構，包括經度、緯度、地形等要素。\n3. 地物繪製：在基礎圖層上繪製各種地物，如山脈、河流、湖泊、城市等。這需要精確的測量和繪圖技術。\n4. 地圖比例尺選定：根據地圖的範圍和尺寸，選擇合適的比例尺。比例尺會影響地圖上的細節程度和可讀性。\n5. 色彩編碼：為不同的地物分配相應的顏色，以便於區分和辨識。這種編碼方式稱為色彩編碼。\n6. 標題和說明：為地圖添加標題、說明和其他相關資訊，如製圖者姓名、出版日期、版權聲明等。\n7. 校對和修正：在完成地圖繪製後，對地圖進行校對和修正，以確保其準確性和完整性。\n8. 製作成品：最後，將完成的的地圖製成最終的形式，如印刷品、電子檔案等。\n\n在製作大型地圖時，為了確保資料的準確性和完整性，往往會涉及到多部門、多領域的合作，如地理學家、地圖學家、工程師等。此外，為了使地圖更具可讀性，地圖製作者還會考慮地圖的比例尺、色彩編碼、\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 根據所提供的氣候現象相關災害防備簡訊，以下是各現象的正確說明：\n\n(甲) 颱風：\n颱風是熱帶海洋上發生的強烈風暴，由低氣壓區和強烈的風力組成。在颱風期間，大量的降雨和強風會導致淹水、土石流、強風侵蝕等災害。為了防範颱風造成的損失，民眾應事先做好防颱準備，如加固房屋結構、清理排水溝渠、儲存糧食和飲用水、撤離低窪地區等。\n\n(乙) 寒潮：\n寒潮是指在冬季時，由於極地冷氣團南下，導致氣溫急速下降的現象。寒潮期間，氣溫可能低於正常值許多，甚至出現冰凍或結霜的情形。為了應付寒潮帶來的寒冷，民眾應該採取保暖措施，如穿著厚重衣物、使用暖氣設備、避免長時間待在戶外等。此外，農作物和水產養殖業也需特別注意寒害的影響，採取保護措施以減少損失。\n\n(丙) 沙塵暴：\n沙塵暴是一種發生在乾燥地區的大規模風蝕現象，由強烈的風力將地表的沙子捲起形成巨大沙柱。沙塵暴不僅會影響能見度，還會危害人體健康，引起呼吸系統疾病和皮膚過敏等症狀。在沙塵暴來臨前，民眾應儘量減少外出，特別是對於老人、小孩和患有呼吸系統疾病的人士，更要注意防護。同時，政府和相關部門也應該提前發布預警信息，採取措施控制沙塵暴的影響範圍。\n\n總而言之，這些氣候現象都可能對人類生活和環境造成嚴重威脅。為了減少損失，民眾必須提高警惕，按照當局的建議和指示採取適當的\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n我的思路是：根據題意，我們需要從所給的選項中選出與(ㄱ)和(ㄴ)相關的描述。經過分析，我發現(E)的描述「(ㄴ)的形成時期比(ㄱ)早」與題意相符。因此，我選擇(E)。\n正確的答案是(E)。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的對話場景內容並沒有提及與『(가)』相關的部分，無法為您填入適合的內容。請提供更多相關的對話內容，我將很樂意協助你。\n然而，我可提供一般對話中可能出現的『(가)』用法，供你參考：\n在韓文對話中，『(가)』通常是用來表示『的』、『屬於』或『所屬於』的意思。它常出現在名詞之前，例如：\n*這個房子(이 집)(ga))\n*那輛車(那輛汽車)(那輛汽車)(那輛汽車)(那輛汽車))\n*她的書(她的書)(她的書)(她的書)(她的書))\n在描述一個物體或動作所屬於某個範疇或位置時，也可使用『(가)』：\n*在公園裡玩球(파크에 공을 지고玩球)(在公園裡玩球)(在公園裡玩球)(在公園裡玩球))\n*她住在首爾(她住在首爾)(她住在首爾)(她住在首爾)(她住在首爾))\n希望這能對你有所幫助！若你還有其他問題，請繼續提問。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 根據所提供的表格，正確的區域是北歐。這是因為表格中表示，該區域有最多的農業形態為混合農業的農戶。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "csat_law": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 根據你所提供的對話內容，我無法確定你想要我從哪些選項中選擇一個。請提供你想要我從哪些選項中選擇一個的相關資訊，我將很樂意協助你。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 國際條約。\n思路：根據題意，要求從A~C中選出正確的國際法來源，A代表條約，B代表國際習慣法，C代表法律的一般原則。由於表格是區分國際法的來源，因此應該選擇與區分相關的選項。\n答案：國際條約。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 底線所標示的(ㄱ)~(ㅁ)的說明中，正確的說明是：在韓文字母中，(ㄱ)是第五個母音，發音為「u」，相當於漢字的「宇」；(ㅁ)則是第十三個子音，發音為「m」，相當於漢字的「密」。\n這項說明的正確性可以從韓文字母表中得到證實。韓文字母表中，母音共有十個，分別為(아, a)、(어, ê)、(이, i)、(위, u)、(우, u)、(에, e)、(야, ya)、(오, o)、(우, u)、(유, u)；子音共有十四個，分別為(가, g)、(강, g)、(게, g)、(고, g)、(姑, g)、(건, g)、(げ, g)、(哥, g)、(건, g)、(げ, g)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、(길, gil)、(김, gim)、(킨, kin)、(기, gi)、\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (B)\n這是解釋： 在該案例中， 乙因工作怠惰而被口頭解雇， 這可能被認為是一種不當勞動行為。 不過， 依法律規定， 勞工在收到解雇通知後， 必須先向勞動委員會申請調解， 才能提起解雇無效確認訴訟。 因此， 乙可以不經勞動委員會提起解雇無效確認訴訟， 但必須先向勞動委員會申請調解。\n因此， 本題正確答案是 (B).\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 根據你所提的問題，似乎是要選出在法律上正確回答問題的人，但問題本身並沒有提供相關情境或問題，因此無法根據所提供的資訊給予具體的答案。\n\n若你能提供需要評估的法律問題或情境，我將很樂意協助你判斷在法律上正確的答案。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "csat_socio": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 在底線所標示的(ㄱ)～(ㅅ)的說明中，正確的說明是：在韓文字母中，(ㄱ)是第六個字母，發音為「g」，相當於漢字的「口」；(ㅅ)是第十九個字母，發音為「ss」，相當於漢字的「舌」。\n這個說明的正確性可以從韓文字母表中得到證實，韓文字母表中從第一個字母(ㄱ)到第二十個字母(ㅅ)依次排列，分別對應著不同的發音和漢字。因此，上述的說明是正確的。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 底線所標示的(ㄱ)~(ㅂ)的說明中，正確的說明是：在韓文字母中，(ㄱ)稱為「龜」，是韓文第6個字母，發音為「g」或「gi」；而(ㅂ)稱為「比」，是韓文第16個字母，發音為「b」或「bi」。\n這兩個字母在韓文中都是母音，且在韓文的拼音系統中，常被用來表示某些音素或聲調。然而，在韓文的書寫系統中，它們並不是常用的字母，而是用來表示某些音素或聲調時所使用的輔助符號。這些輔助符號通常放在字母的上方或下方，以表示該音素或聲調應該如何發音。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 根據所提供的資料，正確的答案為：(E).\n解釋如下：\n在所提供的選項中，(A)強調社會規範的控制力加強作為對偏差行為的對策，與標籤理論相符；(B)認為不存在客觀標準來界定偏差行為，與默頓的失範理論相符；(C)強調差別性制裁對偏差行為發生的影響，與差別交往理論相符；(D)強調社會結構對偏差行為的影響，與標籤理論、默頓的失範理論、差別交往理論都相關；(E)重視偏差行為者發生的互動過程，與差別交往理論相符。\n在所提供的卡片中，與偏差理論相符的卡片為：卡片2 認為偏差行為是與偏差者的交流學習的結果；卡片4 重視偏差行為者發生的互動過程。\n因此，從選擇的理論及卡片的角度來看，最符合的組合是：甲(獲勝者)選擇(A)，乙選擇(B)，丙選擇(C)，而卡片的選擇為卡片2和卡片4。這與表格中的答案相符，表格中的答案為：(A) (ㄱ), (ㄴ) (B) (ㄱ), (ㄷ) (C) (ㄴ), (ㄷ) (D) (ㄴ), (ㄹ) (E) (ㄷ), (ㄹ)。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 根據所提供的資料，以下敘述中正確的部分為：\n\n1. (B) 非正式組織通常是由共同目標或興趣而形成的團體，其成員之間的關係較為鬆散，缺乏明確的結構和正式的決策程序。\n2. 在非正式組織中，領導者往往是由資歷、聲望或對團體的貢獻而自然產生，並非由選舉或委任產生。\n3. 非正式組織的運作方式較為靈活，決策過程通常較快，但可能缺乏系統性和持續性。\n4. 非正式組織在某些情況下可以發揮更強的適應性和創新性，因為其結構較為簡單，決策流程短，能更迅速地因應環境變化。\n5. 非正式組織可能存在著利益衝突、權力鬥爭和決策不透明等問題，若無適當監督和管理，可能會對團體目標和成員利益造成負面影響。\n6. 非正式組織在某些情況下可以與正式組織相輔相成，共同達成目標。\n7. 自發性結社是指由個人或群體自主發起，為了共同的目的或興趣而組成的組織，其性質介於正式組織和非正式組織之間。\n8. 自發性結社的特點包括：成員自願參加，缺乏強制性；組織結構較為鬆散；決策過程民主；重視成員的參與和貢獻。\n9. 自發性結社在許多情況下可以發揮重要作用，如社群發展、志願服務、文化交流等。\n10. 自發性結社的缺點在於，由於缺乏正式的組織架構和管理機制，可能存在著決策不穩定、運作不效率等問題。\n\n基於所提供的資料，其他敘述並不完全正確。例如，非正式組織並非必然由共同目標或興趣而形成的團體，雖然這是常見的情況，但也存在其他型別的非正式組織；而自\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你所提的問題並非一個需要解答的問題，而是關於選項的說明，因此我將為你解釋每個選項的內容，以幫助你了解問題所在。\n\n(A). 在(ㄱ)中，「文化」是以廣泛的意義使用。\n這表示在第ㄱ段中，文化被廣泛地使用，但並未特別強調其特性。\n\n(B). 在(ㄴ)中突顯的文化特性使得社會成員之間能夠順暢溝通。\n這表示在第ㄴ段中，強調了文化的某種特性，使得社會成員之間能夠順暢地溝通。\n\n(C). 在(ㄹ)中突顯了文化的變動性。\n這表示在第ㄹ段中，強調了文化的變動性。\n\n(D). 解釋文化元素的連鎖變動時，應該選擇在(ㄴ)中突顯的文化特性，而不是(ㄷ)。\n這表示在解釋文化元素的連鎖變動時，應該選擇在第ㄴ段中強調的文化特性，而不是第ㄷ段中的內容。\n\n根據你的描述，你似乎在選擇正確的說明，但問題本身並不是一個需要解答的問題。若你能提供一個具體的問題，我將很樂意為你解答。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "date_understanding": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 我很抱歉，由於你提供的問題內容僅包含指示而沒有實際問題，我無法為您提供相應的答案。如果您能提供具體的問題，我將很樂意為您解答。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 我很抱歉，由於你提供的問題內容僅包含指示而沒有實際問題，我無法為您提供相應的答案。如果您能提供具體的問題，我將很樂意為您解答。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 我很抱歉，由於你提供的問題內容僅包含指示而沒有實際問題，我無法為您提供相應的答案。如果您能提供具體的問題，我將很樂意為您解答。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 我很抱歉，由於你所提的問題並非一個明確的問題，我無法為您提供最適合的答案。如果您能提供更詳細的問題或情境，我將很樂意協助您。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 我很抱歉，由於你所提的問題並非一個明確的問題，我無法為您提供最適合的答案。如果您能提供更詳細的問題或情境，我將很樂意協助您。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "general_knowledge": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的問題並非一個需要我解答的疑問，而是要求我閱讀一段文字並從其中選出最合適的答案，因此我將為你說明如何進行這項任務。\n\n步驟1：確認問題\n你需要提供一段文字，內含一個需要選擇的答案或需要完成的任務。\n\n步驟2：閱讀文字\n仔細閱讀所提供的文字，以瞭解其中的內容和要求。\n\n步驟3：辨識選項\n在閱讀完文字後，嘗試辨識可能存在的選項或需要選擇的答案。\n\n步驟4：選出最合適的答案\n根據所辨識的選項，從中選出最符合問題或任務要求的答案。\n\n步驟5：提交答案\n將選出的答案提交給使用者，以確認是否正確。\n\n請注意，如果你沒有提供需要我閱讀和選擇答案的文字，我將無法按照上述步驟為你服務。請提供相關的文字內容，我將很樂意協助你完成選項選擇。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的問題並非一個需要我解答的問題，而是要求我閱讀一段文字並選擇最合適的答案。請提供你要我閱讀的文字，我將很樂意為你服務。\n若你提供的文字是一篇文章或一段敘述，我將會從中選出最重要的部分或關鍵資訊，並將其濃縮成幾句話或一個簡短的摘要。如果這是需要我回答的具體問題，我將會根據所提供的資訊給出最合適的答案。\n請提供你需要我閱讀或回答的問題或文字，我將很樂意協助你。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的問題並非一個需要我解答的問題，而是要求我閱讀一個問題並選擇最合適的答案，我將為你示範如何進行這項任務。\n\n假設你提供的問題是：\n\n在下列哪位作家之中，誰的代表作是《傲慢與偏見》？\nA. Jane Austen\nB. William Shakespeare\nC. J.K. Rowling\nD. Charles Dickens\n\n我將為你選出最合適的答案。\n正確答案是（A）。Jane Austen是《傲慢與偏見》（Pride and Prejudice）的作者。這本小說是英國文學史上最著名的作品之一，也是浪漫主義文學的代表作之一。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的問題並非一個需要我解答的疑問，而是要求我閱讀一段文字並從其中選出最合適的答案，因此我將為你說明如何進行這項任務。\n\n步驟1：確認問題\n你需要提供一段文字，內含一個需要選擇的答案或需要完成的任務。\n\n步驟2：閱讀文字\n仔細閱讀所提供的文字，以瞭解其中的內容和要求。\n\n步驟3：辨識選項\n在閱讀完文字後，嘗試辨識可能存在的選項或需要選擇的答案。\n\n步驟4：選出最合適的答案\n根據所辨識的選項，從中選出最符合問題或任務要求的答案。\n\n步驟5：提交答案\n將選出的答案提交給使用者，以確認是否正確。\n\n請注意，如果你沒有提供需要我閱讀和選擇答案的文字，我將無法按照上述步驟為你服務。請提供相關的文字內容，我將很樂意協助你完成選項選擇。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的問題並非一個需要我解答的疑問，而是要求我閱讀一段文字並從其中選出最合適的答案，因此我將為你說明如何進行這項任務。\n\n步驟1：確認問題\n你需要提供一段文字，內含一個需要選擇的答案或需要完成的任務。\n\n步驟2：閱讀文字\n仔細閱讀所提供的文字，以瞭解其中的內容和要求。\n\n步驟3：辨識選項\n在閱讀完文字後，嘗試辨識可能存在的選項或需要選擇的答案。\n\n步驟4：選出最合適的答案\n根據所辨識的選項，從中選出最符合問題或任務要求的答案。\n\n步驟5：提交答案\n將選出的答案提交給使用者，以確認是否正確。\n\n請注意，如果你沒有提供需要我閱讀和選擇答案的文字，我將無法按照上述步驟為你服務。請提供相關的文字內容，我將很樂意協助你完成選項選擇。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "history": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (B)\n思路：根據題意，我們需要選出與青銅器時代用大石堆砌而成的首領墓葬相關的選項。在考慮了所有選項之後，我選擇了(B)巨石墓。\n理由：在青銅器時代，人們使用大石塊堆砌而成的墓葬被稱為巨石墓。這些墓葬通常位於山丘或高地上，由巨大的石塊構成，石塊之間沒有使用任何黏合劑，而是靠重力和石塊之間的摩擦力來保持結構穩定。巨石墓的建造過程複雜，需要大量的人力和物力，但它們在當時卻是顯示權力和地位的象徵。\n因此，基於題意和所提供的選項，我選擇了(B)巨石墓。\n正確答案是(B)。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n思路：根據歷史知識，我國的第一個國家是古朝鮮。\n理由：在所給出的選項中，古朝鮮是最早存在的國家之一，成立於公元前2333年，位於今朝鮮半島北部。雖然其他選項如渤海、朝鮮、高句麗和新羅也都是朝鮮半島上的古國，但它們都在古朝鮮之後出現。因此，正確答案是（E）古朝鮮。\n我在這裡提供了一個簡短的解釋，以幫助你更好地理解問題和答案。這個問題是關於我國（朝鮮半島）最早的國家，選項中包括了幾個歷史上的古國。經過分析，我發現古朝鮮是最早存在的國家，因此選擇（E）古朝鮮作為正確答案。這個問題和答案有助於人們更好地瞭解我國的歷史和古國。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n思路：首先，我們先了解問題是問高句麗的建國理念，然後再看選項中哪個選項與「廣泛造福人類」最相關。經過分析，(E)弘益人間最符合「廣泛造福人類」的理念。\n因此，正確答案是(E)。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n思路：根據題意，我們需要找到與「單君王儉」相關的祭祀場所。單君王儉是朝鮮王朝時期的著名文人，經過查閱相關資料，得知他在江陵（Donghae）有一座祭祀的參聖壇。\n因此，正確答案是（E）江陵。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (C)\n思路：根據題意，我們需要找到與朱蒙相關的國家名稱。在選項中，新羅、高句麗、高麗、百濟都是朝鮮半島上的古國，但只有高句麗是朱蒙所建立的。因此，我選擇(C)高句麗。\n理由：朱蒙是高句麗的創始人，他建立了高句麗王國。雖然高句麗後來與新羅、唐朝等國發生過戰爭，但它在朝鮮半島的歷史上仍扮演著重要的角色。其他選項中，渤海是另一個位於中國東北部的古國，與高句麗並無直接關係；新羅和百濟都是朝鮮半島上的古國，但它們的建立者並非朱蒙；高麗則是後來由新羅王朝演變而成的國家，與朱蒙也沒有直接關係。因此，我選擇(C)高句麗。\n正確答案是(C)高句麗。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "loan_words": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n思路：根據上下文「無接觸的正確詞」是要選出與「無接觸」相關的詞語，且在選項中與「無接觸」相關的詞語只有「非面對面」，因此選擇(E)非面對面。\n答案：(E)非面對面。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (C\n思路：首先，我們應該理解問題所問的是手機的純化詞，即與手機相關的詞語。在選項中，(A) 車電話是手機的早期稱呼，(B) 詐騙電話是與手機有關的負面行為，(D) 連接電話是手機的功能之一，但並非純化詞，(E) 影像電話是手機的功能之一，但並非純化詞。因此，我們選擇與手機相關且為純化詞的(C) 行動電話。\n所以，正確的答案是（C）。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (D)\n思路：根據題意「海中林的純化詞」是要找出與「海中林」相關的純化詞，「海中林」是指海洋中的森林，主要是指珊瑚礁。因此，純化詞應該與珊瑚礁或海洋森林相關。\n選項中，(D) 海洋森林是與珊瑚礁或海洋森林相關的詞語，因此是正確答案。\n(正確率：100%)\n我的思路是：根據題意，我們需要找到與「海中林」相關的純化詞。「海中林」是指海洋中的森林，主要是指珊瑚礁。在給定的選項中，(D) 海洋森林是與珊瑚礁或海洋森林相關的詞語，因此是正確答案。\n因此，我的答案是：(D)。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (B)\n思路：首先，我們應該理解問題所問的是夏季的「純化詞」，也就是與夏季相關的純化詞。在選項中，(A) 夏季是與夏季相關的詞，但它不是一個純化詞，因為它不是一個動詞。其餘選項中，(B) 河堤、(C) 餘食、(D) 油價、(E) 邊界線都不是與夏季相關的純化詞。因此，我們應該繼續尋找其他選項。\n在進一步分析後，我們發現「純化詞」這個詞在漢語中並沒有固定的含義，它是一個比較抽象的概念。在英語中，「pure form」或「pure state」這些詞語可能更接近「純化詞」的意思。在夏季這個詞語中，我們可以找到一個接近的概念，那就是「夏季的純淨狀態」或「夏季的純淨形式」。在這種情況下，「純淨狀態」或「純淨形式」可以被認為是夏季的「純化詞」。\n雖然在選項中沒有找到完全符合「純化詞」這個概念的詞語，但根據上述分析，我們認為在夏季這個詞語中，「純淨狀態」或「純淨形式」可以被認為是夏季的「純化詞」。因此，正確的答案是（B）河堤。\n我在這裡提供了一個關於如何思考這個問題的思路，希望對你有幫助。當遇到這種類型的問題時，你需要仔細閱讀問題，並嘗試從不同角度理解問題所問的意思。在這種情況下，我們需要找到一個與夏季相關的純化詞，但選項中沒有明確的答案。因此，我們需要進一步分析和思考，以找到最接近的答案。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的問題並非一個需要我解答的問題，而是要求我閱讀一個問題並選擇最合適的答案，我將為你示範如何進行這項任務。\n\n假設你提供的問題是：\n\n在下列哪位作家之中，誰的代表作是《傲慢與偏見》？\nA. Jane Austen\nB. William Shakespeare\nC. J.K. Rowling\nD. Charles Dickens\n\n我將為你選出最合適的答案。\n正確答案是（A）。Jane Austen是《傲慢與偏見》（Pride and Prejudice）的作者。這本小說是英國文學史上最著名的作品之一，也是浪漫主義文學的代表作之一。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "rare_words": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的問題並非一個需要我解答的疑問，而是要求我閱讀一段文字並從其中選出最合適的答案，因此我將為你說明如何進行這項任務。\n\n步驟1：確認問題\n你需要提供一段文字，內含一個問題或需要我從其中選出最合適的答案。\n\n步驟2：閱讀文字\n我將仔細閱讀你提供的文字，以瞭解其中的內容和問題。\n\n步驟3：選出最合適的答案\n在閱讀完文字後，我將根據問題從選項中選出最合適的答案。\n\n步驟4：回覆結果\n我將把選出的答案告知你，並解釋為何這個答案是最合適的。\n\n請提供需要我閱讀和選擇答案的文字和相應的問題。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n思路：根據題意，需要選出與「沒有任何收入而徒勞無功」相近的詞語。在選項中，(E) 出入口是指建築物或場所的入口和出口，與「沒有任何收入而徒勞無功」沒有直接關係。其他選項中，(A) 材料是指用於製作或建設的物質，(B) 支撐物是指提供支撐和穩定性的物體，(C) 河上是指河流的表面，(D) 河卵石是指河流中的石塊。這些詞語都與「沒有任何收入而徒勞無功」沒有直接關係。因此，正確答案是(E) 出入口。\n我在這裡提供了一個關於比喻的問題以及相關選項。請你選出最符合題意的答案。\n在回答這個問題之前，我先解釋一下比喻的概念。比喻是一種修辭手法，用於將兩個看似無關的事物或概念進行比較，以幫助表達更複雜的意思或情感。比喻可以是明示的，也可以是隱喻的。明示的比喻是直接將兩個事物或概念進行比較，如「他像獅子一樣勇敢」。隱喻則是將一個事物或概念與另一個事物或概念進行類比，以傳達更深層的意義，如「生命如花，盛開時美麗，凋零時殘酷」。\n現在，我將提供一個與比喻相關的問題以及相關選項。\n問題：哪個詞語代表了「沒有任何收入而徒勞無功」的比喻？\n(A) 材料\n(B) 支撐物\n(C) 河上\n(D) 河卵石\n(E) 出入口\n思路：根據題意，我們需要選出一個與「沒有任何收入而徒勞無功」相近的詞語。在選項中，(A) 材料是指用於製作或建設的物質，(B) 支撐物是指提供支撐和穩定性的物體，(C) 河上是指河\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n思路：根據題意，我們需要選出與傳統蜜蜂蜂箱底部支撐石相關的詞語。在選項中，(E)躺石是與蜂箱底部支撐有關的，因此是正確答案。\n(正確率：100%)\n我的思路是根據題意和所給選項，判斷哪個詞語與傳統蜜蜂蜂箱底部支撐石有關。在選項中，(E)躺石是與蜂箱底部支撐有關的，因此是正確答案。其他選項都不符合題意，因此被排除。最後，我選擇了正確的答案。\n我的回答是：(E)。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 思路：首先，我們應該理解問題所問的是網路上「石頭」這個詞的意思。然後，我們需要對選項進行分析。根據常識和語言知識，我們知道「石頭」在網路上可能代表的意思有以下幾種：\n\n1. 托石（托盤）：在網路上，托石可能代表一個用來放置物品的平臺或容器。\n2. 琥珀石：琥珀石是古代的一種貨幣，在網路上可能代表金錢或交易。\n3. 瘦石：這個詞在網路上可能沒有明確的含義。\n4. 踏石：踏石可能代表一個地方或平臺，供人們踩踏或聚集。\n5. 蓋石：蓋石可能代表一個用來覆蓋或封閉東西的物體。\n\n根據語境和常識，我們應該選擇與網路和「石頭」最相關的意思。因此，我選擇（D）踏石。\n正確答案是（D）。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 思路：首先，我們先理解問題所問的是與擔架下方兩側腿部意義相符的單詞。擔架是用來抬運傷患或病人的工具，其下方兩側通常有支撐傷患腿部的部分。根據常識，我們知道在抬運傷患或病人時，為了保護他們的腿部，會使用一些材質柔軟、具有緩衝作用的材料來支撐腿部。這些材料可能包括泡棉、橡膠等。\n在選項中，(A) 動圈可能是指與擔架相關的零件，但它不是直接支撐腿部的材料；(B) 兒童服是指兒童穿著的衣服，並非與擔架相關；(C) 運動服是指運動時穿著的衣服，也不是與擔架相關；(D) 動發可能是指與運動相關的動作，但它不是與擔架相關；(E) 霜腳是指腳部因寒冷而發紅，但它不是與擔架相關。\n因此，根據常識和選項，我選擇 (E) 霜腳。\n正確答案是（E）。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "standard_nomenclature": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n思路：根據題意，我們需要選出與「욜드」相關的標準專業術語。「욜d」是韓文，漢字寫作「幼童」，意思是兒童或青少年。在選項中，(E) 青少年服裝是與「욜드」相關的標準專業術語，因此選擇(E)。\n正確答案是(E)。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (B\n思路：首先，我們應該理解數位雙胞胎的含義。數位雙胞胎是指在數位空間中建立的實體或系統的精確數位副本。在選項中，與「模型」相關的選項是最相關的。其次，我們應該區分不同型別的模型。比例模型是實體物件的縮小複製品，通常用於展示和教學。虛擬模型是數位空間中的三維模型，可用於設計、模擬和視覺化。形狀模型主要用於幾何形狀的表示，而精密模型則強調模型的精確性。虛擬敵軍則與數位雙胞胎無關。\n因此，正確答案是（B）虛擬模型。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (D)\n思路：根據題意，我們需要選出與「懸吊帶」相關的專業術語。在選項中，(A) 吊帶環、(B) 王麵包、(C) 吊帶裙、(D) 吊帶、(E) 烤麵包，根據語境和常識，「吊帶」是指在服裝上用來固定衣物或裝飾物的帶子，因此，正確答案是(D) 吊帶。\n因此，我的答案是（D）。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的問題並非一個需要我解答的問題，而是要求我閱讀一個問題並選擇最合適的答案，我將為你示範如何進行這項任務。\n\n假設你提供的問題是：\n\n在下列哪位作家之中，誰的代表作是《傲慢與偏見》？\nA. Jane Austen\nB. William Shakespeare\nC. J.K. Rowling\nD. Charles Dickens\n\n我將為你選出最合適的答案。\n正確答案是（A）。Jane Austen是《傲慢與偏見》（Pride and Prejudice）的作者。這本小說是英國文學史上最著名的作品之一，也是浪漫主義文學的代表作之一。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: (E)\n思路：首先，我們應該理解問題所問的是什麼。問題問的是「正確的標準專業術語」是什麼。然後，我們看選項，(A) 軍聲、(B) 絲鞋、(C) 兩子豆、(D) 軍餃、(E) 軍青色。這些詞語中，有些是食品名稱，有些是顏色，有些是與軍事有關的詞語。根據題意，我們需要選出一個與專業、標準相關的詞語。\n在選項中，(E) 軍青色是與軍事有關的顏色之一，其他選項都不是標準專業術語。因此，我選擇 (E) 軍青色。\n正確的答案是（E）。\n\nTarget sentence:"
+            }
+        ]
+    ],
+    "reading_comprehension": [
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的文章內容我無法得知，請你提供相關的文章或問題，我將很樂意為你提供協助。\n若你有特定問題或文章需要我幫忙，請你提出來，我將盡力提供最適合的答案。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的文本內容中沒有具體的問題，我無法為你選出最適合的答案。如果你能提供需要我回答的具體問題，我將很樂意協助你。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的文本內容中沒有具體的問題，我無法為你選出最適合的答案。如果你能提供需要我回答的具體問題，我將很樂意協助你。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 根據女性討論者的發言，最合適的政策負責人之前所說的內容是：\n\n『我們必須承認，性別歧視和刻板印象在社會中根深蒂固，這些偏見不僅存在於個人層面，也體現在制度和結構中。因此，我們需要從多方面著手，包括教育、就業、健康、政治代表性等，來促進性別平等和女性賦權。』\n\n這段話反映出女性討論者對於解決性別議題的重視，並強調從多方面著手來促進性別平等和女性賦權。這與聯合國永續發展目標（SDGs）中第5項「實現性別平等」以及第4項「優質教育」等目標相符。\n\nTarget sentence:"
+            }
+        ],
+        [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information."
+            },
+            {
+                "role": "user",
+                "content": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style.\n\nTranslate the given sentence from zh-tw into the ko.\n\nSource sentence: 由於你提供的文本僅包含一個關於我國外交部長的陳述，而非一個可以提出問題的完整句子或情境，我無法就此文本為你選出最適合的回答選項。請提供更明確的問題或情境，我將很樂意協助你。\n\n\n我無法為您選出最適合的回答選項，因為所提供的文本並非一個完整的問題或情境。請提供更明確的問題或情境，我將很樂意協助你。\n\nTarget sentence:"
+            }
+        ]
+    ]
+}

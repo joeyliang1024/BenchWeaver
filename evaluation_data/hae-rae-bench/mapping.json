@@ -1,0 +1,54 @@
+{
+    "lyrics_denoising": {
+      "name": "lyrics_denoising",
+      "category": "lyrics_denoising"
+    },
+    "proverbs_denoising": {
+      "name": "proverbs_denoising",
+      "category": "proverbs_denoising"
+    },
+    "correct_definition_matching": {
+      "name": "correct_definition_matching",
+      "category": "correct_definition_matching"
+    },
+    "csat_geo": {
+      "name": "csat_geo",
+      "category": "csat_geo"
+    },
+    "csat_law": {
+      "name": "csat_law",
+      "category": "csat_law"
+    },
+    "csat_socio": {
+      "name": "csat_socio",
+      "category": "csat_socio"
+    },
+    "date_understanding": {
+      "name": "date_understanding",
+      "category": "date_understanding"
+    },
+    "general_knowledge": {
+      "name": "general_knowledge",
+      "category": "general_knowledge"
+    },
+    "history": {
+      "name": "history",
+      "category": "history"
+    },
+    "loan_words": {
+      "name": "loan_words",
+      "category": "loan_words"
+    },
+    "rare_words": {
+      "name": "rare_words",
+      "category": "rare_words"
+    },
+    "standard_nomenclature": {
+      "name": "standard_nomenclature",
+      "category": "standard_nomenclature"
+    },
+    "reading_comprehension": {
+      "name": "reading_comprehension",
+      "category": "reading_comprehension"
+    }
+}
