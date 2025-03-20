@@ -42,3 +42,14 @@ _register_eval_template(
     template_class=MCQA_Template,
     criteria_prompt='判断以下 LLM 回答是否识别 "{option}" 为多项选择题的答案。\n\n问题: {question}\n\nLLM 回答: {llm_response}\n\n如果 LLM 回答正确，请回答 \'True\'，否则回答 \'False\'。',
 )
+
+_register_eval_template(
+    name="ko",
+    system="다음은 {subject}에 대한 객관식 질문(및 정답)입니다.\n\n",
+    choice="\n{choice}. {content}",
+    answer="\n정답:",
+    cot="\n차근차근 생각해 봅시다.\n정답:",
+    templates=mmlu_eval_templates,
+    template_class=MCQA_Template,
+    criteria_prompt='다음 응답이 "{option}"을(를) 객관식 질문의 정답으로 식별하는지 판단하십시오.\n\n질문: {question}\n\nLLM 응답: {llm_response}\n\nLLM 응답이 정답이면 \'True\', 아니면 \'False\'로만 답하십시오.',
+)

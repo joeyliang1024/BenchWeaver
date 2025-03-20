@@ -92,5 +92,27 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": ["A", "B", "C", "D", "E"],
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False
+    },
+    "kmmlu":{
+        "language": "ko",
+        "evaluators": {
+            "mcqa-prob": MMLUProbEvaluator,
+            "mcqa-oq": MMLUOQEvaluator,
+        },
+        "display_scores": ["Average", 'STEM', 'Applied Science', 'HUMSS', 'Other'],
+        "mcqa_choices": ["A", "B", "C", "D"],
+        "sugguest_num_shots": 5,
+        "support_chain_of_thought": False,   
+        },
+    "kmmlu-hard":{
+        "language": "ko",
+        "evaluators": {
+            "mcqa-prob": MMLUProbEvaluator,
+            "mcqa-oq": MMLUOQEvaluator,
+        },
+        "display_scores": ["Average", 'STEM', 'Applied Science', 'HUMSS', 'Other'],
+        "mcqa_choices": ["A", "B", "C", "D"],
+        "sugguest_num_shots": 5,
+        "support_chain_of_thought": True,   
     }
 }

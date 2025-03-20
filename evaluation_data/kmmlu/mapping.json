@@ -1,0 +1,182 @@
+{
+  "accounting": {
+    "name": "accounting",
+    "category": "HUMSS"
+  },
+  "agricultural_sciences": {
+    "name": "agricultural sciences",
+    "category": "Other"
+  },
+  "aviation_engineering_and_maintenance": {
+    "name": "aviation engineering and maintenance",
+    "category": "Applied Science"
+  },
+  "biology": {
+    "name": "biology",
+    "category": "STEM"
+  },
+  "chemical_engineering": {
+    "name": "chemical engineering",
+    "category": "STEM"
+  },
+  "chemistry": {
+    "name": "chemistry",
+    "category": "STEM"
+  },
+  "civil_engineering": {
+    "name": "civil engineering",
+    "category": "STEM"
+  },
+  "computer_science": {
+    "name": "computer science",
+    "category": "STEM"
+  },
+  "construction": {
+    "name": "construction",
+    "category": "Other"
+  },
+  "criminal_law": {
+    "name": "criminal law",
+    "category": "HUMSS"
+  },
+  "ecology": {
+    "name": "ecology",
+    "category": "STEM"
+  },
+  "economics": {
+    "name": "economics",
+    "category": "HUMSS"
+  },
+  "education": {
+    "name": "education",
+    "category": "HUMSS"
+  },
+  "electrical_engineering": {
+    "name": "electrical engineering",
+    "category": "STEM"
+  },
+  "electronics_engineering": {
+    "name": "electronics engineering",
+    "category": "Applied Science"
+  },
+  "energy_management": {
+    "name": "energy management",
+    "category": "Applied Science"
+  },
+  "environmental_science": {
+    "name": "environmental science",
+    "category": "Applied Science"
+  },
+  "fashion": {
+    "name": "fashion",
+    "category": "Other"
+  },
+  "food_processing": {
+    "name": "food processing",
+    "category": "Other"
+  },
+  "gas_technology_and_engineering": {
+    "name": "gas technology and engineering",
+    "category": "Applied Science"
+  },
+  "geomatics": {
+    "name": "geomatics",
+    "category": "Applied Science"
+  },
+  "health": {
+    "name": "health",
+    "category": "Other"
+  },
+  "industrial_engineer": {
+    "name": "industrial engineer",
+    "category": "Applied Science"
+  },
+  "information_technology": {
+    "name": "information technology",
+    "category": "STEM"
+  },
+  "interior_architecture_and_design": {
+    "name": "interior architecture and design",
+    "category": "Other"
+  },
+  "law": {
+    "name": "law",
+    "category": "HUMSS"
+  },
+  "machine_design_and_manufacturing": {
+    "name": "machine design and manufacturing",
+    "category": "Applied Science"
+  },
+  "management": {
+    "name": "management",
+    "category": "HUMSS"
+  },
+  "maritime_engineering": {
+    "name": "maritime engineering",
+    "category": "Applied Science"
+  },
+  "marketing": {
+    "name": "marketing",
+    "category": "Other"
+  },
+  "materials_engineering": {
+    "name": "materials engineering",
+    "category": "STEM"
+  },
+  "mechanical_engineering": {
+    "name": "mechanical engineering",
+    "category": "STEM"
+  },
+  "nondestructive_testing": {
+    "name": "nondestructive testing",
+    "category": "Applied Science"
+  },
+  "patent": {
+    "name": "patent",
+    "category": "Other"
+  },
+  "political_science_and_sociology": {
+    "name": "political science and sociology",
+    "category": "HUMSS"
+  },
+  "psychology": {
+    "name": "psychology",
+    "category": "HUMSS"
+  },
+  "public_safety": {
+    "name": "public safety",
+    "category": "Other"
+  },
+  "railway_and_automotive_engineering": {
+    "name": "railway and automotive engineering",
+    "category": "Applied Science"
+  },
+  "real_estate": {
+    "name": "real estate",
+    "category": "Other"
+  },
+  "refrigerating_machinery": {
+    "name": "refrigerating machinery",
+    "category": "Other"
+  },
+  "social_welfare": {
+    "name": "social welfare",
+    "category": "HUMSS"
+  },
+  "taxation": {
+    "name": "taxation",
+    "category": "HUMSS"
+  },
+  "telecommunications_and_wireless_technology": {
+    "name": "telecommunications and wireless technology",
+    "category": "Applied Science"
+  },
+  "korean_history": {
+    "name": "korean history",
+    "category": "HUMSS"
+  },
+  "math": {
+    "name": "math",
+    "category": "STEM"
+  }
+}
