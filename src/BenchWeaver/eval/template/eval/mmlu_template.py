@@ -18,7 +18,8 @@ _register_eval_template(
     cot="\nLet's think step by step.\nAnswer:",
     templates=mmlu_eval_templates,
     template_class=MCQA_Template,
-    criteria_prompt='Determine whether the following response identifies "{option}" as the answer to the multiple-choice question.\n\nQuestion: {question}\n\nLLM Response: {llm_response}\n\nIf the LLM Response is correct, just response \'True\', else response \'False\'.',
+    criteria_prompt='Determine whether the following LLM response includes "{option}" as the answer to the multiple-choice question.\n\nQuestion: {question}\n\nLLM Response: {llm_response}\n\nIf "{option}" is explicitly selected as the answer in the LLM response, please answer \'True\', otherwise answer \'False\'.',
+    response = "The correct answer is ({answer})."
 )
 
 _register_eval_template(
@@ -29,7 +30,8 @@ _register_eval_template(
     cot="\n讓我們一步一步來思考。\n答案：",
     templates=mmlu_eval_templates,
     template_class=MCQA_Template,
-    criteria_prompt='判斷以下 LLM 回應是否識別 "{option}" 為多項選擇題的答案。\n\n問題: {question}\n\nLLM 回應: {llm_response}\n\n如果 LLM 回應正確，請回答 \'True\'，否則回答 \'False\'。',
+    criteria_prompt='判斷以下 LLM 回應是否包含 "{option}" 作為多項選擇題的答案。\n\n問題: {question}\n\nLLM 回應: {llm_response}\n\n如果 "{option}" 確實是 LLM 回應中明確選擇的答案，請回答 \'True\'，否則回答 \'False\'。',
+    response="正確答案是 ({answer})。",
 )
 
 _register_eval_template(
@@ -40,7 +42,8 @@ _register_eval_template(
     cot="\n让我们一步一步来思考。\n答案：",
     templates=mmlu_eval_templates,
     template_class=MCQA_Template,
-    criteria_prompt='判断以下 LLM 回答是否识别 "{option}" 为多项选择题的答案。\n\n问题: {question}\n\nLLM 回答: {llm_response}\n\n如果 LLM 回答正确，请回答 \'True\'，否则回答 \'False\'。',
+    criteria_prompt='判断以下 LLM 回复是否包含 "{option}" 作为多项选择题的答案。\n\n问题: {question}\n\nLLM 回复: {llm_response}\n\n如果 "{option}" 确实是 LLM 回复中明确选择的答案，请回答 \'True\'，否则回答 \'False\'。',
+    response="正确答案是 ({answer})。",
 )
 
 _register_eval_template(
@@ -51,5 +54,6 @@ _register_eval_template(
     cot="\n차근차근 생각해 봅시다.\n정답:",
     templates=mmlu_eval_templates,
     template_class=MCQA_Template,
-    criteria_prompt='다음 응답이 "{option}"을(를) 객관식 질문의 정답으로 식별하는지 판단하십시오.\n\n질문: {question}\n\nLLM 응답: {llm_response}\n\nLLM 응답이 정답이면 \'True\', 아니면 \'False\'로만 답하십시오.',
+    criteria_prompt='다음 LLM 응답이 "{option}"을(를) 객관식 질문의 답으로 포함하는지 판단하세요.\n\n질문: {question}\n\nLLM 응답: {llm_response}\n\n"{option}"이(가) LLM 응답에서 명확하게 선택된 답이면 \'True\'를, 그렇지 않으면 \'False\'를 답하세요.',
+    response="정답은 ({answer})입니다.",
 )

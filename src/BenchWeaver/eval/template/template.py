@@ -8,6 +8,7 @@ class EvalTemplate:
     answer: str
     cot: str
     criteria_prompt: str
+    response: str
 
 @dataclass
 class TransTemplate(EvalTemplate):
@@ -24,6 +25,7 @@ def _register_eval_template(name: str,
                             criteria_prompt: str,
                             templates: dict, 
                             template_class,
+                            response: str = "The correct answer is ({answer}).",
                             ) -> None:
     """
     Registers an evaluation template with the given parameters.
@@ -38,7 +40,7 @@ def _register_eval_template(name: str,
     Returns:
         None
     """
-    templates[name] = template_class(system=system, choice=choice, answer=answer, cot=cot, criteria_prompt=criteria_prompt)
+    templates[name] = template_class(system=system, choice=choice, answer=answer, cot=cot, criteria_prompt=criteria_prompt, response=response)
 
 def _register_trans_template(name: str,
                              template_lang: str,

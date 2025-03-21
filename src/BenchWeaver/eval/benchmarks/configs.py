@@ -9,6 +9,8 @@ from .en.big_bench_hard.mix_eval import BigBenchHardEvaluator
 # KO Benchmarks
 from .ko.click.oq_eval import CLIcKEvaluator
 from .ko.hae_rae_bench.mix_eval import HAE_RAE_BENCHEvaluator
+# ZH-TW Benchmarks
+from .zhtw.tmlu.oq_eval import TMLUEvaluator
 
 BENCHMARK_CONFIG = {
     "mmlu":{
@@ -114,5 +116,26 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 5,
         "support_chain_of_thought": True,   
-    }
+    },
+    "tmmluplus":{
+        "language": "zh-tw",
+        "evaluators": {
+            "mcqa-prob": MMLUProbEvaluator,
+            "mcqa-oq": MMLUOQEvaluator,
+        },
+        "display_scores": ["Average", 'STEM', 'Social Science', 'Humanities', 'Other'],
+        "mcqa_choices": ["A", "B", "C", "D"],
+        "sugguest_num_shots": 5,
+        "support_chain_of_thought": False,
+    },
+    "tmlu":{
+        "language": "zh-tw",
+        "evaluators": {
+            "mcqa-oq": TMLUEvaluator,
+        },
+        "display_scores": ["Average", "Social Science", "STEM", "Humanities", "Taiwan Specific", "Others"],
+        "mcqa_choices": OPTION_CODES,
+        "sugguest_num_shots": 5,
+        "support_chain_of_thought": True,
+    },
 }

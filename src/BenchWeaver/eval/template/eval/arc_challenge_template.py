@@ -17,5 +17,5 @@ _register_eval_template(
     cot="\nLet's think step by step.\nAnswer:",
     templates=arc_challenge_eval_templates,
     template_class=MCQA_Template,
-    criteria_prompt='Determine whether the following response identifies "{option}" as the answer to the multiple-choice question.\n\nQuestion: {question}\n\nLLM Response: {llm_response}\n\nIf the LLM Response is correct, just response \'True\', else response \'False\'.',
+    criteria_prompt='Determine whether the following LLM response includes "{option}" as the answer to the multiple-choice question.\n\nQuestion: {question}\n\nLLM Response: {llm_response}\n\nIf "{option}" is explicitly selected as the answer in the LLM response, please answer \'True\', otherwise answer \'False\'.',
 )

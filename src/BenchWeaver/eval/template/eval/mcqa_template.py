@@ -5,12 +5,13 @@ from typing import Dict, List, Sequence, Tuple
 from ....extras.constants import OPTION_CODES
 
 class MCQA_Template(EvalTemplate):
-    def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str):
+    def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str, response:str):
         self.system = system
         self.choice = choice
         self.answer = answer
         self.cot = cot
         self.criteria_prompt = criteria_prompt
+        self.response = response
         
     def _parse_example(self, example: Dict[str, str], choices: List[str], use_cot: bool=False) -> Tuple[str, str]:
         r"""
@@ -22,7 +23,7 @@ class MCQA_Template(EvalTemplate):
                            [self.cot if use_cot else self.answer]
                            ).strip()
         answer = (((example.get("explanation") if use_cot and example.get("explanation") else "") + "\n" + 
-                  "The correct answer is ({answer}).".format(answer=example.get("answer"))
+                  self.response.format(answer=example.get("answer"))
                   ).strip() if use_cot else example["answer"])
         return question, answer
 

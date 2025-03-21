@@ -1,0 +1,270 @@
+{
+  "dentistry": {
+    "name": "牙醫學",
+    "category": "Other"
+  },
+  "traditional_chinese_medicine_clinical_medicine": {
+    "name": "中醫臨床醫學",
+    "category": "Other"
+  },
+  "clinical_psychology": {
+    "name": "臨床心理學",
+    "category": "Social Sciences"
+  },
+  "technical": {
+    "name": "技術工相關",
+    "category": "Other"
+  },
+  "culinary_skills": {
+    "name": "餐旅",
+    "category": "Other"
+  },
+  "mechanical": {
+    "name": "機械與機電概論",
+    "category": "Other"
+  },
+  "logic_reasoning": {
+    "name": "邏輯思維",
+    "category": "Other"
+  },
+  "real_estate": {
+    "name": "房地產",
+    "category": "Other"
+  },
+  "general_principles_of_law": {
+    "name": "法學大意",
+    "category": "Social Sciences"
+  },
+  "finance_banking": {
+    "name": "金融與法規",
+    "category": "Other"
+  },
+  "anti_money_laundering": {
+    "name": "洗錢防制",
+    "category": "Social Sciences"
+  },
+  "ttqav2": {
+    "name": "台灣在地用語",
+    "category": "Humanities"
+  },
+  "marketing_management": {
+    "name": "行銷管理",
+    "category": "Other"
+  },
+  "business_management": {
+    "name": "企業管理",
+    "category": "Other"
+  },
+  "organic_chemistry": {
+    "name": "有機化學",
+    "category": "STEM"
+  },
+  "advance_chemistry": {
+    "name": "化學",
+    "category": "STEM"
+  },
+  "physics": {
+    "name": "物理",
+    "category": "STEM"
+  },
+  "secondary_physics": {
+    "name": "高中物理",
+    "category": "STEM"
+  },
+  "human_behavior": {
+    "name": "人類行為與社會",
+    "category": "Social Sciences"
+  },
+  "national_protection": {
+    "name": "軍事",
+    "category": "Social Sciences"
+  },
+  "jce_humanities": {
+    "name": "指考人文科目",
+    "category": "Humanities"
+  },
+  "linear_algebra": {
+    "name": "線代",
+    "category": "STEM"
+  },
+  "politic_science": {
+    "name": "政治",
+    "category": "Social Sciences"
+  },
+  "agriculture": {
+    "name": "農業",
+    "category": "Other"
+  },
+  "official_document_management": {
+    "name": "機關文書",
+    "category": "Other"
+  },
+  "financial_analysis": {
+    "name": "財務分析",
+    "category": "Other"
+  },
+  "pharmacy": {
+    "name": "藥劑學",
+    "category": "STEM"
+  },
+  "educational_psychology": {
+    "name": "教育心理",
+    "category": "Social Sciences"
+  },
+  "statistics_and_machine_learning": {
+    "name": "統計與機器學習",
+    "category": "STEM"
+  },
+  "management_accounting": {
+    "name": "管理會計",
+    "category": "Other"
+  },
+  "introduction_to_law": {
+    "name": "法律概論",
+    "category": "Social Sciences"
+  },
+  "computer_science": {
+    "name": "資訊工程",
+    "category": "STEM"
+  },
+  "veterinary_pathology": {
+    "name": "獸醫病理學",
+    "category": "Other"
+  },
+  "accounting": {
+    "name": "會計學",
+    "category": "Other"
+  },
+  "fire_science": {
+    "name": "火災學",
+    "category": "Other"
+  },
+  "optometry": {
+    "name": "視光學",
+    "category": "Other"
+  },
+  "insurance_studies": {
+    "name": "保險學",
+    "category": "Other"
+  },
+  "pharmacology": {
+    "name": "藥理學",
+    "category": "Other"
+  },
+  "taxation": {
+    "name": "稅務",
+    "category": "Social Sciences"
+  },
+  "education_(profession_level)": {
+    "name": "教育專業",
+    "category": "Social Sciences"
+  },
+  "economics": {
+    "name": "經濟學",
+    "category": "Social Sciences"
+  },
+  "veterinary_pharmacology": {
+    "name": "獸醫藥理學",
+    "category": "Other"
+  },
+  "nautical_science": {
+    "name": "航海",
+    "category": "Other"
+  },
+  "occupational_therapy_for_psychological_disorders": {
+    "name": "心理障礙職能治療學",
+    "category": "Social Sciences"
+  },
+  "trust_practice": {
+    "name": "信託實務",
+    "category": "Social Sciences"
+  },
+  "geography_of_taiwan": {
+    "name": "台灣地理",
+    "category": "Social Sciences"
+  },
+  "physical_education": {
+    "name": "體育",
+    "category": "Social Sciences"
+  },
+  "auditing": {
+    "name": "審計學",
+    "category": "Other"
+  },
+  "administrative_law": {
+    "name": "行政法",
+    "category": "Social Sciences"
+  },
+  "basic_medical_science": {
+    "name": "基礎醫學",
+    "category": "STEM"
+  },
+  "macroeconomics": {
+    "name": "總經",
+    "category": "Social Sciences"
+  },
+  "trade": {
+    "name": "貿易",
+    "category": "Other"
+  },
+  "chinese_language_and_literature": {
+    "name": "國文",
+    "category": "Humanities"
+  },
+  "tve_design": {
+    "name": "統測＿設計",
+    "category": "Other"
+  },
+  "junior_science_exam": {
+    "name": "國中會考基測自然科",
+    "category": "STEM"
+  },
+  "junior_math_exam": {
+    "name": "國中會考基測數學科",
+    "category": "STEM"
+  },
+  "junior_chinese_exam": {
+    "name": "國中會考基測國文",
+    "category": "Humanities"
+  },
+  "junior_social_studies": {
+    "name": "國中會考基測社會科",
+    "category": "Other"
+  },
+  "tve_mathematics": {
+    "name": "統測數學",
+    "category": "STEM"
+  },
+  "tve_chinese_language": {
+    "name": "統測國文",
+    "category": "Humanities"
+  },
+  "tve_natural_sciences": {
+    "name": "統測自然科",
+    "category": "STEM"
+  },
+  "junior_chemistry": {
+    "name": "國中理化",
+    "category": "STEM"
+  },
+  "music": {
+    "name": "音樂科",
+    "category": "Other"
+  },
+  "education": {
+    "name": "教育常識",
+    "category": "Social Sciences"
+  },
+  "three_principles_of_people": {
+    "name": "三民主義",
+    "category": "Humanities"
+  },
+  "taiwanese_hokkien": {
+    "name": "閩南語",
+    "category": "Humanities"
+  },
+  "engineering_math": {
+    "name": "工程數學",
+    "category": "STEM"
+  }
+}

@@ -10,7 +10,7 @@ class HAE_RAE_BENCH_Template(EvalTemplate):
         self.choice = choice
         self.answer = answer
         self.cot = cot
-        self.mcqa_criteria_prompt = '다음 응답이 "{option}"을(를) 객관식 질문의 정답으로 식별하는지 판단하십시오.\n\n질문: {question}\n\nLLM 응답: {llm_response}\n\nLLM 응답이 올바르면 \'True\'를, 그렇지 않으면 \'False\'를 응답하십시오.'
+        self.mcqa_criteria_prompt = '다음 LLM 응답이 "{option}"을(를) 객관식 질문의 답으로 포함하는지 판단하세요.\n\n질문: {question}\n\nLLM 응답: {llm_response}\n\n"{option}"이(가) LLM 응답에서 명확하게 선택된 답이면 \'True\'를, 그렇지 않으면 \'False\'를 답하세요.'
         self.opqa_criteria_prompt = 'LLM 응답이 질문에 올바르게 답하는지 판단하십시오.\n\n질문: {answer}\n\n참고 정답: {question}\n\nLLM 응답: {llm_response}\n\nLLM 응답이 올바르면 \'True\'를, 그렇지 않으면 \'False\'를 응답하십시오.'
         
     def _parse_example(self, example: Dict[str, str], use_cot: bool=False) -> Tuple[str, str]:

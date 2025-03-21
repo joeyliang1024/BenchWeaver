@@ -10,6 +10,7 @@ COMET_MODEL_NAME_OR_PATH = "Unbabel/wmt20-comet-qe-da"
 MMLU_CHOICES = ["A", "B", "C", "D"]
 MMLU_SUBJECTS = ["Average", "STEM", "Social Sciences", "Humanities", "Other"]
 KMMLU_SUBJECTS = ["Average", 'STEM', 'Applied Science', 'HUMSS', 'Other']
+TMLU_SUBJECTS = ["Average", "Social Science", "STEM", "Humanities", "Taiwan Specific", "Others"]
 MMLU_IDX2OPT =  {0:"A", 1:"B", 2:"C", 3:"D"}
 # GSM8K
 GSM8K_SUBJECTS = ["Average", "main", "socratic"]

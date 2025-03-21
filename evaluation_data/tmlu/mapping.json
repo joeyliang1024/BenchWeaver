@@ -1,0 +1,150 @@
+{
+  "AST_civics": {
+    "name": "分科測驗公民",
+    "category": "Social Science"
+  },
+  "AST_geography": {
+    "name": "分科測驗地理",
+    "category": "Social Science"
+  },
+  "CAP_civics": {
+    "name": "會考公民",
+    "category": "Social Science"
+  },
+  "CAP_geography": {
+    "name": "會考地理",
+    "category": "Social Science"
+  },
+  "GSAT_civics": {
+    "name": "學測公民",
+    "category": "Social Science"
+  },
+  "GSAT_geography": {
+    "name": "學測地理",
+    "category": "Social Science"
+  },
+  "accountant": {
+    "name": "會計師",
+    "category": "Social Science"
+  },
+  "clinical_psychologist": {
+    "name": "臨床心理師",
+    "category": "Social Science"
+  },
+  "AST_biology": {
+    "name": "分科測驗生物",
+    "category": "STEM"
+  },
+  "AST_chemistry": {
+    "name": "分科測驗化學",
+    "category": "STEM"
+  },
+  "AST_mathematics": {
+    "name": "分科測驗數學",
+    "category": "STEM"
+  },
+  "AST_physics": {
+    "name": "分科測驗物理",
+    "category": "STEM"
+  },
+  "CAP_biology": {
+    "name": "會考生物",
+    "category": "STEM"
+  },
+  "CAP_chemistry": {
+    "name": "會考化學",
+    "category": "STEM"
+  },
+  "CAP_earth_science": {
+    "name": "會考地球科學",
+    "category": "STEM"
+  },
+  "CAP_mathematics": {
+    "name": "會考數學",
+    "category": "STEM"
+  },
+  "CAP_physics": {
+    "name": "會考物理",
+    "category": "STEM"
+  },
+  "GSAT_biology": {
+    "name": "學測生物",
+    "category": "STEM"
+  },
+  "GSAT_chemistry": {
+    "name": "學測化學",
+    "category": "STEM"
+  },
+  "GSAT_earth_science": {
+    "name": "學測地球科學",
+    "category": "STEM"
+  },
+  "GSAT_mathematics": {
+    "name": "學測數學",
+    "category": "STEM"
+  },
+  "GSAT_physics": {
+    "name": "學測物理",
+    "category": "STEM"
+  },
+  "AST_chinese": {
+    "name": "分科測驗國文",
+    "category": "Humanities"
+  },
+  "AST_history": {
+    "name": "分科測驗歷史",
+    "category": "Humanities"
+  },
+  "CAP_chinese": {
+    "name": "會考國文",
+    "category": "Humanities"
+  },
+  "CAP_history": {
+    "name": "會考歷史",
+    "category": "Humanities"
+  },
+  "GSAT_chinese": {
+    "name": "學測國文",
+    "category": "Humanities"
+  },
+  "GSAT_history": {
+    "name": "學測歷史",
+    "category": "Humanities"
+  },
+  "tour_guide": {
+    "name": "導遊",
+    "category": "Humanities"
+  },
+  "tour_leader": {
+    "name": "領隊",
+    "category": "Humanities"
+  },
+  "lawyer_qualification": {
+    "name": "律師資格",
+    "category": "Humanities"
+  },
+  "driving_rule": {
+    "name": "台灣駕駛規則",
+    "category": "Taiwan Specific"
+  },
+  "teacher_qualification": {
+    "name": "教師資格",
+    "category": "Taiwan Specific"
+  },
+  "taiwan_tourist_resources": {
+    "name": "台灣觀光資源",
+    "category": "Taiwan Specific"
+  },
+  "basic_traditional_chinese_medicine": {
+    "name": "中醫基礎醫學",
+    "category": "Others"
+  },
+  "clinical_traditional_chinese_medicine": {
+    "name": "中醫針灸",
+    "category": "Others"
+  },
+  "nutritionist": {
+    "name": "營養師",
+    "category": "Others"
+  }
+}

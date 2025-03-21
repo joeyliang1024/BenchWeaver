@@ -1,4 +1,3 @@
-import json
 import ast
 from typing import Dict, List, Tuple
 from ..template import _register_eval_template
@@ -51,5 +50,5 @@ _register_eval_template(
     cot="\n단계별로 생각해 봅시다.\n답변:",
     templates=click_eval_templates,
     template_class=CLIcK_Template,
-    criteria_prompt='다음 응답이 다지선다형 질문의 정답으로 "{option}"을 식별하는지 판단하세요.\n\n질문: {question}\n\nLLM 응답: {llm_response}\n\nLLM 응답이 맞으면 "True", 그렇지 않으면 "False"를 출력하세요.',
+    criteria_prompt='다음 LLM 응답이 "{option}"을(를) 객관식 질문의 답으로 포함하는지 판단하세요.\n\n질문: {question}\n\nLLM 응답: {llm_response}\n\n"{option}"이(가) LLM 응답에서 명확하게 선택된 답이면 \'True\'를, 그렇지 않으면 \'False\'를 답하세요.',
 )
