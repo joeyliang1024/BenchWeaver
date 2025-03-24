@@ -17,6 +17,7 @@ from ..template.configs import EVAL_TEMPLATE_CONFIG
 from ..benchmarks.configs import BENCHMARK_CONFIG
 from ..difficulty import compute_difficulty
 from ...extras.logging import get_logger
+from ..metric.retrieve_score import parse_bool_score, parse_numerical_score
 load_env_variables()
 logger = get_logger(__name__)
 
@@ -102,10 +103,8 @@ class Evaluator:
         return categories
     
     @staticmethod
-    def retrieve_answer(text: str) -> str:
-        text = text.lower()
-        match = re.search(r'\b(true|false)\b', text)
-        return match.group(0) if match else ""
+    def retrieve_answer(text: str, numerical:bool=False) -> str | float:
+        return parse_numerical_score(text) if numerical else parse_bool_score(text)
     
     @staticmethod
     def recover_trans_messages(
