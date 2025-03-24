@@ -1,8 +1,10 @@
 import uuid
+import random
 from typing import Dict, List, Literal, Sequence, Tuple
 from ..template import TransTemplate
 from ....data.data_utils import Role
 from ....extras.constants import OPTION_CODES
+from ...template import MCQA_Template, OPQA_Template, EvalTemplate
 
 class AdvancedTransTemplate(TransTemplate):
     def __init__(self, template_lang: str, trans_prompt: str, system_prompt: str, guide_line: str):
@@ -11,38 +13,6 @@ class AdvancedTransTemplate(TransTemplate):
         self.system_prompt = system_prompt
         self.guide_line = guide_line
     
-    def _parse_ref_question(self, example: Dict[str, str], choices: List[str], use_cot: bool=False) -> str:
-        # needs to use origin template class
-        if choices and choices != OPTION_CODES:
-            # MCQA with certain choices
-            question = "".join([example["question"]] +
-                           [self.choice.format(choice=ch, content=example[ch]) for ch in choices if ch in example] +
-                           [self.cot if use_cot else self.answer]
-                           ).strip()
-        elif "choices" in example or "mc1_choices" in example or "mc2_choices" in example:
-            # MCQA wtth uncertain choices
-            question = " ".join(
-                [
-                    example.get("paragraph", ""),
-                    example["question"],
-                ] +
-                [
-                    "\n{choice}.  {content}".format(choice=option, content=content) for option, content in zip(OPTION_CODES, (example.get("choices", []) or example.get("mc1_choices", []) or example.get("mc2_choices", [])))
-                ] +
-                [
-                    self.cot if use_cot else self.answer
-                ]
-            ).strip()
-        else:
-            # OPQA
-            question = (example["question"] + (self.cot if use_cot else self.answer)).strip()
-        return question
-    
-    def _parse_ref_answer(self, example: Dict[str, str], use_cot: bool=False) -> str:
-        return ((example.get("explanation") if use_cot and example.get("explanation") else "") + 
-                "\n" + 
-                "The correct answer is ({answer}).".format(answer=example.get("answer"))).strip()
-    
     def format_translation_example(self, 
                                trans_source: str | List[Dict[str, str]],
                                source_type: Literal['question', 'response'],
@@ -50,6 +20,8 @@ class AdvancedTransTemplate(TransTemplate):
                                target_lang, 
                                choices: List[str], 
                                support_set: Sequence[Dict[str, str]], 
+                               support_set_template: MCQA_Template | OPQA_Template | EvalTemplate,
+                               support_set_choices: List[str],
                                use_cot: bool
                                ) -> List[Dict[str, str]] | List[List[Dict[str, str]]]:
         """
@@ -75,11 +47,17 @@ class AdvancedTransTemplate(TransTemplate):
         in_context_examples = ""
         if support_set is not None:
             for k in range(len(support_set)):
+                question, answer = support_set_template._parse_example(
+                    type=random.sample(["generation", "mcqa-mc1", "mcqa-mc2"]), 
+                    example=support_set[k], 
+                    choices=support_set_choices,
+                    use_cot=use_cot,
+                    )
                 if source_type == "question":
-                    example = self._parse_ref_question(support_set[k], choices, use_cot)
+                    in_context_examples += f"Q{k+1}:\n{question}\n"
                 else:
-                    example = self._parse_ref_answer(support_set[k], use_cot)
-                in_context_examples += f"Q{k+1}:\n{example}\n"
+                    in_context_examples += f"A{k+1}:\n{answer}\n"
+                
     
         # Format the translation prompt based on the type of trans_source
         if isinstance(trans_source, str):

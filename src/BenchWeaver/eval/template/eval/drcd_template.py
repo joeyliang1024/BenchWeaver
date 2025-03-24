@@ -2,11 +2,11 @@ from typing import Dict, Tuple
 from ..template import _register_eval_template
 from .opqa_template import OPQA_Template
 
-class DRCDEval_Template(OPQA_Template):
+class DRCD_Template(OPQA_Template):
     def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str, response:str):
         super().__init__(system=system, choice=choice, answer=answer, cot=cot, criteria_prompt=criteria_prompt, response=response)
 
-    def _parse_example(self, example: Dict[str, str], use_cot: bool=False) -> Tuple[str, str]:
+    def _parse_example(self, example: Dict[str, str], use_cot: bool=False, *args) -> Tuple[str, str]:
         r"""
         input: a dict with keys {"context", "question", "answer", ...}
         output: a tuple of (prompt, response)
@@ -25,9 +25,9 @@ class DRCDEval_Template(OPQA_Template):
 
         return question, answer
 
-drcd_eval_templates: Dict[str, "OPQA_Template"] = {}
+drcd_eval_templates: Dict[str, "DRCD_Template"] = {}
 
-def get_drcd_eval_template(name: str) -> "OPQA_Template":
+def get_drcd_eval_template(name: str) -> "DRCD_Template":
     eval_template = drcd_eval_templates.get(name, None)
     assert eval_template is not None, "Template {} does not exist.".format(name)
     return eval_template

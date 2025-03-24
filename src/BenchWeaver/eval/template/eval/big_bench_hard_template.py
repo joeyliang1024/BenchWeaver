@@ -15,7 +15,7 @@ class BigBenchHard_Template(EvalTemplate):
         self.opqa_criteria_prompt = "Determine whether the LLM Response correctly answer the question.\n\nQuestion: {answer}\n\nReference Answer: {question}\n\nLLM Response: {llm_response}\n\nIf the LLM Response correct, just response 'True', else response 'False'."
         self.response = response
         
-    def _parse_example(self, example: Dict[str, str], use_cot: bool=False) -> Tuple[str, str]:
+    def _parse_example(self, example: Dict[str, str], use_cot: bool=False, *args) -> Tuple[str, str]:
         # format question
         question = example["question"] + (self.cot if use_cot else self.answer)
         # format answer

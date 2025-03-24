@@ -13,6 +13,8 @@ from ...hparams import get_infer_eval_args
 from ...inference.vllm.server import VLLMServer
 from ...inference.client import Client
 from ..template import AdvancedTransTemplate, get_translation_template
+from ..template.configs import EVAL_TEMPLATE_CONFIG
+from ..benchmarks.configs import BENCHMARK_CONFIG
 from ..difficulty import compute_difficulty
 from ...extras.logging import get_logger
 load_env_variables()
@@ -57,18 +59,26 @@ class Evaluator:
         # load trans parms
         if getattr(self.model_args, "translation_model_name_or_path", None):   
             try:
-                self.ref_task = self.eval_args.ref_task.split("_")[0]     
-                self.ref_split = self.eval_args.ref_task.split("_")[1]
+                self.ref_task = self.eval_args.ref_task
                 self.ref_categories = self.load_catagorys(self.ref_task)
-            except AttributeError:
+                self.ref_template = EVAL_TEMPLATE_CONFIG[self.ref_task]['func'](BENCHMARK_CONFIG[self.ref_task]['language'])    
+                self.ref_choices = BENCHMARK_CONFIG[self.ref_task]['mcqa_choices']
+            except Exception as e:
                 self.ref_task = None
-                self.ref_split = None
-            except TypeError:
+                self.ref_template = None
                 self.ref_categories = {}
-            
-            self.trans_template: AdvancedTransTemplate = get_translation_template(getattr(self.model_args, "transation_templates_name", ""))
+                self.ref_choices = []
+            finally:
+                self.trans_template: AdvancedTransTemplate = get_translation_template(getattr(self.model_args, "transation_templates_name", ""))
+        else:
+            self.ref_task = None
+            self.ref_template = None
+            self.trans_template = None
+            self.ref_categories = {}
+            self.ref_choices = []
         # testing_size
         self.testing_size = getattr(self.eval_args, "testing_size", 1_000_000_000)
+    
     def set_hf_token(self):
         token = os.getenv("HF_TOKEN", None)
         if token:

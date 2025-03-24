@@ -6,9 +6,14 @@ from ....extras.constants import OPTION_CODES
 
 class TMLU_Template(MCQA_Template):
     def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str, response:str):
-        super.__init__(system=system, choice=choice, answer=answer, cot=cot, criteria_prompt=criteria_prompt, response=response)
+        self.system=system
+        self.choice=choice
+        self.answer=answer
+        self.cot=cot
+        self.criteria_prompt=criteria_prompt
+        self.response=response
         
-    def _parse_example(self, example, choices, use_cot = False):
+    def _parse_example(self, example, choices, use_cot = False, *args):
         """
         input: a dict with keys {"question", "choices", "answer"}
         output: a tuple of (prompt, response)

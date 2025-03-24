@@ -12,7 +12,7 @@ from .ko.hae_rae_bench.mix_eval import HAE_RAE_BENCHEvaluator
 # ZH-TW Benchmarks
 from .zhtw.tmlu.oq_eval import TMLUEvaluator
 from .zhtw.drcd.opqa_eval import DRCDEvaluator
-
+from .zhtw.awesome_taiwan_knowledge.opqa_eval import AwesomeTaiwanKnowledgeEvaluator
 BENCHMARK_CONFIG = {
     "mmlu":{
         "language": "en",
@@ -147,6 +147,16 @@ BENCHMARK_CONFIG = {
         "display_scores": ["Average", "all"],
         "mcqa_choices": None,
         "sugguest_num_shots": 5,
+        "support_chain_of_thought": False,
+    },
+    "awesome-taiwan-knowledge":{
+        "language": "zh-tw",
+        "evaluators": {
+            "opqa": AwesomeTaiwanKnowledgeEvaluator,
+        },
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
     }
 }

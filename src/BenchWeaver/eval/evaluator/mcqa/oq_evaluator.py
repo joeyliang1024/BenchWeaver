@@ -2,7 +2,7 @@ import json
 import os
 import asyncio
 import random
-from typing import Any, Dict, List, Literal, Tuple, Union
+from typing import Any, Dict, List, Literal, Tuple
 import numpy as np
 from datasets import load_dataset
 from tqdm.auto import tqdm
@@ -132,6 +132,8 @@ class OQEvaluator(Evaluator):
                             target_lang=self.model_args.source_lang,
                             choices=choices,
                             support_set=support_set,
+                            support_set_template=self.ref_template,
+                            support_set_choices=self.ref_choices,
                             use_cot=self.eval_args.cot,
                         )
                         # message list

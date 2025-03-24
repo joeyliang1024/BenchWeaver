@@ -14,7 +14,7 @@ class CLIcK_Template(MCQA_Template):
         self.response = response
         
     # override
-    def _parse_example(self, example: Dict[str, str], choices: List[str], use_cot: bool=False) -> Tuple[str, str]:
+    def _parse_example(self, example: Dict[str, str], choices: List[str], use_cot: bool=False, *args) -> Tuple[str, str]:
         """
         input: a dict with keys {"question", "paragraph", "choices", "answer"}
         output: a tuple of (prompt, response)

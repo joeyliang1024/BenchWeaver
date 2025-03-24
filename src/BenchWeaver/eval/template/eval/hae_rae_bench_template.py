@@ -14,7 +14,7 @@ class HAE_RAE_BENCH_Template(EvalTemplate):
         self.opqa_criteria_prompt = 'LLM 응답이 질문에 올바르게 답하는지 판단하십시오.\n\n질문: {answer}\n\n참고 정답: {question}\n\nLLM 응답: {llm_response}\n\nLLM 응답이 올바르면 \'True\'를, 그렇지 않으면 \'False\'를 응답하십시오.'
         self.response = response
         
-    def _parse_example(self, example: Dict[str, str], use_cot: bool=False) -> Tuple[str, str]:
+    def _parse_example(self, example: Dict[str, str], use_cot: bool=False, *args) -> Tuple[str, str]:
         return example["question"], example["answer"]
     
     def format_inference_example(

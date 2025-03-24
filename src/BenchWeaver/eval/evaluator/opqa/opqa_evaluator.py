@@ -130,6 +130,8 @@ class OPQAEvaluator(Evaluator):
                             target_lang=self.model_args.source_lang,
                             choices=choices,
                             support_set=support_set,
+                            support_set_template=self.ref_template,
+                            support_set_choices=self.ref_choices,
                             use_cot=self.eval_args.cot,
                         )
                         # message list

@@ -11,7 +11,7 @@ class OPQA_Template(EvalTemplate):
         self.criteria_prompt = criteria_prompt
         self.response = response
         
-    def _parse_example(self, example: Dict[str, str], use_cot: bool=False) -> Tuple[str, str]:
+    def _parse_example(self, example: Dict[str, str], use_cot: bool=False, *args) -> Tuple[str, str]:
         r"""
         input: a dict with keys {"question", "answer", ...}
         output: a tuple of (prompt, response)
