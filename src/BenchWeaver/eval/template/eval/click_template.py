@@ -5,13 +5,14 @@ from ...template import MCQA_Template
 from ....extras.constants import OPTION_CODES
 
 class CLIcK_Template(MCQA_Template):
-    def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str):
+    def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str, response:str):
         self.system = system
         self.choice = choice
         self.answer = answer
         self.cot = cot
         self.criteria_prompt = criteria_prompt
-    
+        self.response = response
+        
     # override
     def _parse_example(self, example: Dict[str, str], choices: List[str], use_cot: bool=False) -> Tuple[str, str]:
         """
@@ -32,7 +33,7 @@ class CLIcK_Template(MCQA_Template):
                 "정답:"
             ]
         ).strip()
-        answer = "정답은 {answer}입니다.".format(answer=example['answer'])
+        answer = self.response.format(answer=example['answer'])
         return question, answer
     
 click_eval_templates: Dict[str, "CLIcK_Template"] = {}
@@ -51,4 +52,5 @@ _register_eval_template(
     templates=click_eval_templates,
     template_class=CLIcK_Template,
     criteria_prompt='다음 LLM 응답이 "{option}"을(를) 객관식 질문의 답으로 포함하는지 판단하세요.\n\n질문: {question}\n\nLLM 응답: {llm_response}\n\n"{option}"이(가) LLM 응답에서 명확하게 선택된 답이면 \'True\'를, 그렇지 않으면 \'False\'를 답하세요.',
+    response="정답은 ({answer})입니다."
 )

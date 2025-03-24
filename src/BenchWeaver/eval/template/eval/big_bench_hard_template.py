@@ -6,13 +6,14 @@ from ....data.data_utils import Role
 from ....extras.constants import OPTION_CODES
 
 class BigBenchHard_Template(EvalTemplate):
-    def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str):
+    def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str, response:str):
         self.system = system
         self.choice = choice
         self.answer = answer
         self.cot = cot
         self.mcqa_criteria_prompt = 'Determine whether the following LLM response includes "{option}" as the answer to the multiple-choice question.\n\nQuestion: {question}\n\nLLM Response: {llm_response}\n\nIf "{option}" is explicitly selected as the answer in the LLM response, please answer \'True\', otherwise answer \'False\'.'
         self.opqa_criteria_prompt = "Determine whether the LLM Response correctly answer the question.\n\nQuestion: {answer}\n\nReference Answer: {question}\n\nLLM Response: {llm_response}\n\nIf the LLM Response correct, just response 'True', else response 'False'."
+        self.response = response
         
     def _parse_example(self, example: Dict[str, str], use_cot: bool=False) -> Tuple[str, str]:
         # format question
@@ -98,6 +99,7 @@ _register_eval_template(
     templates=big_bench_hard_eval_templates,
     template_class=BigBenchHard_Template,
     criteria_prompt="",
+    response="{answer}"
 )
 _register_eval_template(
     name="formal_fallacies",
@@ -108,6 +110,7 @@ _register_eval_template(
     templates=big_bench_hard_eval_templates,
     template_class=BigBenchHard_Template,
     criteria_prompt="",
+    response="{answer}"
 )
 _register_eval_template(
     name="geometric_shapes",
@@ -118,6 +121,7 @@ _register_eval_template(
     templates=big_bench_hard_eval_templates,
     template_class=BigBenchHard_Template,
     criteria_prompt="",
+    response="{answer}"
 )
 _register_eval_template(
     name="hyperbaton",
@@ -128,6 +132,7 @@ _register_eval_template(
     templates=big_bench_hard_eval_templates,
     template_class=BigBenchHard_Template,
     criteria_prompt="",
+    response="{answer}"
 )
 _register_eval_template(
     name="object_counting",
@@ -138,6 +143,7 @@ _register_eval_template(
     templates=big_bench_hard_eval_templates,
     template_class=BigBenchHard_Template,
     criteria_prompt="",
+    response="{answer}"
 )
 _register_eval_template(
     name="penguins_in_a_table",
@@ -148,6 +154,7 @@ _register_eval_template(
     templates=big_bench_hard_eval_templates,
     template_class=BigBenchHard_Template,
     criteria_prompt="",
+    response="{answer}"
 )
 _register_eval_template(
     name="salient_translation_error_detection",
@@ -158,6 +165,7 @@ _register_eval_template(
     templates=big_bench_hard_eval_templates,
     template_class=BigBenchHard_Template,
     criteria_prompt="",
+    response="{answer}"
 )
 
 _register_eval_template(
@@ -169,4 +177,5 @@ _register_eval_template(
     templates=big_bench_hard_eval_templates,
     template_class=BigBenchHard_Template,
     criteria_prompt="",
+    response="{answer}"
 )

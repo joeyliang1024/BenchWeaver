@@ -18,4 +18,5 @@ _register_eval_template(
     templates=arc_challenge_eval_templates,
     template_class=MCQA_Template,
     criteria_prompt='Determine whether the following LLM response includes "{option}" as the answer to the multiple-choice question.\n\nQuestion: {question}\n\nLLM Response: {llm_response}\n\nIf "{option}" is explicitly selected as the answer in the LLM response, please answer \'True\', otherwise answer \'False\'.',
+    response="The correct answer is ({answer})."
 )

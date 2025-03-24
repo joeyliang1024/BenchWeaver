@@ -11,6 +11,7 @@ from .ko.click.oq_eval import CLIcKEvaluator
 from .ko.hae_rae_bench.mix_eval import HAE_RAE_BENCHEvaluator
 # ZH-TW Benchmarks
 from .zhtw.tmlu.oq_eval import TMLUEvaluator
+from .zhtw.drcd.opqa_eval import DRCDEvaluator
 
 BENCHMARK_CONFIG = {
     "mmlu":{
@@ -138,4 +139,14 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 5,
         "support_chain_of_thought": True,
     },
+    "drcd":{
+        "language": "zh-tw",
+        "evaluators": {
+            "opqa": DRCDEvaluator,
+        },
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 5,
+        "support_chain_of_thought": False,
+    }
 }
