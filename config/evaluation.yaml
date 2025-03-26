@@ -13,11 +13,11 @@ check_mode: local
 ### translation model
 translation_model_name_or_path: gpt-4o-mini
 translation_mode: api
-transation_templates_name: test
+transation_templates_name: general
 source_lang: ko
 target_lang: zh-tw
 
-### dataset
+### source dataset
 task: kmmlu-hard_test  
 task_dir: evaluation_data
 template: fewshot
@@ -26,6 +26,9 @@ n_shot: 5
 benchmark_mode: mcqa-oq
 pipeline: diff
 batch_size: 4
+
+### reference dataset, split will use 'test' don't specify
+ref_task: tmmluplus
 
 ### output
 save_dir: score/kmmlu-hard/diff_lang/pipeline-testing
