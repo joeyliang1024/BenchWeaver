@@ -398,9 +398,13 @@ class Evaluator:
         """
         Compute the difficulty score for each response based on the inference results.
         """
-        # Initialize difficulty records first
-        difficulty_record = {subj: [compute_difficulty(result, lang=self.model_args.source_lang) for result in results] 
-                            for subj, results in inference_result.items()}
+        difficulty_record = {
+            subj: [
+                compute_difficulty(question[-1]['content'], answer, lang=self.model_args.source_lang)
+                for question, answer in zip(self.inference_prompts[subj], inference_result[subj])
+                ]
+            for subj in self.inference_prompts.keys()
+        }
         
         # Compute scores based on records
         difficulty_score = {

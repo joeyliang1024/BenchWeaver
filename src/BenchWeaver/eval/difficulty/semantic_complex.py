@@ -1,6 +1,7 @@
 from .utils import clean_text
 
-def compute_semantic_complexity(text:str, lang) -> int:
+def compute_semantic_complexity(question:str, answer:str, lang) -> int:
     """Computes semantic complexity based on unique token richness."""
-    clean_tokens = clean_text(text, lang)
-    return len(set(clean_tokens))  # Semantic complexity is measured by unique token count
+    clean_answers = clean_text(answer, lang)
+    clean_question = clean_text(question, lang)
+    return len(set(clean_answers)-set(clean_question))
