@@ -17,9 +17,7 @@ class MCQA_Template(EvalTemplate):
         input: a dict with keys {"question", "A", "B", "C", "D", "answer"}
         output: a tuple of (prompt, response)
         """
-        question = "".join(['Question:\n' + 
-                            example["question"]] + 
-                           '\nOptions:\n' + 
+        question = "".join([example["question"]] + 
                            [self.choice.format(choice=ch, content=example[ch]) for ch in choices if ch in example] +
                            [self.cot if use_cot else self.answer]
                            ).strip()
