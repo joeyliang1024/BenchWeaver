@@ -36,7 +36,7 @@ dependencies = [
 
     # eval translation Error
     "evaluate",
-    "unbabel-comet",
+    # "unbabel-comet",
     "protobuf==5.29.2",
 
 ]
