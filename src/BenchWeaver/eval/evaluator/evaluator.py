@@ -1,6 +1,5 @@
 from argparse import Namespace
 import os
-import re
 import json
 import asyncio
 import numpy as np
@@ -61,7 +60,7 @@ class Evaluator:
         if getattr(self.model_args, "translation_model_name_or_path", None):   
             try:
                 self.ref_task = self.eval_args.ref_task
-                self.ref_categories = self.load_catagorys(self.ref_task)
+                self.ref_categories = self.load_catagorys(self.ref_task) 
                 self.ref_template = EVAL_TEMPLATE_CONFIG[self.ref_task]['func'](BENCHMARK_CONFIG[self.ref_task]['language'])    
                 self.ref_choices = BENCHMARK_CONFIG[self.ref_task]['mcqa_choices']
             except Exception as e:

@@ -16,6 +16,7 @@ class TransTemplate(EvalTemplate):
     trans_prompt: str
     system_prompt: str
     guide_line: str
+    proper_noun_examples: str
     
 def _register_eval_template(name: str, 
                             system: str, 
@@ -47,6 +48,7 @@ def _register_trans_template(name: str,
                              trans_prompt: str,
                              system_prompt: str,
                              guide_line: str,
+                             proper_noun_examples: str,
                              templates: dict, 
                              template_class,
                              ) -> None:
@@ -62,4 +64,4 @@ def _register_trans_template(name: str,
     Returns:
         None
     """
-    templates[name] = template_class(template_lang=template_lang, trans_prompt=trans_prompt, system_prompt=system_prompt, guide_line=guide_line)
+    templates[name] = template_class(template_lang=template_lang, trans_prompt=trans_prompt, system_prompt=system_prompt, guide_line=guide_line, proper_noun_examples=proper_noun_examples)

@@ -7,11 +7,12 @@ from ....extras.constants import OPTION_CODES
 from ...template import MCQA_Template, OPQA_Template, EvalTemplate
 
 class AdvancedTransTemplate(TransTemplate):
-    def __init__(self, template_lang: str, trans_prompt: str, system_prompt: str, guide_line: str):
+    def __init__(self, template_lang: str, trans_prompt: str, system_prompt: str, guide_line: str, proper_noun_examples:str):
         self.template_lang = template_lang
         self.trans_prompt = trans_prompt
         self.system_prompt = system_prompt
         self.guide_line = guide_line
+        self.proper_noun_examples = proper_noun_examples
     
     def format_translation_example(self, 
                                trans_source: str | List[Dict[str, str]],
@@ -65,20 +66,20 @@ class AdvancedTransTemplate(TransTemplate):
             messages = []
             if self.system_prompt:
                 messages.append({"role": Role.SYSTEM.value, "content": self.system_prompt})
-                
-            trans_prompt = self.trans_prompt.format(
-                trans_source=trans_source, 
-                source_lang=source_lang, 
-                target_lang=target_lang
-            )
             
+            # only question needs in-context examples
+            if source_type == "question":  
+                trans_prompt = self.trans_prompt.format(
+                    trans_source=trans_source, 
+                    source_lang=source_lang, 
+                    target_lang=target_lang,
+                    in_context_examples=in_context_examples,
+                    proper_noun_examples=self.proper_noun_examples,
+                )
+                
             messages.append({
                 "role": Role.USER.value, 
-                "content": "\n".join([
-                    self.guide_line, 
-                    in_context_examples,
-                    trans_prompt
-                ])
+                "content": self.guide_line + "\n" + trans_prompt
             })
             
             return messages
@@ -86,30 +87,32 @@ class AdvancedTransTemplate(TransTemplate):
             # Handle list of conversation messages case
             # Create a separate translation request for each message
             list_of_messages = []
+            # Generate a unique ID for each message
             msg_uuid = str(uuid.uuid4())
             for i, msg in enumerate(trans_source):
                 messages = []
-                # Generate a unique ID for each message
                 
+                # system prompt
                 if self.system_prompt:
-                    messages.append({"role": Role.SYSTEM.value, "content": self.system_prompt})
+                    messages.append({"role": Role.SYSTEM.value, "content": self.system_prompt.strip()})
                 
-                trans_prompt = self.trans_prompt.format(
-                    trans_source=msg["content"], 
-                    source_lang=source_lang, 
-                    target_lang=target_lang
-                )
-                
+                # user prompt
                 messages.append({
                     "idx": i,
                     "uuid": msg_uuid,
                     "origin_role": msg["role"],
                     "role": Role.USER.value, 
-                    "content": "\n".join([
-                        self.guide_line, 
-                        in_context_examples,
-                        trans_prompt
-                    ])
+                    "content": (
+                        self.guide_line + 
+                        "\n" + 
+                        self.trans_prompt.format(
+                            trans_source=msg["content"], 
+                            source_lang=source_lang, 
+                            target_lang=target_lang,
+                            in_context_examples=in_context_examples if msg['role'] == Role.USER.value else "Not needed.",
+                            proper_noun_examples=self.proper_noun_examples,
+                        )
+                    ).strip()
                 })
                 
                 list_of_messages.append(messages)

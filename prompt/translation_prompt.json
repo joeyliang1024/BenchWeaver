@@ -1,27 +1,43 @@
 {
-    "direct_trans": {
-        "language":"en",
-        "description": "",
-        "trans_prompt": "",
-        "system_prompt": "",
-        "guide_line": ""
+    "general": {
+        "language": "en",
+        "description": "Translation pipeline configuration with streamlined prompts",
+        "system_prompt": "You are a helpful assistant specializing in language translation. Provide translations that are accurate, grammatically correct, and clear. Focus on natural expressions that reflect the target language's cultural and linguistic nuances.",
+        "trans_prompt": "Translate the following sentence from {source_lang} to {target_lang}.\n\nSource sentence: {trans_source}\n\nTarget sentence:",
+        "guide_line": "Ensure the translation is precise, idiomatic, and respectful of the linguistic and cultural context of the target language."
     },
-    "few-shot-examples": {
-        "language":"en",
-        "description": "",
-        "trans_prompt": "",
-        "system_prompt": "",
-        "guide_line": ""
+    "few_shot": {
+        "language": "en",
+        "description": "Translation pipeline configuration with few-shot examples",
+        "system_prompt": "You are a helpful assistant specializing in language translation. Provide translations that are accurate, grammatically correct, and clear. Focus on natural expressions that reflect the target language's cultural and linguistic nuances.",
+        "trans_prompt": "Translate the following sentence from {source_lang} to {target_lang}. Follow the style of the examples provided.\n\nExamples:\n{in_context_examples}\n\nSource sentence: {trans_source}\n\nTarget sentence:",
+        "guide_line": "Ensure the translation is precise, idiomatic, and respectful of the linguistic and cultural context of the target language. Follow the style of the provided examples, and if no examples are provided, use a general translation approach."
+    },
+    "proper-nouns": {
+        "language": "en",
+        "description": "Translation pipeline configuration with proper nouns",
+        "system_prompt": "You are a helpful assistant specializing in language translation. Provide translations that are accurate, grammatically correct, and clear. Focus on natural expressions that reflect the target language's cultural and linguistic nuances.",
+        "trans_prompt": "Translate the following sentence from {source_lang} to {target_lang}. Ensure that proper nouns in the source language are enclosed in parentheses. For example:\n\n{proper_noun_examples}\n\nSource sentence: {trans_source}\n\nTarget sentence:",
+        "guide_line": "Ensure the translation is precise, idiomatic, and respectful of the linguistic and cultural context of the target language. Proper nouns in the source language should be enclosed in parentheses.",
+        "proper_noun_examples": "Korean:\nEnglish: \"Seoul is the capital of South Korea.\" -> Korean: \"서울 (Seoul)은 대한민국의 수도입니다.\"\nEnglish: \"The mitochondria is the powerhouse of the cell.\" -> Korean: \"미토콘드리아 (Mitochondria)는 세포의 동력원입니다.\"\n\nSimplified Chinese (ZH): \nEnglish: \"Beijing is the capital of China.\" -> Simplified Chinese: \"北京 (Beijing) 是中国的首都。\"\nEnglish: \"The mitochondria is the powerhouse of the cell.\" -> Simplified Chinese: \"线粒体 (Mitochondria) 是细胞的动力源。\"\n\nTraditional Chinese (ZH-TW):\nEnglish: \"Taipei is the capital of Taiwan.\" -> Traditional Chinese: \"臺北 (Taipei) 是台灣的首都。\"\nEnglish: \"The mitochondria is the powerhouse of the cell.\" -> Traditional Chinese: \"線粒體 (Mitochondria) 是細胞的動力源。\"\n\nEnglish:\nSimplified Chinese (ZH): \"线粒体是细胞的动力源。\" -> English: \"The mitochondria (线粒体) is the powerhouse of the cell.\"\nTraditional Chinese (ZH-TW): \"線粒體是細胞的動力源。\" -> English: \"The mitochondria (線粒體) is the powerhouse of the cell.\"\nKorean: \"미토콘드리아는 세포의 동력원입니다.\" -> English: \"The mitochondria (미토콘드리아) is the powerhouse of the cell.\""
+    },
+    "mix": {
+        "language": "en",
+        "description": "Translation pipeline configuration with mixed prompts",
+        "system_prompt": "You are a helpful assistant specializing in language translation. Provide translations that are accurate, grammatically correct, and clear. Focus on natural expressions that reflect the target language's cultural and linguistic nuances.",
+        "trans_prompt": "Translate the following sentence from {source_lang} to {target_lang}. Follow the style of the few-shot examples provided, and follow the method as the proper noun examples provided.\n\nFew-shot Examples:\n{in_context_examples}\n\nProper Noun Examples:\n{proper_noun_examples}\n\nSource sentence: {trans_source}\n\nTarget sentence:",
+        "guide_line": "Ensure the translation is precise, idiomatic, and respectful of the linguistic and cultural context of the target language. Follow the style of the provided examples, and if no examples are provided, use a general translation approach. Proper nouns in the source language should be enclosed in parentheses.",
+        "proper_noun_examples": "Korean:\nEnglish: \"Seoul is the capital of South Korea.\" -> Korean: \"서울 (Seoul)은 대한민국의 수도입니다.\"\nEnglish: \"The mitochondria is the powerhouse of the cell.\" -> Korean: \"미토콘드리아 (Mitochondria)는 세포의 동력원입니다.\"\n\nSimplified Chinese (ZH): \nEnglish: \"Beijing is the capital of China.\" -> Simplified Chinese: \"北京 (Beijing) 是中国的首都。\"\nEnglish: \"The mitochondria is the powerhouse of the cell.\" -> Simplified Chinese: \"线粒体 (Mitochondria) 是细胞的动力源。\"\n\nTraditional Chinese (ZH-TW):\nEnglish: \"Taipei is the capital of Taiwan.\" -> Traditional Chinese: \"臺北 (Taipei) 是台灣的首都。\"\nEnglish: \"The mitochondria is the powerhouse of the cell.\" -> Traditional Chinese: \"線粒體 (Mitochondria) 是細胞的動力源。\"\n\nEnglish:\nSimplified Chinese (ZH): \"线粒体是细胞的动力源。\" -> English: \"The mitochondria (线粒体) is the powerhouse of the cell.\"\nTraditional Chinese (ZH-TW): \"線粒體是細胞的動力源。\" -> English: \"The mitochondria (線粒體) is the powerhouse of the cell.\"\nKorean: \"미토콘드리아는 세포의 동력원입니다.\" -> English: \"The mitochondria (미토콘드리아) is the powerhouse of the cell.\""
     },
     "test": {
-        "language":"en",
+        "language": "en",
         "description": "This is for testing the different language translation pipeline.",
         "trans_prompt": "Translate the given sentence from {source_lang} into the {target_lang}.\n\nSource sentence: {trans_source}\n\nTarget sentence:",
         "system_prompt": "You are a helpful assistant, and you are helping a user to translate a sentence style as the given examples if provided. Please jsut direectly translate the sentence, do not add any extra information.",
         "guide_line": "The user will provide a sentence in the source language, and you need to translate it into the target language. If the user provides examples, you should translate the sentence in the same style as the examples. If the user does not provide examples, you should translate the sentence in a general style."
     },
     "empty": {
-        "language":"en",
+        "language": "en",
         "description": "",
         "trans_prompt": "",
         "system_prompt": "",
