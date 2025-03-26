@@ -83,10 +83,6 @@
     "name": "指考人文科目",
     "category": "Humanities"
   },
-  "linear_algebra": {
-    "name": "線代",
-    "category": "STEM"
-  },
   "politic_science": {
     "name": "政治",
     "category": "Social Sciences"

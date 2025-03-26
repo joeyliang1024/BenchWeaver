@@ -1,5 +1,5 @@
 from tabulate import tabulate
-from ..eval.benchmarks.configs import BENCHMARK_CONFIG, get_evaluators
+from ..eval.benchmarks.configs import BENCHMARK_CONFIG
 
 def display_benchmark_table():
     table = []
@@ -9,7 +9,7 @@ def display_benchmark_table():
         table.append([
             benchmark,
             config["language"],
-            ", ".join(get_evaluators(benchmark)),
+            ", ".join(BENCHMARK_CONFIG['mode']),
             config["sugguest_num_shots"],
             config["support_chain_of_thought"]
         ])

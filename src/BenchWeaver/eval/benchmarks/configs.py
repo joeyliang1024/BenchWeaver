@@ -5,6 +5,7 @@ from ...extras.constants import OPTION_CODES
 BENCHMARK_CONFIG = {
     "mmlu": {
         "language": "en",
+        "mode": ["mcqa-prob", "mcqa-oq"],
         "display_scores": ["Average", "STEM", "Social Sciences", "Humanities", "Other"],
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 5,
@@ -12,6 +13,7 @@ BENCHMARK_CONFIG = {
     },
     "arc-challenge": {
         "language": "en",
+        "mode": ["mcqa-prob", "mcqa-oq"],
         "display_scores": ["Average", "challenge"],
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 5,
@@ -19,6 +21,7 @@ BENCHMARK_CONFIG = {
     },
     "gpqa": {
         "language": "en",
+        "mode": ["opqa"],
         "display_scores": ["Average", "diamond", "extended", "main"],
         "mcqa_choices": None,
         "sugguest_num_shots": 5,
@@ -26,6 +29,7 @@ BENCHMARK_CONFIG = {
     },
     "gsm8k": {
         "language": "en",
+        "mode": ["opqa"],
         "display_scores": ["Average", "main", "socratic"],
         "mcqa_choices": None,
         "sugguest_num_shots": 5,
@@ -33,6 +37,7 @@ BENCHMARK_CONFIG = {
     },
     "truthfulqa": {
         "language": "en",
+        "mode": ["mix"],
         "display_scores": ["Average", "generation", "mcqa-mc1", "mcqa-mc2"],
         "mcqa_choices": OPTION_CODES,
         "sugguest_num_shots": 0,
@@ -40,6 +45,7 @@ BENCHMARK_CONFIG = {
     },
     "big-bench-hard": {
         "language": "en",
+        "mode": ["mix"],
         "display_scores": ["Average", "disambiguation_qa", "formal_fallacies", "geometric_shapes", "hyperbaton", "object_counting", "penguins_in_a_table", "salient_translation_error_detection", "tracking_shuffled_objects_five_objects"],
         "mcqa_choices": OPTION_CODES,
         "sugguest_num_shots": 3,
@@ -47,6 +53,7 @@ BENCHMARK_CONFIG = {
     },
     "click": {
         "language": "ko",
+        "mode": ["mcqa-oq"],
         "display_scores": ["Average", "TK", "Kedu", "PSE", "PSAT", "CSAT", "KHB", "KIIP"],
         "mcqa_choices": OPTION_CODES,
         "sugguest_num_shots": 0,
@@ -54,6 +61,7 @@ BENCHMARK_CONFIG = {
     },
     "hae-rae-bench": {
         "language": "ko",
+        "mode": ["mix"],
         "display_scores": ['Average', 'lyrics_denoising', 'proverbs_denoising', 'correct_definition_matching', 'csat_geo', 'csat_law', 'csat_socio', 'date_understanding', 'general_knowledge', 'history', 'loan_words', 'rare_words', 'standard_nomenclature', 'reading_comprehension'],
         "mcqa_choices": ["A", "B", "C", "D", "E"],
         "sugguest_num_shots": 0,
@@ -61,6 +69,7 @@ BENCHMARK_CONFIG = {
     },
     "kmmlu": {
         "language": "ko",
+        "mode": ["mcqa-prob", "mcqa-oq"],
         "display_scores": ["Average", 'STEM', 'Applied Science', 'HUMSS', 'Other'],
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 5,
@@ -68,6 +77,7 @@ BENCHMARK_CONFIG = {
     },
     "kmmlu-hard": {
         "language": "ko",
+        "mode": ["mcqa-prob", "mcqa-oq"],
         "display_scores": ["Average", 'STEM', 'Applied Science', 'HUMSS', 'Other'],
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 5,
@@ -75,6 +85,7 @@ BENCHMARK_CONFIG = {
     },
     "tmmluplus": {
         "language": "zh-tw",
+        "mode": ["mcqa-prob", "mcqa-oq"],
         "display_scores": ["Average", 'STEM', 'Social Science', 'Humanities', 'Other'],
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 5,
@@ -82,6 +93,7 @@ BENCHMARK_CONFIG = {
     },
     "tmlu": {
         "language": "zh-tw",
+        "mode": ["mcqa-oq"],
         "display_scores": ["Average", "Social Science", "STEM", "Humanities", "Taiwan Specific", "Others"],
         "mcqa_choices": OPTION_CODES,
         "sugguest_num_shots": 5,
@@ -89,6 +101,7 @@ BENCHMARK_CONFIG = {
     },
     "drcd": {
         "language": "zh-tw",
+        "mode": ["opqa"],
         "display_scores": ["Average", "all"],
         "mcqa_choices": None,
         "sugguest_num_shots": 5,
@@ -96,6 +109,7 @@ BENCHMARK_CONFIG = {
     },
     "awesome-taiwan-knowledge": {
         "language": "zh-tw",
+        "mode": ["opqa"],
         "display_scores": ["Average", "all"],
         "mcqa_choices": None,
         "sugguest_num_shots": 0,

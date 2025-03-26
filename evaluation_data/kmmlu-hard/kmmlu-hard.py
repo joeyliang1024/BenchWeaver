@@ -102,6 +102,7 @@ class KMMLUHard(datasets.GeneratorBasedBuilder):
     def _info(self):
         features = datasets.Features( 
             {
+                "category": datasets.Value("string"),
                 "question": datasets.Value("string"),
                 "A": datasets.Value("string"),
                 "B": datasets.Value("string"),
@@ -109,7 +110,6 @@ class KMMLUHard(datasets.GeneratorBasedBuilder):
                 "D": datasets.Value("string"),
                 "answer": datasets.Value("string"),
                 "explanation": datasets.Value("string"),
-                "category": datasets.Value("float"), 
             }
         )
         return datasets.DatasetInfo(
@@ -140,7 +140,7 @@ class KMMLUHard(datasets.GeneratorBasedBuilder):
 
     def _generate_examples(self, filepath):
         df = pd.read_csv(filepath)
-        df.columns = ["question", "A", "B", "C", "D", "answer", "explanation", "category"]
+        df.columns = ["category", "question", "A", "B", "C", "D", "answer", "explanation"]
         
         for i, instance in enumerate(df.to_dict(orient="records")):
             yield i, instance

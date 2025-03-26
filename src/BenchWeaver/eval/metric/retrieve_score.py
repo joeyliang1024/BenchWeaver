@@ -10,7 +10,7 @@ def parse_numerical_score(s: str) -> float:
         print(f'parse_comment(): {t}')
     return score
 
-def parse_bool_score(s: str) -> str:
+def parse_bool_score(text: str) -> str:
     text = text.lower()
-    match = re.search(r'\b(true|false)\b', s)
+    match = re.search(r'\b(true|false)\b', text)
     return match.group(0) if match else ""

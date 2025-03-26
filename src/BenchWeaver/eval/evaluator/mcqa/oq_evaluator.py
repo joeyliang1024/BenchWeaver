@@ -96,7 +96,7 @@ class OQEvaluator(Evaluator):
                 if self.ref_task is not None:
                     ref_dataset = load_dataset(
                         path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.ref_task),
-                        name=random.choice(self.ref_categories.keys()),
+                        name=random.choice(list(self.ref_categories.keys())),
                         cache_dir=self.model_args.cache_dir,
                         download_mode=self.eval_args.download_mode,
                         token=self.hf_token,
@@ -120,6 +120,8 @@ class OQEvaluator(Evaluator):
                             target_lang=self.model_args.target_lang,
                             choices=choices,
                             support_set=support_set,
+                            support_set_template=self.ref_template,
+                            support_set_choices=self.ref_choices,
                             use_cot=self.eval_args.cot,
                         )
                         # list of messages

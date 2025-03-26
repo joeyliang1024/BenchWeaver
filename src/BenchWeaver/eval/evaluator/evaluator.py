@@ -394,16 +394,16 @@ class Evaluator:
     
     def comput_score(self, checked_answers: Dict[str, List[str]], check_results: Dict[str, List[str]], subjects: List[str]) -> Dict[str, Any]:...
     
-    def measure_difficulty(self, inference_result: Dict[str, List[str]]) -> Tuple[Dict[str, Any], Dict[str, List[float]]]:
+    def measure_difficulty(self, inference_prompts: Dict[str, list], inference_result: Dict[str, List[str]], lang:str) -> Tuple[Dict[str, Any], Dict[str, List[float]]]:
         """
         Compute the difficulty score for each response based on the inference results.
         """
         difficulty_record = {
             subj: [
-                compute_difficulty(question[-1]['content'], answer, lang=self.model_args.source_lang)
-                for question, answer in zip(self.inference_prompts[subj], inference_result[subj])
+                compute_difficulty(question[-1]['content'], answer, lang=lang)
+                for question, answer in zip(inference_prompts[subj], inference_result[subj])
                 ]
-            for subj in self.inference_prompts.keys()
+            for subj in inference_prompts.keys()
         }
         
         # Compute scores based on records
@@ -495,7 +495,7 @@ class Evaluator:
         print("Check complete.")
         ####################################### compute score #######################################
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
-        difficulty_score, difficulty_record = self.measure_difficulty(inference_result=self.inference_results)
+        difficulty_score, difficulty_record = self.measure_difficulty(inference_prompts=self.inference_prompts, inference_result=self.inference_results, lang=self.eval_args.lang)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
         self.save_data(difficulty_score, os.path.join(self.save_folder, "difficulty_score.json"))
         if getattr(self.eval_args, "record_all", False):
@@ -529,7 +529,7 @@ class Evaluator:
         self.set_client(mode="translation")
         print("Client setup complete.")
         
-        translated_questions = await self.translation(
+        self.translated_questions = await self.translation(
             server_process=translation_process,
             model_name=self.translation_model_name if self.translation_mode == "local" else self.model_args.translation_model_name_or_path,
             data=ques_trans_prompts,
@@ -558,7 +558,7 @@ class Evaluator:
         self.inference_results = await self.process_subjects(
             server_process=inference_process,
             model_name=self.inference_model_name if self.inference_mode == "local" else self.model_args.inference_model_name_or_path,
-            data=translated_questions,
+            data=self.translated_questions,
             prompt_key="system_prompt",
             output_path="inference_results.json",
             progress_desc="Inference Progress",
@@ -628,8 +628,11 @@ class Evaluator:
         ####################################### compute score #######################################
         logger.info("============ Computing Score ============")
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
-        difficulty_score, difficulty_record = self.measure_difficulty(inference_result=self.inference_results)
+        origin_difficulty_score, origin_difficulty_record = self.measure_difficulty(inference_prompts=self.inference_prompts, inference_result=self.translated_responses, lang=self.model_args.source_lang)
+        trans_difficulty_score, trans_difficulty_record = self.measure_difficulty(inference_prompts=self.translated_questions, inference_result=self.inference_results, lang=self.model_args.target_lang)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
-        self.save_data(difficulty_score, os.path.join(self.save_folder, "difficulty_score.json"))
+        self.save_data(origin_difficulty_score, os.path.join(self.save_folder, "origin_difficulty_score.json"))
+        self.save_data(trans_difficulty_score, os.path.join(self.save_folder, "trans_difficulty_score.json"))
         if getattr(self.eval_args, "record_all", False):
-            self.save_data(data=difficulty_record, output_path=os.path.join(self.save_folder, "difficulty_record.json"))
+            self.save_data(data=origin_difficulty_record, output_path=os.path.join(self.save_folder, "origin_difficulty_record.json"))
+            self.save_data(data=trans_difficulty_record, output_path=os.path.join(self.save_folder, "trans_difficulty_record.json"))

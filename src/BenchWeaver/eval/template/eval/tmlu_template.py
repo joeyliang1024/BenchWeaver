@@ -13,7 +13,7 @@ class TMLU_Template(MCQA_Template):
         self.criteria_prompt=criteria_prompt
         self.response=response
         
-    def _parse_example(self, example, choices, use_cot = False, *args):
+    def _parse_example(self, example, choices, use_cot = False, **kwargs):
         """
         input: a dict with keys {"question", "choices", "answer"}
         output: a tuple of (prompt, response)

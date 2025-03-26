@@ -6,7 +6,7 @@ class DRCD_Template(OPQA_Template):
     def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str, response:str):
         super().__init__(system=system, choice=choice, answer=answer, cot=cot, criteria_prompt=criteria_prompt, response=response)
 
-    def _parse_example(self, example: Dict[str, str], use_cot: bool=False, *args) -> Tuple[str, str]:
+    def _parse_example(self, example: Dict[str, str], use_cot: bool=False, **kwargs) -> Tuple[str, str]:
         r"""
         input: a dict with keys {"context", "question", "answer", ...}
         output: a tuple of (prompt, response)

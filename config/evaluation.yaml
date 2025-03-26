@@ -2,7 +2,7 @@
 openai_source: "azure"
 
 ### inference model
-inference_model_name_or_path: taide/Llama3-TAIDE-LX-8B-Chat-Alpha1
+inference_model_name_or_path: taide/Llama-3.1-TAIDE-LX-8B-Chat
 inference_mode: local
 cot: true
 

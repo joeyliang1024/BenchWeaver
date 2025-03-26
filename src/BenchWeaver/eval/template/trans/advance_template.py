@@ -49,15 +49,15 @@ class AdvancedTransTemplate(TransTemplate):
         if support_set is not None:
             for k in range(len(support_set)):
                 question, answer = support_set_template._parse_example(
-                    type=random.sample(["generation", "mcqa-mc1", "mcqa-mc2"]), 
+                    type=random.choice(["generation", "mcqa-mc1", "mcqa-mc2"]), 
                     example=support_set[k], 
                     choices=support_set_choices,
                     use_cot=use_cot,
                     )
                 if source_type == "question":
-                    in_context_examples += f"Q{k+1}:\n{question}\n"
+                    in_context_examples += f"Ex{k+1}:\n{question}\n"
                 else:
-                    in_context_examples += f"A{k+1}:\n{answer}\n"
+                    in_context_examples += f"Ex{k+1}:\n{answer}\n"
                 
     
         # Format the translation prompt based on the type of trans_source
@@ -66,16 +66,14 @@ class AdvancedTransTemplate(TransTemplate):
             messages = []
             if self.system_prompt:
                 messages.append({"role": Role.SYSTEM.value, "content": self.system_prompt})
-            
-            # only question needs in-context examples
-            if source_type == "question":  
-                trans_prompt = self.trans_prompt.format(
-                    trans_source=trans_source, 
-                    source_lang=source_lang, 
-                    target_lang=target_lang,
-                    in_context_examples=in_context_examples,
-                    proper_noun_examples=self.proper_noun_examples,
-                )
+
+            trans_prompt = self.trans_prompt.format(
+                trans_source=trans_source, 
+                source_lang=source_lang, 
+                target_lang=target_lang,
+                in_context_examples=in_context_examples,
+                proper_noun_examples=self.proper_noun_examples,
+            )
                 
             messages.append({
                 "role": Role.USER.value, 
@@ -109,7 +107,7 @@ class AdvancedTransTemplate(TransTemplate):
                             trans_source=msg["content"], 
                             source_lang=source_lang, 
                             target_lang=target_lang,
-                            in_context_examples=in_context_examples if msg['role'] == Role.USER.value else "Not needed.",
+                            in_context_examples=in_context_examples, #  if msg['role'] == Role.USER.value else "Not needed.",
                             proper_noun_examples=self.proper_noun_examples,
                         )
                     ).strip()

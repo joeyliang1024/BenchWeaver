@@ -103,11 +103,11 @@ class KMMLU(datasets.GeneratorBasedBuilder):
         features = datasets.Features(
             {
                 "question": datasets.Value("string"),
+                "answer": datasets.Value("string"),
                 "A": datasets.Value("string"),
                 "B": datasets.Value("string"),
                 "C": datasets.Value("string"),
                 "D": datasets.Value("string"),
-                "answer": datasets.Value("string"),
                 "Category": datasets.Value("string"),
                 "Human Accuracy": datasets.Value("string"), 
             }
@@ -146,7 +146,7 @@ class KMMLU(datasets.GeneratorBasedBuilder):
 
     def _generate_examples(self, filepath):
         df = pd.read_csv(filepath)
-        df.columns = ["question", "A", "B", "C", "D", "answer", "Category", "Human Accuracy"]
+        df.columns = ["question", "answer", "A", "B", "C", "D", "Category", "Human Accuracy"]
         
         for i, instance in enumerate(df.to_dict(orient="records")):
             yield i, instance

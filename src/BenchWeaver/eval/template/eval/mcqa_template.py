@@ -2,7 +2,6 @@ import ast
 from ..template import EvalTemplate
 from ....data.data_utils import Role
 from typing import Dict, List, Sequence, Tuple
-from ....extras.constants import OPTION_CODES
 
 class MCQA_Template(EvalTemplate):
     def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str, response:str):
@@ -13,12 +12,14 @@ class MCQA_Template(EvalTemplate):
         self.criteria_prompt = criteria_prompt
         self.response = response
         
-    def _parse_example(self, example: Dict[str, str], choices: List[str], use_cot: bool=False, *args) -> Tuple[str, str]:
+    def _parse_example(self, example: Dict[str, str], choices: List[str], use_cot: bool=False, **kwargs) -> Tuple[str, str]:
         r"""
         input: a dict with keys {"question", "A", "B", "C", "D", "answer"}
         output: a tuple of (prompt, response)
         """
-        question = "".join([example["question"]] +
+        question = "".join(['Question:\n' + 
+                            example["question"]] + 
+                           '\nOptions:\n' + 
                            [self.choice.format(choice=ch, content=example[ch]) for ch in choices if ch in example] +
                            [self.cot if use_cot else self.answer]
                            ).strip()

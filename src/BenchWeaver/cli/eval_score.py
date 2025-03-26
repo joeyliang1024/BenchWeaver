@@ -2,7 +2,7 @@ import asyncio
 import argparse
 import yaml
 from ..eval.evaluator.evaluator import Evaluator
-from ..eval.benchmarks.configs import BENCHMARK_CONFIG
+from ..eval.benchmarks.configs import BENCHMARK_CONFIG, get_evaluators
 
 async def eval():
     args = parse_args()
@@ -15,10 +15,10 @@ async def eval():
     mode = config['benchmark_mode']
     pipeline = config['pipeline']
     # Select the appropriate evaluator
-    if task not in BENCHMARK_CONFIG.keys() or mode not in BENCHMARK_CONFIG[task]['evaluators'].keys():
+    if task not in BENCHMARK_CONFIG.keys() or mode not in BENCHMARK_CONFIG[task]['mode']:
         raise ValueError(f"Task '{task}' with mode '{mode}' is not supported.")
 
-    evaluator_class = BENCHMARK_CONFIG[task]['evaluators'][mode]
+    evaluator_class = get_evaluators(task)[mode]
     evaluator: Evaluator = evaluator_class(args=config)
     # Run the evaluation
     if mode == "mcqa-prob":
