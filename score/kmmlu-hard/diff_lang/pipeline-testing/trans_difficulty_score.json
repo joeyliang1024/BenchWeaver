@@ -1,0 +1,186 @@
+{
+    "accounting": {
+        "average": 319.4,
+        "variance": 6458.24
+    },
+    "agricultural_sciences": {
+        "average": 129.8,
+        "variance": 1474.96
+    },
+    "aviation_engineering_and_maintenance": {
+        "average": 245.2,
+        "variance": 2870.96
+    },
+    "biology": {
+        "average": 180.0,
+        "variance": 1465.6
+    },
+    "chemical_engineering": {
+        "average": 146.2,
+        "variance": 1032.56
+    },
+    "chemistry": {
+        "average": 287.2,
+        "variance": 12226.160000000002
+    },
+    "civil_engineering": {
+        "average": 216.8,
+        "variance": 8850.16
+    },
+    "computer_science": {
+        "average": 183.2,
+        "variance": 3041.36
+    },
+    "construction": {
+        "average": 229.8,
+        "variance": 9622.96
+    },
+    "criminal_law": {
+        "average": 225.4,
+        "variance": 3768.2400000000002
+    },
+    "ecology": {
+        "average": 213.6,
+        "variance": 17324.239999999998
+    },
+    "economics": {
+        "average": 218.8,
+        "variance": 2847.7599999999998
+    },
+    "education": {
+        "average": 218.6,
+        "variance": 16570.239999999998
+    },
+    "electrical_engineering": {
+        "average": 165.6,
+        "variance": 2531.04
+    },
+    "electronics_engineering": {
+        "average": 239.2,
+        "variance": 3686.96
+    },
+    "energy_management": {
+        "average": 166.4,
+        "variance": 9925.039999999999
+    },
+    "environmental_science": {
+        "average": 182.2,
+        "variance": 2856.5600000000004
+    },
+    "fashion": {
+        "average": 265.8,
+        "variance": 9715.36
+    },
+    "food_processing": {
+        "average": 156.2,
+        "variance": 2275.3599999999997
+    },
+    "gas_technology_and_engineering": {
+        "average": 169.0,
+        "variance": 8160.0
+    },
+    "geomatics": {
+        "average": 228.4,
+        "variance": 18003.440000000002
+    },
+    "health": {
+        "average": 243.6,
+        "variance": 3846.6400000000003
+    },
+    "industrial_engineer": {
+        "average": 220.2,
+        "variance": 7903.359999999999
+    },
+    "information_technology": {
+        "average": 250.6,
+        "variance": 20721.440000000002
+    },
+    "interior_architecture_and_design": {
+        "average": 255.0,
+        "variance": 12364.8
+    },
+    "law": {
+        "average": 231.0,
+        "variance": 13743.6
+    },
+    "machine_design_and_manufacturing": {
+        "average": 100.6,
+        "variance": 1708.2400000000002
+    },
+    "management": {
+        "average": 276.0,
+        "variance": 9780.4
+    },
+    "maritime_engineering": {
+        "average": 161.4,
+        "variance": 1203.84
+    },
+    "marketing": {
+        "average": 225.8,
+        "variance": 2264.56
+    },
+    "materials_engineering": {
+        "average": 281.4,
+        "variance": 8609.439999999999
+    },
+    "mechanical_engineering": {
+        "average": 160.4,
+        "variance": 4153.04
+    },
+    "nondestructive_testing": {
+        "average": 200.2,
+        "variance": 20198.96
+    },
+    "patent": {
+        "average": 261.2,
+        "variance": 2106.5600000000004
+    },
+    "political_science_and_sociology": {
+        "average": 343.8,
+        "variance": 9839.359999999999
+    },
+    "psychology": {
+        "average": 265.2,
+        "variance": 14295.76
+    },
+    "public_safety": {
+        "average": 222.8,
+        "variance": 7507.76
+    },
+    "railway_and_automotive_engineering": {
+        "average": 126.8,
+        "variance": 1576.9599999999998
+    },
+    "real_estate": {
+        "average": 303.0,
+        "variance": 7983.2
+    },
+    "refrigerating_machinery": {
+        "average": 223.4,
+        "variance": 3488.6399999999994
+    },
+    "social_welfare": {
+        "average": 195.0,
+        "variance": 7439.2
+    },
+    "taxation": {
+        "average": 340.4,
+        "variance": 1067.44
+    },
+    "telecommunications_and_wireless_technology": {
+        "average": 144.8,
+        "variance": 2358.96
+    },
+    "korean_history": {
+        "average": 240.6,
+        "variance": 6686.240000000001
+    },
+    "math": {
+        "average": 226.4,
+        "variance": 4052.2400000000002
+    },
+    "overall": {
+        "average": 219.6977777777778,
+        "variance": 10114.16643950617
+    }
+}

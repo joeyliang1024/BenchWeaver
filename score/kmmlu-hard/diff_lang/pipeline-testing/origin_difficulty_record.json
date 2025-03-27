@@ -1,0 +1,317 @@
+{
+    "accounting": [
+        124,
+        275,
+        367,
+        439,
+        338
+    ],
+    "agricultural_sciences": [
+        149,
+        153,
+        137,
+        254,
+        113
+    ],
+    "aviation_engineering_and_maintenance": [
+        229,
+        198,
+        361,
+        274,
+        217
+    ],
+    "biology": [
+        180,
+        184,
+        219,
+        295,
+        239
+    ],
+    "chemical_engineering": [
+        187,
+        151,
+        239,
+        154,
+        153
+    ],
+    "chemistry": [
+        135,
+        266,
+        409,
+        416,
+        425
+    ],
+    "civil_engineering": [
+        267,
+        408,
+        123,
+        333,
+        159
+    ],
+    "computer_science": [
+        222,
+        240,
+        186,
+        323,
+        161
+    ],
+    "construction": [
+        323,
+        160,
+        195,
+        353,
+        219
+    ],
+    "criminal_law": [
+        341,
+        136,
+        321,
+        267,
+        298
+    ],
+    "ecology": [
+        145,
+        155,
+        474,
+        118,
+        350
+    ],
+    "economics": [
+        297,
+        274,
+        147,
+        313,
+        189
+    ],
+    "education": [
+        274,
+        142,
+        262,
+        123,
+        432
+    ],
+    "electrical_engineering": [
+        302,
+        151,
+        157,
+        174,
+        205
+    ],
+    "electronics_engineering": [
+        353,
+        190,
+        272,
+        247,
+        311
+    ],
+    "energy_management": [
+        155,
+        286,
+        127,
+        390,
+        68
+    ],
+    "environmental_science": [
+        184,
+        336,
+        202,
+        159,
+        195
+    ],
+    "fashion": [
+        209,
+        302,
+        419,
+        288,
+        236
+    ],
+    "food_processing": [
+        159,
+        198,
+        231,
+        127,
+        263
+    ],
+    "gas_technology_and_engineering": [
+        109,
+        131,
+        154,
+        351,
+        339
+    ],
+    "geomatics": [
+        12,
+        148,
+        403,
+        209,
+        144
+    ],
+    "health": [
+        403,
+        218,
+        297,
+        371,
+        212
+    ],
+    "industrial_engineer": [
+        262,
+        353,
+        212,
+        258,
+        175
+    ],
+    "information_technology": [
+        406,
+        119,
+        337,
+        130,
+        214
+    ],
+    "interior_architecture_and_design": [
+        312,
+        394,
+        176,
+        205,
+        231
+    ],
+    "law": [
+        253,
+        77,
+        210,
+        258,
+        178
+    ],
+    "machine_design_and_manufacturing": [
+        80,
+        61,
+        130,
+        157,
+        202
+    ],
+    "management": [
+        414,
+        177,
+        281,
+        362,
+        295
+    ],
+    "maritime_engineering": [
+        303,
+        172,
+        177,
+        172,
+        213
+    ],
+    "marketing": [
+        190,
+        275,
+        216,
+        305,
+        28
+    ],
+    "materials_engineering": [
+        261,
+        376,
+        252,
+        262,
+        303
+    ],
+    "mechanical_engineering": [
+        203,
+        140,
+        117,
+        161,
+        318
+    ],
+    "nondestructive_testing": [
+        204,
+        160,
+        130,
+        435,
+        188
+    ],
+    "patent": [
+        372,
+        274,
+        291,
+        278,
+        368
+    ],
+    "political_science_and_sociology": [
+        190,
+        336,
+        468,
+        447,
+        14
+    ],
+    "psychology": [
+        430,
+        284,
+        213,
+        125,
+        0
+    ],
+    "public_safety": [
+        20,
+        386,
+        250,
+        148,
+        200
+    ],
+    "railway_and_automotive_engineering": [
+        242,
+        93,
+        120,
+        171,
+        153
+    ],
+    "real_estate": [
+        260,
+        409,
+        350,
+        302,
+        424
+    ],
+    "refrigerating_machinery": [
+        264,
+        197,
+        233,
+        291,
+        379
+    ],
+    "social_welfare": [
+        145,
+        143,
+        317,
+        159,
+        300
+    ],
+    "taxation": [
+        335,
+        408,
+        409,
+        367,
+        322
+    ],
+    "telecommunications_and_wireless_technology": [
+        162,
+        71,
+        185,
+        197,
+        216
+    ],
+    "korean_history": [
+        14,
+        229,
+        354,
+        122,
+        352
+    ],
+    "math": [
+        250,
+        348,
+        156,
+        327,
+        256
+    ]
+}
