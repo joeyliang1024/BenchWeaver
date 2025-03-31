@@ -2,7 +2,7 @@
 openai_source: "azure"
 
 ### inference model
-inference_model_name_or_path: taide/Llama-3.1-TAIDE-LX-8B-Chat
+inference_model_name_or_path: google/gemma-3-27b-it
 inference_mode: local
 cot: false
 
@@ -35,9 +35,9 @@ save_dir: score/tmmluplus/same_lang/trans_template_test2
 
 ### VLLM 
 #### gemma-2-27b: 8192 max len
-vllm_maxlen: 8192
+vllm_maxlen: 4096
 vllm_max_concurrency: 100
-
+max_new_tokens: 2048
 ### debug
 testing_size: 2
 record_all: true

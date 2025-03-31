@@ -1,0 +1,266 @@
+{
+    "dentistry": [
+        "B",
+        "B"
+    ],
+    "traditional_chinese_medicine_clinical_medicine": [
+        "A",
+        "A. 溫溜穴位於**手陽明小腸經**上，而非大腸經。"
+    ],
+    "clinical_psychology": [
+        "B",
+        "C"
+    ],
+    "technical": [
+        "D",
+        "D"
+    ],
+    "culinary_skills": [
+        "B",
+        "要回答這個問題，我需要知道小杰點的是哪一款雞尾酒。請提供雞尾酒的名稱，我才能判斷基酒、調製方法和杯皿是否正確。"
+    ],
+    "mechanical": [
+        "D",
+        "B"
+    ],
+    "logic_reasoning": [
+        "D",
+        "C"
+    ],
+    "real_estate": [
+        "B\n\n**計算過程：**\n\n1. **建物價值：** 1200 萬元 * 30% = 360 萬元\n2. **土地價值：** 1200 萬元 - 360 萬元 = 840 萬元\n3. **基地單價：** 840 萬元 / 20 坪 = 42 萬元/坪\n\n**但是題目問的是基地單價，所以答案是B。**",
+        "這個題目資訊不足，無法直接得出答案。需要知道土地和建物的收益資本化率才能計算土地收益價格。\n\n如果假設土地和建物的收益資本化率相同，例如都是 5%，那麼：\n\n土地收益價格 = 房地淨收益 / 收益資本化率 = 100 萬元 / 0.05 = 2,000 萬元\n\n**因此，在假設收益資本化率為 5% 的情況下，答案是 A. 2,000 萬元。**\n\n但請注意，題目沒有提供資本化率，所以這是一個推測性的答案。"
+    ],
+    "general_principles_of_law": [
+        "C",
+        "A"
+    ],
+    "finance_banking": [
+        "A",
+        "B"
+    ],
+    "anti_money_laundering": [
+        "A",
+        "D"
+    ],
+    "ttqav2": [
+        "A",
+        "B"
+    ],
+    "marketing_management": [
+        "C",
+        "C"
+    ],
+    "business_management": [
+        "D",
+        "B"
+    ],
+    "organic_chemistry": [
+        "C",
+        "B"
+    ],
+    "advance_chemistry": [
+        "A",
+        "C"
+    ],
+    "physics": [
+        "C\n\n**解題思路：**\n\n1. **感應電動勢公式：**  E = N * B * A * ω\n   * N = 線圈匝數 (20)\n   * B = 磁場強度 (0.2 T)\n   * A = 線圈面積 (0.03 m²)\n   * ω = 角速度 (rad/s)\n\n2. **計算角速度：** ω = 2πf = 2π * (600 rpm / 60 s/min) = 20π rad/s\n\n3. **代入公式：** E = 20 * 0.2 * 0.03 * 20π ≈ 24π ≈ 75.4 V\n\n4. **最大感應電動勢：**  由於題目問的是 *最大* 感應電動勢，所以使用公式計算出的值即為最大值。  最接近的選項是 30V (題目可能簡化了π的近似值)。\n\n**更正：** 原始計算有誤，正確計算後應為約75.4V，但選項中沒有這個答案。 題目可能簡化了計算過程或π的近似值。 在選項中，最接近的答案是C. 30，但實際數值與計算結果有差距。",
+        "A\n\n**解題思路：**\n\n* **總飛行時間：** 物體從拋出到回到原點，總飛行時間為4秒。\n* **上升時間：**  由於不計空氣阻力，上升時間等於下降時間，因此上升時間為2秒。\n* **最高點：** 在最高點，物體速度為0。\n* **利用公式：**\n    *  v = u - gt  (v: 末速, u: 初速, g: 重力加速度, t: 時間)\n    *  h = ut - (1/2)gt^2 (h: 高度)\n\n**分析選項：**\n\n* **A. 拋射後第3秒時，物體高度為最高高度之一半：**  由於上升時間為2秒，第3秒是下降過程。對稱性可知，第3秒的高度確實是最高高度的一半。\n* **B. 物體初速為9.8公尺/秒：**  v = u - gt  => 0 = u - 9.8 * 2  => u = 19.6 m/s，所以錯誤。\n* **C. 物體到達最高高度為19.6公尺：**  h = ut - (1/2)gt^2 = 19.6 * 2 - (1/2) * 9.8 * 2^2 = 19.6 m，所以正確，但A選項更精確。\n* **D. 當物體到達最高高度時，物體受力為零：**  物體在任何時候都受到重力作用，所以錯誤。\n\n因此，最正確的答案是 **A**。"
+    ],
+    "secondary_physics": [
+        "B\n\n**解題思路：**\n\n* **質量與能量的關係：** 根據愛因斯坦的質能方程式，質量損失 Δm 可以轉換成能量 E，公式為 E = Δmc²，其中 c 是光速。\n* **光速：** 光速 c ≈ 3 × 10⁸ 公尺/秒。\n* **單位換算：**\n    * 1 公克 = 10⁻³ 公斤\n    * 1 卡 = 4.184 焦耳\n\n**計算步驟：**\n\n1. **計算能量 (焦耳)：**\n   E = Δmc² = (10⁻³ kg) × (3 × 10⁸ m/s)² = 9 × 10¹³ 焦耳\n\n2. **轉換為卡：**\n   E (卡) = (9 × 10¹³ 焦耳) / (4.184 焦耳/卡) ≈ 2.15 × 10¹³ 卡\n\n3. **修正選項：** 題目選項中沒有完全匹配的答案，但最接近的是 9 × 10¹⁰ 卡。 可能是題目或選項有誤。 依照計算結果，正確答案應為 2.15 × 10¹³ 卡。\n\n**因此，最接近的答案是 B. 9×1010 卡，但需要注意計算結果與選項存在差異。**",
+        "C\n\n**解釋：**\n\n*   **A 正確：** 洋流發電確實是利用洋流的動能。\n*   **B 正確：** 化石燃料是有限資源，燃燒後無法快速補充，因此不屬於再生能源。\n*   **C 錯誤：** 潮汐能除了地球和太陽的重力作用外，也受到月球重力的影響。月球的引力是潮汐的主要成因。\n*   **D 正確：** 太陽輻射的能量源自於太陽內部的核融合反應。"
+    ],
+    "human_behavior": [
+        "D",
+        "A"
+    ],
+    "national_protection": [
+        "B",
+        "A"
+    ],
+    "jce_humanities": [
+        "The response was filtered due to the prompt triggering Azure OpenAI's content management policy.",
+        "The response was filtered due to the prompt triggering Azure OpenAI's content management policy."
+    ],
+    "politic_science": [
+        "A",
+        "C"
+    ],
+    "agriculture": [
+        "A",
+        "A"
+    ],
+    "official_document_management": [
+        "A",
+        "C. 分行數個單位之公文，內容性質無主從者，皆為「正本」\n\n**解釋:**\n\n當公文分行給數個單位，且內容性質無主從關係時，通常會指定一個單位為**首長機關**，該單位收到的是**正本**，其他單位收到的是**副本**。  並非所有單位都收到正本。"
+    ],
+    "financial_analysis": [
+        "B",
+        "C"
+    ],
+    "pharmacy": [
+        "C",
+        "D"
+    ],
+    "educational_psychology": [
+        "A",
+        "D"
+    ],
+    "statistics_and_machine_learning": [
+        "D",
+        "A"
+    ],
+    "management_accounting": [
+        "C",
+        "B"
+    ],
+    "introduction_to_law": [
+        "A",
+        "D"
+    ],
+    "computer_science": [
+        "A",
+        "B. Segment"
+    ],
+    "veterinary_pathology": [
+        "D",
+        "D"
+    ],
+    "accounting": [
+        "D",
+        "A"
+    ],
+    "fire_science": [
+        "D",
+        "A"
+    ],
+    "optometry": [
+        "A",
+        "D"
+    ],
+    "insurance_studies": [
+        "B",
+        "D"
+    ],
+    "pharmacology": [
+        "C",
+        "C"
+    ],
+    "taxation": [
+        "C. ③④①②\n\n以下是各扣除額的上限（113年度）：\n\n*   **身心障礙特別扣除:** 12萬/年 (本人或直系親屬)\n*   **長期照顧特別扣除:** 10萬/年 (本人或直系親屬)\n*   **有配偶者之標準扣除額:** 12萬/年\n*   **子女教育學費特別扣除:** 國小/國中/高中每人最高3萬，大學/碩士最高6萬，博士最高12萬。\n\n因此排序為：身心障礙 > 長期照顧 > 有配偶者標準扣除 > 子女教育學費。",
+        "A"
+    ],
+    "education_(profession_level)": [
+        "C",
+        "C"
+    ],
+    "economics": [
+        "A",
+        "B"
+    ],
+    "veterinary_pharmacology": [
+        "B",
+        "A"
+    ],
+    "nautical_science": [
+        "B",
+        "A"
+    ],
+    "occupational_therapy_for_psychological_disorders": [
+        "C",
+        "B"
+    ],
+    "trust_practice": [
+        "D。\n\n非上市櫃股票的價值認定並非直接以股票淨值計算，而是需要經過專業評估，通常會採用收益法、市場比較法或資產重估法等方法來評估其價值。股票淨值僅是評估的參考依據之一。",
+        "C"
+    ],
+    "geography_of_taiwan": [
+        "C",
+        "B"
+    ],
+    "physical_education": [
+        "B",
+        "B"
+    ],
+    "auditing": [
+        "D",
+        "D"
+    ],
+    "administrative_law": [
+        "B. 法律優於緊急命令\n\n**解釋：**\n\n緊急命令是在緊急狀態下，為迅速應對危險而發布的命令。在緊急狀態下，緊急命令的效力**高於**法律，但僅限於緊急狀態存續期間。一旦緊急狀態解除，法律的效力便恢復。 因此，法律不一定優於緊急命令。\n\n其他選項皆正確：\n\n*   **法律優於法規命令：** 法規命令是基於法律授權而制定，其效力低於法律。\n*   **後法優於前法：** 同一法律位階的法規，時間上較晚制定的法規優先適用。\n*   **特別法優於普通法：** 特別法針對特定事項的規定，優先於普通法的一般規定。",
+        "D"
+    ],
+    "basic_medical_science": [
+        "B",
+        "C"
+    ],
+    "macroeconomics": [
+        "D",
+        "C\n\n**解释:**\n\n* **商品贸易 (Goods Trade):** 法國公司出口飲料到美國，這代表法國的出口增加，因此商品貿易是正的。但題目說“賣了飲料”，所以是出口，是流入法國的資金，因此商品貿易是負的（因為是法國的支出）。\n* **國外淨投資 (Net Foreign Investment):** 法國公司用收入購買西班牙股票，這代表法國的資金流向西班牙，屬於國外投資。因此國外淨投資是正的。\n\n所以答案是：負：商品貿易；正：國外淨投資。"
+    ],
+    "trade": [
+        "A",
+        "B"
+    ],
+    "chinese_language_and_literature": [
+        "A",
+        "B"
+    ],
+    "tve_design": [
+        "B",
+        "C"
+    ],
+    "junior_science_exam": [
+        "D",
+        "C"
+    ],
+    "junior_math_exam": [
+        "B",
+        "C"
+    ],
+    "junior_chinese_exam": [
+        "The response was filtered due to the prompt triggering Azure OpenAI's content management policy.",
+        "The response was filtered due to the prompt triggering Azure OpenAI's content management policy."
+    ],
+    "junior_social_studies": [
+        "C\n\n**理由：**\n\n文章提到古巴獨立運動的美國政壇評論，以及美國介入的理由是保護美國公民的生命和財產。這暗示了美國可能以保護自身利益為由，干涉他國事務。\n\n題目問的是關於「臺南市的例子」，但文章中並沒有直接提及臺南市的例子。然而，根據文章的脈絡，我們可以推斷題目想問的是關於地方政府如何處理類似的權利衝突問題。\n\n在臺灣，地方政府通常有權制定地方自治條例，對違反地方規定的行為處以行政處分（例如罰鍰、停業等）。而刑事處罰則通常由中央政府的立法院制定法律來規範。\n\n因此，最合適的答案是：**C. 由地方立法機關訂定規定對違規者處以行政處分**。因為地方政府可以透過地方自治條例來規範地方事務，並對違規者處以行政處分。",
+        "C (華盛頓火山灰諮詢中心)\n\n**理由：**\n\n文章內容主要描述的是古巴獨立運動以及美國的干預。美國在當時的評論表明了其對美洲事務的強烈關注，並宣稱有權干預歐洲勢力在美洲的活動。因此，與火山灰諮詢中心相關的資訊是為了引導讀者思考美國在國際事務中的角色和影響力，而華盛頓火山灰諮詢中心是美國設立的，與美國的國際地位相符。"
+    ],
+    "tve_mathematics": [
+        "B",
+        "C"
+    ],
+    "tve_chinese_language": [
+        "The response was filtered due to the prompt triggering Azure OpenAI's content management policy.",
+        "C"
+    ],
+    "tve_natural_sciences": [
+        "D",
+        "B"
+    ],
+    "junior_chemistry": [
+        "B",
+        "B. △G 是負的且 △H 是正的。\n\n**解釋:**\n\n* **△G (吉布斯自由能變化):**  決定反應是否自發進行。負的△G表示反應是自發的，正的△G表示反應是非自發的。水結冰是一個自發過程（在足夠低的溫度下），因此△G是負的。\n* **△H (焓變化):**  表示反應是吸熱還是放熱。正的△H表示吸熱反應，負的△H表示放熱反應。水結冰是一個放熱過程（需要釋放熱量），但由於溫度較高(25℃)，水轉化為冰需要克服分子間的吸引力，因此需要吸收熱量，所以△H是正的。\n\n雖然水結冰通常是放熱的，但在25℃下，將水轉化為冰需要外部能量輸入，因此在這個特定條件下，△H是正的。"
+    ],
+    "music": [
+        "A",
+        "A"
+    ],
+    "education": [
+        "C",
+        "B"
+    ],
+    "three_principles_of_people": [
+        "D",
+        "D"
+    ],
+    "taiwanese_hokkien": [
+        "A",
+        "B"
+    ],
+    "engineering_math": [
+        "B",
+        "C"
+    ]
+}

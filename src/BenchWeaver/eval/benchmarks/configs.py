@@ -86,7 +86,7 @@ BENCHMARK_CONFIG = {
     "tmmluplus": {
         "language": "zh-tw",
         "mode": ["mcqa-prob", "mcqa-oq"],
-        "display_scores": ["Average", 'STEM', 'Social Science', 'Humanities', 'Other'],
+        "display_scores": ["Average", 'STEM', 'Social Sciences', 'Humanities', 'Other'],
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 5,
         "support_chain_of_thought": False,

@@ -151,7 +151,7 @@ class Client:
         
         except BadRequestError as e:
             # TODO: try to return the Exception message
-            print(f"Bad request error: {e}")
+            print(f"Bad request error: {e.response}")
             return "The response was filtered due to the prompt triggering Azure OpenAI's content management policy."
         
         except AttributeError as e:

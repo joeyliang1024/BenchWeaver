@@ -12,8 +12,11 @@ Welcome to BenchWeaver! 🎉🔬 This Python project provides a specialized benc
 Create a new conda environment and install the package:
 ```bash
 conda create --name BenchWeaver python=3.11 -y
+pip install unbabel-comet
 pip install -e .
 ```
+> [!WARNING]  
+> Package `unbabel-comet` should be installed before `pip install -e .`
 
 ### Conda Installation (In Progress) 🏗️
 Direct installation using conda environment file:
@@ -31,9 +34,3 @@ Access detailed documentation through these links:
 | Evaluation  | Methods and metrics explanation     | [Evaluation Method](./doc/evaluation_method.md) |
 | Benchmarks  | List of supported benchmarks        | [Support Benchmark](./doc/supported_benchmark.md) |
 
-## Other Tips
-### Chat template
-1. Origin ` google/gemma-2-27b-it` do not support system prompt, please edit the `tokenizer_config.json` template column as follows:
-   ```jinja
-   {{ bos_token }}{% if messages[0]['role'] == 'system' %}{{ messages[0]['content'] + '\n' }}{% endif %}{% for message in messages %}{% if (message['role'] == 'user') != ((loop.index0 + 1) % 2 == 0) %}{{ raise_exception('Conversation roles must alternate user/assistant/user/assistant/...') }}{% endif %}{% if (message['role'] == 'assistant') %}{% set role = 'model' %}{% else %}{% set role = message['role'] %}{% endif %}{% if message['role'] != 'system' %}{{ '<start_of_turn>' + role + '\n' + message['content'] | trim + '<end_of_turn>\n' }}{% endif %}{% endfor %}{% if add_generation_prompt %}{{'<start_of_turn>model\n'}}{% endif %}
-   ```

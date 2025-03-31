@@ -3,7 +3,7 @@ name = "bench_weaver"
 version = "0.0.0"
 dependencies = [
     # inference
-    "vllm>=v0.6.6.post1",
+    "vllm>=0.8.2",
     "transformers>=4.50.0.dev0",
     "datasets",
     "hf_transfer",
@@ -36,7 +36,6 @@ dependencies = [
 
     # eval translation Error
     "evaluate",
-    # "unbabel-comet",
     "protobuf==4.25.6",
     
     # nvidia-gpu

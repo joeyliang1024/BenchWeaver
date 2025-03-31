@@ -1,6 +1,7 @@
 #!/bin/bash
-export JAVA_HOME="/usr/lib/java"
+# export JAVA_HOME="/usr/lib/java"
+export CUDA_VISIBLE_DEVICES="0,1"
 
-CONFIG_PATH="/work/u5110390/BenchWeaver/config/evaluation.yaml"
+CONFIG_PATH="../../config/evaluation.yaml"
 
 bench-weaver-cli eval --config "$CONFIG_PATH"

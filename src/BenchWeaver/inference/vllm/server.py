@@ -44,7 +44,7 @@ class VLLMServer:
                 "serve", str(model_path),
                 "--enable-chunked-prefill", "False",
                 "--tensor-parallel-size", str(self.get_max_usable_devices()),
-                "--dtype", "half",
+                "--dtype", "bfloat16",
                 "--served-model-name", model_name,
                 "--disable-log-requests",
                 "--disable-log-stats",

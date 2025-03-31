@@ -1,0 +1,662 @@
+{
+    "dentistry": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "traditional_chinese_medicine_clinical_medicine": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "clinical_psychology": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "technical": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "culinary_skills": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "mechanical": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "logic_reasoning": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "real_estate": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "general_principles_of_law": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "finance_banking": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "anti_money_laundering": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "ttqav2": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "marketing_management": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "business_management": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "organic_chemistry": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "advance_chemistry": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "physics": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "secondary_physics": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "human_behavior": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "national_protection": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "jce_humanities": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "politic_science": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "agriculture": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "official_document_management": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "financial_analysis": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "pharmacy": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "educational_psychology": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "statistics_and_machine_learning": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "management_accounting": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "introduction_to_law": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "computer_science": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "veterinary_pathology": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "accounting": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "fire_science": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "optometry": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "insurance_studies": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "pharmacology": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "taxation": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "education_(profession_level)": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "economics": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "veterinary_pharmacology": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "nautical_science": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "occupational_therapy_for_psychological_disorders": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "trust_practice": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "geography_of_taiwan": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "physical_education": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "auditing": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "administrative_law": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "basic_medical_science": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "macroeconomics": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "true",
+        "false",
+        "false"
+    ],
+    "trade": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "chinese_language_and_literature": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "tve_design": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "junior_science_exam": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "junior_math_exam": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "junior_chinese_exam": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "junior_social_studies": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "tve_mathematics": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "tve_chinese_language": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "tve_natural_sciences": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "junior_chemistry": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "music": [
+        "false",
+        "true",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "education": [
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ],
+    "three_principles_of_people": [
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false",
+        "true"
+    ],
+    "taiwanese_hokkien": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false",
+        "false",
+        "false"
+    ],
+    "engineering_math": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false",
+        "false",
+        "true",
+        "false"
+    ]
+}
