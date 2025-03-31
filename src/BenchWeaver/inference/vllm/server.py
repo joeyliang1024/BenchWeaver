@@ -28,7 +28,7 @@ class VLLMServer:
         total_device_count = device_count()
         print(f"Total device count: {total_device_count}")
         if total_device_count == 0:
-            print(f"Max usable devices: 0")
+            print("Max usable devices: 0")
             return 0
         max_usable = 2 ** (total_device_count.bit_length() - 1)
         print(f"Max usable devices: {max_usable}")

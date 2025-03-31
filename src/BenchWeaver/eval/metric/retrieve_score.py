@@ -11,6 +11,9 @@ def parse_numerical_score(s: str) -> float:
     return score
 
 def parse_bool_score(text: str) -> str:
+    '''
+    Normally for MCQA checking. The answer is either true, false or unknown.
+    '''
     text = text.lower()
-    match = re.search(r'\b(true|false)\b', text)
+    match = re.search(r'\b(true|false|unknown)\b', text)
     return match.group(0) if match else ""

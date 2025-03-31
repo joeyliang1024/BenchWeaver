@@ -145,8 +145,9 @@ class KMMLU(datasets.GeneratorBasedBuilder):
         ]
 
     def _generate_examples(self, filepath):
-        df = pd.read_csv(filepath)
+
+        df = pd.read_csv(filepath, encoding="utf-8")
         df.columns = ["question", "answer", "A", "B", "C", "D", "Category", "Human Accuracy"]
-        
+
         for i, instance in enumerate(df.to_dict(orient="records")):
             yield i, instance

@@ -18,23 +18,23 @@ source_lang: ko
 target_lang: zh-tw
 
 ### source dataset
-task: kmmlu-hard_test  
+task: kmmlu_test  
 task_dir: evaluation_data
 template: fewshot
 lang: ko
 n_shot: 5
 benchmark_mode: mcqa-oq
-pipeline: diff
+pipeline: same
 batch_size: 4
 
 ### reference dataset, split will use 'test' don't specify
 ref_task: tmmluplus
 
 ### output
-save_dir: score/kmmlu-hard/diff_lang/pipeline-testing
+save_dir: score/kmmlu/same_lang/pipeline-testing
 
 ### VLLM
-vllm_maxlen: 8192
+vllm_maxlen: 32768
 vllm_max_concurrency: 100
 
 ### debug

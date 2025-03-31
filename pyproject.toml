@@ -4,7 +4,7 @@ version = "0.0.0"
 dependencies = [
     # inference
     "vllm>=v0.6.6.post1",
-    "transformers",
+    "transformers>=4.50.0.dev0",
     "datasets",
     "hf_transfer",
 
@@ -38,6 +38,9 @@ dependencies = [
     "evaluate",
     # "unbabel-comet",
     "protobuf==4.25.6",
+    
+    # nvidia-gpu
+    "nvidia-ml-py",
 
 ]
 requires-python = ">=3.10"

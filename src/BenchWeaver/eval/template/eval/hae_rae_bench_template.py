@@ -10,7 +10,7 @@ class HAE_RAE_BENCH_Template(EvalTemplate):
         self.choice = choice
         self.answer = answer
         self.cot = cot
-        self.mcqa_criteria_prompt = '다음 LLM 응답이 "{option}"을(를) 객관식 질문의 답으로 포함하는지 판단하세요.\n\n질문: {question}\n\nLLM 응답: {llm_response}\n\n"{option}"이(가) LLM 응답에서 명확하게 선택된 답이면 \'True\'를, 그렇지 않으면 \'False\'를 답하세요.'
+        self.mcqa_criteria_prompt = "당신은 평가 모델이며, 하나의 객관식 질문, LLM 응답, 그리고 하나의 선택지 {option}을 받게 됩니다.  \n당신의 임무는 질문에 답하는 것이 아니라, LLM 응답에서 {option}이 명확하게 선택된 답변인지 판단하는 것입니다.  \n\n질문: {question}  \n\nLLM 응답: {llm_response}  \n\n판단 기준:  \n\n{option}이 LLM 응답에서 명확하고 직접적으로 선택된 답변으로 표현되었다면 'True'를 답하십시오.  \n\n{option}이 선택되지 않았거나, LLM 응답이 명확한 답을 표현하지 않았다면 'False'를 답하십시오.  \n\nLLM 응답이 비어 있거나, {option}이 선택된 답변인지 판단할 수 없다면 'Unknown'을 답하십시오.\n"
         self.opqa_criteria_prompt = 'LLM 응답이 질문에 올바르게 답하는지 판단하십시오.\n\n질문: {answer}\n\n참고 정답: {question}\n\nLLM 응답: {llm_response}\n\nLLM 응답이 올바르면 \'True\'를, 그렇지 않으면 \'False\'를 응답하십시오.'
         self.response = response
         

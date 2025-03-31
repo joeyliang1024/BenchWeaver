@@ -1,7 +1,7 @@
 from argparse import Namespace
 import asyncio
 import os
-from typing import Any, Dict, List, Literal, Optional, Tuple, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 from openai import AsyncOpenAI, AsyncAzureOpenAI
 from openai import RateLimitError, NotFoundError, APITimeoutError, APIConnectionError, BadRequestError
 from asyncio.subprocess import Process
@@ -150,6 +150,7 @@ class Client:
             exit()
         
         except BadRequestError as e:
+            # TODO: try to return the Exception message
             print(f"Bad request error: {e}")
             return "The response was filtered due to the prompt triggering Azure OpenAI's content management policy."
         

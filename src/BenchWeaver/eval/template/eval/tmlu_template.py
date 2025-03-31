@@ -44,7 +44,7 @@ _register_eval_template(
     cot="\n讓我們一步一步來思考。\n答案：",
     templates=tmlu_eval_templates,
     template_class=TMLU_Template,
-    criteria_prompt='判斷以下 LLM 回應是否包含 "{option}" 作為多項選擇題的答案。\n\n問題: {question}\n\nLLM 回應: {llm_response}\n\n如果 "{option}" 確實是 LLM 回應中明確選擇的答案，請回答 \'True\'，否則回答 \'False\'。',
+    criteria_prompt="你是一個評估模型，將被給予一個選擇題問題、一個 LLM 回應，以及一個選項 {option}。\n你的任務不是回答問題，而是判斷 LLM 回應中是否明確選擇了 {option} 作為答案。\n\n問題: {question}\n\nLLM 回應: {llm_response}\n\n判斷標準：\n\n如果 {option} 在 LLM 回應中清楚且直接被表達為選擇的答案，請回答 'True'。\n\n如果 {option} 未被選擇，或 LLM 回應未表達出明確的答案，請回答 'False'。\n\n如果 LLM 回應為空，或其內容無法確定 {option} 是否為選擇的答案，請回答 'Unknown'。",
     response="正確答案是 ({answer})。",
 )
         

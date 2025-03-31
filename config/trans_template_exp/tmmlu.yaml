@@ -1,0 +1,44 @@
+### OpenAI Source
+openai_source: "azure"
+
+### inference model
+inference_model_name_or_path: taide/Llama-3.1-TAIDE-LX-8B-Chat
+inference_mode: local
+cot: false
+
+### checker model
+checker_model_name_or_path: Qwen/Qwen2.5-32B-Instruct
+check_mode: local
+
+### translation model
+translation_model_name_or_path: gpt-4o-mini
+translation_mode: api
+transation_templates_name: general
+source_lang: zh-tw
+target_lang: en
+
+### source dataset
+task: tmmluplus_test  
+task_dir: evaluation_data
+template: general
+lang: zh-tw
+n_shot: 5
+benchmark_mode: mcqa-oq
+pipeline: same
+batch_size: 4
+
+### reference dataset, split will use 'test' don't specify
+ref_task: mmlu
+
+### output
+save_dir: score/tmmluplus/same_lang/trans_template_test2
+
+### VLLM 
+#### gemma-2-27b: 8192 max len
+vllm_maxlen: 8192
+vllm_max_concurrency: 100
+
+### debug
+testing_size: 2
+record_all: true
+# print_param_status: false

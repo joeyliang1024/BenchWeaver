@@ -37,9 +37,9 @@ _LICENSE = "MIT"
 _URL = "tmmluplus.zip"
 
 task_list = [
-    'engineering_math', 
     'dentistry', 
     'traditional_chinese_medicine_clinical_medicine', 
+    'engineering_math', 
     'clinical_psychology', 
     'technical', 
     'culinary_skills', 
