@@ -54,6 +54,7 @@
 |--------------------------------|--------------------------------------------|
 | vllm_maxlen                    | 8192                                       |
 | vllm_max_concurrency           | 100 (asynco max concurrenc for local vllm) |
+| dtype                          | bfloat16                                   |
 
 ### Debug
 
