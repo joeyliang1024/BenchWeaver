@@ -76,7 +76,7 @@ class Client:
             return AsyncOpenAI(
                 base_url=f"http://{self.host_name}:{self.port}/v1", 
                 api_key="EMPTY", 
-                timeout= 3 * 60,
+                timeout= 5 * 60,
             )
         else:
             raise ValueError("Invalid mode. Choose either 'api' or 'local'.")

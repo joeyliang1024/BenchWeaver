@@ -34,9 +34,10 @@ class VLLMServer:
         print(f"Max usable devices: {max_usable}")
         return max_usable
         
-    async def setup_server(self, model_path: Path, model_name: str, max_model_len: int, dtype:str) -> asyncio.subprocess.Process:
+    async def setup_server(self, model_path: Path, model_name: str, max_model_len: int, max_num_seqs:int, dtype:str) -> asyncio.subprocess.Process:
         """
         Start a vLLM server with the specified parameters.
+        If you are looking for more parameters, check the [vLLM documentation](https://docs.vllm.ai/en/v0.8.2/serving/engine_args.html#engine-args).
         """
         process = await asyncio.create_subprocess_exec(
             *[
@@ -47,7 +48,9 @@ class VLLMServer:
                 "--dtype", dtype,
                 "--served-model-name", model_name,
                 # disables the use of CPU swap space, which can prevent errors related to insufficient swap space.
-                "swap-space", "0", 
+                "--gpu-memory-utilization", "0.95",
+                "--swap-space", "0", 
+                "--max-num-seqs", str(int(max_num_seqs) + 10),
                 # show status of vllm server
                 "--disable-log-requests",
                 "--disable-log-stats",

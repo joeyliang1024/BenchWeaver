@@ -194,11 +194,11 @@ class Evaluator:
         else:
             raise ValueError(f"Invalid mode: {mode}")
     
-    async def setup_server(self, model_path: str, model_name: str, max_model_len:str, dtype:str) -> asyncio.subprocess.Process:
+    async def setup_server(self, model_path: str, model_name: str, max_model_len:str, max_num_seqs:int, dtype:str) -> asyncio.subprocess.Process:
         """
         Set up the local server with the specified model and parameters.
         """
-        return await self.server.setup_server(model_path, model_name, max_model_len, dtype)
+        return await self.server.setup_server(model_path, model_name, max_model_len, max_num_seqs, dtype)
     
     async def terminate_server(self, process: asyncio.subprocess.Process) -> None:
         """
@@ -444,6 +444,7 @@ class Evaluator:
                 model_path=self.model_args.inference_model_name_or_path,
                 model_name=self.inference_model_name,
                 max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+                max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
                 dtype=getattr(self.model_args, "dtype", "bfloat16"),
             )
             print("Local vLLM server setup complete.")
@@ -475,6 +476,7 @@ class Evaluator:
                 model_path=self.model_args.checker_model_name_or_path,
                 model_name=self.checker_model_name,
                 max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+                max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
                 dtype=getattr(self.model_args, "dtype", "bfloat16"),
             )
             print("Local vLLM server setup complete.")
@@ -522,6 +524,7 @@ class Evaluator:
                 model_path=self.model_args.translation_model_name_or_path,
                 model_name=self.translation_model_name,
                 max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+                max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
                 dtype=getattr(self.model_args, "dtype", "bfloat16"),
             )
             print("Local vLLM server setup complete.")
@@ -549,6 +552,7 @@ class Evaluator:
                 model_path=self.model_args.inference_model_name_or_path,
                 model_name=self.inference_model_name,
                 max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+                max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
                 dtype=getattr(self.model_args, "dtype", "bfloat16"),
             )
             print("Local vLLM server setup complete.")
@@ -580,6 +584,7 @@ class Evaluator:
                 model_path=self.model_args.translation_model_name_or_path,
                 model_name=self.translation_model_name,
                 max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+                max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
                 dtype=getattr(self.model_args, "dtype", "bfloat16"),
             )
             print("Local vLLM server setup complete.")
@@ -611,6 +616,7 @@ class Evaluator:
                 model_path=self.model_args.checker_model_name_or_path,
                 model_name=self.checker_model_name,
                 max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
+                max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
                 dtype=getattr(self.model_args, "dtype", "bfloat16"),
             )
             print("Local vLLM server setup complete.")

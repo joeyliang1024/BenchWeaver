@@ -24,7 +24,7 @@ process = await asyncio.create_subprocess_exec(
         "--tensor-parallel-size", str(self.get_max_usable_devices()),
         "--dtype", dtype,
         "--served-model-name", model_name,
-        "swap-space", "0",  # set this 
+        "--swap-space", "0",  # set this 
         "--disable-log-requests",
         "--disable-log-stats",
         "--uvicorn-log-level", "error",
