@@ -35,7 +35,7 @@ save_dir: score/trans_template_exp/cmmlu/origin_lang
 
 ### VLLM 
 vllm_maxlen: 8192
-vllm_max_concurrency: 50
+vllm_max_concurrency: 30
 max_new_tokens: 2048
 dtype: float32
 ### debug

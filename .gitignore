@@ -169,3 +169,17 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Details of the run of the BenchWeaver
+**/check_results.json
+**/checked_prompts.json
+**/checked_answers.json
+**/inference_prompts.json
+**/inference_results.json
+**/difficulty_record.json
+**/origin_difficulty_record.json
+**/trans_difficulty_record.json
+**/ques_trans_prompts.json
+**/resp_trans_prompts.json
+**/translated_question_record.json
+**/translated_response_record.json

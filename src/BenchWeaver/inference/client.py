@@ -1,6 +1,7 @@
 from argparse import Namespace
 import asyncio
 import os
+import ast
 from typing import Any, Dict, List, Literal, Optional, Union
 from openai import AsyncOpenAI, AsyncAzureOpenAI
 from openai import RateLimitError, NotFoundError, APITimeoutError, APIConnectionError, BadRequestError
@@ -76,7 +77,8 @@ class Client:
             return AsyncOpenAI(
                 base_url=f"http://{self.host_name}:{self.port}/v1", 
                 api_key="EMPTY", 
-                timeout= 5 * 60,
+                timeout= 60 * 60,
+                max_retries = 10,
             )
         else:
             raise ValueError("Invalid mode. Choose either 'api' or 'local'.")
@@ -136,7 +138,7 @@ class Client:
             exit()
         
         except APITimeoutError as e:
-            print("API Timeout error. Waiting for 10 seconds.")
+            print(f"API Timeout error: {e}. Waiting for 10 seconds.")
             await asyncio.sleep(10)
             return await self.generate(
                 model=model,
@@ -146,13 +148,18 @@ class Client:
             )
             
         except APIConnectionError as e:
-            print("API Connection error. Exiting.")
+            print(f"API Connection error: {e}. Exiting.")
             exit()
         
         except BadRequestError as e:
-            # TODO: try to return the Exception message
-            print(f"Bad request error: {e.response}")
-            return "The response was filtered due to the prompt triggering Azure OpenAI's content management policy."
+            try:
+                error_dict = ast.literal_eval(e.response.content.decode())
+                response = ast.literal_eval(error_dict)['error']['message']
+                print(f"Bad request error: {response}")
+                return response
+            except:
+                print(f"Bad request error. {e}")
+                return "The response was filtered due to the prompt triggering Azure OpenAI's content management policy."
         
         except AttributeError as e:
             # handle the return content is None

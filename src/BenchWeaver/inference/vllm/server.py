@@ -50,10 +50,10 @@ class VLLMServer:
                 # disables the use of CPU swap space, which can prevent errors related to insufficient swap space.
                 "--gpu-memory-utilization", "0.95",
                 "--swap-space", "0", 
-                "--max-num-seqs", str(int(max_num_seqs) + 10),
-                # show status of vllm server
+                "--max-num-seqs", str(max_num_seqs),
+                # DEBUG USAGE: show status of vllm server
                 "--disable-log-requests",
-                "--disable-log-stats",
+                #"--disable-log-stats",
                 # "--enforce-eager",
                 "--uvicorn-log-level", "error",
                 "--port", str(self.port),
