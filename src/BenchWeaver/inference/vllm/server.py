@@ -34,7 +34,7 @@ class VLLMServer:
         print(f"Max usable devices: {max_usable}")
         return max_usable
         
-    async def setup_server(self, model_path: Path, model_name: str, max_model_len: int) -> asyncio.subprocess.Process:
+    async def setup_server(self, model_path: Path, model_name: str, max_model_len: int, dtype:str) -> asyncio.subprocess.Process:
         """
         Start a vLLM server with the specified parameters.
         """
@@ -44,8 +44,11 @@ class VLLMServer:
                 "serve", str(model_path),
                 "--enable-chunked-prefill", "False",
                 "--tensor-parallel-size", str(self.get_max_usable_devices()),
-                "--dtype", "bfloat16",
+                "--dtype", dtype,
                 "--served-model-name", model_name,
+                # disables the use of CPU swap space, which can prevent errors related to insufficient swap space.
+                "swap-space", "0", 
+                # show status of vllm server
                 "--disable-log-requests",
                 "--disable-log-stats",
                 # "--enforce-eager",

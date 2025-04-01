@@ -114,6 +114,14 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": None,
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
+    },
+    "cmmlu": {
+        "language": "zh",
+        "mode": ["mcqa-prob", "mcqa-oq"],
+        "display_scores": ["Average", 'STEM', 'Humanities', 'Social Science', 'Other'],
+        "mcqa_choices": ["A", "B", "C", "D"],
+        "sugguest_num_shots": 5,
+        "support_chain_of_thought": False,
     }
 }
 
@@ -196,5 +204,11 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .zhtw.awesome_taiwan_knowledge.opqa_eval import AwesomeTaiwanKnowledgeEvaluator
         return {
             "opqa": AwesomeTaiwanKnowledgeEvaluator,
+        }
+    elif task_name == "cmmlu":
+        from .en.mmlu import MMLUOQEvaluator, MMLUProbEvaluator
+        return {
+            "mcqa-prob": MMLUProbEvaluator,
+            "mcqa-oq": MMLUOQEvaluator,
         }
     return {}
