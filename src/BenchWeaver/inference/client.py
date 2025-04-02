@@ -115,10 +115,10 @@ class Client:
             c = await self.client.chat.completions.create(
                 messages=messages,
                 model=model,
-                temperature=getattr(generating_args, "temperature"),
+                temperature=getattr(generating_args, "temperature", 1.0),
                 max_tokens= getattr(generating_args, "max_new_tokens"),
-                top_p=getattr(generating_args, "top_p"),
-                n=getattr(generating_args, "num_beams"),
+                top_p=getattr(generating_args, "top_p", 1.0),
+                n=getattr(generating_args, "num_beams", None),
             )
             return c.choices[0].message.content.strip()
         
