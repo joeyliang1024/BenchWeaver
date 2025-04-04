@@ -69,6 +69,7 @@ class Evaluator:
                 self.ref_categories = {}
                 self.ref_choices = []
             finally:
+                logger.info("translation template: {template_name}".format(template_name=getattr(self.model_args, "transation_templates_name", "")))
                 self.trans_template: AdvancedTransTemplate = get_translation_template(getattr(self.model_args, "transation_templates_name", ""))
         else:
             self.ref_task = None

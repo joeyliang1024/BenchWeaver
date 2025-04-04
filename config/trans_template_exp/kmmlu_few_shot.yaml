@@ -13,24 +13,24 @@ check_mode: local
 ### translation model
 translation_model_name_or_path: gpt-4o-mini
 translation_mode: api
-transation_templates_name: general
-source_lang: zh
+transation_templates_name: few_shot
+source_lang: ko
 target_lang: en
 
 ### source dataset
-task: cmmlu_test  
+task: kmmlu_test  
 task_dir: evaluation_data
-lang: zh
+lang: ko
 n_shot: 5
 benchmark_mode: mcqa-oq
-pipeline: same
+pipeline: diff
 batch_size: 4
 
 ### reference dataset, split will use 'test' don't specify
 ref_task: mmlu
 
 ### output
-save_dir: score/trans_template_exp/cmmlu/origin_lang
+save_dir: score/trans_template_exp/kmmlu/few_shot
 
 ### VLLM 
 vllm_maxlen: 8192

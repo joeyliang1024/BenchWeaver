@@ -8,7 +8,7 @@ import logging
 import ast
 import numpy as np
 from tqdm.auto import tqdm
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Tuple, Union
 from BenchWeaver.extras.constants import PROJECT_BASE_PATH, CRITERIA_PROMPT
 from BenchWeaver.inference.client import Client
 
@@ -230,7 +230,7 @@ async def generate(
     example: List[Dict[str, Any]],
     idx: int, 
     generating_args: Namespace,
-) -> ast.Tuple[str, int]:
+) -> Tuple[str, int]:
     return await client.generate(
         model=model,
         system_prompt=system_prompt,

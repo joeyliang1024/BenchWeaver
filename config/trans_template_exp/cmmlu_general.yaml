@@ -23,14 +23,14 @@ task_dir: evaluation_data
 lang: zh
 n_shot: 5
 benchmark_mode: mcqa-oq
-pipeline: same
+pipeline: diff
 batch_size: 4
 
 ### reference dataset, split will use 'test' don't specify
 ref_task: mmlu
 
 ### output
-save_dir: score/trans_template_exp/cmmlu/origin_lang
+save_dir: score/trans_template_exp/cmmlu/general
 
 ### VLLM 
 vllm_maxlen: 8192

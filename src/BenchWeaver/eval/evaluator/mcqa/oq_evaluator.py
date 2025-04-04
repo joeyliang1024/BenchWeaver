@@ -17,16 +17,26 @@ class OQEvaluator(Evaluator):
         super().__init__(args=args)
     
     def comput_score(self, checked_answers: Dict[str, List[Any]], check_results: Dict[str, List[Any]], subjects: List[str]) -> Dict[str, float]:
-        category_corrects = {subj: np.array([], dtype="bool") for subj in subjects}
- 
+        category_corrects = {score: {"corrects": 0, "true_mask_count": 0} for score in subjects}
+
         for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
             category_name = self.categories[subject]["category"]
-            corrects = np.array(checked_answers[subject]) == np.array([self.retrieve_answer(answer) for answer in check_results[subject]])
-            category_corrects[category_name] = np.concatenate([category_corrects[category_name], corrects], axis=0)
-            category_corrects["Average"] = np.concatenate([category_corrects["Average"], corrects], axis=0)
-
-        return {category_name: round(100 * np.mean(category_array), 4) 
-                for category_name, category_array in category_corrects.items()}
+            answers = np.array(checked_answers[subject])
+            predictions = np.array([self.retrieve_answer(ans) for ans in check_results[subject]])
+            # Mask for when the answer is 'true'
+            true_mask: np.ndarray = answers == 'true'
+            # Compare predictions and answers, only where answer is 'true'
+            corrects: np.ndarray = (predictions == 'true') & true_mask  # correct when answer is 'true' and prediction is 'true'
+            # Update the corrects and true_mask counts
+            category_corrects[category_name]["corrects"] += corrects.sum()
+            category_corrects[category_name]["true_mask_count"] += true_mask.sum()
+            category_corrects["Average"]['corrects'] += corrects.sum()
+            category_corrects["Average"]['true_mask_count'] += true_mask.sum()
+        
+        return {
+            category_name: round(100 * (record_dict['corrects'] / record_dict['true_mask_count']), 4)
+                for category_name, record_dict in category_corrects.items()
+        }
         
     def load_data(self, 
                   mode = Literal['inference', 'check', 'translation'],

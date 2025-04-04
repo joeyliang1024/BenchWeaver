@@ -424,8 +424,8 @@ def get_infer_eval_args(args: Optional[Dict[str, Any]] = None) -> _INFER_EVAL_CL
     model_args, data_args, eval_args, finetuning_args, generating_args = _parse_infer_eval_args(args)
     _set_transformers_logging()
 
-    if data_args.template is None:
-        raise ValueError("Please specify which `template` to use.")
+    # if data_args.template is None:
+    #     raise ValueError("Please specify which `template` to use.")
     
     _verify_model_args(model_args, data_args, finetuning_args)
     _check_extra_dependencies(model_args, finetuning_args)

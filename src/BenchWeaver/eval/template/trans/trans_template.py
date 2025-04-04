@@ -21,7 +21,7 @@ for name, config in translation_prompts.items():
         trans_prompt=config.get('trans_prompt'),
         system_prompt=config.get('system_prompt'),
         guide_line=config.get('guide_line'),
-        proper_noun_examples=config.get('proper_noun_examples'),
+        proper_noun_examples=config.get('proper_noun_examples', ''),
         templates=translation_templates,
         template_class=AdvancedTransTemplate
     )
