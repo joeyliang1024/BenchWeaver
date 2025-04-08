@@ -1,30 +1,21 @@
 import os
 import random
-from typing import Any, Dict, List, Literal, Tuple
 import numpy as np
-from tqdm.auto import tqdm
+from typing import Any, Dict, List, Literal, Tuple
 from datasets import load_dataset
-from ....extras.constants import PROJECT_BASE_PATH
-from ..evaluator import Evaluator
-from ...template import OPQA_Template
+from tqdm.auto import tqdm
+from ....evaluator import OPQAEvaluator
+from .....extras.constants import PROJECT_BASE_PATH
+# from ....template import 
 
-class OPQAEvaluator(Evaluator):
-    eval_template: OPQA_Template
+class TaideBenchEvaluator(OPQAEvaluator):
     def __init__(self, args):
         super().__init__(args=args)
-    
+        
     def comput_score(self, check_results: Dict[str, List[Any]], subjects: List[str], checked_answers=None) -> Dict[str, float]:
         category_corrects = {subj: np.array([], dtype="bool") for subj in subjects}
-
-        for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
-            category_name = self.categories[subject]["category"]
-            corrects = np.array(['true'] * len(check_results[subject])) == np.array([self.retrieve_answer(answer) for answer in check_results[subject]])
-            category_corrects[category_name] = np.concatenate([category_corrects[category_name], corrects], axis=0)
-            category_corrects["Average"] = np.concatenate([category_corrects["Average"], corrects], axis=0)
-            
-        return {category_name: round(100 * np.mean(category_array), 4) 
-                for category_name, category_array in category_corrects.items()}
-            
+        # TODO: implement the score computation logic
+    
     def load_data(self, 
                   mode = Literal['inference', 'check', 'translation'],
                   choices = None, 
@@ -32,6 +23,7 @@ class OPQAEvaluator(Evaluator):
                   check_source: Literal['original', 'translated'] = "original",
                   ) -> Tuple[Dict[str, list], Dict[str, list]]:
         """Load and format data for evaluation."""
+        # TODO: override the get eval_template method by subject name
         # init data
         inference_prompts = {subj: [] for subj in self.categories.keys()}
         checker_prompts   = {subj: [] for subj in self.categories.keys()}

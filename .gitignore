@@ -183,3 +183,7 @@ cython_debug/
 **/resp_trans_prompts.json
 **/translated_question_record.json
 **/translated_response_record.json
+**/question_prompt.json
+**/answer_prompt.json
+**/question_check_result.json
+**answer_check_result.json

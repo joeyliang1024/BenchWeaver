@@ -23,7 +23,7 @@ class MCQA_Template(EvalTemplate):
                            ).strip()
         answer = (((example.get("explanation") if use_cot and example.get("explanation") else "") + "\n" + 
                   self.response.format(answer=example.get("answer"))
-                  ).strip() if use_cot else example["answer"])
+                  ).strip() if use_cot else example["answer"]) # self.response.format(answer=example.get("answer")
         return question, answer
 
     def format_example(

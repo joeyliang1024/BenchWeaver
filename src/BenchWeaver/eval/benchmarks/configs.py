@@ -122,6 +122,14 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 5,
         "support_chain_of_thought": False,
+    },
+    "taide_bench": {
+        "language": "zh-tw",
+        "mode": ["opqa"],
+        "display_scores": ["Average", "letter", "essay", "summary", "zh2en", "en2zh",],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
     }
 }
 

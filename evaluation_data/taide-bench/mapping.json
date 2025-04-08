@@ -1,0 +1,22 @@
+{
+    "letter": {
+      "name": "Letter writing",
+      "category": "letter"
+    },
+    "essay": {
+      "name": "Article writing",
+      "category": "essay"
+    },
+    "summary": {
+      "name": "Summarization",
+      "category": "summary"
+    },
+    "zh2en": {
+      "name": "Translation (Chinese to English)",
+      "category": "zh2en"
+    },
+    "en2zh": {
+      "name": "Translation (English to Chinese)",
+      "category": "en2zh"
+    }
+}
