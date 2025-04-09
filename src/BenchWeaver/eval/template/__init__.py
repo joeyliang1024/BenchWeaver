@@ -12,8 +12,10 @@ from .eval.hae_rae_bench_template import HAE_RAE_BENCH_Template, get_hae_rae_ben
 from .eval.tmlu_template import TMLU_Template, get_tmlu_eval_template
 from .eval.drcd_template import DRCD_Template, get_drcd_eval_template
 from .eval.awesome_taiwan_knowledge_template import get_awesome_taiwan_knowledge_eval_template
+from .eval.taide_bench_template import get_taide_bench_eval_template
 from .trans.advance_template import AdvancedTransTemplate
 from .trans.trans_template import get_translation_template
+
 
 __all__ = [
     # class
@@ -40,6 +42,7 @@ __all__ = [
     "get_tmlu_eval_template",
     "get_drcd_eval_template",
     "get_awesome_taiwan_knowledge_eval_template",
+    "get_taide_bench_eval_template",
     # translation
     "get_translation_template",
     # register

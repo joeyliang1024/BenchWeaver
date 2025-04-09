@@ -123,7 +123,7 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 5,
         "support_chain_of_thought": False,
     },
-    "taide_bench": {
+    "taide-bench": {
         "language": "zh-tw",
         "mode": ["opqa"],
         "display_scores": ["Average", "letter", "essay", "summary", "zh2en", "en2zh",],
@@ -218,5 +218,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         return {
             "mcqa-prob": MMLUProbEvaluator,
             "mcqa-oq": MMLUOQEvaluator,
+        }
+    elif task_name == "taide-bench":
+        from .zhtw.taide_bench.opqa_eval import TaideBenchEvaluator
+        return {
+            "opqa": TaideBenchEvaluator,
         }
     return {}

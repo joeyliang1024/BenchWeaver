@@ -6,15 +6,24 @@ from datasets import load_dataset
 from tqdm.auto import tqdm
 from ....evaluator import OPQAEvaluator
 from .....extras.constants import PROJECT_BASE_PATH
-# from ....template import 
+from ....template import get_taide_bench_eval_template
 
 class TaideBenchEvaluator(OPQAEvaluator):
     def __init__(self, args):
         super().__init__(args=args)
         
     def comput_score(self, check_results: Dict[str, List[Any]], subjects: List[str], checked_answers=None) -> Dict[str, float]:
-        category_corrects = {subj: np.array([], dtype="bool") for subj in subjects}
-        # TODO: implement the score computation logic
+        category_corrects = {subj: [] for subj in subjects}
+        for subj in check_results.keys():
+            for check_string in check_results[subj]:
+                score = self.retrieve_answer(text=check_string, numerical=True)
+                category_corrects[subj].append(score)
+                category_corrects['Average'].append(score)
+        # average score
+        for subj in category_corrects.keys():
+            category_corrects[subj] = np.mean(category_corrects[subj])
+
+        return category_corrects
     
     def load_data(self, 
                   mode = Literal['inference', 'check', 'translation'],
@@ -23,7 +32,6 @@ class TaideBenchEvaluator(OPQAEvaluator):
                   check_source: Literal['original', 'translated'] = "original",
                   ) -> Tuple[Dict[str, list], Dict[str, list]]:
         """Load and format data for evaluation."""
-        # TODO: override the get eval_template method by subject name
         # init data
         inference_prompts = {subj: [] for subj in self.categories.keys()}
         checker_prompts   = {subj: [] for subj in self.categories.keys()}
@@ -39,6 +47,8 @@ class TaideBenchEvaluator(OPQAEvaluator):
                 token=self.hf_token,
                 trust_remote_code=True,
             )
+            # load template
+            eval_template = get_taide_bench_eval_template(name=subject)
             # Prepare examples for evaluation
             if mode == "inference":
                 for i in range(min(len(dataset[self.eval_split]), self.testing_size)): 
@@ -51,7 +61,7 @@ class TaideBenchEvaluator(OPQAEvaluator):
                     else:
                         support_set = None
                     # format inference example
-                    messages = self.eval_template.format_inference_example(
+                    messages = eval_template.format_inference_example(
                         target_data=dataset[self.eval_split][i],
                         support_set=support_set,
                         subject_name=self.categories[subject]["name"],
@@ -64,7 +74,7 @@ class TaideBenchEvaluator(OPQAEvaluator):
                 # answers are already in the check prompts
                 assert self.inference_results is not None
                 for i in range(min(len(dataset[self.eval_split]), self.testing_size)):
-                    check_msg_list = self.eval_template.format_checker_example(
+                    check_msg_list = eval_template.format_checker_example(
                         target_data=dataset[self.eval_split][i],
                         llm_response=self.inference_results[subject][i] if check_source == "original" else self.translated_responses[subject][i],
                         criteria_prompt=self.eval_args.criteria_prompt,

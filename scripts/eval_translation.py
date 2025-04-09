@@ -104,14 +104,18 @@ def clean_inner_keys(data: dict) -> dict:
     Returns:
         dict: A new dictionary with cleaned inner keys.
     """
-    cleaned_data = {}
-    for outer_key, inner_dict in data.items():
-        cleaned_inner = {}
-        for k, v in inner_dict.items():
-            cleaned_key = re.sub(r'[：:]', '', k).strip()
-            cleaned_inner[cleaned_key] = v
-        cleaned_data[outer_key] = cleaned_inner
-    return cleaned_data
+    try:
+        cleaned_data = {}
+        for outer_key, inner_dict in data.items():
+            cleaned_inner = {}
+            for k, v in inner_dict.items():
+                cleaned_key = re.sub(r'[：:]', '', k).strip()
+                cleaned_inner[cleaned_key] = v
+            cleaned_data[outer_key] = cleaned_inner
+        return cleaned_data
+    except Exception as e:
+        logger.error(f"Error cleaning inner keys: {e}")
+        return data
 
 def parse_score(llm_response: str) -> dict:
     """
@@ -257,8 +261,8 @@ def merge_and_calculate_results(
                     score_dict[subj]['answer']['專有名詞準確度'],
                     score_dict[subj]['answer']['翻譯品質']
                 ])
-            except KeyError as e:
-                logger.error(f"KeyError: {e} in subject {subj}")
+            except Exception as e:
+                logger.error(f"Exception: {e} in subject {subj}")
                 logger.error(f"Question result: {question_result_dict}")
                 logger.error(f"Answer result: {answer_result_dict}")
                 continue
