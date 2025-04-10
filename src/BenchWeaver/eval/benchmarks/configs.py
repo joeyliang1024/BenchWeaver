@@ -138,7 +138,15 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
-    }
+    },
+    "cmath": {
+        "language": "zh",
+        "mode": ["opqa"],
+        "display_scores": ["Average", "main", "distractor",],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -237,5 +245,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         return {
             "mcqa-prob": CCPMProbEvaluator,
             "mcqa-oq": CCPMOQEvaluator,
+        }
+    elif task_name == "cmath":
+        from .zh.cmath.opqa_eval import CMATHEvaluator
+        return {
+            "opqa": CMATHEvaluator,
         }
     return {}

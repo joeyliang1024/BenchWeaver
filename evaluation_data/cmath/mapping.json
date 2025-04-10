@@ -1,0 +1,10 @@
+{
+    "main": {
+      "name": "原 CMath 測試資料集",
+      "category": "main"
+    },
+    "distractor": {
+      "name": "小型干擾資料集",
+      "category": "distractor"
+    }
+}
