@@ -130,9 +130,16 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": None,
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
+    },
+    "ccpm": {
+        "language": "zh",
+        "mode": ["mcqa-prob", "mcqa-oq"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": ["A", "B", "C", "D"],
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
     }
 }
-
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
     """
@@ -223,5 +230,12 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .zhtw.taide_bench.opqa_eval import TaideBenchEvaluator
         return {
             "opqa": TaideBenchEvaluator,
+        }
+    elif task_name == "ccpm":
+        from .zh.ccpm.oq_eval import CCPMOQEvaluator
+        from .zh.ccpm.prob_eval import CCPMProbEvaluator
+        return {
+            "mcqa-prob": CCPMProbEvaluator,
+            "mcqa-oq": CCPMOQEvaluator,
         }
     return {}

@@ -12,6 +12,7 @@ from .eval.tmlu_template import TMLU_Template, get_tmlu_eval_template
 from .eval.drcd_template import DRCD_Template, get_drcd_eval_template
 from .eval.awesome_taiwan_knowledge_template import get_awesome_taiwan_knowledge_eval_template
 from .eval.taide_bench_template import get_taide_bench_eval_template
+from .eval.ccpm_template import get_ccpm_eval_template
 
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
@@ -73,5 +74,9 @@ EVAL_TEMPLATE_CONFIG = {
     "taide-bench":{
         "class": OPQA_Template,
         "func": get_taide_bench_eval_template,
+        },
+    "ccpm":{
+        "class": MCQA_Template,
+        "func": get_ccpm_eval_template,
         },
 }
