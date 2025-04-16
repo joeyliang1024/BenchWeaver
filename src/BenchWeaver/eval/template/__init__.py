@@ -1,6 +1,7 @@
 from .template import EvalTemplate, TransTemplate, _register_eval_template, _register_trans_template
 from .eval.mcqa_template import MCQA_Template
 from .eval.opqa_template import OPQA_Template
+from .eval.multi_turn_template import Multi_Turn_Template
 from .eval.mmlu_template import get_mmlu_eval_template
 from .eval.arc_challenge_template import get_arc_challenge_eval_template
 from .eval.gpqa_template import get_gpqa_eval_template
@@ -20,6 +21,7 @@ from .trans.advance_template import AdvancedTransTemplate
 from .trans.trans_template import get_translation_template
 from .eval.c3_template import C3_Template, get_c3_eval_template
 from .eval.chinese_safety_qa_template import ChineseSafetyQA_Template, get_chinese_safety_qa_eval_template
+from .eval.mt_bench_tw_template import MT_Bench_TW_Template, get_mt_bench_tw_eval_template
 
 __all__ = [
     # class
@@ -27,6 +29,7 @@ __all__ = [
     "TransTemplate",
     "MCQA_Template",
     "OPQA_Template",
+    "Multi_Turn_Template",
     "AdvancedTransTemplate",
     "TruthfulQA_Template",
     "BigBenchHard_Template",
@@ -36,6 +39,7 @@ __all__ = [
     "DRCD_Template",
     "C3_Template",
     "ChineseSafetyQA_Template",
+    "MT_Bench_TW_Template",
     # function
     "get_mmlu_eval_template",
     "get_arc_challenge_eval_template",
@@ -54,6 +58,7 @@ __all__ = [
     "get_cif_bench_eval_template",
     "get_c3_eval_template",
     "get_chinese_safety_qa_eval_template",
+    "get_mt_bench_tw_eval_template",
     # translation
     "get_translation_template",
     # register

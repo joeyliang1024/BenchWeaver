@@ -1,0 +1,34 @@
+{
+    "writing": {
+      "name": "Writing",
+      "category": "writing"
+    },
+    "roleplay": {
+      "name": "Roleplay",
+      "category": "roleplay"
+    },
+    "reasoning": {
+      "name": "Reasoning",
+      "category": "reasoning"
+    },
+    "math": {
+      "name": "Math",
+      "category": "math"
+    },
+    "coding": {
+      "name": "Coding",
+      "category": "coding"
+    },
+    "extraction": {
+      "name": "Extraction",
+      "category": "extraction"
+    },
+    "stem": {
+      "name": "STEM",
+      "category": "stem"
+    },
+    "humanities": {
+      "name": "Humanities",
+      "category": "humanities"
+    }
+}

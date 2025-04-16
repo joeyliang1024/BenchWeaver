@@ -79,15 +79,16 @@ class AdvancedTransTemplate(TransTemplate):
                 "role": Role.USER.value, 
                 "content": self.guide_line + "\n" + trans_prompt
             })
-            
+        
             return messages
         else:
-            # Handle list of conversation messages case
             # Create a separate translation request for each message
             list_of_messages = []
             # Generate a unique ID for each message
             msg_uuid = str(uuid.uuid4())
             for i, msg in enumerate(trans_source):
+                # Handle 1. list of conversation messages (dict) case
+                #        2. list of questions (str) case
                 messages = []
                 
                 # system prompt
@@ -98,13 +99,13 @@ class AdvancedTransTemplate(TransTemplate):
                 messages.append({
                     "idx": i,
                     "uuid": msg_uuid,
-                    "origin_role": msg["role"],
+                    "origin_role": None if isinstance(msg, str) else msg["role"],
                     "role": Role.USER.value, 
                     "content": (
                         self.guide_line + 
                         "\n" + 
                         self.trans_prompt.format(
-                            trans_source=msg["content"], 
+                            trans_source=msg if isinstance(msg, str) else msg["content"], 
                             source_lang=source_lang, 
                             target_lang=target_lang,
                             in_context_examples=in_context_examples, #  if msg['role'] == Role.USER.value else "Not needed.",

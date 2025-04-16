@@ -124,6 +124,7 @@ class Evaluator:
                 - A list of conversation message lists, where each inner list contains
                   ordered messages for a single conversation (when input is list of dicts)
                 - The original list of strings (when input is list of strings)
+                - A list of translated questions lists
         """
         if isinstance(translated_messages[0], str):
             return translated_messages
@@ -143,7 +144,7 @@ class Evaluator:
         result = []
         for uuid, messages in conversations.items():
             # Remove metadata fields and keep only role and content
-            clean_messages = [{"role": msg["role"], "content": msg["content"]} for msg in messages]
+            clean_messages = [msg["content"] if msg["origin_role"] is None else {"role": msg["role"], "content": msg["content"]} for msg in messages]
             result.append(clean_messages)
 
         return result
@@ -377,7 +378,7 @@ class Evaluator:
 
         return results
     
-    def load_data(self, mode: Literal['inference', 'check', 'translation'], choices: List[str], responses_trans: bool = False, check_source: Literal['original', 'translated'] = "original") -> Tuple[Dict[str, list], Dict[str, list]]:
+    def load_data(self, mode: Literal['inference', 'check', 'translation'], choices: List[str], responses_trans: bool = False, check_source: Literal['original', 'translated'] = "original", **kwargs) -> Tuple[Dict[str, list], Dict[str, list]]:
         """
         Load data based on the specified mode. This should be defined by your benchmark. 
 

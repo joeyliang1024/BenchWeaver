@@ -29,7 +29,7 @@ async def eval():
             await evaluator.same_lang_eval(
                 choices=BENCHMARK_CONFIG[task]['mcqa_choices'],
                 subjects=BENCHMARK_CONFIG[task]['display_scores'],
-            ) 
+            )
         else:
             # different language evaluation
             await evaluator.diff_lang_eval(

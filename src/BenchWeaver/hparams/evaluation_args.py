@@ -80,7 +80,7 @@ class EvaluationArguments:
         default=False,
         metadata={"help": "Enable or disable chain of thought reasoning to enhance the open question inference model's response quality."}
     )
-    benchmark_mode: Literal["mcqa-prob", "mcqa-oq", "opqa", "mix"] = field(
+    benchmark_mode: Literal["trans", "code", "multi-turn", "mcqa-prob", "mcqa-oq", "opqa", "mix"] = field(
         default="opqa",
         metadata={"help": "Evaluation mode."},
     )

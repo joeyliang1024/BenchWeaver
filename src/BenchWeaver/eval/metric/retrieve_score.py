@@ -3,8 +3,8 @@ import re
 def parse_numerical_score(text: str) -> float:
     score = -1.0
     regex_patterns = [
-        r'(?:score|分數)\s*[:：]?\s*([\d.]+)',
-        r'rating:\s*\[\[([\d.]+)\]\]$'
+        r'(?:score|分數)\s*[:：]?\s*([\d.]+)', # taide bench format
+        r'rating:\s*\[\[([\d.]+)\]\]$'        # mt-bench-tw format
     ]
     for pattern in regex_patterns:
         match = re.search(pattern, text, re.IGNORECASE)

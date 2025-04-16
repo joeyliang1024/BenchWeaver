@@ -170,7 +170,15 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": OPTION_CODES,
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
-    }
+    },
+    "mt-bench-tw": {
+        "language": "zh-tw",
+        "mode": ["multi-turn"],
+        "display_scores": ["Average", "writing", "roleplay", "reasoning", "math", "coding", "extraction", "stem", "humanities"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -289,5 +297,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .zh.chinese_safety_qa.oq_eval import ChineseSafetyQAOQEvaluator
         return {
             "mcqa-oq": ChineseSafetyQAOQEvaluator,
+        }
+    elif task_name == "mt-bench-tw":
+        from .zhtw.mt_bench_tw.multi_turn_eval import MTBenchTWEvaluator
+        return {
+            "multi-turn": MTBenchTWEvaluator,
         }
     return {}
