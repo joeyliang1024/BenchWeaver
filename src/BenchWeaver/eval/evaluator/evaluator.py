@@ -108,7 +108,7 @@ class Evaluator:
     
     @staticmethod
     def recover_trans_messages(
-        translated_messages: Union[List[Dict[str, str]], List[str]]
+        translated_messages: Union[List[Dict[str, str]], List[str]],
         ) -> Union[List[List[Dict[str, str]]], List[str]]:
         """
         Group translated messages by UUID and sort by index to reconstruct conversation messages.
@@ -144,7 +144,7 @@ class Evaluator:
         result = []
         for uuid, messages in conversations.items():
             # Remove metadata fields and keep only role and content
-            clean_messages = [msg["content"] if msg["origin_role"] is None else {"role": msg["role"], "content": msg["content"]} for msg in messages]
+            clean_messages = [msg["content"] if msg["role"] is None else {"role": msg["role"], "content": msg["content"]} for msg in messages]
             result.append(clean_messages)
 
         return result

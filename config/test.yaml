@@ -14,8 +14,8 @@ check_mode: local
 translation_model_name_or_path: gpt-4o-mini
 translation_mode: api
 transation_templates_name: mix
-source_lang: ko
-target_lang: zh-tw
+source_lang: zh-tw
+target_lang: en
 
 ### source dataset
 task: mt-bench-tw_test  
@@ -23,14 +23,14 @@ task_dir: evaluation_data
 lang: zh-tw
 n_shot: 5
 benchmark_mode: multi-turn
-pipeline: same
+pipeline: diff
 batch_size: 4
 
 ### reference dataset, split will use 'test' don't specify
-ref_task: mmlu
+# ref_task: mmlu
 
 ### output
-save_dir: score/mt-bench-tw/same_lang
+save_dir: score/mt-bench-tw/diff_lang
 
 ### VLLM 
 vllm_maxlen: 8192

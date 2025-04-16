@@ -4,7 +4,7 @@ from typing import Dict, List, Literal, Sequence, Tuple
 from ..template import TransTemplate
 from ....data.data_utils import Role
 from ....extras.constants import OPTION_CODES
-from ...template import MCQA_Template, OPQA_Template, EvalTemplate
+from ...template import MCQA_Template, OPQA_Template, Multi_Turn_Template, EvalTemplate
 
 class AdvancedTransTemplate(TransTemplate):
     def __init__(self, template_lang: str, trans_prompt: str, system_prompt: str, guide_line: str, proper_noun_examples:str):
@@ -21,7 +21,7 @@ class AdvancedTransTemplate(TransTemplate):
                                target_lang, 
                                choices: List[str], 
                                support_set: Sequence[Dict[str, str]], 
-                               support_set_template: MCQA_Template | OPQA_Template | EvalTemplate,
+                               support_set_template: MCQA_Template | OPQA_Template | Multi_Turn_Template | EvalTemplate,
                                support_set_choices: List[str],
                                use_cot: bool
                                ) -> List[Dict[str, str]] | List[List[Dict[str, str]]]:

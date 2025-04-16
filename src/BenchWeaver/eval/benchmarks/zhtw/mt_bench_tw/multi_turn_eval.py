@@ -82,7 +82,7 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
                         trust_remote_code=True,
                     )
                     support_set = (
-                            dataset["test"]
+                            ref_dataset["test"]
                             .shuffle()
                             .select(range(min(self.eval_args.n_shot, len(ref_dataset["test"]))))
                         )
@@ -118,7 +118,7 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
                             use_cot=self.eval_args.cot,
                         )
                         # message list
-                        translate_prompts[subject].append(trans_messages)
+                        translate_prompts[subject] += trans_messages
             else:
                 raise ValueError(f"Input mode {mode} is invalid. Please specify one of 'inference' or 'check' instead.")
         
