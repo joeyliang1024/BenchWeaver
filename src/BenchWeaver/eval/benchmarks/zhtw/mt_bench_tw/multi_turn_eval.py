@@ -1,4 +1,5 @@
 import os
+import ast
 import random
 import numpy as np
 from typing import Any, Dict, List, Literal, Tuple
@@ -35,8 +36,8 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
         """Load and format data for evaluation."""
         # init data
         inference_questions = {subj: [] for subj in self.categories.keys()}
-        checker_prompts   = {subj: [] for subj in self.categories.keys()}
-        translate_prompts = {subj: [] for subj in self.categories.keys()}
+        checker_prompts     = {subj: [] for subj in self.categories.keys()}
+        translate_prompts   = {subj: [] for subj in self.categories.keys()}
         # Load datasets
         for subject in tqdm(self.categories.keys(), desc="Loading subjects"):
             # load dataset from folder
@@ -69,13 +70,7 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
 
             elif mode == "translation":
                 # check is question or repsponse translation
-                # TODO: data loading should adjust
-                if responses_trans:
-                    assert self.inference_results is not None
-                    source_type = "response"
-                else:
-                    source_type = "question"
-                    
+                source_type = "response" if responses_trans else "question"
                 # load object benchmark examples
                 if self.ref_task is not None:
                     ref_dataset = load_dataset(
@@ -98,7 +93,7 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
                     # format translation example
                     if source_type == "question":
                         trans_messages = self.trans_template.format_translation_example(
-                            trans_source=self.inference_prompts[subject][i],
+                            trans_source=ast.literal_eval(dataset[self.eval_split][i]['question_turns']),
                             source_type=source_type,
                             source_lang=self.model_args.source_lang,
                             target_lang=self.model_args.target_lang,
@@ -112,7 +107,7 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
                         translate_prompts[subject] += trans_messages
                     elif source_type == "response":
                         trans_messages = self.trans_template.format_translation_example(
-                            trans_source=self.inference_results[subject][i],
+                            trans_source=self.retrieved_responses[subject][i],
                             source_type=source_type,
                             source_lang=self.model_args.target_lang,
                             target_lang=self.model_args.source_lang,
