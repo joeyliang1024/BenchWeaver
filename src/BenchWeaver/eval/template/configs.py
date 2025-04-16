@@ -14,6 +14,9 @@ from .eval.awesome_taiwan_knowledge_template import get_awesome_taiwan_knowledge
 from .eval.taide_bench_template import get_taide_bench_eval_template
 from .eval.ccpm_template import get_ccpm_eval_template
 from .eval.cmath_template import get_cmath_eval_template
+from .eval.cif_bench_template import get_cif_bench_eval_template
+from .eval.c3_template import C3_Template, get_c3_eval_template
+from .eval.chinese_safety_qa_template import ChineseSafetyQA_Template, get_chinese_safety_qa_eval_template
 
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
@@ -83,5 +86,17 @@ EVAL_TEMPLATE_CONFIG = {
     "cmath":{
         "class": OPQA_Template,
         "func": get_cmath_eval_template,
+        },
+    "cif-bench": {
+        "class": OPQA_Template,
+        "func": get_cif_bench_eval_template,
+        },
+    "c3":{
+        "class": C3_Template,
+        "func": get_c3_eval_template,
+        },
+    "chinese-safety-qa":{
+        "class": ChineseSafetyQA_Template,
+        "func": get_chinese_safety_qa_eval_template,
         },
 }

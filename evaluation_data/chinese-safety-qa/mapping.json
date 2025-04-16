@@ -1,0 +1,30 @@
+{
+    "theoretical_and_technical_knowledge": {
+      "name": "Theoretical and Technical Knowledge",
+      "category": "理论技术知识"
+    },
+    "ethical_and_moral_risks": {
+      "name": "Ethical and Moral Risks",
+      "category": "伦理道德风险"
+    },
+    "bias_and_discrimination_risks": {
+      "name": "Bias and Discrimination Risks",
+      "category": "偏见歧视风险"
+    },
+    "abuse_and_hate_speech_risks": {
+      "name": "Abuse and Hate Speech Risks",
+      "category": "辱骂仇恨风险"
+    },
+    "physical_and_mental_health_risks": {
+      "name": "Physical and Mental Health Risks",
+      "category": "身心健康风险"
+    },
+    "legal_and_regulatory_risks": {
+      "name": "Legal and Regulatory Risks",
+      "category": "违法违规风险"
+    },
+    "rumor_and_misinformation_risks": {
+      "name": "Rumor and Misinformation Risks",
+      "category": "谣言错误风险"
+    }
+}

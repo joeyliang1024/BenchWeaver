@@ -17,7 +17,7 @@ _register_eval_template(
     cot="\n让我们一步一步地思考。\n答案：",
     templates=cmath_eval_templates,
     template_class=OPQA_Template,
-    criteria_prompt="请判断大语言模型（LLM）的回答是否正确。\n\n问题：{answer}\n\n参考答案：{question}\n\nLLM 回答：{llm_response}\n\n如果 LLM 回答正确，请回复 “True”，否则回复 “False”。",
+    criteria_prompt="请判断大语言模型（LLM）的回答是否正确。\n\n问题：{question}\n\n参考答案：{answer}\n\nLLM 回答：{llm_response}\n\n如果 LLM 回答正确，请回复 “True”，否则回复 “False”。",
     response="正确答案是（{answer}）。"
 )
 

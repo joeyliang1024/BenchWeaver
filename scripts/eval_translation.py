@@ -117,25 +117,40 @@ def clean_inner_keys(data: dict) -> dict:
         logger.error(f"Error cleaning inner keys: {e}")
         return data
 
+def ensure_json_serializable(obj):
+    """
+    Recursively ensure all values in the dict are JSON serializable.
+    Prevents issues with non-serializable types when exporting to JSON.
+    """
+    if isinstance(obj, dict):
+        return {str(k): ensure_json_serializable(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [ensure_json_serializable(v) for v in obj]
+    elif isinstance(obj, (str, int, float, bool)) or obj is None:
+        return obj
+    else:
+        return str(obj)  # Fallback to string representation
+    
 def parse_score(llm_response: str) -> dict:
     """
-    Parse the score from the LLM response.
+    Parse the score from the LLM response and ensure it's JSON serializable.
     """
     try:
         score_dict = ast.literal_eval(re.sub(r'\\|\n', '', llm_response))
         if isinstance(score_dict, dict):
-            return clean_inner_keys(score_dict)
-        else:
-            return score_dict
-    
+            cleaned_dict = clean_inner_keys(score_dict)
+            return ensure_json_serializable(cleaned_dict)
     except (SyntaxError, ValueError):
-        
-        return {
-                  "資訊保留度": {"分數": 1, "原因": ""},
-                  "風格匹配度": {"分數": 1, "原因": ""},
-                  "專有名詞準確度": {"分數": 1, "原因": ""},
-                  "翻譯品質": {"分數": 1, "原因": ""}
-        }
+        pass
+    
+    # Only reached if try block fails or is not a dict
+    return {
+        "資訊保留度": {"分數": 1, "原因": ""},
+        "風格匹配度": {"分數": 1, "原因": ""},
+        "專有名詞準確度": {"分數": 1, "原因": ""},
+        "翻譯品質": {"分數": 1, "原因": ""}
+    }
+
         
 def retrieve_style_example(trans_prompt:str) -> str:
     pattern = r"(?:For example:|Examples:|Few-shot Examples:)\s*(.*?)\s*(?:Source sentence:|Proper Noun Examples:)"

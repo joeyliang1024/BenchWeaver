@@ -17,6 +17,6 @@ _register_eval_template(
     cot="\nLet's think step by step.\nAnswer:",
     templates=gpqa_eval_templates,
     template_class=OPQA_Template,
-    criteria_prompt="Determine whether the LLM Response correctly answer the question.\n\nQuestion: {answer}\n\nReference Answer: {question}\n\nLLM Response: {llm_response}\n\nIf the LLM Response correct, just response 'True', else response 'False'.",
+    criteria_prompt="Determine whether the LLM Response correctly answer the question.\n\nQuestion: {question}\n\nReference Answer: {answer}\n\nLLM Response: {llm_response}\n\nIf the LLM Response correct, just response 'True', else response 'False'.",
     response="The correct answer is ({answer})."
 )

@@ -147,6 +147,30 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
     },
+    "cif-bench": {
+        "language": "zh",
+        "mode": ["opqa"],
+        "display_scores": ["Average", 'Grammar', 'Style Transfer', 'Commonsense', 'Motion', 'NLI', 'NLG', 'Summarization', 'Toxic', 'Creative', 'NER', 'Code', 'Translation', 'Structured Data', 'Linguistic', 'Evaluation', 'Chinese Culture', 'QA', 'Role Playing', 'Sentiment', 'Reasoning', 'Classification', 'Detection'],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
+    "c3": {
+        "language": "zh",
+        "mode": ["mcqa-oq"],
+        "display_scores": ["Average", 'mixed', "dialogue"],
+        "mcqa_choices": OPTION_CODES,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
+    "chinese-safety-qa": {
+        "language": "zh",
+        "mode": ["mcqa-oq"],
+        "display_scores": ["Average", '理论技术知识', '伦理道德风险', '偏见歧视风险', '辱骂仇恨风险', '身心健康风险', '违法违规风险', '谣言错误风险'],
+        "mcqa_choices": OPTION_CODES,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    }
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -250,5 +274,20 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .zh.cmath.opqa_eval import CMATHEvaluator
         return {
             "opqa": CMATHEvaluator,
+        }
+    elif task_name == "cif-bench":
+        from .zh.cif_bench.opqa_eval import CifBenchEvaluator
+        return {
+            "opqa": CifBenchEvaluator,
+        }
+    elif task_name == "c3":
+        from .zh.c3.oq_eval import C3OQEvaluator
+        return {
+            "mcqa-oq": C3OQEvaluator,
+        }
+    elif task_name == "chinese-safety-qa":
+        from .zh.chinese_safety_qa.oq_eval import ChineseSafetyQAOQEvaluator
+        return {
+            "mcqa-oq": ChineseSafetyQAOQEvaluator,
         }
     return {}

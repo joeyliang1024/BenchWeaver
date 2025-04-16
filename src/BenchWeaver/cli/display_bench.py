@@ -9,7 +9,7 @@ def display_benchmark_table():
         table.append([
             benchmark,
             config["language"],
-            ", ".join(BENCHMARK_CONFIG['mode']),
+            ", ".join(config['mode']),
             config["sugguest_num_shots"],
             config["support_chain_of_thought"]
         ])

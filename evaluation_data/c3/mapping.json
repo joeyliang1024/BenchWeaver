@@ -1,0 +1,10 @@
+{
+    "mixed": {
+      "name": "Mixed",
+      "category": "mixed"
+    },
+    "dialogue": {
+      "name": "Dialogue",
+      "category": "dialogue"
+    }
+}

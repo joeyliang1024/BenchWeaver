@@ -1,0 +1,270 @@
+{
+    "dentistry": {
+        "average": 121.3358395989975,
+        "variance": 6114.8195425908125
+    },
+    "traditional_chinese_medicine_clinical_medicine": {
+        "average": 205.53956834532374,
+        "variance": 4249.449873194969
+    },
+    "clinical_psychology": {
+        "average": 125.328,
+        "variance": 8507.660415999997
+    },
+    "technical": {
+        "average": 56.808457711442784,
+        "variance": 2068.647391153684
+    },
+    "culinary_skills": {
+        "average": 130.58904109589042,
+        "variance": 12600.098236066802
+    },
+    "mechanical": {
+        "average": 106.5677966101695,
+        "variance": 4192.211505314564
+    },
+    "logic_reasoning": {
+        "average": 120.87769784172662,
+        "variance": 25678.193675275605
+    },
+    "real_estate": {
+        "average": 165.0,
+        "variance": 11394.108695652174
+    },
+    "general_principles_of_law": {
+        "average": 183.6320754716981,
+        "variance": 4283.477839088644
+    },
+    "finance_banking": {
+        "average": 134.05925925925925,
+        "variance": 12922.455747599452
+    },
+    "anti_money_laundering": {
+        "average": 182.67164179104478,
+        "variance": 8387.05635999109
+    },
+    "ttqav2": {
+        "average": 67.93805309734513,
+        "variance": 1809.7218262980657
+    },
+    "marketing_management": {
+        "average": 148.63440860215053,
+        "variance": 3871.264192392184
+    },
+    "business_management": {
+        "average": 81.73381294964028,
+        "variance": 4335.634180425443
+    },
+    "organic_chemistry": {
+        "average": 75.11009174311927,
+        "variance": 3595.9878798080967
+    },
+    "advance_chemistry": {
+        "average": 173.3089430894309,
+        "variance": 14046.262277744727
+    },
+    "physics": {
+        "average": 163.8762886597938,
+        "variance": 43023.9022212775
+    },
+    "secondary_physics": {
+        "average": 160.75892857142858,
+        "variance": 25547.825813137755
+    },
+    "human_behavior": {
+        "average": 144.19417475728156,
+        "variance": 6866.493040500204
+    },
+    "national_protection": {
+        "average": 136.27962085308056,
+        "variance": 3680.798589429707
+    },
+    "jce_humanities": {
+        "average": 0.5111111111111111,
+        "variance": 3.2498765432098766
+    },
+    "politic_science": {
+        "average": 118.75075376884422,
+        "variance": 5681.268529582587
+    },
+    "agriculture": {
+        "average": 127.33774834437087,
+        "variance": 4475.071356519451
+    },
+    "official_document_management": {
+        "average": 63.009009009009006,
+        "variance": 2290.8467656846033
+    },
+    "financial_analysis": {
+        "average": 142.97120418848166,
+        "variance": 16348.027966612757
+    },
+    "pharmacy": {
+        "average": 106.7621483375959,
+        "variance": 8522.043170832216
+    },
+    "educational_psychology": {
+        "average": 110.81818181818181,
+        "variance": 6763.035123966941
+    },
+    "statistics_and_machine_learning": {
+        "average": 166.86607142857142,
+        "variance": 63379.06242028061
+    },
+    "management_accounting": {
+        "average": 184.75348837209302,
+        "variance": 67920.47411573825
+    },
+    "introduction_to_law": {
+        "average": 33.49367088607595,
+        "variance": 29105.465149815718
+    },
+    "computer_science": {
+        "average": 113.44827586206897,
+        "variance": 17606.638129211256
+    },
+    "veterinary_pathology": {
+        "average": 133.06713780918727,
+        "variance": 5202.868284034012
+    },
+    "accounting": {
+        "average": 4.68586387434555,
+        "variance": 2383.136920588799
+    },
+    "fire_science": {
+        "average": 96.74193548387096,
+        "variance": 4505.675338189386
+    },
+    "optometry": {
+        "average": 185.20978260869566,
+        "variance": 15299.770121691874
+    },
+    "insurance_studies": {
+        "average": 182.77105263157895,
+        "variance": 5850.763372576178
+    },
+    "pharmacology": {
+        "average": 120.98786828422877,
+        "variance": 6036.736421279011
+    },
+    "taxation": {
+        "average": 143.49333333333334,
+        "variance": 19302.607288888892
+    },
+    "education_(profession_level)": {
+        "average": 124.27160493827161,
+        "variance": 35207.613473555866
+    },
+    "economics": {
+        "average": 122.19847328244275,
+        "variance": 11737.126002758192
+    },
+    "veterinary_pharmacology": {
+        "average": 104.90555555555555,
+        "variance": 5333.670709876543
+    },
+    "nautical_science": {
+        "average": 72.6442831215971,
+        "variance": 4586.889799440714
+    },
+    "occupational_therapy_for_psychological_disorders": {
+        "average": 184.59668508287294,
+        "variance": 3957.0767477590225
+    },
+    "trust_practice": {
+        "average": 170.26683291770573,
+        "variance": 11610.425059545649
+    },
+    "geography_of_taiwan": {
+        "average": 126.95182291666667,
+        "variance": 4978.134397718642
+    },
+    "physical_education": {
+        "average": 74.0391061452514,
+        "variance": 3488.071096407727
+    },
+    "auditing": {
+        "average": 211.16363636363636,
+        "variance": 10671.445950413223
+    },
+    "administrative_law": {
+        "average": 218.2357142857143,
+        "variance": 36173.68491496599
+    },
+    "basic_medical_science": {
+        "average": 74.22955974842768,
+        "variance": 4294.250237332384
+    },
+    "macroeconomics": {
+        "average": 149.76885644768856,
+        "variance": 8155.39912740275
+    },
+    "trade": {
+        "average": 172.62749003984064,
+        "variance": 24091.39310883954
+    },
+    "chinese_language_and_literature": {
+        "average": 171.9497487437186,
+        "variance": 52306.80149491174
+    },
+    "tve_design": {
+        "average": 118.51875,
+        "variance": 5905.103815104167
+    },
+    "junior_science_exam": {
+        "average": 97.71361502347418,
+        "variance": 8432.439110405783
+    },
+    "junior_math_exam": {
+        "average": 61.13142857142857,
+        "variance": 11167.908440816325
+    },
+    "junior_chinese_exam": {
+        "average": 6.171428571428572,
+        "variance": 5660.416326530613
+    },
+    "junior_social_studies": {
+        "average": 6.396825396825397,
+        "variance": 607.4298311917357
+    },
+    "tve_mathematics": {
+        "average": 102.09333333333333,
+        "variance": 18899.031288888888
+    },
+    "tve_chinese_language": {
+        "average": 52.48654244306418,
+        "variance": 45511.603856161244
+    },
+    "tve_natural_sciences": {
+        "average": 123.34198113207547,
+        "variance": 7581.413709282663
+    },
+    "junior_chemistry": {
+        "average": 100.24401913875599,
+        "variance": 13740.337583846524
+    },
+    "music": {
+        "average": 71.69064748201438,
+        "variance": 3426.3791211635007
+    },
+    "education": {
+        "average": 140.4516129032258,
+        "variance": 4700.989594172737
+    },
+    "three_principles_of_people": {
+        "average": 125.70503597122303,
+        "variance": 6840.236737228922
+    },
+    "taiwanese_hokkien": {
+        "average": 159.74418604651163,
+        "variance": 11130.965566973138
+    },
+    "engineering_math": {
+        "average": 87.44660194174757,
+        "variance": 51089.23743990951
+    },
+    "overall": {
+        "average": 126.64926931106471,
+        "variance": 15061.549221804298
+    }
+}

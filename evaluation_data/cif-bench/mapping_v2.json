@@ -1,0 +1,598 @@
+{
+  "chinese_attractions_list": {
+    "name": "Chinese Attractions List",
+    "category": "Chinese Culture"
+  },
+  "intimacy_score_prediction": {
+    "name": "Intimacy Score Prediction",
+    "category": "Sentiment"
+  },
+  "word_semantics": {
+    "name": "Word Semantics",
+    "category": "Linguistic"
+  },
+  "speaker_identification": {
+    "name": "Speaker Identification",
+    "category": "Classification"
+  },
+  "chinese_figurative_detection": {
+    "name": "Chinese Figurative Detection",
+    "category": "Chinese Culture"
+  },
+  "multilabel_chinese_humor_categorization": {
+    "name": "Multilabel Chinese Humor Categorization",
+    "category": "Chinese Culture"
+  },
+  "argument_mining": {
+    "name": "Argument Mining",
+    "category": "Reasoning"
+  },
+  "code_to_text": {
+    "name": "Code To Text",
+    "category": "Code"
+  },
+  "social_norms_detection": {
+    "name": "Social Norms Detection",
+    "category": "Classification"
+  },
+  "paraphrasing": {
+    "name": "Paraphrasing",
+    "category": "NLG"
+  },
+  "theory_of_mind": {
+    "name": "Theory Of Mind",
+    "category": "Reasoning"
+  },
+  "stereotype_detection": {
+    "name": "Stereotype Detection",
+    "category": "Classification"
+  },
+  "sentence_ordering": {
+    "name": "Sentence Ordering",
+    "category": "Grammar"
+  },
+  "sentence_expansion": {
+    "name": "Sentence Expansion",
+    "category": "NLG"
+  },
+  "fill_in_the_blank": {
+    "name": "Fill In The Blank",
+    "category": "Grammar"
+  },
+  "discourse_relation_classification": {
+    "name": "Discourse Relation Classification",
+    "category": "Classification"
+  },
+  "chinese_dialect_translation": {
+    "name": "Chinese Dialect Translation",
+    "category": "Chinese Culture"
+  },
+  "game_playing": {
+    "name": "Game Playing",
+    "category": "Creative"
+  },
+  "chinese_modern_abbreviation_explanation": {
+    "name": "Chinese Modern Abbreviation Explanation",
+    "category": "Chinese Culture"
+  },
+  "entity_relation_classification": {
+    "name": "Entity Relation Classification",
+    "category": "Classification"
+  },
+  "rhyme_aligned_generationn": {
+    "name": "Rhyme Aligned Generationn",
+    "category": "Chinese Culture"
+  },
+  "text_categorization": {
+    "name": "Text Categorization",
+    "category": "Classification"
+  },
+  "chinese_winograd_schema_challenge": {
+    "name": "Chinese Winograd Schema Challenge",
+    "category": "Chinese Culture"
+  },
+  "stance_detection": {
+    "name": "Stance Detection",
+    "category": "Classification"
+  },
+  "mind_tree_generation": {
+    "name": "Mind Tree Generation",
+    "category": "NLG"
+  },
+  "grammar_error_correction": {
+    "name": "Grammar Error Correction",
+    "category": "Grammar"
+  },
+  "chinese_epigraph_detection": {
+    "name": "Chinese Epigraph Detection",
+    "category": "Chinese Culture"
+  },
+  "discourse_connective_identification": {
+    "name": "Discourse Connective Identification",
+    "category": "Classification"
+  },
+  "explanation": {
+    "name": "Explanation",
+    "category": "Commonsense"
+  },
+  "word_relation_classification": {
+    "name": "Word Relation Classification",
+    "category": "Classification"
+  },
+  "discreteoperationqa": {
+    "name": "Discreteoperationqa",
+    "category": "QA"
+  },
+  "style_transfer": {
+    "name": "Style Transfer",
+    "category": "Style Transfer"
+  },
+  "iq_test": {
+    "name": "Iq Test",
+    "category": "Reasoning"
+  },
+  "story_composition": {
+    "name": "Story Composition",
+    "category": "Creative"
+  },
+  "chinese_fiction_characteristic_detection": {
+    "name": "Chinese Fiction Characteristic Detection",
+    "category": "Chinese Culture"
+  },
+  "poem_generation": {
+    "name": "Poem Generation",
+    "category": "Creative"
+  },
+  "code_debug": {
+    "name": "Code Debug",
+    "category": "Code"
+  },
+  "first_order_logic": {
+    "name": "First Order Logic",
+    "category": "Reasoning"
+  },
+  "make_positive": {
+    "name": "Make Positive",
+    "category": "Sentiment"
+  },
+  "chinese_pinyin_detection": {
+    "name": "Chinese Pinyin Detection",
+    "category": "Chinese Culture"
+  },
+  "flowchart_generation": {
+    "name": "Flowchart Generation",
+    "category": "NLG"
+  },
+  "commonsense": {
+    "name": "Commonsense",
+    "category": "Commonsense"
+  },
+  "preposition_prediction": {
+    "name": "Preposition Prediction",
+    "category": "Grammar"
+  },
+  "outline_generation": {
+    "name": "Outline Generation",
+    "category": "NLG"
+  },
+  "number_conversion": {
+    "name": "Number Conversion",
+    "category": "Structured Data"
+  },
+  "title_generation": {
+    "name": "Title Generation",
+    "category": "NLG"
+  },
+  "question_generation": {
+    "name": "Question Generation",
+    "category": "NLG"
+  },
+  "english_translation": {
+    "name": "English Translation",
+    "category": "Translation"
+  },
+  "recipe_generation": {
+    "name": "Recipe Generation",
+    "category": "NLG"
+  },
+  "dialogue_generation": {
+    "name": "Dialogue Generation",
+    "category": "NLG"
+  },
+  "chinese_ambiguity_sentence_location": {
+    "name": "Chinese Ambiguity Sentence Location",
+    "category": "Chinese Culture"
+  },
+  "intent_identification": {
+    "name": "Intent Identification",
+    "category": "Classification"
+  },
+  "data_to_text": {
+    "name": "Data To Text",
+    "category": "Structured Data"
+  },
+  "named_entity_recognition": {
+    "name": "Named Entity Recognition",
+    "category": "NER"
+  },
+  "wrong_candidate_generation": {
+    "name": "Wrong Candidate Generation",
+    "category": "NLG"
+  },
+  "advertising": {
+    "name": "Advertising",
+    "category": "Creative"
+  },
+  "gender_classification": {
+    "name": "Gender Classification",
+    "category": "Classification"
+  },
+  "event_type_detection": {
+    "name": "Event Type Detection",
+    "category": "Classification"
+  },
+  "text_matching": {
+    "name": "Text Matching",
+    "category": "Evaluation"
+  },
+  "joke_telling": {
+    "name": "Joke Telling",
+    "category": "Creative"
+  },
+  "spam_classification": {
+    "name": "Spam Classification",
+    "category": "Classification"
+  },
+  "spanish_translation": {
+    "name": "Spanish Translation",
+    "category": "Translation"
+  },
+  "chinese_typo_categorization": {
+    "name": "Chinese Typo Categorization",
+    "category": "Chinese Culture"
+  },
+  "name_allusion_detection": {
+    "name": "Name Allusion Detection",
+    "category": "Classification"
+  },
+  "chinese_wubi_written": {
+    "name": "Chinese Wubi Written",
+    "category": "Chinese Culture"
+  },
+  "spelling_error_detection": {
+    "name": "Spelling Error Detection",
+    "category": "Classification"
+  },
+  "information_extraction": {
+    "name": "Information Extraction",
+    "category": "NER"
+  },
+  "affordance": {
+    "name": "Affordance",
+    "category": "Reasoning"
+  },
+  "question_rewriting": {
+    "name": "Question Rewriting",
+    "category": "QA"
+  },
+  "review_generation": {
+    "name": "Review Generation",
+    "category": "NLG"
+  },
+  "bengali_translation": {
+    "name": "Bengali Translation",
+    "category": "Translation"
+  },
+  "bias_detoxication": {
+    "name": "Bias Detoxication",
+    "category": "Toxic"
+  },
+  "emotion_prediction": {
+    "name": "Emotion Prediction",
+    "category": "Sentiment"
+  },
+  "nationality_detection": {
+    "name": "Nationality Detection",
+    "category": "Classification"
+  },
+  "text_de_identification": {
+    "name": "Text De Identification",
+    "category": "Classification"
+  },
+  "commonsenseqa": {
+    "name": "Commonsenseqa",
+    "category": "Commonsense"
+  },
+  "region_detection": {
+    "name": "Region Detection",
+    "category": "Classification"
+  },
+  "cause_effect_classification": {
+    "name": "Cause Effect Classification",
+    "category": "Classification"
+  },
+  "commonsense_explanation": {
+    "name": "Commonsense Explanation",
+    "category": "Commonsense"
+  },
+  "fact_verification": {
+    "name": "Fact Verification",
+    "category": "Evaluation"
+  },
+  "readingcomprehensionqa": {
+    "name": "Readingcomprehensionqa",
+    "category": "QA"
+  },
+  "function_explanation": {
+    "name": "Function Explanation",
+    "category": "Commonsense"
+  },
+  "chinese_medicine_detection": {
+    "name": "Chinese Medicine Detection",
+    "category": "Chinese Culture"
+  },
+  "program_execution": {
+    "name": "Program Execution",
+    "category": "Code"
+  },
+  "summarization": {
+    "name": "Summarization",
+    "category": "Summarization"
+  },
+  "question_answering": {
+    "name": "Question Answering",
+    "category": "QA"
+  },
+  "question_understanding": {
+    "name": "Question Understanding",
+    "category": "QA"
+  },
+  "grammar_error_detection": {
+    "name": "Grammar Error Detection",
+    "category": "Classification"
+  },
+  "ancient_chinese_poem_retrieval": {
+    "name": "Ancient Chinese Poem Retrieval",
+    "category": "Chinese Culture"
+  },
+  "patronizing_condescending_multilabel": {
+    "name": "Patronizing Condescending Multilabel",
+    "category": "Toxic"
+  },
+  "negotiation_strategy_detection": {
+    "name": "Negotiation Strategy Detection",
+    "category": "Classification"
+  },
+  "keyword_tagging": {
+    "name": "Keyword Tagging",
+    "category": "Classification"
+  },
+  "dialogue_act_recognition": {
+    "name": "Dialogue Act Recognition",
+    "category": "NLG"
+  },
+  "irony_detection": {
+    "name": "Irony Detection",
+    "category": "Classification"
+  },
+  "table_generation": {
+    "name": "Table Generation",
+    "category": "NLG"
+  },
+  "tool_use": {
+    "name": "Tool Use",
+    "category": "Structured Data"
+  },
+  "sentence_compression": {
+    "name": "Sentence Compression",
+    "category": "Grammar"
+  },
+  "text_quality_evaluation": {
+    "name": "Text Quality Evaluation",
+    "category": "Evaluation"
+  },
+  "chinese_heteronomous_language_detection": {
+    "name": "Chinese Heteronomous Language Detection",
+    "category": "Chinese Culture"
+  },
+  "entity_generation": {
+    "name": "Entity Generation",
+    "category": "NLG"
+  },
+  "pos_tagging": {
+    "name": "Pos Tagging",
+    "category": "Classification"
+  },
+  "commonsense_classification": {
+    "name": "Commonsense Classification",
+    "category": "Classification"
+  },
+  "sentence_composition": {
+    "name": "Sentence Composition",
+    "category": "Creative"
+  },
+  "textual_entailment": {
+    "name": "Textual Entailment",
+    "category": "NLI"
+  },
+  "legal_term_retrieval": {
+    "name": "Legal Term Retrieval",
+    "category": "Classification"
+  },
+  "draw_figure_with_symbol": {
+    "name": "Draw Figure With Symbol",
+    "category": "Motion"
+  },
+  "chinese_idiom_explanation": {
+    "name": "Chinese Idiom Explanation",
+    "category": "Chinese Culture"
+  },
+  "dialogue_state_tracking": {
+    "name": "Dialogue State Tracking",
+    "category": "NLG"
+  },
+  "role_playing": {
+    "name": "Role Playing",
+    "category": "Role Playing"
+  },
+  "critical_thinking": {
+    "name": "Critical Thinking",
+    "category": "Reasoning"
+  },
+  "chinese_relative_identification": {
+    "name": "Chinese Relative Identification",
+    "category": "Chinese Culture"
+  },
+  "linguistic_probing": {
+    "name": "Linguistic Probing",
+    "category": "Linguistic"
+  },
+  "arabic_translation": {
+    "name": "Arabic Translation",
+    "category": "Translation"
+  },
+  "french_translation": {
+    "name": "French Translation",
+    "category": "Translation"
+  },
+  "text_to_code": {
+    "name": "Text To Code",
+    "category": "Code"
+  },
+  "sentiment_analysis": {
+    "name": "Sentiment Analysis",
+    "category": "Sentiment"
+  },
+  "answer_verification": {
+    "name": "Answer Verification",
+    "category": "Evaluation"
+  },
+  "japanese_translation": {
+    "name": "Japanese Translation",
+    "category": "Translation"
+  },
+  "material_synthesis": {
+    "name": "Material Synthesis",
+    "category": "Structured Data"
+  },
+  "chinese_metaphor_explanation": {
+    "name": "Chinese Metaphor Explanation",
+    "category": "Chinese Culture"
+  },
+  "emphathy_detection": {
+    "name": "Emphathy Detection",
+    "category": "Classification"
+  },
+  "concept_abstraction": {
+    "name": "Concept Abstraction",
+    "category": "Reasoning"
+  },
+  "pros_cons_listing": {
+    "name": "Pros Cons Listing",
+    "category": "NLG"
+  },
+  "conversationalqa": {
+    "name": "Conversationalqa",
+    "category": "QA"
+  },
+  "personality_detection": {
+    "name": "Personality Detection",
+    "category": "Classification"
+  },
+  "overlap_extraction": {
+    "name": "Overlap Extraction",
+    "category": "NER"
+  },
+  "translate_to_ancient_chinese": {
+    "name": "Translate To Ancient Chinese",
+    "category": "Chinese Culture"
+  },
+  "text_completion": {
+    "name": "Text Completion",
+    "category": "NLG"
+  },
+  "speaker_relation_classification": {
+    "name": "Speaker Relation Classification",
+    "category": "Classification"
+  },
+  "gujarati_translation": {
+    "name": "Gujarati Translation",
+    "category": "Translation"
+  },
+  "sentence_perturbation": {
+    "name": "Sentence Perturbation",
+    "category": "Grammar"
+  },
+  "compositional_reasoning": {
+    "name": "Compositional Reasoning",
+    "category": "Reasoning"
+  },
+  "mathqa": {
+    "name": "Mathqa",
+    "category": "QA"
+  },
+  "coreference_resolution": {
+    "name": "Coreference Resolution",
+    "category": "Linguistic"
+  },
+  "mathematics": {
+    "name": "Mathematics",
+    "category": "Reasoning"
+  },
+  "text_simplification": {
+    "name": "Text Simplification",
+    "category": "NLG"
+  },
+  "joke_explanation": {
+    "name": "Joke Explanation",
+    "category": "Commonsense"
+  },
+  "multihopqa": {
+    "name": "Multihopqa",
+    "category": "QA"
+  },
+  "question_decomposition": {
+    "name": "Question Decomposition",
+    "category": "QA"
+  },
+  "commonsensenli": {
+    "name": "Commonsensenli",
+    "category": "NLI"
+  },
+  "toxic_language_detection": {
+    "name": "Toxic Language Detection",
+    "category": "Classification"
+  },
+  "chinese_rhyme_detection": {
+    "name": "Chinese Rhyme Detection",
+    "category": "Chinese Culture"
+  },
+  "code_translate": {
+    "name": "Code Translate",
+    "category": "Code"
+  },
+  "imagination": {
+    "name": "Imagination",
+    "category": "Creative"
+  },
+  "tamil_translation": {
+    "name": "Tamil Translation",
+    "category": "Translation"
+  },
+  "answerability_classification": {
+    "name": "Answerability Classification",
+    "category": "Classification"
+  },
+  "sentence_level_uncertainty_judgement": {
+    "name": "Sentence Level Uncertainty Judgement",
+    "category": "Evaluation"
+  },
+  "ancient_chinese_translation": {
+    "name": "Ancient Chinese Translation",
+    "category": "Chinese Culture"
+  },
+  "punctuation_error_detection": {
+    "name": "Punctuation Error Detection",
+    "category": "Classification"
+  }
+}
