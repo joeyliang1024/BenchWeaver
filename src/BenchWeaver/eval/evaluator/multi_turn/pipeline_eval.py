@@ -177,8 +177,4 @@ class MultiTurnEvaluator(Evaluator):
         print("Check complete.")
         ####################################### compute score #######################################
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
-        difficulty_score, difficulty_record = self.measure_difficulty(inference_prompts=self.inference_prompts, inference_result=self.inference_results, lang=self.eval_args.lang)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
-        self.save_data(difficulty_score, os.path.join(self.save_folder, "difficulty_score.json"))
-        if getattr(self.eval_args, "record_all", False):
-            self.save_data(data=difficulty_record, output_path=os.path.join(self.save_folder, "difficulty_record.json"))

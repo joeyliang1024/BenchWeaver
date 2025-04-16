@@ -65,7 +65,7 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
                         target_data=dataset[self.eval_split][i],
                         history=histories[subject][i] if histories is not None else None,
                     )
-                    checker_prompts[subject].append(check_msg_list)
+                    checker_prompts[subject].extend(check_msg_list)
 
             elif mode == "translation":
                 # check is question or repsponse translation
