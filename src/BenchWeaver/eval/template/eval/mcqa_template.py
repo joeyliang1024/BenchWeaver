@@ -21,9 +21,14 @@ class MCQA_Template(EvalTemplate):
                            [self.choice.format(choice=ch, content=example[ch]) for ch in choices if ch in example] +
                            [self.cot if use_cot else self.answer]
                            ).strip()
-        answer = (((example.get("explanation") if use_cot and example.get("explanation") else "") + "\n" + 
-                  self.response.format(answer=example.get("answer"))
-                  ).strip() if use_cot else example["answer"]) # self.response.format(answer=example.get("answer")
+        answer = ((
+                    (example.get("explanation") if use_cot and example.get("explanation") else "") + 
+                    "\n" + 
+                    self.response.format(answer=example.get("answer"))
+                  )
+                  if use_cot else 
+                    self.response.format(answer=example.get("answer"))
+                ).strip() 
         return question, answer
 
     def format_example(

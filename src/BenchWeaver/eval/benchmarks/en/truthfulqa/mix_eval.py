@@ -98,7 +98,7 @@ class TruthfulQAEvaluator(Evaluator):
                         trust_remote_code=True,
                     )
                     support_set = (
-                            dataset["test"]
+                            ref_dataset["test"]
                             .shuffle()
                             .select(range(min(self.eval_args.n_shot, len(ref_dataset["test"]))))
                         )
