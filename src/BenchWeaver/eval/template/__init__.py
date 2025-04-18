@@ -22,6 +22,8 @@ from .trans.trans_template import get_translation_template
 from .eval.c3_template import C3_Template, get_c3_eval_template
 from .eval.chinese_safety_qa_template import ChineseSafetyQA_Template, get_chinese_safety_qa_eval_template
 from .eval.mt_bench_tw_template import MT_Bench_TW_Template, get_mt_bench_tw_eval_template
+from .eval.hellaswag_template import get_hellaswag_eval_template
+from .eval.ifeval_template import IFEval_Template, get_ifeval_eval_template
 
 __all__ = [
     # class
@@ -40,6 +42,7 @@ __all__ = [
     "C3_Template",
     "ChineseSafetyQA_Template",
     "MT_Bench_TW_Template",
+    "IFEval_Template",
     # function
     "get_mmlu_eval_template",
     "get_arc_challenge_eval_template",
@@ -59,6 +62,8 @@ __all__ = [
     "get_c3_eval_template",
     "get_chinese_safety_qa_eval_template",
     "get_mt_bench_tw_eval_template",
+    "get_hellaswag_eval_template",
+    "get_ifeval_eval_template",
     # translation
     "get_translation_template",
     # register

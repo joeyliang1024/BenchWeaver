@@ -1,0 +1,186 @@
+{
+    "accounting": {
+        "average": 70.4,
+        "variance": 14900.740000000005
+    },
+    "agricultural_sciences": {
+        "average": 12.937,
+        "variance": 4026.4370309999995
+    },
+    "aviation_engineering_and_maintenance": {
+        "average": 14.423,
+        "variance": 3060.0520709999996
+    },
+    "biology": {
+        "average": 10.511,
+        "variance": 3408.063879000001
+    },
+    "chemical_engineering": {
+        "average": 70.517,
+        "variance": 22276.785710999997
+    },
+    "chemistry": {
+        "average": 38.30166666666667,
+        "variance": 10132.973997222223
+    },
+    "civil_engineering": {
+        "average": 62.008,
+        "variance": 21943.481936
+    },
+    "computer_science": {
+        "average": 5.889,
+        "variance": 864.352679
+    },
+    "construction": {
+        "average": 31.056,
+        "variance": 10014.246864
+    },
+    "criminal_law": {
+        "average": 42.35,
+        "variance": 1660.3575
+    },
+    "ecology": {
+        "average": 16.043,
+        "variance": 2738.8091509999995
+    },
+    "economics": {
+        "average": 37.92307692307692,
+        "variance": 1032.7325443786983
+    },
+    "education": {
+        "average": 51.92,
+        "variance": 688.9936
+    },
+    "electrical_engineering": {
+        "average": 32.245,
+        "variance": 7755.388975
+    },
+    "electronics_engineering": {
+        "average": 30.494,
+        "variance": 7355.6239639999985
+    },
+    "energy_management": {
+        "average": 76.344,
+        "variance": 25479.555663999996
+    },
+    "environmental_science": {
+        "average": 83.586,
+        "variance": 23222.864604
+    },
+    "fashion": {
+        "average": 6.546,
+        "variance": 2856.3518839999997
+    },
+    "food_processing": {
+        "average": 14.116,
+        "variance": 5020.956544000001
+    },
+    "gas_technology_and_engineering": {
+        "average": 48.418,
+        "variance": 14061.077276
+    },
+    "geomatics": {
+        "average": 55.243,
+        "variance": 20076.997950999998
+    },
+    "health": {
+        "average": 30.51,
+        "variance": 9425.089899999999
+    },
+    "industrial_engineer": {
+        "average": 19.514,
+        "variance": 5347.6938040000005
+    },
+    "information_technology": {
+        "average": 7.811,
+        "variance": 1445.9732789999996
+    },
+    "interior_architecture_and_design": {
+        "average": 31.68,
+        "variance": 2325.3596
+    },
+    "law": {
+        "average": 44.892,
+        "variance": 1048.228336
+    },
+    "machine_design_and_manufacturing": {
+        "average": 31.439,
+        "variance": 8113.404279000001
+    },
+    "management": {
+        "average": 34.755,
+        "variance": 7463.212975
+    },
+    "maritime_engineering": {
+        "average": 14.741666666666667,
+        "variance": 2234.8315972222226
+    },
+    "marketing": {
+        "average": 45.316,
+        "variance": 1083.8541440000001
+    },
+    "materials_engineering": {
+        "average": 10.899,
+        "variance": 2887.7387990000007
+    },
+    "mechanical_engineering": {
+        "average": 45.259,
+        "variance": 10194.799918999997
+    },
+    "nondestructive_testing": {
+        "average": 10.325,
+        "variance": 2548.9493749999997
+    },
+    "patent": {
+        "average": 38.85,
+        "variance": 289.1675
+    },
+    "political_science_and_sociology": {
+        "average": 58.10333333333333,
+        "variance": 7033.419322222223
+    },
+    "psychology": {
+        "average": 4.08,
+        "variance": 235.19959999999998
+    },
+    "public_safety": {
+        "average": 25.206,
+        "variance": 7335.1815639999995
+    },
+    "railway_and_automotive_engineering": {
+        "average": 54.138,
+        "variance": 15836.706956
+    },
+    "real_estate": {
+        "average": 25.095,
+        "variance": 4240.995975
+    },
+    "refrigerating_machinery": {
+        "average": 67.662,
+        "variance": 21592.969756
+    },
+    "social_welfare": {
+        "average": 51.781,
+        "variance": 6581.689039000001
+    },
+    "taxation": {
+        "average": 46.945,
+        "variance": 757.5719750000001
+    },
+    "telecommunications_and_wireless_technology": {
+        "average": 13.101,
+        "variance": 2097.2367990000002
+    },
+    "korean_history": {
+        "average": 64.03,
+        "variance": 17903.189100000003
+    },
+    "math": {
+        "average": 182.58333333333334,
+        "variance": 41444.25638888888
+    },
+    "overall": {
+        "average": 34.98843848130174,
+        "variance": 9183.664639382956
+    }
+}

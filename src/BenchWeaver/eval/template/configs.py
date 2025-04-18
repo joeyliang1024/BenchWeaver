@@ -18,7 +18,8 @@ from .eval.cif_bench_template import get_cif_bench_eval_template
 from .eval.c3_template import C3_Template, get_c3_eval_template
 from .eval.chinese_safety_qa_template import ChineseSafetyQA_Template, get_chinese_safety_qa_eval_template
 from .eval.mt_bench_tw_template import MT_Bench_TW_Template, get_mt_bench_tw_eval_template
-
+from .eval.hellaswag_template import get_hellaswag_eval_template
+from .eval.ifeval_template import IFEval_Template, get_ifeval_eval_template
 
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
@@ -104,5 +105,13 @@ EVAL_TEMPLATE_CONFIG = {
     "mt-bench-tw":{
         "class": MT_Bench_TW_Template,
         "func": get_mt_bench_tw_eval_template,
+        },
+    "hellaswag":{
+        "class": MCQA_Template,
+        "func": get_hellaswag_eval_template,
+        },
+    "ifeval":{
+        "class": IFEval_Template,
+        "func": get_ifeval_eval_template,
         },
 }

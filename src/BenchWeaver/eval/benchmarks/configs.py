@@ -179,6 +179,22 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
     },
+    "hellaswag": {
+        "language": "en",
+        "mode": ["mcqa-prob", "mcqa-oq"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": ["A", "B", "C", "D"],
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
+    "ifeval": {
+        "language": "en",
+        "mode": ["opqa"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    }
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -302,5 +318,17 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .zhtw.mt_bench_tw.multi_turn_eval import MTBenchTWEvaluator
         return {
             "multi-turn": MTBenchTWEvaluator,
+        }
+    elif task_name == "hellaswag":
+        from .en.hellaswag.oq_eval import HellaSwagOQEvaluator
+        from .en.hellaswag.prob_eval import HellaSwagProbEvaluator
+        return {
+            "mcqa-prob": HellaSwagProbEvaluator,
+            "mcqa-oq": HellaSwagOQEvaluator,
+        }
+    elif task_name == "ifeval":
+        from .en.ifeval.opqa_eval import IFEvalEvaluator
+        return {
+            "opqa": IFEvalEvaluator,
         }
     return {}

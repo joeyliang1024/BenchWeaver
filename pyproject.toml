@@ -38,6 +38,10 @@ dependencies = [
     "evaluate",
     "protobuf==4.25.6",
     
+    # eval IFEval
+    "immutabledict",
+    "absl-py",
+
     # nvidia-gpu
     "nvidia-ml-py",
 
