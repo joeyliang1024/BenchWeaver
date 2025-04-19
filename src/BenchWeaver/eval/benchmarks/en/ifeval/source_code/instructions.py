@@ -119,7 +119,7 @@ class Instruction:
 class ResponseLanguageChecker(Instruction):
   """Check the language of the entire response."""
 
-  def build_description(self, *, language = None):
+  def build_description(self, *, language = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -173,8 +173,7 @@ class ResponseLanguageChecker(Instruction):
 class NumberOfSentences(Instruction):
   """Check the number of sentences."""
 
-  def build_description(self, *, num_sentences = None,
-                        relation = None):
+  def build_description(self, *, num_sentences = None, relation = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -241,7 +240,7 @@ class NumberOfSentences(Instruction):
 class PlaceholderChecker(Instruction):
   """Check the placeholders in template writing."""
 
-  def build_description(self, *, num_placeholders = None):
+  def build_description(self, *, num_placeholders = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -286,7 +285,7 @@ class PlaceholderChecker(Instruction):
 class BulletListChecker(Instruction):
   """Checks the bullet list in the prompt."""
 
-  def build_description(self, *, num_bullets = None):
+  def build_description(self, *, num_bullets = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -335,7 +334,7 @@ class BulletListChecker(Instruction):
 class ConstrainedResponseChecker(Instruction):
   """Checks the constrained response."""
 
-  def build_description(self):
+  def build_description(self, **kwargs):
     """Build the instruction description."""
     # A sequence of string(s) representing the options of the expected response.
     self._constrained_responses = _CONSTRAINED_RESPONSE_OPTIONS
@@ -372,7 +371,7 @@ class ConstrainedResponseChecker(Instruction):
 class ConstrainedStartChecker(Instruction):
   """Checks the response start."""
 
-  def build_description(self, *, starter = None):
+  def build_description(self, *, starter = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -417,7 +416,7 @@ class ConstrainedStartChecker(Instruction):
 class HighlightSectionChecker(Instruction):
   """Checks the highlighted section."""
 
-  def build_description(self, *, num_highlights = None):
+  def build_description(self, *, num_highlights = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -472,8 +471,7 @@ class HighlightSectionChecker(Instruction):
 class SectionChecker(Instruction):
   """Checks the sections."""
 
-  def build_description(self, *, section_spliter = None,
-                        num_sections = None):
+  def build_description(self, *, section_spliter = None, num_sections = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -536,7 +534,7 @@ class SectionChecker(Instruction):
 class ParagraphChecker(Instruction):
   """Checks the paragraphs."""
 
-  def build_description(self, *, num_paragraphs = None):
+  def build_description(self, *, num_paragraphs = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -590,8 +588,7 @@ class ParagraphChecker(Instruction):
 class PostscriptChecker(Instruction):
   """Checks the postscript."""
 
-  def build_description(self, *, postscript_marker = None
-                        ):
+  def build_description(self, *, postscript_marker = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -645,7 +642,7 @@ class PostscriptChecker(Instruction):
 class RephraseChecker(Instruction):
   """Checks the repharse."""
 
-  def build_description(self, *, original_message):
+  def build_description(self, *, original_message, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -709,8 +706,7 @@ class RephraseChecker(Instruction):
 class KeywordChecker(Instruction):
   """Check the exisitence of certain keywords."""
 
-  def build_description(self, *, keywords = None
-                        ):
+  def build_description(self, *, keywords = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -750,9 +746,7 @@ class KeywordChecker(Instruction):
 class KeywordFrequencyChecker(Instruction):
   """Check the keyword frequency."""
 
-  def build_description(self, *, keyword = None,
-                        frequency = None,
-                        relation = None):
+  def build_description(self, *, keyword = None, frequency = None, relation = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -818,8 +812,7 @@ class KeywordFrequencyChecker(Instruction):
 class NumberOfWords(Instruction):
   """Checks the number of words."""
 
-  def build_description(self, *, num_words = None,
-                        relation = None):
+  def build_description(self, *, num_words = None, relation = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -878,7 +871,7 @@ class NumberOfWords(Instruction):
 class JsonFormat(Instruction):
   """Check the Json format."""
 
-  def build_description(self):
+  def build_description(self, **kwargs):
     self._description_pattern = (
         "Entire output should be wrapped in JSON format. You can use markdown"
         " ticks such as ```."
@@ -913,9 +906,7 @@ class JsonFormat(Instruction):
 class ParagraphFirstWordCheck(Instruction):
   """Check the paragraph and the first word of the nth paragraph."""
 
-  def build_description(self, num_paragraphs = None,
-                        nth_paragraph = None,
-                        first_word = None):
+  def build_description(self, num_paragraphs = None, nth_paragraph = None, first_word = None, **kwargs):
     r"""Build the instruction description.
 
     Args:
@@ -1019,8 +1010,7 @@ class ParagraphFirstWordCheck(Instruction):
 class KeySentenceChecker(Instruction):
   """Check the existence of certain key sentences."""
 
-  def build_description(self, key_sentences = None,
-                        num_sentences = None):
+  def build_description(self, key_sentences = None, num_sentences = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -1075,8 +1065,7 @@ class KeySentenceChecker(Instruction):
 class ForbiddenWords(Instruction):
   """Checks that specified words are not used in response."""
 
-  def build_description(self, forbidden_words = None
-                        ):
+  def build_description(self, forbidden_words = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -1120,8 +1109,7 @@ class ForbiddenWords(Instruction):
 class RephraseParagraph(Instruction):
   """Checks that the paragraph is rephrased."""
 
-  def build_description(self, *, original_paragraph, low, high
-                        ):
+  def build_description(self, *, original_paragraph, low, high, **kwargs):
     """Builds the instruction description.
 
     Args:
@@ -1176,7 +1164,7 @@ class RephraseParagraph(Instruction):
 class TwoResponsesChecker(Instruction):
   """Check that two responses were given."""
 
-  def build_description(self):
+  def build_description(self, **kwargs):
     """Build the instruction description."""
     self._description_pattern = (
         "Give two different responses. Responses and only responses should"
@@ -1218,7 +1206,7 @@ class TwoResponsesChecker(Instruction):
 class RepeatPromptThenAnswer(Instruction):
   """Checks that Prompt is first repeated then answered."""
 
-  def build_description(self, *, prompt_to_repeat = None):
+  def build_description(self, *, prompt_to_repeat = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -1255,7 +1243,7 @@ class RepeatPromptThenAnswer(Instruction):
 class EndChecker(Instruction):
   """Checks that the prompt ends with a given phrase."""
 
-  def build_description(self, *, end_phrase = None):
+  def build_description(self, *, end_phrase = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -1291,7 +1279,7 @@ class EndChecker(Instruction):
 class TitleChecker(Instruction):
   """Checks the response for a title."""
 
-  def build_description(self):
+  def build_description(self, **kwargs):
     """Build the instruction description."""
     self._description_pattern = (
         "Your answer must contain a title, wrapped in double angular brackets,"
@@ -1321,9 +1309,7 @@ class TitleChecker(Instruction):
 class LetterFrequencyChecker(Instruction):
   """Checks letter frequency."""
 
-  def build_description(self, *, letter = None,
-                        let_frequency = None,
-                        let_relation = None):
+  def build_description(self, *, letter = None, let_frequency = None, let_relation = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -1399,7 +1385,7 @@ class LetterFrequencyChecker(Instruction):
 class CapitalLettersEnglishChecker(Instruction):
   """Checks that the response is in english and is in all capital letters."""
 
-  def build_description(self):
+  def build_description(self, **kwargs):
     """Build the instruction description."""
     self._description_pattern = (
         "Your entire response should be in English, and in all capital letters."
@@ -1430,7 +1416,7 @@ class CapitalLettersEnglishChecker(Instruction):
 class LowercaseLettersEnglishChecker(Instruction):
   """Checks that the response is in english and is in all lowercase letters."""
 
-  def build_description(self):
+  def build_description(self, **kwargs):
     """Build the instruction description."""
     self._description_pattern = (
         "Your entire response should be in English, and in all lowercase"
@@ -1462,7 +1448,7 @@ class LowercaseLettersEnglishChecker(Instruction):
 class CommaChecker(Instruction):
   """Checks the response for no commas."""
 
-  def build_description(self):
+  def build_description(self, **kwargs):
     """Build the instruction description."""
     self._description_pattern = (
         "In your entire response, refrain from the use of any commas."
@@ -1484,11 +1470,7 @@ class CommaChecker(Instruction):
 class CapitalWordFrequencyChecker(Instruction):
   """Checks frequency of words with all capital letters."""
 
-  def build_description(
-      self,
-      capital_frequency = None,
-      capital_relation = None,
-  ):
+  def build_description(self, capital_frequency = None, capital_relation = None, **kwargs):
     """Build the instruction description.
 
     Args:
@@ -1550,7 +1532,7 @@ class CapitalWordFrequencyChecker(Instruction):
 class QuotationChecker(Instruction):
   """Checks response is wrapped with double quotation marks."""
 
-  def build_description(self):
+  def build_description(self, **kwargs):
     """Build the instruction description."""
     self._description_pattern = (
         "Wrap your entire response with double quotation marks."

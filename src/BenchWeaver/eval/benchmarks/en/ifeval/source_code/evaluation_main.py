@@ -1,5 +1,6 @@
 import os
-from typing import Optional
+from typing import Dict, Optional
+from datasets import Dataset
 from ......extras.logging import get_logger
 from .evaluation_lib import (
     read_prompt_list,
@@ -13,14 +14,16 @@ from .evaluation_lib import (
 logger = get_logger(__name__)
 
 def evaluate_instruction_following(
-    input_data: str,
-    input_response_data: Optional[str],
+    origin_dataset: Optional[Dataset],
+    response_dict: Optional[Dict[str, list]],
+    input_data: str = None,
+    input_response_data: str = None,
     output_dir: str = None,
     disable_output: bool = True,
     from_dir: bool = False,
-):
-    inputs = read_prompt_list(input_data, from_dir=from_dir)
-    prompt_to_response = read_prompt_to_response_dict(input_response_data, from_dir=from_dir)
+):  
+    inputs = read_prompt_list(origin_dataset, input_data, from_dir=from_dir)
+    prompt_to_response = read_prompt_to_response_dict(response_dict, input_response_data, from_dir=from_dir)
     scores = {}
     for func, score_name, output_file_name in [
         (test_instruction_following_strict, "strict", "eval_results_strict"),

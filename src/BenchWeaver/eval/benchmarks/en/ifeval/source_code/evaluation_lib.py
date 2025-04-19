@@ -19,7 +19,7 @@ import collections
 import dataclasses
 import json
 from typing import Any, Dict, List, Optional, Sequence, Union
-from datasets import DatasetDict
+from datasets import Dataset
 from .instructions_registry import INSTRUCTION_DICT
 
 
@@ -40,7 +40,7 @@ class OutputExample:
   follow_instruction_list: list[bool]
 
 
-def read_prompt_list(origin_dataset: DatasetDict, input_jsonl_filename: str = None, from_dir: bool = False) -> List[InputExample]:
+def read_prompt_list(origin_dataset: Dataset, input_jsonl_filename: str = None, from_dir: bool = False) -> List[InputExample]:
   """Read inputs from jsonl."""
   inputs = []
   if from_dir:
@@ -53,8 +53,8 @@ def read_prompt_list(origin_dataset: DatasetDict, input_jsonl_filename: str = No
                          prompt=example["prompt"],
                          kwargs=example["kwargs"]))
   else:
-    for i in range(len(origin_dataset["test"])):
-      example = origin_dataset["test"][i]
+    for i in range(len(origin_dataset)):
+      example = origin_dataset[i]
       inputs.append(
           InputExample(key=example["key"],
                        instruction_id_list=example["instruction_id_list"],

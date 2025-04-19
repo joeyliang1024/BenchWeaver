@@ -14,15 +14,15 @@ check_mode: local
 translation_model_name_or_path: gpt-4o-mini
 translation_mode: api
 transation_templates_name: mix
-source_lang: zh-tw
-target_lang: en
+source_lang: en
+target_lang: zh-tw
 
 ### source dataset
-task: mt-bench-tw_test  
+task: ifeval_test  
 task_dir: evaluation_data
-lang: zh-tw
+lang: en
 n_shot: 5
-benchmark_mode: multi-turn
+benchmark_mode: opqa
 pipeline: diff
 batch_size: 4
 
@@ -30,7 +30,7 @@ batch_size: 4
 # ref_task: mmlu
 
 ### output
-save_dir: score/mt-bench-tw/diff_lang
+save_dir: score/ifeval/diff_lang
 
 ### VLLM 
 vllm_maxlen: 8192
@@ -38,6 +38,6 @@ vllm_max_concurrency: 30
 max_new_tokens: 2048
 dtype: bfloat16 # float32
 ### debug
-# testing_size: 2
+testing_size: 10
 record_all: true
 # print_param_status: false

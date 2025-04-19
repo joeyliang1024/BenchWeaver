@@ -1,23 +1,26 @@
 import os
 from typing import List, Tuple, Dict
-from datasets import load_dataset, DatasetDict
+from datasets import load_dataset, Dataset
 from .source_code.evaluation_main import evaluate_instruction_following
 from ....evaluator import OPQAEvaluator
 from ....template import get_ifeval_eval_template
 from .....extras.constants import PROJECT_BASE_PATH
-from .....extras.logging import logger
+from .....extras.logging import get_logger
+
+logger = get_logger(__name__)
 
 class IFEvalEvaluator(OPQAEvaluator):
     def __init__(self, args):
         super().__init__(args=args)
         self.eval_template = get_ifeval_eval_template(self.eval_args.lang)
         
-    def format_source_code_input(self, response_dict: Dict[str, list]) -> Tuple[DatasetDict, Dict[str, list]]:
+    def format_source_code_input(self, response_dict: Dict[str, list]) -> Tuple[Dataset, Dict[str, list]]:
         """
         Format the input same as the format as the source code.
         """
         # load the input 
-        inputs = load_dataset(
+        # min(len(dataset[self.eval_split]), self.testing_size)
+        dataset_dict = load_dataset(
                 path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.eval_task),
                 name="all",
                 cache_dir=self.model_args.cache_dir,
@@ -25,6 +28,12 @@ class IFEvalEvaluator(OPQAEvaluator):
                 token=self.hf_token,
                 trust_remote_code=True,
             )
+                # Extract the specified split (e.g., "test")
+        inputs = dataset_dict[self.eval_split]
+
+        # Select the top N examples, if testing_size is specified
+        if self.testing_size is not None:
+            inputs = inputs.select(range(min(self.testing_size, len(inputs))))
         # load the response
         new_response_dict = {
             'all': [
@@ -32,7 +41,7 @@ class IFEvalEvaluator(OPQAEvaluator):
                     "prompt": row['question'],
                     "response": response,
                 }
-                for row, response in zip(inputs['test'], response_dict['all'])
+                for row, response in zip(inputs, response_dict['all'])
             ]
         }
         return inputs, new_response_dict
@@ -78,8 +87,8 @@ class IFEvalEvaluator(OPQAEvaluator):
         ####################################### compute score #######################################
         input_data, input_response_data = self.format_source_code_input(response_dict=self.inference_results)
         score_dict = evaluate_instruction_following(
-            input_data=input_data,
-            input_response_data=input_response_data,
+            origin_dataset=input_data,
+            response_dict=input_response_data,
         )
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
             
@@ -185,7 +194,7 @@ class IFEvalEvaluator(OPQAEvaluator):
         ####################################### compute score #######################################
         input_data, input_response_data = self.format_source_code_input(response_dict=self.translated_responses)
         score_dict = evaluate_instruction_following(
-            input_data=input_data,
-            input_response_data=input_response_data,
+            origin_dataset=input_data,
+            response_dict=input_response_data,
         )
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
