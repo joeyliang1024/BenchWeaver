@@ -94,8 +94,6 @@ def eval_spbleu(predictions: List[str],
         BLEU score dictionary.
         
     '''
-    encode = get_encode_fnc(output_format)
-    valid = get_valid_fnc(min_len=None, max_len=None)
     
     encode = get_encode_fnc(output_format)
     valid = get_valid_fnc(min_len, max_len)
