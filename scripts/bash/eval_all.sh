@@ -2,8 +2,9 @@
 export JAVA_HOME="/usr/lib/java"
 
 # Set the directory (can be modified or passed as an argument)
-DIRECTORY="/work/u5110390/BenchWeaver/config/main_pipeline/kmmlu"
-LOG_DIR="/work/u5110390/BenchWeaver/logs/main_pipeline"
+TASK_NAME="tmmluplus"
+DIRECTORY="/work/u5110390/BenchWeaver/config/main_pipeline/$TASK_NAME"
+LOG_DIR="/work/u5110390/BenchWeaver/logs/main_pipeline/$TASK_NAME"
 
 # Check if input directory exists
 if [ ! -d "$DIRECTORY" ]; then
