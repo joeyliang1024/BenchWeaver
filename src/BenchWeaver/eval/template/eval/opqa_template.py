@@ -45,7 +45,7 @@ class OPQA_Template(EvalTemplate):
         if user_prompt is not None:
             assert "{subject}" in user_prompt, ValueError("User prompt must contain '{subject}'")
             messages[0]["content"] = user_prompt.format(subject=subject) + messages[0]["content"]
-        else:
+        elif self.system.format(subject=subject) not in messages[0]["content"]:
             messages[0]["content"] = self.system.format(subject=subject) + messages[0]["content"]
         return messages
 

@@ -7,6 +7,7 @@ from openai import AsyncOpenAI, AsyncAzureOpenAI
 from openai import RateLimitError, NotFoundError, APITimeoutError, APIConnectionError, BadRequestError
 from asyncio.subprocess import Process
 from ..extras.load_env import load_env_variables
+from ..extras.constants import GPT_NOT_SUPPORT_PARM_MODELS
 
 class Client:
     server_process: Optional[Process]
@@ -112,14 +113,21 @@ class Client:
 
         messages.extend(example)
         try:
-            c = await self.client.chat.completions.create(
-                messages=messages,
-                model=model,
-                temperature=getattr(generating_args, "temperature", 1.0),
-                max_tokens= getattr(generating_args, "max_new_tokens", None),
-                top_p=getattr(generating_args, "top_p", 1.0),
-                n=getattr(generating_args, "num_beams", None),
-            )
+            if model in GPT_NOT_SUPPORT_PARM_MODELS:
+                c = await self.client.chat.completions.create(
+                    messages=messages,
+                    model=model,
+                    max_completion_tokens=getattr(generating_args, "max_completion_tokens", 100000),
+                )
+            else:
+                c = await self.client.chat.completions.create(
+                    messages=messages,
+                    model=model,
+                    temperature=getattr(generating_args, "temperature", 1.0),
+                    max_tokens= getattr(generating_args, "max_new_tokens", None),
+                    top_p=getattr(generating_args, "top_p", 1.0),
+                    n=getattr(generating_args, "num_beams", None),
+                )
             return c.choices[0].message.content.strip()
         
         except RateLimitError as e:

@@ -29,7 +29,11 @@ OPTION_CODES = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
 # SPM Model Path
 SPM_MODEL_PATH = os.path.join(PROJECT_BASE_PATH, "model", "flores_spm", "flores200_sacrebleu_tokenizer_spm.model")
 
-# 
+# GPT NOT SUPPORT PARM MODEL
+GPT_NOT_SUPPORT_PARM_MODELS = [
+    "gpt-o3-mini"
+]
+
 CRITERIA_PROMPT = '''
 你是一位專業的翻譯評估員。請根據提供的「原文文本」、「翻譯文本」、「風格範例」及「評估標準」，對翻譯品質進行評估，評分範圍為 1（最差）至 10（最佳），並以 JSON 格式輸出結果。
 

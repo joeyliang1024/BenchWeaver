@@ -1,0 +1,18 @@
+{
+    "cmn_Hans": {
+      "name": "cmn_Hans",
+      "category": "cmn_Hans"
+    },
+    "cmn_Hant": {
+      "name": "cmn_Hant",
+      "category": "cmn_Hant"
+    },
+    "kor_Hang": {
+      "name": "kor_Hang",
+      "category": "kor_Hang"
+    },
+    "eng_Latn": {
+      "name": "eng_Latn",
+      "category": "eng_Latn"
+    }
+}

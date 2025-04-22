@@ -39,7 +39,7 @@ _register_eval_template(
     answer="\n答案：",
     cot="\n讓我們一步一步來思考。\n答案：",
     templates=drcd_eval_templates,
-    template_class=OPQA_Template,
+    template_class=DRCD_Template,
     criteria_prompt="判斷 LLM 回應是否正確回答了問題。\n\n問題: {question}\n\n參考答案: {answer}\n\nLLM 回應: {llm_response}\n\n如果 LLM 回應正確，請回答 \'True\'，否則回答 \'False\'。",
-    response="正確答案是 ({answer})。"
+    response="正確答案是{answer}。"
 )

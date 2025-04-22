@@ -16,14 +16,12 @@ from .trans_utils import get_encode_fnc, get_valid_fnc
 # which prevents loading arbitrary Python objects.
 add_safe_globals([Prediction]) 
 
-bleu = evaluate.load("bleu")
-chrf = evaluate.load("chrf")
-okt = Okt()
-
 def eval_bleu(predictions: List[str], references: List[List[str]])->dict:
     '''
     Evaluates BLEU score for a list of predictions and references.
     '''
+    bleu = evaluate.load("bleu")
+    okt = Okt()
     # detect language of 10 
     lang = Counter([detect_language(ref[-1]) for ref in references]).most_common(1)[0][0]
     
@@ -52,6 +50,7 @@ def eval_chrf(predictions: List[str], references: List[List[str]], word_order:in
     '''
     Evaluates CHRF score for a list of predictions and references.
     '''
+    chrf = evaluate.load("chrf")
     return chrf.compute(predictions=predictions, references=references, word_order=word_order)
 
 def eval_comet(predictions: List[str],
@@ -94,7 +93,7 @@ def eval_spbleu(predictions: List[str],
         BLEU score dictionary.
         
     '''
-    
+    bleu = evaluate.load("bleu")
     encode = get_encode_fnc(output_format)
     valid = get_valid_fnc(min_len, max_len)
 

@@ -52,6 +52,10 @@ class GeneratingArguments:
         default=4096,
         metadata={"help": "The maximum numbers of tokens to generate, ignoring the number of tokens in the prompt."},
     )
+    max_completion_tokens: int = field(
+        default=100000,
+        metadata={"help": "The maximum numbers of tokens to generate in a single chat completion."},
+    )
     repetition_penalty: float = field(
         default=1.0,
         metadata={"help": "The parameter for repetition penalty. 1.0 means no penalty."},

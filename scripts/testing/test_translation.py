@@ -15,6 +15,10 @@ references = [
     ["He enjoys playing football."]
 ]
 
+print("\n====== COMET ======")
+comet_result = eval_comet(predictions, references, details=True)
+print(comet_result)
+
 print("====== BLEU ======")
 bleu_result = eval_bleu(predictions, references)
 print(bleu_result)
@@ -27,6 +31,3 @@ print("\n====== SP-BLEU ======")
 spbleu_result = eval_spbleu(predictions, references)
 print(spbleu_result)
 
-print("\n====== COMET ======")
-comet_result = eval_comet(predictions, references, details=True)
-print(comet_result)
