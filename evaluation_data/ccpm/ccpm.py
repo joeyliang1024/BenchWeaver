@@ -28,7 +28,7 @@ _CITATION = """\
 """
 
 _DESCRIPTION = """\
-国古典诗歌匹配数据集（Chinese Classical Poetry Matching Dataset），给定中国古典诗歌的现代问描述，要求从候选的四句诗中选出与现代文描述语义匹配的那一句。我们利用古典诗歌和现代文翻译的平行语料构建正确选项，并利用正确选项从古代诗歌语料库中利用相似检索构造出错误候选。
+中国古典诗歌匹配数据集（Chinese Classical Poetry Matching Dataset），给定中国古典诗歌的现代问描述，要求从候选的四句诗中选出与现代文描述语义匹配的那一句。我们利用古典诗歌和现代文翻译的平行语料构建正确选项，并利用正确选项从古代诗歌语料库中利用相似检索构造出错误候选。
 """
 
 _HOMEPAGE = "https://github.com/THUNLP-AIPoet/CCPM"

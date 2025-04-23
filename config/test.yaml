@@ -14,12 +14,16 @@ check_mode: local
 translation_model_name_or_path: gpt-4o-mini
 translation_mode: api
 transation_templates_name: mix
+#### source_lang: 
+#### 1. the source language for the translation model
+#### 2. the trans pipeline object language
 source_lang: cmn_Hant
 target_lang: zh-tw
 
 ### source dataset
 task: flores-plus_test  
 task_dir: evaluation_data
+#### lang: usually the name of the template, set same as your model main language
 lang: en
 n_shot: 0
 benchmark_mode: trans
