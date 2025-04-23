@@ -3,6 +3,8 @@ from torch.serialization import add_safe_globals
 from collections import Counter
 import evaluate
 import jieba
+import torch
+import gc
 from konlpy.tag import Okt
 from comet.models.utils import Prediction
 from comet import download_model, load_from_checkpoint
@@ -57,7 +59,7 @@ def eval_comet(predictions: List[str],
                references: List[List[str]],
                comet_model = COMET_MODEL_NAME_OR_PATH,
                batch_size:int = 8,
-               gpus:int = 2,
+               gpus:int = 1,
                details:bool = False,
                )->dict:
     '''
@@ -67,6 +69,9 @@ def eval_comet(predictions: List[str],
     model = load_from_checkpoint(model_path)
     data = [{"src": ref[0], "mt": pred} for ref, pred in zip(references, predictions)]
     model_output: Prediction = model.predict(data, batch_size=batch_size, gpus=gpus)
+    del model
+    gc.collect()
+    torch.cuda.empty_cache()
     return {"comet": model_output.system_score} if not details else {"comet": model_output.system_score, "scores": model_output.scores}
     
 def eval_spbleu(predictions: List[str], 

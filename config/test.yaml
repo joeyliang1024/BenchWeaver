@@ -14,29 +14,29 @@ check_mode: local
 translation_model_name_or_path: gpt-4o-mini
 translation_mode: api
 transation_templates_name: mix
-source_lang: en
+source_lang: cmn_Hant
 target_lang: zh-tw
 
 ### source dataset
-task: ifeval_test  
+task: flores-plus_test  
 task_dir: evaluation_data
 lang: en
-n_shot: 5
-benchmark_mode: opqa
-pipeline: diff
+n_shot: 0
+benchmark_mode: trans
+pipeline: same
 batch_size: 4
 
 ### reference dataset, split will use 'test' don't specify
 # ref_task: mmlu
 
 ### output
-save_dir: score/ifeval/diff_lang
+save_dir: score/flores-plus/test_pipeline
 
 ### VLLM 
 vllm_maxlen: 8192
 vllm_max_concurrency: 30
 max_new_tokens: 2048
-dtype: bfloat16 # float32
+dtype: float32 # float32
 ### debug
 testing_size: 10
 record_all: true

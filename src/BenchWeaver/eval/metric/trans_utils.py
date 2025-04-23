@@ -1,6 +1,7 @@
 from typing import Literal, Callable, Optional
 import sentencepiece as spm
-from ...extras.constants import SPM_MODEL_PATH
+from comet import download_model, load_from_checkpoint
+from ...extras.constants import SPM_MODEL_PATH, COMET_MODEL_NAME_OR_PATH
 
 sp = spm.SentencePieceProcessor()
 sp.Load(SPM_MODEL_PATH)
@@ -29,4 +30,9 @@ def get_valid_fnc(min_len: Optional[int], max_len: Optional[int]) -> Callable[[s
         def valid(line: str) -> bool:
             return True
     return valid
+
+def load_comet_model(comet_model = COMET_MODEL_NAME_OR_PATH):
+    model_path = download_model(comet_model)
+    model = load_from_checkpoint(model_path)
+    return model
 

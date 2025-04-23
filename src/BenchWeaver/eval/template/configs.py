@@ -1,5 +1,6 @@
 from .eval.mcqa_template import MCQA_Template
 from .eval.opqa_template import OPQA_Template
+from .eval.trans_template import Trans_Template
 from .eval.mmlu_template import get_mmlu_eval_template
 from .eval.arc_challenge_template import get_arc_challenge_eval_template
 from .eval.gpqa_template import get_gpqa_eval_template
@@ -20,7 +21,7 @@ from .eval.chinese_safety_qa_template import ChineseSafetyQA_Template, get_chine
 from .eval.mt_bench_tw_template import MT_Bench_TW_Template, get_mt_bench_tw_eval_template
 from .eval.hellaswag_template import get_hellaswag_eval_template
 from .eval.ifeval_template import IFEval_Template, get_ifeval_eval_template
-
+from .eval.flores_template import get_flores_eval_template
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
         "class": MCQA_Template,
@@ -113,5 +114,9 @@ EVAL_TEMPLATE_CONFIG = {
     "ifeval":{
         "class": IFEval_Template,
         "func": get_ifeval_eval_template,
+        },
+    "flores-plus": {
+        "class": Trans_Template,
+        "func": get_flores_eval_template,
         },
 }

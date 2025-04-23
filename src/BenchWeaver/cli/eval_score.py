@@ -1,7 +1,9 @@
 import asyncio
 import argparse
+from typing import Union
 import yaml
 from ..eval.evaluator.evaluator import Evaluator
+from ..eval.evaluator.trans.trans_evaluator import TransEvaluator
 from ..eval.benchmarks.configs import BENCHMARK_CONFIG, get_evaluators
 
 async def eval():
@@ -19,10 +21,16 @@ async def eval():
         raise ValueError(f"Task '{task}' with mode '{mode}' is not supported.")
 
     evaluator_class = get_evaluators(task)[mode]
-    evaluator: Evaluator = evaluator_class(args=config)
+    evaluator: Union[Evaluator, TransEvaluator] = evaluator_class(args=config)
     # Run the evaluation
     if mode == "mcqa-prob":
         evaluator.eval()
+    elif mode == "trans":
+        # translation evaluation
+            await evaluator.trans_eval(
+                choices=BENCHMARK_CONFIG[task]['mcqa_choices'],
+                subjects=BENCHMARK_CONFIG[task]['display_scores'],
+            )
     else:
         if pipeline == "same":
             # same language evaluation

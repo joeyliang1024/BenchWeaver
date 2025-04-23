@@ -186,4 +186,5 @@ cython_debug/
 **/question_prompt.json
 **/answer_prompt.json
 **/question_check_result.json
-**answer_check_result.json
+**/answer_check_result.json
+**/trans_groundtruth.json

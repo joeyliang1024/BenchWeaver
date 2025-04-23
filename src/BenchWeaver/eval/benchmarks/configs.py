@@ -194,6 +194,14 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": None,
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
+    },
+    "flores-plus": {
+        "language": "en",
+        "mode": ["trans"],
+        "display_scores": ["Average"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
     }
 }
 
@@ -330,5 +338,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .en.ifeval.opqa_eval import IFEvalEvaluator
         return {
             "opqa": IFEvalEvaluator,
+        }
+    elif task_name == "flores-plus":
+        from .en.flores_plus.trans_eval import FloresPlusEvaluator
+        return {
+            "trans": FloresPlusEvaluator,
         }
     return {}
