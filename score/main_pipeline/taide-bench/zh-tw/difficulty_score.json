@@ -1,0 +1,26 @@
+{
+    "letter": {
+        "average": 564.51,
+        "variance": 37623.4099
+    },
+    "essay": {
+        "average": 885.57,
+        "variance": 114399.76510000002
+    },
+    "summary": {
+        "average": 127.17,
+        "variance": 2721.5811
+    },
+    "zh2en": {
+        "average": 4.79,
+        "variance": 190.68589999999998
+    },
+    "en2zh": {
+        "average": 85.36,
+        "variance": 1307.7304000000001
+    },
+    "overall": {
+        "average": 333.48,
+        "variance": 145317.17359999998
+    }
+}

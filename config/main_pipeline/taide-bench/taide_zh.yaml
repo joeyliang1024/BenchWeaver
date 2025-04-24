@@ -18,7 +18,7 @@ source_lang: zh-tw
 target_lang: zh
 
 ### source dataset
-task: drcd_test  
+task: taide-bench_test  
 task_dir: evaluation_data
 lang: zh-tw
 n_shot: 0
