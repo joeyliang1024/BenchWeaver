@@ -2,7 +2,7 @@
 openai_source: "azure"
 
 ### inference model
-inference_model_name_or_path: meta-llama/Llama-3.1-8B-Instruct 
+inference_model_name_or_path: sh2orc/Llama-3.1-Korean-8B-Instruct 
 inference_mode: local
 cot: false
 
@@ -15,10 +15,10 @@ translation_model_name_or_path: gpt-4o-mini
 translation_mode: api
 transation_templates_name: proper_nouns
 source_lang: zh-tw
-target_lang: en
+target_lang: ko
 
 ### source dataset
-task: drcd_test  
+task: taide-bench_test  
 task_dir: evaluation_data
 lang: zh-tw
 n_shot: 0
@@ -30,7 +30,7 @@ batch_size: 4
 # ref_task: mmlu
 
 ### output
-save_dir: score/main_pipeline/drcd/en
+save_dir: score/main_pipeline/taide-bench/ko
 
 ### VLLM 
 vllm_maxlen: 8192
@@ -38,6 +38,6 @@ vllm_max_concurrency: 30
 max_new_tokens: 2048
 dtype: float32
 ### debug
-# testing_size: 10
+# testing_size: 2
 record_all: true
 # print_param_status: false

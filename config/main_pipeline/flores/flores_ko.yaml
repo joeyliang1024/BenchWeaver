@@ -2,7 +2,7 @@
 openai_source: "azure"
 
 ### inference model
-inference_model_name_or_path: meta-llama/Llama-3.1-8B-Instruct 
+inference_model_name_or_path: sh2orc/Llama-3.1-Korean-8B-Instruct 
 inference_mode: local
 cot: false
 
@@ -13,24 +13,24 @@ check_mode: local
 ### translation model
 translation_model_name_or_path: gpt-4o-mini
 translation_mode: api
-transation_templates_name: proper_nouns
-source_lang: zh-tw
+transation_templates_name: mix
+source_lang: kor_Hang
 target_lang: en
 
 ### source dataset
-task: drcd_test  
+task: flores-plus_test  
 task_dir: evaluation_data
-lang: zh-tw
-n_shot: 0
-benchmark_mode: opqa
-pipeline: diff
+lang: ko
+n_shot: 5
+benchmark_mode: trans
+pipeline: same
 batch_size: 4
 
 ### reference dataset, split will use 'test' don't specify
-# ref_task: mmlu
+ref_task: mmlu
 
 ### output
-save_dir: score/main_pipeline/drcd/en
+save_dir: score/main_pipeline/flores-plus/ko
 
 ### VLLM 
 vllm_maxlen: 8192
@@ -38,6 +38,6 @@ vllm_max_concurrency: 30
 max_new_tokens: 2048
 dtype: float32
 ### debug
-# testing_size: 10
+# testing_size: 2
 record_all: true
 # print_param_status: false
