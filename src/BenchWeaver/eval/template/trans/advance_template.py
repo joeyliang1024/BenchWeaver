@@ -100,6 +100,7 @@ class AdvancedTransTemplate(TransTemplate):
                     "idx": i,
                     "uuid": msg_uuid,
                     "origin_role": None if isinstance(msg, str) else msg["role"],
+                    "origin_content": None if isinstance(msg, str) else msg["content"],
                     "role": Role.USER.value, 
                     "content": (
                         self.guide_line + 

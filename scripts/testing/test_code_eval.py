@@ -4,7 +4,7 @@ from evaluate import load
 from BenchWeaver.extras.constants import PROJECT_BASE_PATH
 
 os.environ["HF_ALLOW_CODE_EVAL"] = "1"
-code_eval = load(os.path.join(PROJECT_BASE_PATH, "src/BenchWeaver/eval/metric/code_eval.py"))
+code_eval = load(os.path.join(PROJECT_BASE_PATH, "src/BenchWeaver/eval/metric/code_utils.py"))
 
 # Problem 1: min_cost
 test_1 = (

@@ -20,7 +20,7 @@ class Code_Template(EvalTemplate):
     
     def format_inference_example(
         self, target_data: Dict[str, str], support_set: Sequence[Dict[str, str]]
-    ) -> Tuple[List[Dict[str, str]], List[str]]:
+    ) -> Tuple[List[Dict[str, str]], str]:
         r"""
         Converts dataset examples to messages.
         """
@@ -34,5 +34,5 @@ class Code_Template(EvalTemplate):
         # format object question
         prompt, response = self._parse_example(target_data)
         messages.append({"role": Role.USER.value, "content": prompt})
-        return messages, target_data['test_list']
+        return messages, "\n".join(target_data["test_list"])
     
