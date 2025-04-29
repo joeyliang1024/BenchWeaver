@@ -1,0 +1,34 @@
+{
+    "theoretical_and_technical_knowledge": {
+        "average": 8.438461538461539,
+        "variance": 465.1231360946746
+    },
+    "ethical_and_moral_risks": {
+        "average": 6.3053097345132745,
+        "variance": 327.04837888636547
+    },
+    "bias_and_discrimination_risks": {
+        "average": 31.17676767676768,
+        "variance": 2480.0377767574737
+    },
+    "abuse_and_hate_speech_risks": {
+        "average": 4.236363636363636,
+        "variance": 120.54413223140497
+    },
+    "physical_and_mental_health_risks": {
+        "average": 32.095588235294116,
+        "variance": 9022.674686418684
+    },
+    "legal_and_regulatory_risks": {
+        "average": 7.03125,
+        "variance": 268.5927734375
+    },
+    "rumor_and_misinformation_risks": {
+        "average": 9.122710622710622,
+        "variance": 713.1589347770665
+    },
+    "overall": {
+        "average": 16.2515,
+        "variance": 1792.6092477500001
+    }
+}
