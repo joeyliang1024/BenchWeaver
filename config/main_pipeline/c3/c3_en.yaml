@@ -1,0 +1,43 @@
+### OpenAI Source
+openai_source: "azure"
+
+### inference model
+inference_model_name_or_path: meta-llama/Llama-3.1-8B-Instruct 
+inference_mode: local
+cot: false
+
+### checker model
+checker_model_name_or_path: Qwen/Qwen2.5-32B-Instruct
+check_mode: local
+
+### translation model
+translation_model_name_or_path: gpt-4o-mini
+translation_mode: api
+transation_templates_name: proper_nouns
+source_lang: zh
+target_lang: en
+
+### source dataset
+task: c3_test  
+task_dir: evaluation_data
+lang: zh
+n_shot: 0
+benchmark_mode: mcqa-oq
+pipeline: diff
+batch_size: 4
+
+### reference dataset, split will use 'test' don't specify
+# ref_task: mmlu
+
+### output
+save_dir: score/main_pipeline/c3/en
+
+### VLLM 
+vllm_maxlen: 8192
+vllm_max_concurrency: 30
+max_new_tokens: 2048
+dtype: float32
+### debug
+# testing_size: 2
+record_all: true
+# print_param_status: false
