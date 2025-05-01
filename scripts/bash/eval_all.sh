@@ -2,7 +2,7 @@
 export JAVA_HOME="/usr/lib/java"
 
 # Set the directory (can be modified or passed as an argument)
-TASK_NAME="chinese-safety-qa"
+TASK_NAME="gsm8k"
 DIRECTORY="/work/u5110390/BenchWeaver/config/main_pipeline/$TASK_NAME"
 LOG_DIR="/work/u5110390/BenchWeaver/logs/main_pipeline/$TASK_NAME"
 
