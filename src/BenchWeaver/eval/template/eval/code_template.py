@@ -15,7 +15,7 @@ class Code_Template(EvalTemplate):
             tests="\n".join(example["test_list"]),
         )
         # format question
-        answer = "\n".join(["[BEGIN]", example["code"], "[DONE]"])
+        answer = "\n".join(["[BEGIN]", example.get("code", ""), "[DONE]"])
         return prompt, answer
     
     def format_inference_example(

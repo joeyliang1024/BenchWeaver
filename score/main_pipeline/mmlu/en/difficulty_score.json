@@ -1,0 +1,234 @@
+{
+    "abstract_algebra": {
+        "average": 41.44,
+        "variance": 9416.106399999999
+    },
+    "anatomy": {
+        "average": 6.57037037037037,
+        "variance": 126.36356652949245
+    },
+    "astronomy": {
+        "average": 17.598684210526315,
+        "variance": 6012.319208795013
+    },
+    "business_ethics": {
+        "average": 7.63,
+        "variance": 158.47310000000004
+    },
+    "clinical_knowledge": {
+        "average": 5.388679245283019,
+        "variance": 60.61496618013528
+    },
+    "college_biology": {
+        "average": 6.083333333333333,
+        "variance": 155.72916666666669
+    },
+    "college_chemistry": {
+        "average": 50.66,
+        "variance": 13863.8244
+    },
+    "college_computer_science": {
+        "average": 47.22,
+        "variance": 7413.011600000001
+    },
+    "college_mathematics": {
+        "average": 45.52,
+        "variance": 4721.609600000001
+    },
+    "college_medicine": {
+        "average": 24.0,
+        "variance": 3815.664739884393
+    },
+    "college_physics": {
+        "average": 39.64705882352941,
+        "variance": 4072.130334486735
+    },
+    "computer_security": {
+        "average": 13.52,
+        "variance": 431.18960000000004
+    },
+    "conceptual_physics": {
+        "average": 10.872340425531915,
+        "variance": 2925.6773200543234
+    },
+    "econometrics": {
+        "average": 16.56140350877193,
+        "variance": 605.597106802093
+    },
+    "electrical_engineering": {
+        "average": 5.537931034482758,
+        "variance": 110.13821640903686
+    },
+    "elementary_mathematics": {
+        "average": 19.182539682539684,
+        "variance": 231.08043587805494
+    },
+    "formal_logic": {
+        "average": 23.92063492063492,
+        "variance": 1762.0889392794152
+    },
+    "global_facts": {
+        "average": 3.9,
+        "variance": 7.109999999999998
+    },
+    "high_school_biology": {
+        "average": 8.516129032258064,
+        "variance": 221.64328824141523
+    },
+    "high_school_chemistry": {
+        "average": 25.63054187192118,
+        "variance": 2521.5137469970155
+    },
+    "high_school_computer_science": {
+        "average": 31.69,
+        "variance": 2588.0739000000003
+    },
+    "high_school_european_history": {
+        "average": 6.66060606060606,
+        "variance": 197.12117539026633
+    },
+    "high_school_geography": {
+        "average": 6.1313131313131315,
+        "variance": 78.40699928578717
+    },
+    "high_school_government_and_politics": {
+        "average": 4.963730569948186,
+        "variance": 46.31474670460952
+    },
+    "high_school_macroeconomics": {
+        "average": 12.597435897435897,
+        "variance": 385.02512163050625
+    },
+    "high_school_mathematics": {
+        "average": 75.65555555555555,
+        "variance": 17250.922098765433
+    },
+    "high_school_microeconomics": {
+        "average": 8.621848739495798,
+        "variance": 205.6637243132547
+    },
+    "high_school_physics": {
+        "average": 40.211920529801326,
+        "variance": 7770.445155914214
+    },
+    "high_school_psychology": {
+        "average": 6.807339449541284,
+        "variance": 146.15554246275568
+    },
+    "high_school_statistics": {
+        "average": 38.80555555555556,
+        "variance": 4041.304783950616
+    },
+    "high_school_us_history": {
+        "average": 5.4411764705882355,
+        "variance": 149.01124567474048
+    },
+    "high_school_world_history": {
+        "average": 5.831223628691983,
+        "variance": 139.70991116096064
+    },
+    "human_aging": {
+        "average": 4.044843049327354,
+        "variance": 15.16390838343823
+    },
+    "human_sexuality": {
+        "average": 10.244274809160306,
+        "variance": 247.1159023366937
+    },
+    "international_law": {
+        "average": 6.0578512396694215,
+        "variance": 84.10409125059762
+    },
+    "jurisprudence": {
+        "average": 5.592592592592593,
+        "variance": 145.3340192043896
+    },
+    "logical_fallacies": {
+        "average": 6.607361963190184,
+        "variance": 110.06669426775565
+    },
+    "machine_learning": {
+        "average": 39.57142857142857,
+        "variance": 999.6913265306123
+    },
+    "management": {
+        "average": 3.70873786407767,
+        "variance": 5.119049863323597
+    },
+    "marketing": {
+        "average": 4.747863247863248,
+        "variance": 40.308221930016806
+    },
+    "medical_genetics": {
+        "average": 21.96,
+        "variance": 7620.7984
+    },
+    "miscellaneous": {
+        "average": 5.744572158365262,
+        "variance": 84.92837092167697
+    },
+    "moral_disputes": {
+        "average": 4.34393063583815,
+        "variance": 26.826798422934278
+    },
+    "moral_scenarios": {
+        "average": 3.1810055865921787,
+        "variance": 0.15047720108610843
+    },
+    "nutrition": {
+        "average": 5.421568627450981,
+        "variance": 82.72750865051904
+    },
+    "philosophy": {
+        "average": 4.131832797427653,
+        "variance": 24.165899856287673
+    },
+    "prehistory": {
+        "average": 4.302469135802469,
+        "variance": 35.42703094040542
+    },
+    "professional_accounting": {
+        "average": 35.59219858156028,
+        "variance": 11948.638662542127
+    },
+    "professional_law": {
+        "average": 17.640156453715775,
+        "variance": 593.7375269637882
+    },
+    "professional_medicine": {
+        "average": 20.102941176470587,
+        "variance": 841.2982266435986
+    },
+    "professional_psychology": {
+        "average": 7.905228758169935,
+        "variance": 207.3864432483233
+    },
+    "public_relations": {
+        "average": 6.845454545454546,
+        "variance": 106.05793388429754
+    },
+    "security_studies": {
+        "average": 15.391836734693877,
+        "variance": 729.2015660141608
+    },
+    "sociology": {
+        "average": 3.9950248756218905,
+        "variance": 14.960174253112546
+    },
+    "us_foreign_policy": {
+        "average": 4.95,
+        "variance": 50.06749999999998
+    },
+    "virology": {
+        "average": 5.150602409638554,
+        "variance": 50.8387646973436
+    },
+    "world_religions": {
+        "average": 9.421052631578947,
+        "variance": 4540.6531240381655
+    },
+    "overall": {
+        "average": 13.854792764563452,
+        "variance": 1714.0086114831895
+    }
+}

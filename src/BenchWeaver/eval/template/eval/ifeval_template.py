@@ -34,4 +34,27 @@ _register_eval_template(
     criteria_prompt="",
     response=""
 )
-    
+
+_register_eval_template(
+    name="zh",
+    system="",
+    choice="\n{choice}. {content}",
+    answer="",
+    cot="",
+    templates=ifeval_eval_templates,
+    template_class=IFEval_Template,
+    criteria_prompt="",
+    response=""
+)
+
+_register_eval_template(
+    name="ko",
+    system="",
+    choice="\n{choice}. {content}",
+    answer="",
+    cot="",
+    templates=ifeval_eval_templates,
+    template_class=IFEval_Template,
+    criteria_prompt="",
+    response=""
+)

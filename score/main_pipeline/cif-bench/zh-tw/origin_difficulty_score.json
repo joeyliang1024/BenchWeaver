@@ -1,0 +1,602 @@
+{
+    "chinese_attractions_list": {
+        "average": 250.36,
+        "variance": 8263.9504
+    },
+    "intimacy_score_prediction": {
+        "average": 209.88,
+        "variance": 30373.025599999997
+    },
+    "word_semantics": {
+        "average": 57.46,
+        "variance": 289.6484
+    },
+    "speaker_identification": {
+        "average": 68.5,
+        "variance": 1666.13
+    },
+    "chinese_figurative_detection": {
+        "average": 123.32,
+        "variance": 7552.937599999999
+    },
+    "multilabel_chinese_humor_categorization": {
+        "average": 167.64,
+        "variance": 3865.7904
+    },
+    "argument_mining": {
+        "average": 276.16,
+        "variance": 9023.414400000001
+    },
+    "code_to_text": {
+        "average": 145.04,
+        "variance": 3065.1584
+    },
+    "social_norms_detection": {
+        "average": 365.24,
+        "variance": 5613.1824
+    },
+    "paraphrasing": {
+        "average": 140.48,
+        "variance": 10541.409599999999
+    },
+    "theory_of_mind": {
+        "average": 269.38,
+        "variance": 1500.1156
+    },
+    "stereotype_detection": {
+        "average": 141.96,
+        "variance": 27727.7184
+    },
+    "sentence_ordering": {
+        "average": 125.8,
+        "variance": 6975.879999999999
+    },
+    "sentence_expansion": {
+        "average": 159.4,
+        "variance": 8758.64
+    },
+    "fill_in_the_blank": {
+        "average": 92.3,
+        "variance": 1396.8900000000003
+    },
+    "discourse_relation_classification": {
+        "average": 134.72,
+        "variance": 14797.7616
+    },
+    "chinese_dialect_translation": {
+        "average": 96.66,
+        "variance": 2819.6244000000006
+    },
+    "game_playing": {
+        "average": 334.98,
+        "variance": 3642.7396000000003
+    },
+    "chinese_modern_abbreviation_explanation": {
+        "average": 151.76,
+        "variance": 4222.462399999999
+    },
+    "entity_relation_classification": {
+        "average": 46.8,
+        "variance": 263.08000000000004
+    },
+    "rhyme_aligned_generationn": {
+        "average": 171.32,
+        "variance": 8263.5376
+    },
+    "text_categorization": {
+        "average": 82.28,
+        "variance": 5496.0416000000005
+    },
+    "chinese_winograd_schema_challenge": {
+        "average": 54.58,
+        "variance": 1315.7235999999998
+    },
+    "stance_detection": {
+        "average": 24.5,
+        "variance": 1952.29
+    },
+    "mind_tree_generation": {
+        "average": 170.3,
+        "variance": 2625.3300000000004
+    },
+    "grammar_error_correction": {
+        "average": 72.68,
+        "variance": 10.177599999999998
+    },
+    "chinese_epigraph_detection": {
+        "average": 201.36,
+        "variance": 24655.2704
+    },
+    "discourse_connective_identification": {
+        "average": 128.7,
+        "variance": 3661.69
+    },
+    "explanation": {
+        "average": 141.22,
+        "variance": 10776.0916
+    },
+    "word_relation_classification": {
+        "average": 118.22,
+        "variance": 3232.3716000000004
+    },
+    "discreteoperationqa": {
+        "average": 267.54,
+        "variance": 53288.84840000001
+    },
+    "style_transfer": {
+        "average": 184.94,
+        "variance": 6589.616400000002
+    },
+    "iq_test": {
+        "average": 186.3,
+        "variance": 8692.69
+    },
+    "story_composition": {
+        "average": 225.4,
+        "variance": 41590.48
+    },
+    "chinese_fiction_characteristic_detection": {
+        "average": 83.68,
+        "variance": 784.1376000000001
+    },
+    "poem_generation": {
+        "average": 86.66,
+        "variance": 488.34439999999995
+    },
+    "code_debug": {
+        "average": 178.08,
+        "variance": 2862.9936
+    },
+    "first_order_logic": {
+        "average": 196.84,
+        "variance": 2269.6944
+    },
+    "make_positive": {
+        "average": 246.98,
+        "variance": 9884.6996
+    },
+    "chinese_pinyin_detection": {
+        "average": 79.46,
+        "variance": 8153.288400000001
+    },
+    "flowchart_generation": {
+        "average": 261.76,
+        "variance": 15098.2224
+    },
+    "commonsense": {
+        "average": 108.02,
+        "variance": 6863.619600000001
+    },
+    "preposition_prediction": {
+        "average": 147.1,
+        "variance": 6782.05
+    },
+    "outline_generation": {
+        "average": 342.28,
+        "variance": 3070.5616000000005
+    },
+    "number_conversion": {
+        "average": 136.64,
+        "variance": 5662.430399999999
+    },
+    "title_generation": {
+        "average": 85.26,
+        "variance": 11171.512400000001
+    },
+    "question_generation": {
+        "average": 69.46,
+        "variance": 1821.0484000000004
+    },
+    "english_translation": {
+        "average": 125.86,
+        "variance": 17366.9204
+    },
+    "recipe_generation": {
+        "average": 265.3,
+        "variance": 1767.89
+    },
+    "dialogue_generation": {
+        "average": 238.44,
+        "variance": 5757.6464000000005
+    },
+    "chinese_ambiguity_sentence_location": {
+        "average": 40.4,
+        "variance": 2825.5599999999995
+    },
+    "intent_identification": {
+        "average": 162.68,
+        "variance": 5162.017599999999
+    },
+    "data_to_text": {
+        "average": 83.38,
+        "variance": 3166.7555999999995
+    },
+    "named_entity_recognition": {
+        "average": 127.84,
+        "variance": 2654.3344
+    },
+    "wrong_candidate_generation": {
+        "average": 90.2,
+        "variance": 3749.16
+    },
+    "advertising": {
+        "average": 313.78,
+        "variance": 3632.0116
+    },
+    "gender_classification": {
+        "average": 142.14,
+        "variance": 5046.9204
+    },
+    "event_type_detection": {
+        "average": 56.2,
+        "variance": 318.28
+    },
+    "text_matching": {
+        "average": 121.94,
+        "variance": 2370.4564
+    },
+    "joke_telling": {
+        "average": 116.64,
+        "variance": 1727.5504
+    },
+    "spam_classification": {
+        "average": 139.82,
+        "variance": 4304.0676
+    },
+    "spanish_translation": {
+        "average": 212.98,
+        "variance": 17882.2996
+    },
+    "chinese_typo_categorization": {
+        "average": 120.4,
+        "variance": 3969.6799999999994
+    },
+    "name_allusion_detection": {
+        "average": 177.36,
+        "variance": 6329.910400000001
+    },
+    "chinese_wubi_written": {
+        "average": 110.34,
+        "variance": 3582.0644
+    },
+    "spelling_error_detection": {
+        "average": 169.12,
+        "variance": 28961.545600000005
+    },
+    "information_extraction": {
+        "average": 116.36,
+        "variance": 2046.6704
+    },
+    "affordance": {
+        "average": 155.48,
+        "variance": 1909.6096000000002
+    },
+    "question_rewriting": {
+        "average": 180.38,
+        "variance": 6025.115600000001
+    },
+    "review_generation": {
+        "average": 389.48,
+        "variance": 4051.7296
+    },
+    "bengali_translation": {
+        "average": 191.1,
+        "variance": 16851.809999999998
+    },
+    "bias_detoxication": {
+        "average": 159.3,
+        "variance": 3075.45
+    },
+    "emotion_prediction": {
+        "average": 85.12,
+        "variance": 2462.4256
+    },
+    "nationality_detection": {
+        "average": 181.7,
+        "variance": 26609.129999999994
+    },
+    "text_de_identification": {
+        "average": 193.62,
+        "variance": 2531.2755999999995
+    },
+    "commonsenseqa": {
+        "average": 153.18,
+        "variance": 7839.5876
+    },
+    "region_detection": {
+        "average": 73.2,
+        "variance": 3847.8
+    },
+    "cause_effect_classification": {
+        "average": 110.98,
+        "variance": 5944.379599999998
+    },
+    "commonsense_explanation": {
+        "average": 106.16,
+        "variance": 1533.2944
+    },
+    "fact_verification": {
+        "average": 101.62,
+        "variance": 3903.9556
+    },
+    "readingcomprehensionqa": {
+        "average": 108.02,
+        "variance": 6791.299600000001
+    },
+    "function_explanation": {
+        "average": 186.86,
+        "variance": 3673.0804000000007
+    },
+    "chinese_medicine_detection": {
+        "average": 222.08,
+        "variance": 3400.3136
+    },
+    "program_execution": {
+        "average": 210.24,
+        "variance": 2300.2224
+    },
+    "summarization": {
+        "average": 141.14,
+        "variance": 14506.120400000003
+    },
+    "question_answering": {
+        "average": 126.3,
+        "variance": 1984.1700000000003
+    },
+    "question_understanding": {
+        "average": 142.34,
+        "variance": 15522.5044
+    },
+    "grammar_error_detection": {
+        "average": 51.16,
+        "variance": 3971.2544000000007
+    },
+    "ancient_chinese_poem_retrieval": {
+        "average": 197.8,
+        "variance": 19624.16
+    },
+    "patronizing_condescending_multilabel": {
+        "average": 148.42,
+        "variance": 17295.8836
+    },
+    "negotiation_strategy_detection": {
+        "average": 149.36,
+        "variance": 3572.1504000000004
+    },
+    "keyword_tagging": {
+        "average": 126.46,
+        "variance": 9837.3284
+    },
+    "dialogue_act_recognition": {
+        "average": 66.06,
+        "variance": 281.69640000000004
+    },
+    "irony_detection": {
+        "average": 189.9,
+        "variance": 4264.77
+    },
+    "table_generation": {
+        "average": 106.46,
+        "variance": 2521.6884000000005
+    },
+    "tool_use": {
+        "average": 232.98,
+        "variance": 5873.0196
+    },
+    "sentence_compression": {
+        "average": 45.78,
+        "variance": 1531.2116
+    },
+    "text_quality_evaluation": {
+        "average": 60.6,
+        "variance": 966.36
+    },
+    "chinese_heteronomous_language_detection": {
+        "average": 65.96,
+        "variance": 1263.9983999999997
+    },
+    "entity_generation": {
+        "average": 142.16,
+        "variance": 2437.4543999999996
+    },
+    "pos_tagging": {
+        "average": 84.46,
+        "variance": 2369.3684
+    },
+    "commonsense_classification": {
+        "average": 119.52,
+        "variance": 3069.0096000000003
+    },
+    "sentence_composition": {
+        "average": 172.7,
+        "variance": 8006.809999999999
+    },
+    "textual_entailment": {
+        "average": 87.7,
+        "variance": 2908.29
+    },
+    "legal_term_retrieval": {
+        "average": 291.18,
+        "variance": 17755.6276
+    },
+    "draw_figure_with_symbol": {
+        "average": 118.22,
+        "variance": 4033.1715999999997
+    },
+    "chinese_idiom_explanation": {
+        "average": 146.78,
+        "variance": 3212.6115999999997
+    },
+    "dialogue_state_tracking": {
+        "average": 67.39,
+        "variance": 2593.7579
+    },
+    "role_playing": {
+        "average": 398.06,
+        "variance": 20639.0964
+    },
+    "critical_thinking": {
+        "average": 313.02,
+        "variance": 8949.259600000001
+    },
+    "chinese_relative_identification": {
+        "average": 82.74,
+        "variance": 26883.352400000003
+    },
+    "linguistic_probing": {
+        "average": 141.18,
+        "variance": 3029.4276
+    },
+    "arabic_translation": {
+        "average": 177.74,
+        "variance": 8391.7524
+    },
+    "french_translation": {
+        "average": 201.4,
+        "variance": 9184.84
+    },
+    "text_to_code": {
+        "average": 145.38,
+        "variance": 4590.1956
+    },
+    "sentiment_analysis": {
+        "average": 86.12,
+        "variance": 2017.4256
+    },
+    "answer_verification": {
+        "average": 128.38,
+        "variance": 13196.635600000001
+    },
+    "japanese_translation": {
+        "average": 109.72,
+        "variance": 6812.921599999999
+    },
+    "material_synthesis": {
+        "average": 182.8,
+        "variance": 7826.8
+    },
+    "chinese_metaphor_explanation": {
+        "average": 169.28,
+        "variance": 6319.801600000001
+    },
+    "emphathy_detection": {
+        "average": 163.28,
+        "variance": 844.2016
+    },
+    "concept_abstraction": {
+        "average": 214.12,
+        "variance": 2091.0256000000004
+    },
+    "pros_cons_listing": {
+        "average": 588.38,
+        "variance": 6070.6756000000005
+    },
+    "conversationalqa": {
+        "average": 78.22,
+        "variance": 6286.171599999999
+    },
+    "personality_detection": {
+        "average": 468.54,
+        "variance": 10580.768399999999
+    },
+    "overlap_extraction": {
+        "average": 173.08,
+        "variance": 8381.8736
+    },
+    "translate_to_ancient_chinese": {
+        "average": 146.22,
+        "variance": 11111.011600000002
+    },
+    "text_completion": {
+        "average": 150.04,
+        "variance": 1990.7184
+    },
+    "speaker_relation_classification": {
+        "average": 108.5,
+        "variance": 4674.33
+    },
+    "gujarati_translation": {
+        "average": 159.08,
+        "variance": 15036.113599999997
+    },
+    "sentence_perturbation": {
+        "average": 164.76,
+        "variance": 15275.5824
+    },
+    "compositional_reasoning": {
+        "average": 277.9,
+        "variance": 18669.21
+    },
+    "mathqa": {
+        "average": 300.1,
+        "variance": 38989.65
+    },
+    "coreference_resolution": {
+        "average": 120.92,
+        "variance": 3403.6736000000005
+    },
+    "mathematics": {
+        "average": 119.26,
+        "variance": 2165.5524000000005
+    },
+    "text_simplification": {
+        "average": 173.2,
+        "variance": 10315.759999999998
+    },
+    "joke_explanation": {
+        "average": 258.74,
+        "variance": 4545.392400000001
+    },
+    "multihopqa": {
+        "average": 264.56,
+        "variance": 10887.926400000002
+    },
+    "question_decomposition": {
+        "average": 254.78,
+        "variance": 9622.9716
+    },
+    "commonsensenli": {
+        "average": 108.18,
+        "variance": 6151.787599999999
+    },
+    "toxic_language_detection": {
+        "average": 109.42,
+        "variance": 2277.4035999999996
+    },
+    "chinese_rhyme_detection": {
+        "average": 182.12,
+        "variance": 11200.825599999998
+    },
+    "code_translate": {
+        "average": 120.36,
+        "variance": 1737.3503999999998
+    },
+    "imagination": {
+        "average": 772.76,
+        "variance": 47438.2624
+    },
+    "tamil_translation": {
+        "average": 149.4,
+        "variance": 13797.8
+    },
+    "answerability_classification": {
+        "average": 87.02,
+        "variance": 2697.6996000000004
+    },
+    "sentence_level_uncertainty_judgement": {
+        "average": 137.42,
+        "variance": 2157.8036000000006
+    },
+    "ancient_chinese_translation": {
+        "average": 138.4,
+        "variance": 4430.24
+    },
+    "punctuation_error_detection": {
+        "average": 108.24,
+        "variance": 6116.5824
+    },
+    "overall": {
+        "average": 163.53426666666667,
+        "variance": 17474.52029246222
+    }
+}
