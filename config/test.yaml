@@ -18,11 +18,11 @@ transation_templates_name: proper_nouns
 #### 1. the source language for the translation model
 #### 2. the trans pipeline object language
 source_lang: en
-target_lang: zh-tw
+target_lang: en
 
 ### source dataset
-task: mbpp_test  
-task_dir: evaluation_data
+task: mifeval_test
+task_dir: evaluation_data/P-MMEval/en
 #### lang: usually the name of the template, set same as your model main language
 lang: en
 n_shot: 3
