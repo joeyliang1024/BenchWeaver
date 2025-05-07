@@ -19,6 +19,8 @@ class OPQAEvaluator(Evaluator):
         for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
             category_name = self.categories[subject]["category"]
             corrects = np.array(['true'] * len(check_results[subject])) == np.array([self.retrieve_answer(answer) for answer in check_results[subject]])
+            if category_name not in category_corrects:
+                category_corrects[category_name] = np.array([], dtype="bool")
             category_corrects[category_name] = np.concatenate([category_corrects[category_name], corrects], axis=0)
             category_corrects["Average"] = np.concatenate([category_corrects["Average"], corrects], axis=0)
             

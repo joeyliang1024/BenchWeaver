@@ -210,6 +210,30 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": None,
         "sugguest_num_shots": 3,
         "support_chain_of_thought": False,
+    },
+    "xnli": {
+        "language": "en",
+        "mode": ["opqa"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
+    "logiqa": {
+        "language": "en",
+        "mode": [ "mcqa-oq"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
+    "humaneval-xl": {
+        "language": "en",
+        "mode": ["code"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
     }
 }
 
@@ -356,5 +380,20 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .en.mbpp.code_eval import MBPPEvaluator
         return {
             "code": MBPPEvaluator,
+        }
+    elif task_name == "xnli":
+        from .en.xnli.opqa_eval import XNLIEvaluator
+        return {
+            "opqa": XNLIEvaluator,
+        }
+    elif task_name == "logiqa":
+        from .en.logiqa.oq_eval import LogiQAEvaluator
+        return {
+            "mcqa-oq": LogiQAEvaluator,
+        }
+    elif task_name == "humaneval-xl":
+        from .en.humaneval_xl.code_eval import HumanEvalXLEvaluator
+        return {
+            "code": HumanEvalXLEvaluator,
         }
     return {}

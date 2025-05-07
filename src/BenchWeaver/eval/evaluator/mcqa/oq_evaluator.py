@@ -28,6 +28,8 @@ class OQEvaluator(Evaluator):
             # Compare predictions and answers, only where answer is 'true'
             corrects: np.ndarray = (predictions == 'true') & true_mask  # correct when answer is 'true' and prediction is 'true'
             # Update the corrects and true_mask counts
+            if category_name not in category_corrects:
+                category_corrects[category_name] = {"corrects": 0, "true_mask_count": 0}
             category_corrects[category_name]["corrects"] += corrects.sum()
             category_corrects[category_name]["true_mask_count"] += true_mask.sum()
             category_corrects["Average"]['corrects'] += corrects.sum()

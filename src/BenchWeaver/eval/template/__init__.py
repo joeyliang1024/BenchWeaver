@@ -28,6 +28,9 @@ from .eval.hellaswag_template import get_hellaswag_eval_template
 from .eval.ifeval_template import IFEval_Template, get_ifeval_eval_template
 from .eval.flores_template import get_flores_eval_template
 from .eval.mbpp_template import get_mbpp_eval_template
+from .eval.xnli_template import XNLI_Template, get_xnli_eval_template
+from .eval.logiqa_template import LogiQA_Template, get_logiqa_eval_template
+from .eval.humaneval_xl_template import get_humaneval_xl_eval_template
 
 __all__ = [
     # class
@@ -49,6 +52,8 @@ __all__ = [
     "ChineseSafetyQA_Template",
     "MT_Bench_TW_Template",
     "IFEval_Template",
+    "XNLI_Template",
+    "LogiQA_Template",
     # function
     "get_mmlu_eval_template",
     "get_arc_challenge_eval_template",
@@ -72,6 +77,9 @@ __all__ = [
     "get_ifeval_eval_template",
     "get_flores_eval_template",
     "get_mbpp_eval_template",
+    "get_xnli_eval_template",
+    "get_humaneval_xl_eval_template",
+    "get_logiqa_eval_template",
     # translation
     "get_translation_template",
     # register

@@ -4,7 +4,7 @@ from .code_template import Code_Template
 
 humaneval_xl_eval_templates: Dict[str, "Code_Template"] = {}
 
-def get_mbpp_eval_template(name: str) -> "Code_Template":
+def get_humaneval_xl_eval_template(name: str) -> "Code_Template":
     eval_template = humaneval_xl_eval_templates.get(name, None)
     assert eval_template is not None, "Template {} does not exist.".format(name)
     return eval_template

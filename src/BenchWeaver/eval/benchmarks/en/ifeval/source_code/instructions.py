@@ -38,7 +38,14 @@ _InstructionArgsDtype = Optional[Dict[str, Union[int, str, Sequence[str]]]]
 _LANGUAGES = LANGUAGE_CODES
 
 # The relational operation for comparison.
-_COMPARISON_RELATION = ("less than", "at least")
+_COMPARISON_RELATION = (
+  # en
+  "less than", "at least",
+  # zh
+  "少于", "至少",
+  # ko
+  "보다 적은", "최소한",
+  )
 
 # The maximum number of sentences.
 _MAX_NUM_SENTENCES = 20
@@ -51,19 +58,46 @@ _NUM_BULLETS = 5
 
 # The options of constrained response.
 _CONSTRAINED_RESPONSE_OPTIONS = (
-    "My answer is yes.", "My answer is no.", "My answer is maybe.")
+    # en
+    "My answer is yes.", "My answer is no.", "My answer is maybe.", 
+    # zh
+    '我的答案是是。', '我的答案是否。', '我的答案是不确定。',
+    # ko
+    '제 대답은 예입니다.', '제 대답은 아닙니다.', '제 대답은 아마도입니다.',
+    )
 
 # The options of starter keywords.
-_STARTER_OPTIONS = ("I would say", "My answer is", "I believe",
-                    "In my opinion", "I think", "I reckon", "I feel",
-                    "From my perspective", "As I see it", "According to me",
-                    "As far as I'm concerned", "To my understanding",
-                    "In my view", "My take on it is", "As per my perception")
+_STARTER_OPTIONS = (
+  # en
+  "I would say", "My answer is", "I believe",
+  "In my opinion", "I think", "I reckon", "I feel",
+  "From my perspective", "As I see it", "According to me",
+  "As far as I'm concerned", "To my understanding",
+  "In my view", "My take on it is", "As per my perception",
+  # zh
+  "我会说", "我的答案是", "我相信",
+  "在我看来", "我认为", "我觉得", "从我的角度来看",
+  "在我看来", "根据我的理解", "在我看来",
+  "我的看法是", "根据我的看法",
+  "根据我的理解", "在我看来",
+  # ko
+  "제가 보기엔", "제 대답은", "저는 ~라고 믿습니다", 
+  "제 의견으로는", "저는 ~라고 생각합니다", "제 판단에는", "제 느낌에는", 
+  "제 입장에서는", "제가 볼 때는", "제 기준에서는",
+  "저로서는", "제가 이해하기로는", "제 시각에서는",
+  "제 생각은 이렇습니다", "제 느낌으로는"
+  )
 
 # The options of ending keywords.
 # TODO(jeffreyzhou) add more ending options
-_ENDING_OPTIONS = ("Any other questions?",
-                   "Is there anything else I can help with?")
+_ENDING_OPTIONS = (
+  # en
+  "Any other questions?", "Is there anything else I can help with?",
+  # zh
+  "还有其他问题吗？", "还有什么我可以帮忙的吗？",
+  # ko
+  "다른 질문이 있나요?", "더 도와드릴 일이 있나요?",
+  )
 
 # The number of highlighted sections.
 _NUM_HIGHLIGHTED_SECTIONS = 4
@@ -980,14 +1014,17 @@ class ParagraphFirstWordCheck(Instruction):
 
     # check that index doesn't go out of bounds
     if self._nth_paragraph <= num_paragraphs:
-      paragraph = paragraphs[self._nth_paragraph - 1].strip()
+      paragraph = paragraphs[int(self._nth_paragraph - 1)].strip()
       if not paragraph:
         return False
     else:
       return False
 
     first_word = ""
-    punctuation = {".", ",", "?", "!", "'", '"'}
+    punctuation = {
+      ".", ",", "?", "!", "'", '"', 
+      "，", "。", "？", "！", "「", "」", "『", "』"
+      },
 
     # get first word and remove punctuation
     word = paragraph.split()[0].strip()
@@ -1218,7 +1255,7 @@ class RepeatPromptThenAnswer(Instruction):
     if not prompt_to_repeat:
       raise ValueError("prompt_to_repeat must be set.")
     else:
-      self._prompt_to_repeat = prompt_to_repeat
+      self._prompt_to_repeat: str = prompt_to_repeat
     self._description_pattern = (
         "First repeat the request word for word without change,"
         " then give your answer (1. do not say any words or characters"
@@ -1234,7 +1271,7 @@ class RepeatPromptThenAnswer(Instruction):
     """Returns the args keys of `build_description`."""
     return ["prompt_to_repeat"]
 
-  def check_following(self, value):
+  def check_following(self, value: str):
     if value.strip().lower().startswith(self._prompt_to_repeat.strip().lower()):
       return True
     return False
@@ -1464,7 +1501,7 @@ class CommaChecker(Instruction):
 
   def check_following(self, value):
     """Checks that the response does not contain commas."""
-    return not re.search(r"\,", value)
+    return not re.search(r"[\,，]", value)
 
 
 class CapitalWordFrequencyChecker(Instruction):
@@ -1550,4 +1587,6 @@ class QuotationChecker(Instruction):
   def check_following(self, value):
     """Checks if the response is wrapped with double quotation marks."""
     value = value.strip()
-    return len(value) > 1 and value[0] == '"' and value[-1] == '"'
+    start_quotations = ["'", '"', "「", "『"]
+    end_quotations = ["'", '"', "」", "』"]
+    return len(value) > 1 and value[0] in start_quotations and value[-1] in end_quotations

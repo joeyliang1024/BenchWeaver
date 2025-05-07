@@ -24,6 +24,9 @@ from .eval.hellaswag_template import get_hellaswag_eval_template
 from .eval.ifeval_template import IFEval_Template, get_ifeval_eval_template
 from .eval.flores_template import get_flores_eval_template
 from .eval.mbpp_template import get_mbpp_eval_template
+from .eval.xnli_template import XNLI_Template, get_xnli_eval_template
+from .eval.logiqa_template import LogiQA_Template, get_logiqa_eval_template
+from .eval.humaneval_xl_template import get_humaneval_xl_eval_template
 
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
@@ -125,5 +128,17 @@ EVAL_TEMPLATE_CONFIG = {
     "mbpp": {
         "class": Code_Template,
         "func": get_mbpp_eval_template,
+        },
+    "xnli": {
+        "class": XNLI_Template,
+        "func": get_xnli_eval_template,
+        },
+    "logiqa": {
+        "class": LogiQA_Template,
+        "func": get_logiqa_eval_template,
+        },
+    "humaneval-xl": {
+        "class": Code_Template,
+        "func": get_humaneval_xl_eval_template,
         },
 }

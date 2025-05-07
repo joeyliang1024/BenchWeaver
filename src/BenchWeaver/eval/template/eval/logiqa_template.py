@@ -46,7 +46,7 @@ class LogiQA_Template(MCQA_Template):
     
 logiqa_eval_templates: Dict[str, "LogiQA_Template"] = {}
 
-def get_drcd_eval_template(name: str) -> "LogiQA_Template":
+def get_logiqa_eval_template(name: str) -> "LogiQA_Template":
     eval_template = logiqa_eval_templates.get(name, None)
     assert eval_template is not None, "Template {} does not exist.".format(name)
     return eval_template
@@ -66,6 +66,7 @@ _register_eval_template(
 _register_eval_template(
     name="zh",
     system="段落: {context}\n问题: {question}\n选择:\nA. {option_a}\nB. {option_b}\nC. {option_c}\nD. {option_d}\n请在 A、B、C 和 D 中选择最合适的一个作为此问题的答案",
+    choice="\n{choice}. {content}",
     answer="\n答案: ",
     cot="\n让我们一步一步地思考。\n答案: ",
     templates=logiqa_eval_templates,
@@ -77,6 +78,7 @@ _register_eval_template(
 _register_eval_template(
     name="ko",
     system="구문: {context}\n질문: {question}\n선택:\nA. {option_a}\nB. {option_b}\nC. {option_c}\nD. {option_d}\n이 질문의 답으로 A, B, C 및 D 중 가장 적합한 것을 선택하고",
+    choice="\n{choice}. {content}",
     answer="\n답: ",
     cot="\n단계별로 생각해 보겠습니다.\n답: ",
     templates=logiqa_eval_templates,
