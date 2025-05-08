@@ -343,7 +343,7 @@ def check_correctness_csharp(
 ):
     program = problem["prompt"] + completion + problem["test"]
     # template c# project has all necessary DLLs
-    template_cs_proj_zip = os.path.join(PROJECT_BASE_PATH, "resources/eval_csproj.zip")
+    template_cs_proj_zip = os.path.join(PROJECT_BASE_PATH, "mxeval/resources/eval_csproj.zip")
     cs_eval_dir = setup_base_path(output_dir, "cs_eval", "")
 
     # extract zip into cs_eval_dir

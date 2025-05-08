@@ -188,5 +188,4 @@ cython_debug/
 **/question_check_result.json
 **/answer_check_result.json
 **/trans_groundtruth.json
-
-mxeval
+**/mxeval_results.jsonl
