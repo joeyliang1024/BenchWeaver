@@ -51,9 +51,16 @@ class HumanEvalXL(datasets.GeneratorBasedBuilder):
         return datasets.DatasetInfo(
             description=_DESCRIPTION,
             features=datasets.Features({
-                'task_id': datasets.Value(dtype='int32'),
+                'task_id': datasets.Value(dtype='string'),
                 'text': datasets.Value(dtype='string'),
                 'test_list': datasets.Sequence(datasets.Value(dtype='string')),
+                'prompt': datasets.Value(dtype='string'),
+                'test': datasets.Value(dtype='string'),
+                'entry_point': datasets.Value(dtype='string'),
+                'description': datasets.Value(dtype='string'),
+                'language': datasets.Value(dtype='string'),
+                'canonical_solution': datasets.Value(dtype='string'),
+                'declaration': datasets.Value(dtype='string'),
             }),
             homepage=_HOMEPAGE,
             license=_LICENSE,
@@ -76,6 +83,6 @@ class HumanEvalXL(datasets.GeneratorBasedBuilder):
         # Read in with pandas so that 'kwargs' remains a list of dicts
         df = pd.read_parquet(filepath)
         # Ensure the dataframe columns are as expected
-        df.columns = ['task_id', 'text', 'test_list']
+        df.columns = ["task_id", "text", "test_list", "prompt", "test", "entry_point", "description", "language", "canonical_solution", "declaration"]
         for idx, example in enumerate(df.to_dict(orient="records")):
             yield idx, example

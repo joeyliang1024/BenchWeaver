@@ -5,6 +5,7 @@ import logging
 from ..extras.print_env import VERSION, print_env
 from .eval_score import run_eval
 from .display_bench import display_benchmark_table
+from ..extras.code_env_install import install_code_env
 # this is a temp cli usage
 USAGE = [
     ["Command", "Description"],
@@ -41,6 +42,7 @@ class Command(str, Enum):
     WEBUI = "webui"
     EVAL = "eval"
     BENCHMARK = "benchmark"
+    SETUP_CODE_ENV = "setup_code_env"
     
 def main():
     command = sys.argv.pop(1) if len(sys.argv) != 1 else Command.HELP
@@ -58,6 +60,8 @@ def main():
         display_benchmark_table()
     elif command == Command.EVAL:
         run_eval()
+    elif command == Command.SETUP_CODE_ENV:
+        install_code_env()
     else:
         raise NotImplementedError(f"Unknown command: {command}.")
 

@@ -36,6 +36,10 @@ class EvaluationArguments:
         default="evaluation_data",
         metadata={"help": "Path to the folder containing the evaluation datasets."},
     )
+    ref_task_dir: Optional[str] = field(
+        default=None,
+        metadata={"help": "Path to the folder containing the reference datasets."},
+    )
     batch_size: int = field(
         default=4,
         metadata={"help": "The batch size per GPU for evaluation."},
@@ -100,3 +104,5 @@ class EvaluationArguments:
     def __post_init__(self):
         if self.save_dir is not None and os.path.exists(self.save_dir):
             raise ValueError("`save_dir` already exists, use another one.")
+        if self.ref_task_dir is None:
+            self.ref_task_dir = self.task_dir

@@ -18,11 +18,12 @@ transation_templates_name: proper_nouns
 #### 1. the source language for the translation model
 #### 2. the trans pipeline object language
 source_lang: en
-target_lang: en
+target_lang: zh-tw
 
 ### source dataset
-task: mifeval_test
+task: humaneval-xl_test
 task_dir: evaluation_data/P-MMEval/en
+# ref_task_dir: null
 #### lang: usually the name of the template, set same as your model main language
 lang: en
 n_shot: 3
@@ -34,7 +35,7 @@ batch_size: 4
 # ref_task: mmlu
 
 ### output
-save_dir: score/mbpp/same_lang
+save_dir: score/pmmeval_exp/en/humaneval-xl_same
 
 ### VLLM 
 vllm_maxlen: 8192

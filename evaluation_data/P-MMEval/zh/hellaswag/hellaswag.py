@@ -36,32 +36,40 @@ We introduce a multilingual benchmark, P-MMEval, covering effective fundamental 
 
 _HOMEPAGE = "https://huggingface.co/datasets/Qwen/P-MMEval"
 _LICENSE = "Apache-2.0"
-_URL = "humaneval-xl.zip"
+_URL = "mhellaswag.zip"
 
 task_list = ["all"]
 
-class HumanEvalXLConfig(datasets.BuilderConfig):
+
+class MHellaSwagConfig(datasets.BuilderConfig):
     def __init__(self, **kwargs):
         super().__init__(version=datasets.Version("1.0.0"), **kwargs)
 
-class HumanEvalXL(datasets.GeneratorBasedBuilder):
-    BUILDER_CONFIGS = [HumanEvalXLConfig(name=task) for task in task_list]
+
+class MHellaSwag(datasets.GeneratorBasedBuilder):
+    BUILDER_CONFIGS = [
+        MHellaSwagConfig(
+            name=task_name,
+        )
+        for task_name in task_list
+    ]
 
     def _info(self):
+        features = datasets.Features(
+            {
+                "activity_label": datasets.Value("string"),
+                "split_type": datasets.Value("string"),
+                "question": datasets.Value("string"),
+                "A": datasets.Value("string"),
+                "B": datasets.Value("string"),
+                "C": datasets.Value("string"),
+                "D": datasets.Value("string"),
+                "answer": datasets.Value("string"),
+            }
+        )
         return datasets.DatasetInfo(
             description=_DESCRIPTION,
-            features=datasets.Features({
-                'task_id': datasets.Value(dtype='string'),
-                'text': datasets.Value(dtype='string'),
-                'test_list': datasets.Sequence(datasets.Value(dtype='string')),
-                'prompt': datasets.Value(dtype='string'),
-                'test': datasets.Value(dtype='string'),
-                'entry_point': datasets.Value(dtype='string'),
-                'description': datasets.Value(dtype='string'),
-                'language': datasets.Value(dtype='string'),
-                'canonical_solution': datasets.Value(dtype='string'),
-                'declaration': datasets.Value(dtype='string'),
-            }),
+            features=features,
             homepage=_HOMEPAGE,
             license=_LICENSE,
             citation=_CITATION,
@@ -80,9 +88,9 @@ class HumanEvalXL(datasets.GeneratorBasedBuilder):
         ]
 
     def _generate_examples(self, filepath):
-        # Read in with pandas so that 'kwargs' remains a list of dicts
+
         df = pd.read_parquet(filepath)
-        # Ensure the dataframe columns are as expected
-        df.columns = ["task_id", "text", "test_list", "prompt", "test", "entry_point", "description", "language", "canonical_solution", "declaration"]
-        for idx, example in enumerate(df.to_dict(orient="records")):
-            yield idx, example
+        df.columns = ["activity_label", "split_type", "question", "A", "B", "C", "D", "answer"]
+
+        for i, instance in enumerate(df.to_dict(orient="records")):
+            yield i, instance

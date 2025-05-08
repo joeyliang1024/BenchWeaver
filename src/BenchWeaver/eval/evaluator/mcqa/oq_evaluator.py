@@ -107,7 +107,7 @@ class OQEvaluator(Evaluator):
                 # load object benchmark examples
                 if self.ref_task is not None:
                     ref_dataset = load_dataset(
-                        path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.ref_task),
+                        path=os.path.join(PROJECT_BASE_PATH, self.eval_args.ref_task_dir, self.ref_task),
                         name=random.choice(list(self.ref_categories.keys())),
                         cache_dir=self.model_args.cache_dir,
                         download_mode=self.eval_args.download_mode,

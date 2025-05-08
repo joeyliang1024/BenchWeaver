@@ -1,0 +1,65 @@
+{
+    "Average": 0.0,
+    "all": [
+        {
+            "pass@1": 0.0
+        },
+        {
+            "3": [
+                [
+                    0,
+                    {
+                        "task_id": 3,
+                        "passed": false,
+                        "result": "failed: invalid syntax (<string>, line 1)",
+                        "completion_id": 0
+                    }
+                ]
+            ],
+            "0": [
+                [
+                    0,
+                    {
+                        "task_id": 0,
+                        "passed": false,
+                        "result": "failed: invalid syntax (<string>, line 1)",
+                        "completion_id": 0
+                    }
+                ]
+            ],
+            "1": [
+                [
+                    0,
+                    {
+                        "task_id": 1,
+                        "passed": false,
+                        "result": "failed: invalid syntax (<string>, line 1)",
+                        "completion_id": 0
+                    }
+                ]
+            ],
+            "2": [
+                [
+                    0,
+                    {
+                        "task_id": 2,
+                        "passed": false,
+                        "result": "failed: invalid syntax (<string>, line 1)",
+                        "completion_id": 0
+                    }
+                ]
+            ],
+            "4": [
+                [
+                    0,
+                    {
+                        "task_id": 4,
+                        "passed": false,
+                        "result": "failed: invalid syntax (<string>, line 1)",
+                        "completion_id": 0
+                    }
+                ]
+            ]
+        }
+    ]
+}

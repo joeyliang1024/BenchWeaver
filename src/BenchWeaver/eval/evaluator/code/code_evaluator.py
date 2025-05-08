@@ -25,12 +25,20 @@ class CodeEvaluator(Evaluator):
     
     @staticmethod
     def _postprocess_generation(text: str) -> str:
-        # Pattern to optionally match [BEGIN] ... [DONE] with flexible spacing and casing
-        pattern = r'\[\s*begin\s*\](.*?)\[\s*done\s*\]'
-        match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
-
+        # Try to match [BEGIN] ... [DONE] with flexible spacing and casing
+        pattern_begin_done = r'\[\s*begin\s*\](.*?)\[\s*done\s*\]'
+        match = re.search(pattern_begin_done, text, re.IGNORECASE | re.DOTALL)
+    
         if match:
             return match.group(1).strip()
+    
+        # If no [BEGIN]...[DONE], try to match text between triple backticks
+        pattern_code_block = r'```(?:\w*\n)?(.*?)```'
+        match = re.search(pattern_code_block, text, re.DOTALL)
+    
+        if match:
+            return match.group(1).strip()
+    
         return text.strip()
     
     def post_process_response(self, response_result: Dict[str, Any]):
@@ -103,7 +111,7 @@ class CodeEvaluator(Evaluator):
                 # load object benchmark examples
                 if self.ref_task is not None:
                     ref_dataset = load_dataset(
-                        path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.ref_task),
+                        path=os.path.join(PROJECT_BASE_PATH, self.eval_args.ref_task_dir, self.ref_task),
                         name=random.choice(list(self.ref_categories.keys())),
                         cache_dir=self.model_args.cache_dir,
                         download_mode=self.eval_args.download_mode,
