@@ -21,13 +21,13 @@ source_lang: en
 target_lang: zh-tw
 
 ### source dataset
-task: humaneval-xl_test
+task: ifeval_test
 task_dir: evaluation_data/P-MMEval/en
 # ref_task_dir: null
 #### lang: usually the name of the template, set same as your model main language
 lang: en
 n_shot: 3
-benchmark_mode: code
+benchmark_mode: opqa
 pipeline: same
 batch_size: 4
 
@@ -35,7 +35,7 @@ batch_size: 4
 # ref_task: mmlu
 
 ### output
-save_dir: score/pmmeval_exp/en/humaneval-xl_same
+save_dir: score/pmmeval_exp/en/mifeval_same
 
 ### VLLM 
 vllm_maxlen: 8192

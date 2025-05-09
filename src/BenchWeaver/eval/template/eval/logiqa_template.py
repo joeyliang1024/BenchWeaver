@@ -7,7 +7,7 @@ class LogiQA_Template(MCQA_Template):
     def __init__(self, system: str, choice: str, answer: str, cot: str, criteria_prompt:str, response:str):
         super().__init__(system=system, choice=choice, answer=answer, cot=cot, criteria_prompt=criteria_prompt, response=response)
 
-    def _parse_example(self, example: Dict[str, str], use_cot: bool=False, **kwargs) -> Tuple[str, str]:
+    def _parse_example(self, example: Dict[str, str], choices: List[str], use_cot: bool=False, **kwargs) -> Tuple[str, str]:
         r"""
         input: a dict with keys {"context", "question", "answer", ...}
         output: a tuple of (prompt, response)
@@ -39,7 +39,6 @@ class LogiQA_Template(MCQA_Template):
                 prompt, response = self._parse_example(support_set[k], choices)
                 messages.append({"role": Role.USER.value, "content": prompt})
                 messages.append({"role": Role.ASSISTANT.value, "content": response})
-
         prompt, response = self._parse_example(target_data, choices, use_cot=use_cot)
         messages.append({"role": Role.USER.value, "content": prompt})
         return messages

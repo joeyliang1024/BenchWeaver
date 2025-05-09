@@ -223,7 +223,7 @@ BENCHMARK_CONFIG = {
         "language": "en",
         "mode": [ "mcqa-oq"],
         "display_scores": ["Average", "all"],
-        "mcqa_choices": None,
+        "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
     },

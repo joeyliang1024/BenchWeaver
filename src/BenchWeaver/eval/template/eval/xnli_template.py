@@ -50,7 +50,7 @@ class XNLI_Template(OPQA_Template):
                 ,ValueError("Criteria prompt format incorrect, must contain '{answer}', '{question}', and '{llm_response}'")
             self.criteria_prompt = criteria_prompt
         assert self.criteria_prompt is not None, ValueError("`criteria_prompt` should not be empty.")
-        question, answer = self._parse_example(target_data, use_cot=False)
+        question, answer = self._parse_example(target_data, choices=[], use_cot=False)
         return [
                 {
                     "role": Role.USER.value, 
@@ -71,7 +71,7 @@ def get_xnli_eval_template(name: str) -> "XNLI_Template":
 
 _register_eval_template(
     name="en",
-    system="Take the following as truth: {premise}\nThen the following statement: '{hypothesis}' is\nOptions:\nA.true\nB. inconclusive\nC. false\nSelect the correct option from A, B, and C.",
+    system="Take the following as truth: {premise}\nThen the following statement: '{statement}' is\nOptions:\nA.true\nB. inconclusive\nC. false\nSelect the correct option from A, B, and C.",
     choice="\n{choice}. {content}",
     answer="\nAnswer:",
     cot="\nLet's think step by step.\nAnswer:",

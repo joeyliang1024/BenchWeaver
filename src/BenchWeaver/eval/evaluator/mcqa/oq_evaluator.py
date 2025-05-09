@@ -37,7 +37,7 @@ class OQEvaluator(Evaluator):
         
         return {
             category_name: round(100 * (record_dict['corrects'] / record_dict['true_mask_count']), 4)
-                for category_name, record_dict in category_corrects.items()
+                for category_name, record_dict in category_corrects.items() if record_dict['true_mask_count'] > 0
         }
         
     def load_data(self, 

@@ -26,23 +26,9 @@ def install_code_env():
     """
     args = parse_args()
     original_dir = Path.cwd()
-    repo_url = "https://github.com/amazon-science/mxeval.git"
     clone_dir = Path(PROJECT_BASE_PATH) / "mxeval"
 
     try:
-        # Clone the repository
-        logger.info(f"Cloning mxeval repository from {repo_url} to {clone_dir}")
-        # remove the existing directory if it exists
-        if clone_dir.exists():
-            logger.info(f"Removing existing directory: {clone_dir}")
-            shutil.rmtree(clone_dir)
-        subprocess.run(["git", "clone", repo_url, str(clone_dir)], check=True)
-
-        # Install the package in editable mode
-        logger.info("Installing mxeval in editable mode")
-        subprocess.run(["pwd"], check=True)
-        subprocess.run(["pip", "install", "-e", "mxeval"], check=True)
-
         # Change to the mxeval directory
         logger.info(f"Changing directory to {clone_dir}")
         os.chdir(clone_dir)
