@@ -83,7 +83,7 @@ _register_eval_template(
     
 _register_eval_template(
     name="zh",
-    system="假设以下内容为真：{premise}\n考虑以下陈述：“{hypothesis}”\n该陈述是：\n选项：\nA. 真实的\nB.无法确定\nC. 虚假的\n从 A, B 或者C 中选择正确的选项。",
+    system="假设以下内容为真：{premise}\n考虑以下陈述：“{statement}”\n该陈述是：\n选项：\nA. 真实的\nB.无法确定\nC. 虚假的\n从 A, B 或者C 中选择正确的选项。",
     choice="\n{choice}. {content}",
     answer="\n答案：",
     cot="\n让我们一步一步地思考。\n答案：",
@@ -95,7 +95,7 @@ _register_eval_template(
 
 _register_eval_template(
     name="ko",
-    system="다음 내용을 사실로 가정합니다: {premise}\n그런 다음 다음 진술을 고려하십시오: '{hypothesis}'\n진술은:\n옵션:\nA. 진실\nB. 결론을 내릴 수 없음\nC. 거짓\nA, B 또는 C에서 올바른 옵션을 선택하십시오.",
+    system="다음 내용을 사실로 가정합니다: {premise}\n그런 다음 다음 진술을 고려하십시오: '{statement}'\n진술은:\n옵션:\nA. 진실\nB. 결론을 내릴 수 없음\nC. 거짓\nA, B 또는 C에서 올바른 옵션을 선택하십시오.",
     choice="\n{choice}. {content}",
     answer="\n답변:",
     cot="\n단계별로 생각해 보겠습니다.\n답변:",
