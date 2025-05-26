@@ -43,7 +43,7 @@ class VLLMServer:
             *[
                 "vllm",
                 "serve", str(model_path),
-                "--enable-chunked-prefill", "False",
+                "--no-enable-chunked-prefill", # update vllm greater than 0.8.2
                 "--tensor-parallel-size", str(self.get_max_usable_devices()),
                 "--dtype", dtype,
                 "--served-model-name", model_name,
