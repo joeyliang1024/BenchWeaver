@@ -99,12 +99,33 @@ class TransEvaluator(Evaluator):
                 token=self.hf_token,
                 trust_remote_code=True,
             )
+                    
             for i, (source_example, target_example) in enumerate(zip(source_dataset[self.eval_split], target_dataset[self.eval_split])):
                 # format inference example
                 if i < min(len(source_dataset[self.eval_split]), self.testing_size):
+                    # prepare support set
+                    if source_dataset.get("train"):
+                        source_support_set = (
+                            source_dataset["train"]
+                            .shuffle()
+                            .select(range(min(self.eval_args.n_shot, len(source_dataset["train"]))))
+                        )
+                    else:
+                        source_support_set = None
+                    if target_dataset.get("train"):
+                        target_support_set = (
+                            target_dataset["train"]
+                            .shuffle()
+                            .select(range(min(self.eval_args.n_shot, len(target_dataset["train"]))))
+                        )
+                    else:
+                        target_support_set = None
+                    # format messages
                     messages, groundtruth = self.eval_template.format_inference_example(
                         source_example=source_example,
                         target_example=target_example,
+                        source_support_set=source_support_set,
+                        target_support_set=target_support_set,
                         source_lang=source_lang,
                         target_lang=target_lang,
                         user_prompt=self.eval_args.user_prompt,

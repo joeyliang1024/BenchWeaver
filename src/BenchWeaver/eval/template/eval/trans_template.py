@@ -20,6 +20,8 @@ class Trans_Template(EvalTemplate):
     def format_inference_example(self, 
                                  source_example: Dict[str, str], 
                                  target_example: Dict[str, str], 
+                                 source_support_set: Sequence[Dict[str, str]],
+                                 target_support_set: Sequence[Dict[str, str]],
                                  source_lang: str,
                                  target_lang: str,
                                  user_prompt: str,
@@ -33,7 +35,24 @@ class Trans_Template(EvalTemplate):
             user_prompt: The user prompt to format the message.
         
         """
-        source_sentence, target_sentence = self._parse_example(source_example, target_example)
+        messages = []
+        # for few shot
+        if source_support_set is not None and target_support_set is not None:
+            assert len(source_support_set) == len(target_support_set), \
+                ValueError("Source and target support sets must have the same length.")
+            for k in range(len(source_support_set)):
+                source_sentence, target_sentence = self._parse_example(source_support_set[k], target_support_set[k])
+                prompt = user_prompt.format(source_sentence=source_sentence,
+                                    source_lang=source_lang,
+                                    target_lang=target_lang) \
+                    if user_prompt is not None else \
+                        self.system.format(source_sentence=source_sentence,
+                                           source_lang=source_lang,
+                                           target_lang=target_lang)
+                messages.append({"role": Role.USER.value, "content": prompt})
+                messages.append({"role": Role.ASSISTANT.value, "content": target_sentence})
+        # for current example
+        source_sentence, correct_target_sentence = self._parse_example(source_example, target_example)
         prompt = user_prompt.format(source_sentence=source_sentence,
                                     source_lang=source_lang,
                                     target_lang=target_lang) \
@@ -41,12 +60,9 @@ class Trans_Template(EvalTemplate):
                         self.system.format(source_sentence=source_sentence,
                                            source_lang=source_lang,
                                            target_lang=target_lang)
-
+        messages.append({"role": Role.USER.value, "content": prompt})
         return (
-            [{
-                "role": Role.USER.value, 
-                "content": prompt
-            }],
-            target_sentence
+            messages,
+            correct_target_sentence
             )
         
