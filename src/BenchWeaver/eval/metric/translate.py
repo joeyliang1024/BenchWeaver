@@ -18,23 +18,23 @@ from .trans_utils import get_encode_fnc, get_valid_fnc
 # which prevents loading arbitrary Python objects.
 add_safe_globals([Prediction]) 
 
-def eval_bleu(predictions: List[str], references: List[List[str]])->dict:
+def eval_bleu(predictions: List[str], references: List[List[str]], lang: str = None)->dict:
     '''
     Evaluates BLEU score for a list of predictions and references.
     '''
     bleu = evaluate.load("bleu")
     okt = Okt()
     # detect language of 10 
-    lang = Counter([detect_language(ref[-1]) for ref in references]).most_common(1)[0][0]
-    
-    if lang == "en":
+    if lang is None:
+        lang = Counter([detect_language(ref[-1]) for ref in references]).most_common(1)[0][0]
+    if lang in ["en", "eng_Latn"]:
         return bleu.compute(predictions=predictions, references=references)
-    elif lang in ["zh-cn", "zh-tw"]:
+    elif lang in ["zh-cn", "zh-tw", "cmn_Hans", "cmn_Hant"]:
         # use jieba for tokenization
         predictions = [" ".join(jieba.cut(pred)) for pred in predictions]
         references = [[" ".join(jieba.cut(ref)) for ref in refs] for refs in references]
         return bleu.compute(predictions=predictions, references=references)
-    elif lang == "ko":
+    elif lang in ["ko", "kor_Hang"]:
         predictions = [" ".join(okt.morphs(pred)) for pred in predictions]
         references = [[" ".join(okt.morphs(ref)) for ref in refs] for refs in references]
         return bleu.compute(predictions=predictions, references=references)

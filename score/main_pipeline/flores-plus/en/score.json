@@ -1,211 +1,37 @@
 {
     "Average": {
-        "BLEU": 11.293,
-        "CHRF++": 32.3165,
-        "SPBLEU": 13.4667
+        "BLEU": 23.7791,
+        "CHRF++": 40.6101,
+        "SPBLEU": 28.8264
     },
     "eng_Latn-cmn_Hans": {
-        "BLEU": {
-            "bleu": 0.14092174126855594,
-            "precisions": [
-                0.3603559953077982,
-                0.17828909481178995,
-                0.10196289325087389,
-                0.06020233290950301
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 1.625922547474915,
-            "translation_length": 39214,
-            "reference_length": 24118
-        },
-        "CHRF++": {
-            "score": 20.929190244620802,
-            "char_order": 6,
-            "word_order": 2,
-            "beta": 2
-        },
-        "SPBLEU": {
-            "bleu": 0.18965750938298484,
-            "precisions": [
-                0.392018779342723,
-                0.22978366727867805,
-                0.14738471565911684,
-                0.09745445470426753
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 1.5165539337842648,
-            "translation_length": 51120,
-            "reference_length": 33708
-        }
+        "BLEU": 25.3325,
+        "CHRF++": 29.1842,
+        "SPBLEU": 33.4784
     },
     "eng_Latn-cmn_Hant": {
-        "BLEU": {
-            "bleu": 0.0007673611167731677,
-            "precisions": [
-                0.0030168926956935524,
-                0.0010041216804215398,
-                0.0005044705701478339,
-                0.00022689091857029756
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 90.77753779697625,
-            "translation_length": 210150,
-            "reference_length": 2315
-        },
-        "CHRF++": {
-            "score": 5.197390919905745,
-            "char_order": 6,
-            "word_order": 2,
-            "beta": 2
-        },
-        "SPBLEU": {
-            "bleu": 0.024000565947380665,
-            "precisions": [
-                0.06148613814298674,
-                0.030564952027832284,
-                0.0173250871290719,
-                0.01019083027554484
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 7.570922844175492,
-            "translation_length": 250219,
-            "reference_length": 33050
-        }
+        "BLEU": 18.4327,
+        "CHRF++": 22.1961,
+        "SPBLEU": 25.7949
     },
     "eng_Latn-kor_Hang": {
-        "BLEU": {
-            "bleu": 0.06358414217884134,
-            "precisions": [
-                0.17833505373732467,
-                0.08294296288099541,
-                0.044645858492797647,
-                0.024751289260991818
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 2.9883868626383596,
-            "translation_length": 82345,
-            "reference_length": 27555
-        },
-        "CHRF++": {
-            "score": 18.71750911924695,
-            "char_order": 6,
-            "word_order": 2,
-            "beta": 2
-        },
-        "SPBLEU": {
-            "bleu": 0.0637815660696197,
-            "precisions": [
-                0.15547485689665785,
-                0.0812376904737224,
-                0.04691068323241635,
-                0.02793130466086441
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 3.071944033025557,
-            "translation_length": 97482,
-            "reference_length": 31733
-        }
+        "BLEU": 18.6559,
+        "CHRF++": 29.4787,
+        "SPBLEU": 20.6244
     },
     "cmn_Hans-eng_Latn": {
-        "BLEU": {
-            "bleu": 0.15330870600735372,
-            "precisions": [
-                0.3689511868704656,
-                0.18879722937059573,
-                0.11248058766978086,
-                0.07050585231438178
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 1.7228671979288863,
-            "translation_length": 42591,
-            "reference_length": 24721
-        },
-        "CHRF++": {
-            "score": 50.117608458313434,
-            "char_order": 6,
-            "word_order": 2,
-            "beta": 2
-        },
-        "SPBLEU": {
-            "bleu": 0.17005057050777536,
-            "precisions": [
-                0.3457416906752864,
-                0.20201387895263986,
-                0.13258652094717668,
-                0.09029839667458432
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 1.834719267710952,
-            "translation_length": 56924,
-            "reference_length": 31026
-        }
+        "BLEU": 27.3849,
+        "CHRF++": 54.8987,
+        "SPBLEU": 32.2447
     },
     "cmn_Hant-eng_Latn": {
-        "BLEU": {
-            "bleu": 0.13112721003945407,
-            "precisions": [
-                0.3247909812878486,
-                0.16227441073836998,
-                0.09516619619685332,
-                0.0589433168483004
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 1.9304639779944177,
-            "translation_length": 47723,
-            "reference_length": 24721
-        },
-        "CHRF++": {
-            "score": 48.23746248727839,
-            "char_order": 6,
-            "word_order": 2,
-            "beta": 2
-        },
-        "SPBLEU": {
-            "bleu": 0.14350961589592123,
-            "precisions": [
-                0.30168864861505956,
-                0.17154626809135246,
-                0.11038221566394534,
-                0.07424798239178283
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 2.0747437632953005,
-            "translation_length": 64371,
-            "reference_length": 31026
-        }
+        "BLEU": 25.4092,
+        "CHRF++": 53.2613,
+        "SPBLEU": 28.5685
     },
     "kor_Hang-eng_Latn": {
-        "BLEU": {
-            "bleu": 0.18786864462277672,
-            "precisions": [
-                0.45083758193736345,
-                0.23105823418910457,
-                0.1381272633212623,
-                0.08657574542051076
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 1.332955786578213,
-            "translation_length": 32952,
-            "reference_length": 24721
-        },
-        "CHRF++": {
-            "score": 50.699650043355774,
-            "char_order": 6,
-            "word_order": 2,
-            "beta": 2
-        },
-        "SPBLEU": {
-            "bleu": 0.21699957480213772,
-            "precisions": [
-                0.4416696312107198,
-                0.25820717809151217,
-                0.1691786452754042,
-                0.11492754734340259
-            ],
-            "brevity_penalty": 1.0,
-            "length_ratio": 1.359021465867337,
-            "translation_length": 42165,
-            "reference_length": 31026
-        }
+        "BLEU": 27.4596,
+        "CHRF++": 54.6417,
+        "SPBLEU": 32.2472
     }
 }

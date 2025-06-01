@@ -53,20 +53,21 @@ class TransEvaluator(Evaluator):
                 "CHRF++": [],
                 "SPBLEU": [],
             }
-        }
+        } 
         for subject in self.categories.keys():
-            bleu = eval_bleu(predictions=trans_result[subject], references=trans_groundtruth[subject])
+            target_lang = subject.split("-")[1]
+            bleu = eval_bleu(predictions=trans_result[subject], references=trans_groundtruth[subject], lang=target_lang)
             chrf = eval_chrf(predictions=trans_result[subject], references=trans_groundtruth[subject])
             spbleu = eval_spbleu(predictions=trans_result[subject], references=trans_groundtruth[subject])
-
+ 
             score_dict[subject] = {
-                "BLEU": bleu,
-                "CHRF++": chrf,
-                "SPBLEU": spbleu,
+                "BLEU": round(bleu['bleu'] * 100, 4),
+                "CHRF++": round(chrf['score'], 4),
+                "SPBLEU": round(spbleu['bleu'] * 100, 4),
             }
-            score_dict["Average"]["BLEU"].append(bleu['bleu'] * 100)
-            score_dict["Average"]["CHRF++"].append(chrf['score'])
-            score_dict["Average"]["SPBLEU"].append(spbleu['bleu'] * 100)
+            score_dict["Average"]["BLEU"].append(round(bleu['bleu'] * 100, 4))
+            score_dict["Average"]["CHRF++"].append(round(chrf['score'], 4))
+            score_dict["Average"]["SPBLEU"].append(round(spbleu['bleu'] * 100, 4))
 
         score_dict["Average"]["BLEU"] = round(np.mean(score_dict["Average"]["BLEU"]), 4)
         score_dict["Average"]["CHRF++"] = round(np.mean(score_dict["Average"]["CHRF++"]), 4)
@@ -99,27 +100,26 @@ class TransEvaluator(Evaluator):
                 token=self.hf_token,
                 trust_remote_code=True,
             )
-                    
+            # prepare support set
+            if source_dataset.get("train") and target_dataset.get("train"):
+                # Determine how many examples you can safely sample
+                n_shot = min(self.eval_args.n_shot, len(source_dataset["train"]), len(target_dataset["train"]))
+                # Shuffle the source dataset to decide which IDs to sample
+                shuffled_source = source_dataset["train"].shuffle()
+                selected_ids = set(shuffled_source.select(range(n_shot))["id"])
+                # Filter both datasets to only those selected IDs
+                source_support_set = source_dataset["train"].filter(lambda example: example["id"] in selected_ids)
+                target_support_set = target_dataset["train"].filter(lambda example: example["id"] in selected_ids)
+                # Optionally: sort both sets by id to maintain alignment
+                source_support_set = source_support_set.sort("id")
+                target_support_set = target_support_set.sort("id")
+            else:
+                source_support_set = None
+                target_support_set = None
+                
             for i, (source_example, target_example) in enumerate(zip(source_dataset[self.eval_split], target_dataset[self.eval_split])):
                 # format inference example
                 if i < min(len(source_dataset[self.eval_split]), self.testing_size):
-                    # prepare support set
-                    if source_dataset.get("train"):
-                        source_support_set = (
-                            source_dataset["train"]
-                            .shuffle()
-                            .select(range(min(self.eval_args.n_shot, len(source_dataset["train"]))))
-                        )
-                    else:
-                        source_support_set = None
-                    if target_dataset.get("train"):
-                        target_support_set = (
-                            target_dataset["train"]
-                            .shuffle()
-                            .select(range(min(self.eval_args.n_shot, len(target_dataset["train"]))))
-                        )
-                    else:
-                        target_support_set = None
                     # format messages
                     messages, groundtruth = self.eval_template.format_inference_example(
                         source_example=source_example,
