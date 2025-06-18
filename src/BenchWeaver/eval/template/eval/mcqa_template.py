@@ -39,7 +39,7 @@ class MCQA_Template(EvalTemplate):
         """
         messages = []
         for k in range(len(support_set)):
-            prompt, response = self._parse_example(support_set[k], choices)
+            prompt, response = self._parse_example(support_set[k], choices, is_ex=True)
             messages.append({"role": Role.USER.value, "content": prompt})
             messages.append({"role": Role.ASSISTANT.value, "content": response})
 

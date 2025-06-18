@@ -108,6 +108,7 @@ class MMLU(datasets.GeneratorBasedBuilder):
                 "question": datasets.Value("string"),
                 "choices": datasets.Value("string"),
                 "answer": datasets.Value("string"),
+                "explanation": datasets.Value("string"),  # Optional field for explanations
             }
         )
         return datasets.DatasetInfo(
@@ -126,7 +127,7 @@ class MMLU(datasets.GeneratorBasedBuilder):
                 name=datasets.Split.TEST,
                 gen_kwargs={
                     "filepath": os.path.join(
-                        data_dir, "test", f"{task_name}_test.csv"
+                        data_dir, "data", "test", f"{task_name}_test.csv"
                     ),
                 },
             ),
@@ -134,7 +135,7 @@ class MMLU(datasets.GeneratorBasedBuilder):
                 name=datasets.Split.TRAIN,
                 gen_kwargs={
                     "filepath": os.path.join(
-                        data_dir, "dev", f"{task_name}_dev.csv"
+                        data_dir, "data", "dev", f"{task_name}_dev.csv"
                     ),
                 },
             ),
@@ -142,7 +143,7 @@ class MMLU(datasets.GeneratorBasedBuilder):
 
     def _generate_examples(self, filepath):
         df = pd.read_csv(filepath)
-        df.columns = ["question", "choices", "answer"]
+        df.columns = ["question", "choices", "answer", "explanation"]
 
         for i, instance in enumerate(df.to_dict(orient="records")):
             yield i, instance

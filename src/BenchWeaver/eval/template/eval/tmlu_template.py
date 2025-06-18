@@ -13,20 +13,25 @@ class TMLU_Template(MCQA_Template):
         self.criteria_prompt=criteria_prompt
         self.response=response
         
-    def _parse_example(self, example, choices, use_cot = False, **kwargs):
+    def _parse_example(self, example:dict, choices, use_cot = False, is_ex: bool = False, **kwargs):
         """
         input: a dict with keys {"question", "choices", "answer"}
         output: a tuple of (prompt, response)
         """
-        candidates_list = ast.literal_eval((example['choices']))
+        candidates_list:list = ast.literal_eval((example['choices']))
         question_candidates = [self.choice.format(choice=option, content=content) for option, content in zip(OPTION_CODES, candidates_list)]
         question = " ".join(
             ['問題：{question}\n'.format(question=example['question'])] +
             question_candidates + 
             [self.cot if use_cot else self.answer]
-        ).strip()
+        ).strip() 
         
-        answer = self.response.format(answer=candidates_list.index(example['answer']))
+        answer = example.get("explanation") if use_cot and \
+                                               is_ex and \
+                                               example.get("explanation") and\
+                                               example.get("explanation").strip() != "" \
+                                            else \
+                self.response.format(answer=candidates_list.index(example['answer']))
         return question, answer
     
 tmlu_eval_templates: Dict[str, "TMLU_Template"] = {}

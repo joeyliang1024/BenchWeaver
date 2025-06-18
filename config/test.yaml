@@ -18,16 +18,16 @@ source_lang: eng_Latn
 target_lang: en
 
 ### source dataset
-task: flores-plus_test  
+task: tmlu_test  
 task_dir: evaluation_data
-lang: en
+lang: zh-tw
 n_shot: 5
-benchmark_mode: trans
-pipeline: diff
+benchmark_mode: mcqa-oq
+pipeline: same
 batch_size: 4
 
 ### reference dataset, split will use 'test' don't specify
-ref_task: mmlu
+# ref_task: mmlu
 
 ### output
 save_dir: score/test
