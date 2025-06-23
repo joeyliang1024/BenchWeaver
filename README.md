@@ -1,10 +1,16 @@
 # BenchWeaver 🏆🚀🐍
 Welcome to BenchWeaver! 🎉🔬 This Python project provides a specialized benchmarking pipeline, supporting various models and benchmarks. ⚙️🔧📈
+
+This is the official repository of the master's thesis:  
+
+**"BenchWeaver: An Automated Multilingual Evaluation Framework with LLM-as-Judge and Translation Prompting for Low-Resource Languages"**
+
 ## Pipeline Overview
 The pipeline overview is demonstrate as follows:
 ![Pipeline Overview](/assets/img/overall_pipeline.png)
 > [!WARNING]  
 > Some of the benchmarks have custome settings, check configs or support benchmarks for more details.
+
 ## Installation 💻⚡
 Create a new conda environment and install the package:
 ```bash
@@ -14,6 +20,20 @@ pip install -e .
 ```
 > [!WARNING]  
 > Package `unbabel-comet` should be installed before `pip install -e .`
+
+> [!NOTE]
+> After installation, remember to create `env/tokens.env` for saving your HuggingFace and OpenAI's configuration.
+>
+> For example:
+> ```
+> HF_TOKEN=""
+> AZURE_ENDPOINT_URL=""
+> AZURE_OPENAI_API_KEY=""
+> AZURE_API_VERSION=""
+> OPENAI_API_KEY=""
+> OPENAI_ORGANIZATION=""
+> OPENAI_PROJECT=""
+> ```
 
 ## Documentation 📚📝
 Access detailed documentation through these links:
@@ -29,3 +49,16 @@ Access detailed documentation through these links:
 | Problem Record | Record the problem occured          | [Problem Record](./doc/problem_record.md)    |
 
 
+## Reproducibility of Results
+For pipeline execution, you can run the configurations for each part as listed below:
+
+| Chapter         | Experiment/Detail        | Configuration Link           |
+| :-------------- | :----------------------- | :--------------------------- |
+| Main Result     | -                        | [Main Result](/config/main_pipeline/) |
+| Ablation Study  | Translation Prompt       | [Translation Prompt](/config/trans_template_exp/) |
+| Ablation Study  | Compare with P-MMEval    | [Compare with P-MMEval](/config/pmmeval_exp/) |
+
+For checking the translation quality, you can execute the following code for reproduce:
+```bash
+bash scripts/bash/eval_trans.sh
+```
