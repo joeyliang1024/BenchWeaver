@@ -1,0 +1,154 @@
+{
+    "AST_civics": {
+        "average": 4.288461538461538,
+        "variance": 0.35909763313609483
+    },
+    "AST_geography": {
+        "average": 4.471698113207547,
+        "variance": 0.24919900320398725
+    },
+    "CAP_civics": {
+        "average": 4.411764705882353,
+        "variance": 0.301038062283737
+    },
+    "CAP_geography": {
+        "average": 4.7,
+        "variance": 0.21000000000000002
+    },
+    "GSAT_civics": {
+        "average": 4.4411764705882355,
+        "variance": 0.3641868512110726
+    },
+    "GSAT_geography": {
+        "average": 5.045454545454546,
+        "variance": 18.40702479338843
+    },
+    "accountant": {
+        "average": 18.375,
+        "variance": 3462.020089285714
+    },
+    "clinical_psychologist": {
+        "average": 11.366071428571429,
+        "variance": 252.82134885204076
+    },
+    "AST_biology": {
+        "average": 4.171428571428572,
+        "variance": 0.48489795918367345
+    },
+    "AST_chemistry": {
+        "average": 46.0,
+        "variance": 21508.96551724138
+    },
+    "AST_mathematics": {
+        "average": 4.5,
+        "variance": 0.35
+    },
+    "AST_physics": {
+        "average": 5.5,
+        "variance": 40.51315789473684
+    },
+    "CAP_biology": {
+        "average": 4.590909090909091,
+        "variance": 0.4235537190082645
+    },
+    "CAP_chemistry": {
+        "average": 4.181818181818182,
+        "variance": 0.33057851239669417
+    },
+    "CAP_earth_science": {
+        "average": 4.5,
+        "variance": 0.45
+    },
+    "CAP_mathematics": {
+        "average": 6.6,
+        "variance": 103.40363636363638
+    },
+    "CAP_physics": {
+        "average": 8.5,
+        "variance": 62.05
+    },
+    "GSAT_biology": {
+        "average": 3.8125,
+        "variance": 0.52734375
+    },
+    "GSAT_chemistry": {
+        "average": 10.541666666666666,
+        "variance": 438.4149305555555
+    },
+    "GSAT_earth_science": {
+        "average": 7.7894736842105265,
+        "variance": 120.58725761772853
+    },
+    "GSAT_mathematics": {
+        "average": 4.5,
+        "variance": 0.4166666666666667
+    },
+    "GSAT_physics": {
+        "average": 5.842105263157895,
+        "variance": 57.92243767313016
+    },
+    "AST_chinese": {
+        "average": 4.555555555555555,
+        "variance": 36.45326278659615
+    },
+    "AST_history": {
+        "average": 7.647058823529412,
+        "variance": 173.71856978085353
+    },
+    "CAP_chinese": {
+        "average": 24.714285714285715,
+        "variance": 19884.918367346934
+    },
+    "CAP_history": {
+        "average": 4.333333333333333,
+        "variance": 0.22222222222222224
+    },
+    "GSAT_chinese": {
+        "average": 4.25,
+        "variance": 5.317934782608695
+    },
+    "GSAT_history": {
+        "average": 4.55,
+        "variance": 4.5475
+    },
+    "tour_guide": {
+        "average": 6.542553191489362,
+        "variance": 54.397125396106816
+    },
+    "tour_leader": {
+        "average": 6.05,
+        "variance": 51.49035714285715
+    },
+    "lawyer_qualification": {
+        "average": 8.18978102189781,
+        "variance": 182.6574138206617
+    },
+    "driving_rule": {
+        "average": 5.0117096018735365,
+        "variance": 5.7258582013832156
+    },
+    "teacher_qualification": {
+        "average": 6.042857142857143,
+        "variance": 28.783877551020403
+    },
+    "taiwan_tourist_resources": {
+        "average": 5.355555555555555,
+        "variance": 18.851358024691365
+    },
+    "basic_traditional_chinese_medicine": {
+        "average": 7.14935064935065,
+        "variance": 55.85431776016191
+    },
+    "clinical_traditional_chinese_medicine": {
+        "average": 8.121621621621621,
+        "variance": 130.91764061358654
+    },
+    "nutritionist": {
+        "average": 14.982608695652173,
+        "variance": 361.18230623818516
+    },
+    "overall": {
+        "average": 7.714949928469242,
+        "variance": 864.1551556126573
+    }
+}

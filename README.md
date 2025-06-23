@@ -1,14 +1,11 @@
 # BenchWeaver 🏆🚀🐍
 Welcome to BenchWeaver! 🎉🔬 This Python project provides a specialized benchmarking pipeline, supporting various models and benchmarks. ⚙️🔧📈
-
+## Pipeline Overview
+The pipeline overview is demonstrate as follows:
+![Pipeline Overview](/assets/img/overall_pipeline.png)
+> [!WARNING]  
+> Some of the benchmarks have custome settings, check configs or support benchmarks for more details.
 ## Installation 💻⚡
-
-| Method        | Description                                               | Status          |
-|---------------|-----------------------------------------------------------|-----------------|
-| Python (pip)  | Clean installation using conda environment and pip        | ✅ Ready        |
-| Conda         | One-step installation using environment.yaml              | 🚧 In Progress  |
-
-### Python Installation 🐍
 Create a new conda environment and install the package:
 ```bash
 conda create --name BenchWeaver python=3.11 -y
@@ -17,12 +14,6 @@ pip install -e .
 ```
 > [!WARNING]  
 > Package `unbabel-comet` should be installed before `pip install -e .`
-
-### Conda Installation (In Progress) 🏗️
-Direct installation using conda environment file:
-```bash
-conda env create -f environment.yaml
-```
 
 ## Documentation 📚📝
 Access detailed documentation through these links:
