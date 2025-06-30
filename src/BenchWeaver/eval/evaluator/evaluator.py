@@ -299,14 +299,19 @@ class Evaluator:
         data: Dict[str, List[Any]],
         output_path: str,
         progress_desc: str,
+        terminate_server: bool = True,
+        tmp_catagories: List[str] = None,
     ) -> Dict[str, List[Any]]:
         """
         Process subjects using the specified client and data with concurrency control.
         """
-        if isinstance(self.categories, dict):
+        if tmp_catagories is not None:
+            catogories = tmp_catagories   
+        elif isinstance(self.categories, dict):
             catogories = self.categories.keys()
         elif isinstance(self.categories, list):
             catogories = self.categories
+        
         results = {subj: [] for subj in catogories}
             
         total_progress_bar = tqdm(catogories, desc=progress_desc)
@@ -365,14 +370,14 @@ class Evaluator:
                         elif translation_text is not None:
                             subject_results[origin_idx] = translation_text
                             
-                # TODO: handle not grouped question results
                 results[subject] = self.recover_trans_messages(subject_results)
                 total_progress_bar.update(1)
 
         finally:
             # Ensure cleanup and save results
-            await self.terminate_server(process=server_process)
-            self.client = None
+            if terminate_server:
+                await self.terminate_server(process=server_process)
+                self.client = None
             self.save_data(data=results, output_path=os.path.join(self.save_folder, output_path))
             total_progress_bar.close()
 

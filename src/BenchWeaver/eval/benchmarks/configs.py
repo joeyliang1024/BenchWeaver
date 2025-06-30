@@ -234,7 +234,15 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": None,
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
-    }
+    },
+    "logickor": {
+        "language": "ko",
+        "mode": ["multi-turn"],
+        "display_scores": ["Average", "Reasoning", "Math", "Writing", "Coding", "Understanding", "Grammar", "Single Turn", "Multi Turn"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 1,
+        "support_chain_of_thought": True,
+    },
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -395,5 +403,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .en.humaneval_xl.code_eval import HumanEvalXLEvaluator
         return {
             "code": HumanEvalXLEvaluator,
+        }
+    elif task_name == "logickor":
+        from .ko.logickor.multi_turn_eval import LogicKorEvaluator
+        return {
+            "multi-turn": LogicKorEvaluator,
         }
     return {}

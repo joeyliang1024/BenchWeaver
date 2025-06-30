@@ -27,6 +27,7 @@ from .eval.mbpp_template import get_mbpp_eval_template
 from .eval.xnli_template import XNLI_Template, get_xnli_eval_template
 from .eval.logiqa_template import LogiQA_Template, get_logiqa_eval_template
 from .eval.humaneval_xl_template import get_humaneval_xl_eval_template
+from .eval.logickor_template import LogicKor_Template, get_logickor_eval_template
 
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
@@ -140,5 +141,9 @@ EVAL_TEMPLATE_CONFIG = {
     "humaneval-xl": {
         "class": Code_Template,
         "func": get_humaneval_xl_eval_template,
+        },
+    "logickor": {
+        "class": LogicKor_Template,
+        "func": get_logickor_eval_template,
         },
 }

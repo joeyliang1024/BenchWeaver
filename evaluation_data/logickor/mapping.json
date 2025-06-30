@@ -1,0 +1,26 @@
+{
+  "Reasoning": {
+    "name": "추론",
+    "category": "추론(Reasoning)"
+  },
+  "Math": {
+    "name": "수학",
+    "category": "수학(Math)"
+  },
+  "Writing": {
+    "name": "글쓰기",
+    "category": "글쓰기(Writing)"
+  },
+  "Coding": {
+    "name": "코딩",
+    "category": "코딩(Coding)"
+  },
+  "Understanding": {
+    "name": "이해",
+    "category": "이해(Understanding)"
+  },
+  "Grammar": {
+    "name": "문법",
+    "category": "문법(Grammar)"
+  }
+}

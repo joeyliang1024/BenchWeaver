@@ -31,6 +31,7 @@ from .eval.mbpp_template import get_mbpp_eval_template
 from .eval.xnli_template import XNLI_Template, get_xnli_eval_template
 from .eval.logiqa_template import LogiQA_Template, get_logiqa_eval_template
 from .eval.humaneval_xl_template import get_humaneval_xl_eval_template
+from .eval.logickor_template import LogicKor_Template, get_logickor_eval_template
 
 __all__ = [
     # class
@@ -54,6 +55,7 @@ __all__ = [
     "IFEval_Template",
     "XNLI_Template",
     "LogiQA_Template",
+    "LogicKor_Template",
     # function
     "get_mmlu_eval_template",
     "get_arc_challenge_eval_template",
@@ -80,6 +82,7 @@ __all__ = [
     "get_xnli_eval_template",
     "get_humaneval_xl_eval_template",
     "get_logiqa_eval_template",
+    "get_logickor_eval_template",
     # translation
     "get_translation_template",
     # register
