@@ -243,6 +243,22 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 1,
         "support_chain_of_thought": True,
     },
+    "medqa": {
+        "language": "en",
+        "mode": ["mcqa-prob", "mcqa-oq"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": ["A", "B", "C", "D"],
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
+    "medmcqa": {
+        "language": "en",
+        "mode": ["mcqa-prob", "mcqa-oq"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": ["A", "B", "C", "D"],
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -408,5 +424,19 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .ko.logickor.multi_turn_eval import LogicKorEvaluator
         return {
             "multi-turn": LogicKorEvaluator,
+        }
+    elif task_name == "medqa":
+        from .en.medqa.prob_eval import MedQAProbEvaluator
+        from .en.medqa.oq_eval import MedQAOQEvaluator
+        return {
+            "mcqa-prob": MedQAProbEvaluator,
+            "mcqa-oq": MedQAOQEvaluator,
+        }
+    elif task_name == "medmcqa":
+        from .en.medmcqa.prob_eval import MedMCQAProbEvaluator
+        from .en.medmcqa.oq_eval import MedMCQAOQEvaluator
+        return {
+            "mcqa-prob": MedMCQAProbEvaluator,
+            "mcqa-oq": MedMCQAOQEvaluator,
         }
     return {}
