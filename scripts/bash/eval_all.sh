@@ -2,9 +2,9 @@
 export JAVA_HOME="/usr/lib/java"
 
 # Set the directory (can be modified or passed as an argument)
-TASK_NAME="zh"
-DIRECTORY="/work/u5110390/BenchWeaver/config/pmmeval_exp/$TASK_NAME"
-LOG_DIR="/work/u5110390/BenchWeaver/logs/pmmeval_exp/$TASK_NAME"
+TASK_NAME="ko"
+DIRECTORY="/work/u5110390/BenchWeaver/config/additional/$TASK_NAME"
+LOG_DIR="/work/u5110390/BenchWeaver/logs/additional/$TASK_NAME"
 
 # Check if input directory exists
 if [ ! -d "$DIRECTORY" ]; then

@@ -30,15 +30,15 @@ class CodeEvaluator(Evaluator):
         match = re.search(pattern_begin_done, text, re.IGNORECASE | re.DOTALL)
     
         if match:
-            return match.group(1).strip()
+            return match.group(1).strip().rstrip('```').lstrip('```')
     
         # If no [BEGIN]...[DONE], try to match text between triple backticks
         pattern_code_block = r'```(?:\w*\n)?(.*?)```'
         match = re.search(pattern_code_block, text, re.DOTALL)
     
         if match:
-            return match.group(1).strip()
-    
+            return match.group(1).strip().rstrip('```').lstrip('```')
+     
         return text.strip()
     
     def post_process_response(self, response_result: Dict[str, Any]):

@@ -18,19 +18,19 @@ source_lang: ko
 target_lang: zh-tw
 
 ### source dataset
-task: logickor_test  
+task: hae-rae-bench_test 
 task_dir: evaluation_data
 lang: ko
 n_shot: 1
-benchmark_mode: multi-turn
-pipeline: diff
+benchmark_mode: mix
+pipeline: same
 batch_size: 4
 
 ### reference dataset, split will use 'test' don't specify
 # ref_task: mmlu
 
 ### output
-save_dir: score/logickor
+save_dir: score/hae-rae-bench
 
 ### VLLM 
 vllm_maxlen: 10240
@@ -38,6 +38,6 @@ vllm_max_concurrency: 30
 max_new_tokens: 2048
 dtype: float16
 ### debug
-# testing_size: 2
+testing_size: 3
 record_all: true
 # print_param_status: false
