@@ -445,7 +445,7 @@ class Evaluator:
         _, self.inference_prompts = self.load_data(mode="inference", choices=choices)
         if getattr(self.eval_args, "record_all", False): 
             self.save_data(data=self.inference_prompts, output_path=os.path.join(self.save_folder, "inference_prompts.json"))
-        
+
         if self.inference_mode == "local":
             inference_process = await self.server.setup_server(
                 model_path=self.model_args.inference_model_name_or_path,

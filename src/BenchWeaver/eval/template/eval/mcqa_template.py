@@ -42,7 +42,6 @@ class MCQA_Template(EvalTemplate):
             prompt, response = self._parse_example(support_set[k], choices, is_ex=True)
             messages.append({"role": Role.USER.value, "content": prompt})
             messages.append({"role": Role.ASSISTANT.value, "content": response})
-
         prompt, response = self._parse_example(target_data, choices)
         messages.append({"role": Role.USER.value, "content": prompt})
         messages.append({"role": Role.ASSISTANT.value, "content": response})
@@ -58,10 +57,10 @@ class MCQA_Template(EvalTemplate):
         messages = []
         if support_set is not None:
             for k in range(len(support_set)):
-                prompt, response = self._parse_example(support_set[k], choices)
+                prompt, response = self._parse_example(support_set[k], choices, is_ex=True)
                 messages.append({"role": Role.USER.value, "content": prompt})
                 messages.append({"role": Role.ASSISTANT.value, "content": response})
-
+        
         prompt, response = self._parse_example(target_data, choices, use_cot=use_cot)
         messages.append({"role": Role.USER.value, "content": prompt})
         if user_prompt is not None:

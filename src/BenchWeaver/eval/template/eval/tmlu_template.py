@@ -12,7 +12,7 @@ class TMLU_Template(MCQA_Template):
         self.cot=cot
         self.criteria_prompt=criteria_prompt
         self.response=response
-        
+         
     def _parse_example(self, example:dict, choices, use_cot = False, is_ex: bool = False, **kwargs):
         """
         input: a dict with keys {"question", "choices", "answer"}
@@ -26,12 +26,11 @@ class TMLU_Template(MCQA_Template):
             [self.cot if use_cot else self.answer]
         ).strip() 
         
-        answer = example.get("explanation") if use_cot and \
-                                               is_ex and \
-                                               example.get("explanation") and\
-                                               example.get("explanation").strip() != "" \
-                                            else \
-                self.response.format(answer=candidates_list.index(example['answer']))
+        answer_idx = candidates_list.index(example['answer'])
+        answer = self.response.format(answer=chr(ord("A") + answer_idx)) 
+        if is_ex:
+            answer += "\n" + example.get("explanation", "")
+
         return question, answer
     
 tmlu_eval_templates: Dict[str, "TMLU_Template"] = {}

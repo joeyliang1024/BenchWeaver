@@ -56,7 +56,7 @@ class Client:
                     azure_endpoint=os.getenv("AZURE_ENDPOINT_URL"),
                     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
                     api_version=os.getenv("AZURE_API_VERSION"),
-                    timeout = 60 * 60,
+                    timeout = 5 * 60,
                     max_retries = 10,
                 )
             elif self.openai_source == "openai":
@@ -65,7 +65,7 @@ class Client:
                     api_key=os.getenv("OPENAI_API_KEY"),
                     organization=os.getenv("OPENAI_ORGANIZATION", None),
                     project=os.getenv("OPENAI_PROJECT", None),
-                    timeout = 60 * 60,
+                    timeout = 5 * 60,
                     max_retries = 10,
                 )
             else:
@@ -78,7 +78,7 @@ class Client:
             return AsyncOpenAI(
                 base_url=f"http://{self.host_name}:{self.port}/v1", 
                 api_key="EMPTY", 
-                timeout= 60 * 60,
+                timeout= 5 * 60,
                 max_retries = 10,
             )
         else:

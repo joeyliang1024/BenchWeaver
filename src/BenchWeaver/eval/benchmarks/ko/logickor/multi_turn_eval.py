@@ -109,7 +109,7 @@ class LogicKorEvaluator(MultiTurnEvaluator):
         idx: int, 
         generating_args: Namespace,
     ) -> Tuple[List[dict], int]:
-        assert self.translated_few_shot_examples is not None, "Few-shot examples is not translated yet."
+        assert self.translated_few_shot_examples is not None or self.eval_args.pipeline == "same", "Few-shot examples is not translated yet."
         # messages = self.translated_few_shot_examples
         messages = []
         messages += self.translated_few_shot_examples
@@ -231,6 +231,8 @@ class LogicKorEvaluator(MultiTurnEvaluator):
             return None, checker_prompts
         elif mode == "translation":
             return None, translate_prompts
+    
+    
     
     async def diff_lang_eval(self, choices: List[str], subjects: List[str]) -> None:
         # specific evaluation pipeline
