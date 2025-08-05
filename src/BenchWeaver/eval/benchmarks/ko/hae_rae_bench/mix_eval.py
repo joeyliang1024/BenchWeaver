@@ -143,21 +143,28 @@ class HAE_RAE_BENCHEvaluator(Evaluator):
             return checker_answers, checker_prompts
         elif mode == "translation":
             return None, translate_prompts
-        
-    def comput_score(self, checked_answers: Dict[str, List[Any]], check_results: Dict[str, List[Any]], subjects: List[str]) -> Dict[str, float]:
-        category_corrects = {subj: np.array([], dtype="bool") for subj in subjects}
-
-        for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
-            # MCQA
-            if subject in ['lyrics_denoising', 'proverbs_denoising']:
-                corrects = np.array(['true'] * len(check_results[subject])) == np.array([self.retrieve_answer(answer) for answer in check_results[subject]])
-            # OPQA
-            else:
-                corrects = np.array(checked_answers[subject]) == np.array([self.retrieve_answer(answer) for answer in check_results[subject]])
-            
-            category_corrects[subject] = np.concatenate([category_corrects[subject], corrects], axis=0)
-            category_corrects["Average"] = np.concatenate([category_corrects["Average"], corrects], axis=0)
-
-        return {category_name: round(100 * np.mean(category_array), 4) 
-                for category_name, category_array in category_corrects.items()}
     
+    def comput_score(self, checked_answers: Dict[str, List[Any]], check_results: Dict[str, List[Any]], subjects: List[str]) -> Dict[str, float]:
+        category_corrects = {score: {"corrects": 0, "true_mask_count": 0} for score in subjects}
+        for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
+            category_name = self.categories[subject]["category"]
+            if subject in ['lyrics_denoising', 'proverbs_denoising']:
+                # OPQA
+                corrects = np.array(['true'] * len(check_results[subject])) == np.array([self.retrieve_answer(answer) for answer in check_results[subject]])
+                true_mask = np.array([True] * len(check_results[subject]))
+            else:
+                # MCQA
+                answers = np.array(checked_answers[subject])
+                predictions = np.array([self.retrieve_answer(ans) for ans in check_results[subject]])
+                true_mask: np.ndarray = answers == 'true' # Mask for when the answer is 'true'
+                # Compare predictions and answers, only where answer is 'true'
+                corrects: np.ndarray = (predictions == 'true') & true_mask  # correct when answer is 'true' and prediction is 'true'
+            category_corrects[category_name]["corrects"] += corrects.sum()
+            category_corrects[category_name]["true_mask_count"] += true_mask.sum()
+            category_corrects["Average"]['corrects'] += corrects.sum()
+            category_corrects["Average"]['true_mask_count'] += true_mask.sum()
+            
+        return {
+            category_name: round(100 * (record_dict['corrects'] / record_dict['true_mask_count']), 4)
+                for category_name, record_dict in category_corrects.items() if record_dict['true_mask_count'] > 0
+        }

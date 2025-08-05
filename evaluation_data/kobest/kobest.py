@@ -19,45 +19,45 @@ import pandas as pd
 
 
 _CITATION = """\
-@article{logickor,
-  title={LogicKor},
-  doi={doi:10.57967/hf/2440}
-  author={Jeonghwan Park},
-  year={2024},
-  url={https://github.com/instructkr/LogicKor}
+@misc{https://doi.org/10.48550/arxiv.2204.04541,
+  doi = {10.48550/ARXIV.2204.04541},
+  url = {https://arxiv.org/abs/2204.04541},
+  author = {Kim, Dohyeong and Jang, Myeongjun and Kwon, Deuk Sin and Davis, Eric},
+  title = {KOBEST: Korean Balanced Evaluation of Significant Tasks},
+  publisher = {arXiv},
+  year = {2022},
 }
-
 """
 
 _DESCRIPTION = """\
-LogicKor는 한국어 언어모델 다양한 분야에서의 사고력을 측정하기위해 구성된 LLM-as-a-judge 방식의 멀티턴 벤치마크 데이터셋입니다. 본 데이터셋은 6가지(추론, 수학, 글쓰기, 코딩, 이해, 국어)의 카테고리의 멀티턴 프롬프트 총 42개로 구성되어있습니다.
-
-추론 및 평가 코드는 https://github.com/instructkr/LogicKor 저장소를 참고해주세요.
+# Dataset Summary
+KoBEST is a Korean benchmark suite consists of 5 natural language understanding tasks that requires advanced knowledge in Korean.
+# Supported Tasks and Leaderboards
+Boolean Question Answering, Choice of Plausible Alternatives, Words-in-Context, HellaSwag, Sentiment Negation Recognition
 """
 
-_HOMEPAGE = "https://github.com/instructkr/LogicKor"
+_HOMEPAGE = "https://huggingface.co/datasets/skt/kobest_v1"
 
-_LICENSE = "None"
+_LICENSE = "cc-by-sa-4.0"
 
-_URL = "logickor.zip"
+_URL = "kobest.zip"
 
 task_list = [
-    'Reasoning',
-    'Math',
-    'Writing',
-    'Coding',
-    'Understanding',
-    'Grammar',
+    'boolq',
+    'copa',
+    'hellaswag',
+    'sentineg',
+    'wic',
 ]
 
-class LogicKorConfig(datasets.BuilderConfig):
+class KoBestConfig(datasets.BuilderConfig):
     def __init__(self, **kwargs):
         super().__init__(version=datasets.Version("1.0.0"), **kwargs)
 
 
-class LogicKor(datasets.GeneratorBasedBuilder):
+class KoBest(datasets.GeneratorBasedBuilder):
     BUILDER_CONFIGS = [
-        LogicKorConfig(
+        KoBestConfig(
             name=task_name,
         )
         for task_name in task_list
@@ -66,9 +66,13 @@ class LogicKor(datasets.GeneratorBasedBuilder):
     def _info(self):
         features = datasets.Features(
             {
-                "question_id": datasets.Value("string"),
-                "question_turns": datasets.Value("string"),
-                "answer_turns": datasets.Value("string"),
+                "paragraph": datasets.Value("string"),
+                "question": datasets.Value("string"),
+                "A": datasets.Value("string"),
+                "B": datasets.Value("string"),
+                "C": datasets.Value("string"),
+                "D": datasets.Value("string"),
+                "answer": datasets.Value("string"),
             }
         )
         return datasets.DatasetInfo(
@@ -88,12 +92,24 @@ class LogicKor(datasets.GeneratorBasedBuilder):
                 gen_kwargs={
                     "filepath": os.path.join(data_dir, "data", "test", f"{task_name}_test.csv"),
                 },
-            )
+            ),
+            datasets.SplitGenerator(
+                name=datasets.Split.VALIDATION,
+                gen_kwargs={
+                    "filepath": os.path.join(data_dir, "data", "val", f"{task_name}_val.csv"),
+                },
+            ),
+            datasets.SplitGenerator(
+                name=datasets.Split.TRAIN,
+                gen_kwargs={
+                    "filepath": os.path.join(data_dir, "data", "dev", f"{task_name}_dev.csv"),
+                },
+            ),
         ]
 
     def _generate_examples(self, filepath):
         df = pd.read_csv(filepath)
-        df.columns = ["question_id", "question_turns", "answer_turns"]
+        df.columns = ["paragraph", "question", "A", "B", "C", "D", "answer"]
         
         for i, instance in enumerate(df.to_dict(orient="records")):
             yield i, instance

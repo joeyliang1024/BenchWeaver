@@ -1,0 +1,22 @@
+{
+  "boolq": {
+    "name": "BoolQ",
+    "category": "BoolQ"
+  },
+  "copa": {
+    "name": "COPA",
+    "category": "COPA"
+  },
+  "hellaswag": {
+    "name": "HellaSwag",
+    "category": "HellaSwag"
+  },
+  "sentineg": {
+    "name": "SentiNeg",
+    "category": "SentiNeg"
+  },
+  "wic": {
+    "name": "WiC",
+    "category": "WiC"
+  }
+}

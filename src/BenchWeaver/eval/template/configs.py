@@ -30,6 +30,8 @@ from .eval.humaneval_xl_template import get_humaneval_xl_eval_template
 from .eval.logickor_template import LogicKor_Template, get_logickor_eval_template
 from .eval.medqa_template import get_medqa_eval_template
 from .eval.medmcqa_template import get_medmcqa_eval_template
+from .eval.kobest_template import KoBest_Template, get_kobest_eval_template
+
 
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
@@ -155,5 +157,9 @@ EVAL_TEMPLATE_CONFIG = {
     "medmcqa": {
         "class": MCQA_Template,
         "func": get_medmcqa_eval_template,
+        },
+    "kobest": {
+        "class": KoBest_Template,
+        "func": get_kobest_eval_template,
         },
 }

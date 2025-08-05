@@ -34,7 +34,7 @@ from .eval.humaneval_xl_template import get_humaneval_xl_eval_template
 from .eval.logickor_template import LogicKor_Template, get_logickor_eval_template
 from .eval.medqa_template import get_medqa_eval_template
 from .eval.medmcqa_template import get_medmcqa_eval_template
-
+from .eval.kobest_template import KoBest_Template, get_kobest_eval_template
 __all__ = [
     # class
     "EvalTemplate",
@@ -58,6 +58,7 @@ __all__ = [
     "XNLI_Template",
     "LogiQA_Template",
     "LogicKor_Template",
+    "KoBest_Template",
     # function
     "get_mmlu_eval_template",
     "get_arc_challenge_eval_template",
@@ -87,6 +88,7 @@ __all__ = [
     "get_logickor_eval_template",
     "get_medqa_eval_template",
     "get_medmcqa_eval_template",
+    "get_kobest_eval_template",
     # translation
     "get_translation_template",
     # register

@@ -7,15 +7,14 @@ from datasets import load_dataset
 import numpy as np
 from tqdm.auto import tqdm
 from ....evaluator import Evaluator
-from .....extras.constants import PROJECT_BASE_PATH, TRUTHFULQA_SCORES
-from ....template import get_truthfulqa_eval_template
+from .....extras.constants import PROJECT_BASE_PATH
+from ....template import get_kobest_eval_template
 
-class TruthfulQAEvaluator(Evaluator):
+class KoBestEvaluator(Evaluator):
     server_process: asyncio.subprocess.Process
     def __init__(self, args):
         super().__init__(args=args)
-        self.eval_template = get_truthfulqa_eval_template(self.eval_args.lang)
-        self.categories:List[str] = TRUTHFULQA_SCORES[1:] # override
+        self.eval_template = get_kobest_eval_template(self.eval_args.lang)
     
     def load_data(self, 
                   mode = Literal['inference', 'check', 'translation'],
@@ -25,16 +24,16 @@ class TruthfulQAEvaluator(Evaluator):
                   ) -> Tuple[Dict[str, list], Dict[str, list]]:
         """Load and format data for evaluation."""
         # init data
-        inference_prompts = {subj: [] for subj in self.categories}
-        checker_answers = {subj: [] for subj in self.categories}
-        checker_prompts = {subj: [] for subj in self.categories}
-        translate_prompts = {subj: [] for subj in self.categories}
+        inference_prompts = {subj: [] for subj in self.categories.keys()}
+        checker_answers = {subj: [] for subj in self.categories.keys()}
+        checker_prompts = {subj: [] for subj in self.categories.keys()}
+        translate_prompts = {subj: [] for subj in self.categories.keys()}
         # Load datasets
-        for data_type in tqdm(self.categories, desc="Loading subjects"):
+        for data_type in tqdm(self.categories.keys(), desc="Loading subjects"):
             # load dataset from folder
             dataset = load_dataset(
                 path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.eval_task),
-                name="merge",
+                name=data_type,
                 cache_dir=self.model_args.cache_dir,
                 download_mode=self.eval_args.download_mode,
                 token=self.hf_token,
@@ -62,7 +61,7 @@ class TruthfulQAEvaluator(Evaluator):
             
             elif mode == "check":
                 assert self.inference_results is not None
-                if data_type == "generation":
+                if data_type in ["boolq", "wic"]:
                     for i in range(min(len(dataset[self.eval_split]), self.testing_size)):
                         check_msg_list = self.eval_template.format_checker_example(
                             target_data=dataset[self.eval_split][i],
@@ -147,8 +146,9 @@ class TruthfulQAEvaluator(Evaluator):
     
     def comput_score(self, checked_answers: Dict[str, List[Any]], check_results: Dict[str, List[Any]], subjects: List[str]) -> Dict[str, float]:
         category_corrects = {score: {"corrects": 0, "true_mask_count": 0} for score in subjects}
-        for subject in tqdm(self.categories, desc="Compute subjects"):
-            if subject == "generation":
+        for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
+            category_name = self.categories[subject]["category"]
+            if subject in ["boolq", "wic"]:
                 # OPQA
                 corrects = np.array(['true'] * len(check_results[subject])) == np.array([self.retrieve_answer(answer) for answer in check_results[subject]])
                 true_mask = np.array([True] * len(check_results[subject]))
@@ -159,8 +159,8 @@ class TruthfulQAEvaluator(Evaluator):
                 true_mask: np.ndarray = answers == 'true' # Mask for when the answer is 'true'
                 # Compare predictions and answers, only where answer is 'true'
                 corrects: np.ndarray = (predictions == 'true') & true_mask  # correct when answer is 'true' and prediction is 'true'
-            category_corrects[subject]["corrects"] += corrects.sum()
-            category_corrects[subject]["true_mask_count"] += true_mask.sum()
+            category_corrects[category_name]["corrects"] += corrects.sum()
+            category_corrects[category_name]["true_mask_count"] += true_mask.sum()
             category_corrects["Average"]['corrects'] += corrects.sum()
             category_corrects["Average"]['true_mask_count'] += true_mask.sum()
             
@@ -168,70 +168,3 @@ class TruthfulQAEvaluator(Evaluator):
             category_name: round(100 * (record_dict['corrects'] / record_dict['true_mask_count']), 4)
                 for category_name, record_dict in category_corrects.items() if record_dict['true_mask_count'] > 0
         }
-    
-    async def process_subjects(
-        self,
-        server_process: asyncio.subprocess.Process,
-        model_name: str,
-        data: Dict[str, List[Any]],
-        prompt_key: str,
-        output_path: str,
-        progress_desc: str,
-    ) -> Dict[str, List[Any]]:
-        """Process subjects using the specified client and data."""
-        results = {subj: [] for subj in self.categories}
-        total_progress_bar = tqdm(self.categories, desc=progress_desc)
-
-        # Define maximum concurrency
-        max_concurrency = 32
-        semaphore = asyncio.Semaphore(max_concurrency)
-
-        async def process_item(idx: int, messages: Any, subject: str, progress_bar: tqdm):
-            """Process a single item using semaphore."""
-            async with semaphore:
-                try:
-                    result, origin_idx = await self.generate(
-                        model=model_name,
-                        system_prompt=getattr(self.eval_args, prompt_key),
-                        example=messages,
-                        idx=idx,
-                        generating_args=self.generating_args,
-                    )
-                    progress_bar.update(1)
-                    return origin_idx, result
-                except Exception as e:
-                    progress_bar.update(1)
-                    print(f"Error processing item {idx} in subject {subject}: {e}")
-                    return idx, None
-
-        try:
-            for subject in self.categories:
-                subject_results = [None] * len(data[subject])
-                with tqdm(
-                    total=len(data[subject]),
-                    desc=subject,
-                    dynamic_ncols=True,
-                ) as subject_progress_bar:
-                    # Create tasks for all items under the subject
-                    tasks = [
-                        asyncio.create_task(process_item(idx, messages, subject, subject_progress_bar))
-                        for idx, messages in enumerate(data[subject])
-                    ]
-
-                    # Process tasks as they complete
-                    for coro in asyncio.as_completed(tasks):
-                        origin_idx, result = await coro
-                        if result is not None:
-                            subject_results[origin_idx] = result
-
-                results[subject] = subject_results
-                total_progress_bar.update(1)
-
-        finally:
-            print(f"Terminating server process: {server_process}")
-            await self.terminate_server(process=server_process)
-            print(f"Server process terminated: {server_process}")
-            self.save_data(data=results, output_path=os.path.join(self.save_folder, output_path))
-            total_progress_bar.close()
-
-        return results

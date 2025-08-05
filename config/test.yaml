@@ -4,7 +4,7 @@ openai_source: "azure"
 ### inference model
 inference_model_name_or_path: meta-llama/Llama-3.1-8B-Instruct
 inference_mode: local
-cot: true
+cot: false
 
 ### checker model
 checker_model_name_or_path: Qwen/Qwen2.5-32B-Instruct
@@ -18,19 +18,19 @@ source_lang: ko
 target_lang: zh-tw
 
 ### source dataset
-task: tmlu_test 
+task: kobest_test 
 task_dir: evaluation_data
-lang: zh-tw
+lang: ko
 n_shot: 5
-benchmark_mode: mcqa-oq
-pipeline: same
+benchmark_mode: mix
+pipeline: diff
 batch_size: 4
 
 ### reference dataset, split will use 'test' don't specify
 # ref_task: mmlu
 
 ### output
-save_dir: score/tmlu_test
+save_dir: score/kobest_test_diff
 
 ### VLLM 
 vllm_maxlen: 10240

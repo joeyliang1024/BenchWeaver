@@ -259,6 +259,14 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
     },
+    "kobest": {
+        "language": "ko",
+        "mode": ["mix"],
+        "display_scores": ["Average", "BoolQ", "COPA", "HellaSwag", "SentiNeg", "WiC"],
+        "mcqa_choices": OPTION_CODES,
+        "sugguest_num_shots": 5,
+        "support_chain_of_thought": False,
+    },
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -438,5 +446,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         return {
             "mcqa-prob": MedMCQAProbEvaluator,
             "mcqa-oq": MedMCQAOQEvaluator,
+        }
+    elif task_name == "kobest":
+        from .ko.kobest.mix_eval import KoBestEvaluator
+        return {
+            "mix": KoBestEvaluator,
         }
     return {}

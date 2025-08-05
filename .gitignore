@@ -171,6 +171,7 @@ cython_debug/
 .pypirc
 
 # Details of the run of the BenchWeaver
+score/
 **/check_results.json
 **/checked_prompts.json
 **/checked_answers.json
