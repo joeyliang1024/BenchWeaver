@@ -172,6 +172,7 @@ cython_debug/
 
 # Details of the run of the BenchWeaver
 score/
+bio_data/
 **/check_results.json
 **/checked_prompts.json
 **/checked_answers.json

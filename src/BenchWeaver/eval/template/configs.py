@@ -31,7 +31,7 @@ from .eval.logickor_template import LogicKor_Template, get_logickor_eval_templat
 from .eval.medqa_template import get_medqa_eval_template
 from .eval.medmcqa_template import get_medmcqa_eval_template
 from .eval.kobest_template import KoBest_Template, get_kobest_eval_template
-
+from .eval.huatuo_template import get_huatuo_eval_template
 
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
@@ -161,5 +161,9 @@ EVAL_TEMPLATE_CONFIG = {
     "kobest": {
         "class": KoBest_Template,
         "func": get_kobest_eval_template,
+        },
+    "huatuo": {
+        "class": OPQA_Template,
+        "func": get_huatuo_eval_template,
         },
 }

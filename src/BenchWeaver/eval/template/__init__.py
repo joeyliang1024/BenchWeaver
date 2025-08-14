@@ -35,6 +35,8 @@ from .eval.logickor_template import LogicKor_Template, get_logickor_eval_templat
 from .eval.medqa_template import get_medqa_eval_template
 from .eval.medmcqa_template import get_medmcqa_eval_template
 from .eval.kobest_template import KoBest_Template, get_kobest_eval_template
+from .eval.huatuo_template import get_huatuo_eval_template
+
 __all__ = [
     # class
     "EvalTemplate",
@@ -89,6 +91,7 @@ __all__ = [
     "get_medqa_eval_template",
     "get_medmcqa_eval_template",
     "get_kobest_eval_template",
+    "get_huatuo_eval_template"
     # translation
     "get_translation_template",
     # register

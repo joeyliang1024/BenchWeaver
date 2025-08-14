@@ -267,6 +267,14 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 5,
         "support_chain_of_thought": False,
     },
+    "huatuo": {
+        "language": "zh",
+        "mode": ["opqa"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 5,
+        "support_chain_of_thought": False,
+    }
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -451,5 +459,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .ko.kobest.mix_eval import KoBestEvaluator
         return {
             "mix": KoBestEvaluator,
+        }
+    elif task_name == "huatuo":
+        from .zh.huatuo.opqa_eval import HuatuoEvaluator
+        return {
+            "opqa": HuatuoEvaluator,
         }
     return {}
