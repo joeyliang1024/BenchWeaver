@@ -98,6 +98,9 @@ class MultiTurnEvaluator(Evaluator):
                 except Exception as e:
                     progress_bar.update(1)
                     print(f"Error processing item {idx} in subject {subject}: {e}")
+                    # show exact error message trace back
+                    import traceback
+                    traceback.print_exc()
                     return idx, None
 
         try:

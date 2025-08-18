@@ -13,7 +13,7 @@ def display_benchmark_table():
             config["sugguest_num_shots"],
             config["support_chain_of_thought"]
         ])
-    
+    table.sort(key=lambda row: row[1]) # sort by language
     print(tabulate(table, headers=headers, tablefmt="grid"))
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 from argparse import Namespace
+import json
 import os
 import ast
 import random
@@ -18,7 +19,7 @@ logger = get_logger(__name__)
 class LogicKorEvaluator(MultiTurnEvaluator):
     def __init__(self, args):
         super().__init__(args=args)
-        self.translated_few_shot_examples = None
+        self.translated_few_shot_examples = self.get_few_shot_examples()
     
     @staticmethod
     def retrieve_responses(inference_results: Dict[str, List[Any]], translated_few_shot_examples:List[dict]) -> Dict[str, List[Any]]:
@@ -231,8 +232,6 @@ class LogicKorEvaluator(MultiTurnEvaluator):
             return None, checker_prompts
         elif mode == "translation":
             return None, translate_prompts
-    
-    
     
     async def diff_lang_eval(self, choices: List[str], subjects: List[str]) -> None:
         # specific evaluation pipeline
