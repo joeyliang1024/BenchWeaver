@@ -123,7 +123,6 @@ class VllmArguments:
     r"""
     Arguments pertaining to the vLLM worker.
     """
-
     vllm_maxlen: int = field(
         default=4096,
         metadata={"help": "Maximum sequence (prompt + response) length of the vLLM engine."},
@@ -153,7 +152,11 @@ class InferenceArguments:
             "help": "Path to the checker model weight or identifier from huggingface.co/models or modelscope.cn/models."
         },
     )
-    inference_mode: Literal["api", "local"] = field(
+    inference_model_endpoint: Optional[str] = field(
+        default=None,
+        metadata={"help": "The endpoint of the inference model."}
+    )
+    inference_mode: Literal["api", "local", "endpoint"] = field(
         default="local",
         metadata={"help": "Mode for the checker model."},
     )
@@ -166,20 +169,28 @@ class CheckerArguments:
             "help": "Path to the checker model weight or identifier from huggingface.co/models or modelscope.cn/models."
         },
     )
-    check_mode: Literal["api", "local"] = field(
+    checker_model_endpoint: Optional[str] = field(
+        default=None,
+        metadata={"help": "The endpoint of the checker model."}
+    )
+    check_mode: Literal["api", "local", "endpoint"] = field(
         default="local",
         metadata={"help": "Mode for the checker model."},
     )
     
 @dataclass
-class TranlsatorArguments:
+class TranslatorArguments:
     translation_model_name_or_path: Optional[str] = field(
         default=None,
         metadata={
             "help": "Path to the translator model weight or identifier from huggingface.co/models or modelscope.cn/models."
         },
     )
-    translation_mode: Literal["api", "local"] = field(
+    translation_model_endpoint: Optional[str] = field(
+        default=None,
+        metadata={"help": "The endpoint of the translator model."}
+    )
+    translation_mode: Literal["api", "local", "endpoint"] = field(
         default="local",
         metadata={"help": "Mode for the translator model."},
     )
@@ -204,7 +215,7 @@ class OpenAIArguments:
     )
     
 @dataclass
-class ModelArguments(QuantizationArguments, ProcessorArguments, ExportArguments, VllmArguments, InferenceArguments, CheckerArguments, TranlsatorArguments, OpenAIArguments):
+class ModelArguments(QuantizationArguments, ProcessorArguments, ExportArguments, VllmArguments, InferenceArguments, CheckerArguments, TranslatorArguments, OpenAIArguments):
     r"""
     Arguments pertaining to which model/config/tokenizer we are going to fine-tune or infer.
     """

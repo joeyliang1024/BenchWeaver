@@ -38,16 +38,16 @@ pip install -e .
 ## Documentation 📚📝
 Access detailed documentation through these links:
 
-| Component      | Description                         | Link                                         |
-|----------------|-------------------------------------|----------------------------------------------|
-| CLI            | Command-line interface guide        | [CLI](./doc/cli.md)                          |
-| Config         | Evaluation configuration details    | [Config](./doc/config_doc.md)                |
-| Evaluation     | Methods and metrics explanation     | [Evaluation Method](./doc/evaluation_method.md) |
-| Benchmarks     | List of supported benchmarks        | [Support Benchmark](./doc/supported_benchmark.md) |
-| Benchmark Type | List of benchmark types             | [Benchmark Classification](./doc/benchmark_classification.md) |
-| Add benchmark  | Details how to add benchmark        | [Add Benchmark](./doc/add_benchmark.md)      |
-| Problem Record | Record the problem occured          | [Problem Record](./doc/problem_record.md)    |
-
+| Component          | Description                         | Link                                                          |
+|--------------------|-------------------------------------|---------------------------------------------------------------|
+| CLI                | Command-line interface guide        | [CLI](./doc/cli.md)                                           |
+| Config             | Evaluation configuration details    | [Config](./doc/config_doc.md)                                 |
+| Evaluation         | Methods and metrics explanation     | [Evaluation Method](./doc/evaluation_method.md)               |
+| Benchmarks         | List of supported benchmarks        | [Support Benchmark](./doc/supported_benchmark.md)             |
+| Benchmark Type     | List of benchmark types             | [Benchmark Classification](./doc/benchmark_classification.md) |
+| Add benchmark      | Details how to add benchmark        | [Add Benchmark](./doc/add_benchmark.md)                       |
+| Problem Record     | Record the problem occured          | [Problem Record](./doc/problem_record.md)                     |
+| Model Usage Method | Load the LLMs in different mode     | [Model Usage Method](./doc/model_usage_method.md)             |
 
 ## Reproducibility of Results
 For pipeline execution, you can run the configurations for each part as listed below:

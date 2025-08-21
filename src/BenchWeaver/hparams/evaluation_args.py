@@ -30,7 +30,7 @@ class EvaluationArguments:
     )
     ref_task: Optional[str] = field(
         default=None,
-        metadata={"help": "Name of the reference task."},
+        metadata={"help": "Name of the reference task for few-shot translation."},
     )
     task_dir: str = field(
         default="evaluation_data",
@@ -50,7 +50,7 @@ class EvaluationArguments:
     )
     lang: Literal["en", "zh", "zh-tw", "ko"] = field(
         default="en",
-        metadata={"help": "Language used at evaluation."},
+        metadata={"help": "Language used for evaluation prompt lang."},
     )
     n_shot: int = field(
         default=5,
@@ -70,7 +70,7 @@ class EvaluationArguments:
     )
     user_prompt: str = field(
         default=None,
-        metadata={"help": "The user-provided prompt or query  for the open question inference model."}
+        metadata={"help": "The user-provided prompt or query for the open question inference model."}
     )
     criteria_system_prompt: str = field(
         default=None,

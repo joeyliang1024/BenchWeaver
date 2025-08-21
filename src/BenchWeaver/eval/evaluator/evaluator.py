@@ -172,6 +172,8 @@ class Evaluator:
                 model_name=self.inference_model_name,
                 max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
                 openai_source=getattr(self.model_args, "openai_source", "openai"),
+                base_url=getattr(self.model_args, "inference_model_endpoint", None),
+                endpoint_key=os.getenv("INFERENCE_MODEL_API_KEY", "EMPTY"),
             )
         elif mode == "check":
             self.client = Client(
@@ -182,6 +184,8 @@ class Evaluator:
                 model_name=self.checker_model_name,
                 max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
                 openai_source=getattr(self.model_args, "openai_source", "openai"),
+                base_url=getattr(self.model_args, "checker_model_endpoint", None),
+                endpoint_key=os.getenv("CHECKER_MODEL_API_KEY", "EMPTY"),
             )
         elif mode == "translation":
             self.client = Client(
@@ -192,6 +196,8 @@ class Evaluator:
                 model_name=self.translation_model_name,
                 max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
                 openai_source=getattr(self.model_args, "openai_source", "openai"),
+                base_url=getattr(self.model_args, "translation_model_endpoint", None),
+                endpoint_key=os.getenv("TRANSLATION_MODEL_API_KEY", "EMPTY"),
             )
         else:
             raise ValueError(f"Invalid mode: {mode}")
@@ -457,7 +463,7 @@ class Evaluator:
             print("Local vLLM server setup complete.")
         else:
             inference_process = None
-            print("Using OpenAI API for inference.")
+            print("Using OpenAI API or local endpoint for inference.")
 
         self.set_client(mode="inference")
         print("Client setup complete.")
@@ -489,7 +495,7 @@ class Evaluator:
             print("Local vLLM server setup complete.")
         else:
             checker_process = None
-            print("Using OpenAI API for checking.")
+            print("Using OpenAI API or local endpoint for checking.")
 
         self.set_client(mode="check")
         print("Client setup complete.")
@@ -537,7 +543,7 @@ class Evaluator:
             print("Local vLLM server setup complete.")
         else:
             translation_process = None
-            print("Using OpenAI API for inference.")
+            print("Using OpenAI API or local endpoint for translation.")
 
         self.set_client(mode="translation")
         print("Client setup complete.")
@@ -565,7 +571,7 @@ class Evaluator:
             print("Local vLLM server setup complete.")
         else:
             inference_process = None
-            print("Using OpenAI API for inference.")
+            print("Using OpenAI API or local endpoint for inference.")
 
         self.set_client(mode="inference")
         print("Client setup complete.")
@@ -597,7 +603,7 @@ class Evaluator:
             print("Local vLLM server setup complete.")
         else:
             translation_process = None
-            print("Using OpenAI API for inference.")
+            print("Using OpenAI API or local endpoint for translation.")
 
         self.set_client(mode="translation")
         print("Client setup complete.")
@@ -629,7 +635,7 @@ class Evaluator:
             print("Local vLLM server setup complete.")
         else:
             checker_process = None
-            print("Using OpenAI API for checking.")
+            print("Using OpenAI API or local endpoint for checking.")
 
         self.set_client(mode="check")
         print("Client setup complete.")

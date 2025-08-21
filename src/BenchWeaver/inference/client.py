@@ -12,16 +12,19 @@ from ..extras.constants import GPT_NOT_SUPPORT_PARM_MODELS
 class Client:
     server_process: Optional[Process]
     client: Union[AsyncOpenAI, AsyncAzureOpenAI]
-
+    timeout = 5 * 60  # 5 minutes timeout for API calls
+    max_retries = 10  # Maximum retries for API calls
     def __init__(
         self,
-        mode: Literal['api', 'local'],
+        mode: Literal['api', 'local', 'endpoint'],
         host_name: Optional[str] = 'localhost',
         port: Optional[int] = 8000,
         model_path: Optional[str] = None,
         model_name: Optional[str] = None,
         max_model_len: int = 4096,
         openai_source: Literal["openai", "azure"] = "openai",
+        base_url: Optional[str] = None,
+        endpoint_key: Optional[str] = None,
     ):
         """
         Initializes the client and sets up the client instance.
@@ -42,44 +45,58 @@ class Client:
         self.model_name = model_name
         self.max_model_len = max_model_len
         self.openai_source = openai_source
+        self.base_url = base_url
+        self.endpoint_key = endpoint_key if (endpoint_key and len(endpoint_key) > 0) else "EMPTY"
         self.client = self.init_client()
 
     def init_client(self):
         """
         Sets up the client based on the mode.
         """
+        ########### For OpenAI API ###########
         if self.mode == 'api':
             load_env_variables()
             if self.openai_source == "azure":
                 print("Using Azure OpenAI API.")
                 return AsyncAzureOpenAI(
-                    azure_endpoint=os.getenv("AZURE_ENDPOINT_URL"),
-                    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-                    api_version=os.getenv("AZURE_API_VERSION"),
-                    timeout = 5 * 60,
-                    max_retries = 10,
+                    azure_endpoint = os.getenv("AZURE_ENDPOINT_URL"),
+                    api_key = os.getenv("AZURE_OPENAI_API_KEY"),
+                    api_version = os.getenv("AZURE_API_VERSION"),
+                    timeout = self.timeout,
+                    max_retries = self.max_retries,
                 )
             elif self.openai_source == "openai":
                 print("Using OpenAI API.")
                 return AsyncOpenAI(
-                    api_key=os.getenv("OPENAI_API_KEY"),
-                    organization=os.getenv("OPENAI_ORGANIZATION", None),
-                    project=os.getenv("OPENAI_PROJECT", None),
-                    timeout = 5 * 60,
-                    max_retries = 10,
+                    api_key = os.getenv("OPENAI_API_KEY"),
+                    organization = os.getenv("OPENAI_ORGANIZATION", None),
+                    project = os.getenv("OPENAI_PROJECT", None),
+                    timeout = self.timeout,
+                    max_retries = self.max_retries,
                 )
             else:
                 raise ValueError("Invalid model source. Choose either 'openai' or 'azure'.")
-            
+        ########### For Local existing endpoint ###########
+        elif self.mode == 'endpoint': 
+            if not self.base_url or not self.model_name:
+                    raise ValueError("Both 'base_url' and 'model_name' are required for endpoint mode.")
+            print(f"Using endpoint at {self.base_url} with model {self.model_name}.")
+            return AsyncOpenAI(
+                base_url = self.base_url,
+                api_key = os.getenv(self.endpoint_key, "EMPTY"),
+                timeout = self.timeout,
+                max_retries = self.max_retries,
+            )
+        ########### For Local vLLM server ###########
         elif self.mode == 'local':
             if not self.model_path or not self.model_name:
                 raise ValueError("Both 'model_path' and 'model_name' are required in 'local' mode.")
             print("Using local vllm server with model:", self.model_path)
             return AsyncOpenAI(
-                base_url=f"http://{self.host_name}:{self.port}/v1", 
-                api_key="EMPTY", 
-                timeout= 5 * 60,
-                max_retries = 10,
+                base_url = f"http://{self.host_name}:{self.port}/v1",
+                api_key = "EMPTY",
+                timeout = self.timeout,
+                max_retries = self.max_retries,
             )
         else:
             raise ValueError("Invalid mode. Choose either 'api' or 'local'.")
@@ -165,7 +182,7 @@ class Client:
                 response = ast.literal_eval(error_dict)['error']['message']
                 print(f"Bad request error: {response}")
                 return response
-            except:
+            except:  # noqa: E722
                 print(f"Bad request error. {e}")
                 return "The response was filtered due to the prompt triggering Azure OpenAI's content management policy."
         
