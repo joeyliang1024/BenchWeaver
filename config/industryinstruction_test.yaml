@@ -1,0 +1,37 @@
+################
+# 必需要更改的：
+# task_dir: en -> zh, ko, ...
+# lang: en -> zh, ko, ...
+################
+### OpenAI Source
+openai_source: "azure"
+
+### inference model
+inference_model_name_or_path: meta-llama/Llama-3.1-8B-Instruct
+inference_mode: local
+
+### checker model
+checker_model_name_or_path: Qwen/Qwen2.5-32B-Instruct
+check_mode: local
+
+### source dataset
+task: industryinstruction-law_test
+task_dir: evaluation_data/industryinstruction/en
+lang: en
+n_shot: 0
+benchmark_mode: opqa
+pipeline: same
+cot: false
+
+### output
+save_dir: score/industryinstruction-law_test/en
+
+### VLLM 
+vllm_maxlen: 10240
+vllm_max_concurrency: 30
+max_new_tokens: 2048
+dtype: float16
+### debug
+testing_size: 3
+record_all: true
+# print_param_status: false

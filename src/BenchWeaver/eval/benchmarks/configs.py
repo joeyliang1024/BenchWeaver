@@ -274,7 +274,31 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": None,
         "sugguest_num_shots": 5,
         "support_chain_of_thought": False,
-    }
+    },
+    "industryinstruction-aerospace": {
+        "language": "zh",
+        "mode": ["opqa"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
+    "industryinstruction-finance": {
+        "language": "zh",
+        "mode": ["opqa"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
+    "industryinstruction-law": {
+        "language": "zh",
+        "mode": ["opqa"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -464,5 +488,20 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .zh.huatuo.opqa_eval import HuatuoEvaluator
         return {
             "opqa": HuatuoEvaluator,
+        }
+    elif task_name == "industryinstruction-aerospace":
+        from .zh.industryinstruction.aerospace.opqa_eval import IndustryInstructionAerospaceEvaluator
+        return {
+            "opqa": IndustryInstructionAerospaceEvaluator,
+        }
+    elif task_name == "industryinstruction-finance":
+        from .zh.industryinstruction.finance.opqa_eval import IndustryInstructionFinanceEvaluator
+        return {
+            "opqa": IndustryInstructionFinanceEvaluator,
+        }
+    elif task_name == "industryinstruction-law":
+        from .zh.industryinstruction.law.opqa_eval import IndustryInstructionLawEvaluator
+        return {
+            "opqa": IndustryInstructionLawEvaluator,
         }
     return {}

@@ -78,9 +78,9 @@ class Client:
                 raise ValueError("Invalid model source. Choose either 'openai' or 'azure'.")
         ########### For Local existing endpoint ###########
         elif self.mode == 'endpoint': 
-            if not self.base_url or not self.model_name:
-                    raise ValueError("Both 'base_url' and 'model_name' are required for endpoint mode.")
-            print(f"Using endpoint at {self.base_url} with model {self.model_name}.")
+            if not self.base_url or not self.endpoint_key:
+                    raise ValueError("Both 'base_url' and 'endpoint_key' are required for endpoint mode.")
+            print(f"Using endpoint at {self.base_url}.")
             return AsyncOpenAI(
                 base_url = self.base_url,
                 api_key = os.getenv(self.endpoint_key, "EMPTY"),
@@ -89,9 +89,9 @@ class Client:
             )
         ########### For Local vLLM server ###########
         elif self.mode == 'local':
-            if not self.model_path or not self.model_name:
-                raise ValueError("Both 'model_path' and 'model_name' are required in 'local' mode.")
-            print("Using local vllm server with model:", self.model_path)
+            if not self.host_name or not self.port:
+                raise ValueError("Both 'host_name' and 'port' are required in 'local' mode.")
+            print("Using local vllm server with host:", self.host_name, "port:", self.port)
             return AsyncOpenAI(
                 base_url = f"http://{self.host_name}:{self.port}/v1",
                 api_key = "EMPTY",

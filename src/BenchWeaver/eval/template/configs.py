@@ -32,6 +32,8 @@ from .eval.medqa_template import get_medqa_eval_template
 from .eval.medmcqa_template import get_medmcqa_eval_template
 from .eval.kobest_template import KoBest_Template, get_kobest_eval_template
 from .eval.huatuo_template import get_huatuo_eval_template
+from .eval.industryinstruction_template import get_industryinstruction_aerospace_eval_template, get_industryinstruction_finance_eval_template, get_industryinstruction_law_eval_template
+
 
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
@@ -165,5 +167,17 @@ EVAL_TEMPLATE_CONFIG = {
     "huatuo": {
         "class": OPQA_Template,
         "func": get_huatuo_eval_template,
+        },
+    "industryinstruction-aerospace": {
+        "class": OPQA_Template,
+        "func": get_industryinstruction_aerospace_eval_template,
+        },
+    "industryinstruction-finance": {
+        "class": OPQA_Template,
+        "func": get_industryinstruction_finance_eval_template,
+        },
+    "industryinstruction-law": {
+        "class": OPQA_Template,
+        "func": get_industryinstruction_law_eval_template,
         },
 }
