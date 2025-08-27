@@ -2,12 +2,15 @@ from argparse import Namespace
 import asyncio
 import os
 import ast
+import logging
 from typing import Any, Dict, List, Literal, Optional, Union
 from openai import AsyncOpenAI, AsyncAzureOpenAI
 from openai import RateLimitError, NotFoundError, APITimeoutError, APIConnectionError, BadRequestError
 from asyncio.subprocess import Process
 from ..extras.load_env import load_env_variables
 from ..extras.constants import GPT_NOT_SUPPORT_PARM_MODELS
+
+logger = logging.getLogger(__name__)
 
 class Client:
     server_process: Optional[Process]
@@ -148,7 +151,7 @@ class Client:
             return c.choices[0].message.content.strip()
         
         except RateLimitError as e:
-            print("Rate limit error. Waiting for 30 seconds.")
+            logger.debug("Rate limit error. Waiting for 30 seconds.")
             await asyncio.sleep(30)
             return await self.generate(
                 model=model,
@@ -158,12 +161,12 @@ class Client:
             )
             
         except NotFoundError as e:
-            print("Model not found. Please check the model name.")
-            print(e)
+            logger.debug("Model not found. Please check the model name.")
+            logger.debug(e)
             exit()
         
         except APITimeoutError as e:
-            print(f"API Timeout error: {e}. Waiting for 10 seconds.")
+            logger.debug(f"API Timeout error: {e}. Waiting for 10 seconds.")
             await asyncio.sleep(10)
             return await self.generate(
                 model=model,
@@ -173,27 +176,27 @@ class Client:
             )
             
         except APIConnectionError as e:
-            print(f"API Connection error: {e}. Exiting.")
+            logger.error(f"API Connection error: {e}. Exiting.")
             exit()
         
         except BadRequestError as e:
             try:
                 error_dict = ast.literal_eval(e.response.content.decode())
                 response = ast.literal_eval(error_dict)['error']['message']
-                print(f"Bad request error: {response}")
+                logger.debug(f"Bad request error: {response}")
                 return response
             except:  # noqa: E722
-                print(f"Bad request error. {e}")
+                logger.debug(f"Bad request error. {e}")
                 return "The response was filtered due to the prompt triggering Azure OpenAI's content management policy."
         
         except AttributeError as e:
             # handle the return content is None
-            print(f"AttributeError: {e}")
+            logger.debug(f"AttributeError: {e}")
             return "No response due to repeated AttributeErrors."
         
         except Exception as e:
-            print(e)
-            print(messages)
+            logger.error(e)
+            logger.error("Complete messages:", messages)
             exit()
         
         

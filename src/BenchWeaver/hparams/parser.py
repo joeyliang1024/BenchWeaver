@@ -19,7 +19,7 @@ import logging
 import os
 import sys
 from typing import Any, Dict, Optional, Tuple
-
+import http.client
 import torch
 import transformers
 from transformers import HfArgumentParser, Seq2SeqTrainingArguments
@@ -38,10 +38,11 @@ from .finetuning_args import FinetuningArguments
 from .generating_args import GeneratingArguments
 from .model_args import ModelArguments
 
-
+logging.basicConfig(level=logging.INFO)
+logging.getLogger("openai").setLevel(logging.WARNING)   # or ERROR if you want even stricter
+logging.getLogger("httpx").setLevel(logging.WARNING)    # or ERROR if you want even stricter
+logging.getLogger("tensorflow").setLevel(logging.ERROR) # suppress extensive TF logging
 logger = get_logger(__name__)
-
-
 
 _TRAIN_ARGS = [ModelArguments, DataArguments, Seq2SeqTrainingArguments, FinetuningArguments, GeneratingArguments]
 _TRAIN_CLS = Tuple[ModelArguments, DataArguments, Seq2SeqTrainingArguments, FinetuningArguments, GeneratingArguments]
@@ -424,8 +425,18 @@ def get_infer_eval_args(args: Optional[Dict[str, Any]] = None) -> _INFER_EVAL_CL
     model_args, data_args, eval_args, finetuning_args, generating_args = _parse_infer_eval_args(args)
     _set_transformers_logging()
 
-    # if data_args.template is None:
-    #     raise ValueError("Please specify which `template` to use.")
+    # ====================== Debug Arguments ==================== #    
+    if eval_args.debug:
+        eval_args.testing_size = 3
+        eval_args.record_all = True
+        model_args.vllm_disable_log_requests = False
+        model_args.vllm_disable_log_stats = False
+        # Enable debug prints from http.client
+        http.client.HTTPConnection.debuglevel = 1
+        # change logging level to INFO for http.client and openai
+        logging.getLogger("openai").setLevel(logging.INFO)  
+        logging.getLogger("httpx").setLevel(logging.INFO)   
+    # =========================================================== #
     
     _verify_model_args(model_args, data_args, finetuning_args)
     _check_extra_dependencies(model_args, finetuning_args)

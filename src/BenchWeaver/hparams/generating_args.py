@@ -68,6 +68,7 @@ class GeneratingArguments:
         default=None,
         metadata={"help": "Default system message to use in chat completion."},
     )
+    
 
     def to_dict(self) -> Dict[str, Any]:
         args = asdict(self)

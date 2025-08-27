@@ -34,32 +34,49 @@ class VLLMServer:
         print(f"Max usable devices: {max_usable}")
         return max_usable
         
-    async def setup_server(self, model_path: Path, model_name: str, max_model_len: int, max_num_seqs:int, dtype:str) -> asyncio.subprocess.Process:
+    async def setup_server(
+        self, 
+        model_path: Path, 
+        model_name: str, 
+        max_model_len: int, 
+        max_num_seqs:int, 
+        dtype:str,
+        vllm_gpu_util: float,
+        disable_log_requests: bool,
+        disable_log_stats: bool,
+        enforce_eager: bool,
+        trust_remote_code: bool,
+        ) -> asyncio.subprocess.Process:
         """
         Start a vLLM server with the specified parameters.
         If you are looking for more parameters, check the [vLLM documentation](https://docs.vllm.ai/en/v0.8.2/serving/engine_args.html#engine-args).
         """
-        process = await asyncio.create_subprocess_exec(
-            *[
+        cmd = [
                 "vllm",
                 "serve", str(model_path),
                 "--no-enable-chunked-prefill", # update vllm greater than 0.8.2
                 "--tensor-parallel-size", str(self.get_max_usable_devices()),
                 "--dtype", dtype,
                 "--served-model-name", model_name,
+                "--gpu-memory-utilization", str(vllm_gpu_util),
                 # disables the use of CPU swap space, which can prevent errors related to insufficient swap space.
-                "--gpu-memory-utilization", "0.95",
                 "--swap-space", "0", 
                 "--max-num-seqs", str(max_num_seqs),
-                # DEBUG USAGE: show status of vllm server
-                "--disable-log-requests",
-                #"--disable-log-stats",
-                # "--enforce-eager",
                 "--uvicorn-log-level", "error",
                 "--port", str(self.port),
                 "--max-model-len", str(max_model_len),
-                "--trust-remote-code",
-            ],
+                "--chat-template-content-format", "string",
+            ]
+        if disable_log_requests:
+            cmd.append("--disable-log-requests")
+        if disable_log_stats:
+            cmd.append("--disable-log-stats")
+        if enforce_eager:
+            cmd.append("--enforce-eager")
+        if trust_remote_code:
+            cmd.append("--trust-remote-code")
+        process = await asyncio.create_subprocess_exec(
+            *cmd,
             env={
                 **os.environ,
                 "VERBOSE": "0",

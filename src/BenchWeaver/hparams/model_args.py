@@ -128,7 +128,7 @@ class VllmArguments:
         metadata={"help": "Maximum sequence (prompt + response) length of the vLLM engine."},
     )
     vllm_gpu_util: float = field(
-        default=0.9,
+        default=0.95,
         metadata={"help": "The fraction of GPU memory in (0,1) to be used for the vLLM engine."},
     )
     vllm_enforce_eager: bool = field(
@@ -143,7 +143,23 @@ class VllmArguments:
         default=100,
         metadata={"help": "Maximum number of concurrent requests for the vLLM server."},
     )
-    
+    vllm_disable_log_requests: bool = field(
+        default=True,
+        metadata={"help": "Whether or not to disable logging of requests."},
+    )
+    vllm_disable_log_stats: bool = field(
+        default=True,
+        metadata={"help": "Whether or not to disable logging of statistics."},
+    )
+    vllm_enforce_eager: bool = field(
+        default=False,
+        metadata={"help": "Whether or not to disable CUDA graph."},
+    )
+    vllm_trust_remote_code: bool = field(
+        default=True,
+        metadata={"help": "Whether or not to trust the remote code when loading the model."},
+    )
+
 @dataclass
 class InferenceArguments:
     inference_model_name_or_path: Optional[str] = field(

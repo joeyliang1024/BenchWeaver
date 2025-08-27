@@ -100,9 +100,16 @@ class EvaluationArguments:
         default=False,
         metadata={"help": "Record all the intermediate steps of the reasoning process."}
     )
+    debug: bool = field(
+        default=False,
+        metadata={"help": "Enable debug mode for detailed logging and error tracking."}
+    )
     
     def __post_init__(self):
-        if self.save_dir is not None and os.path.exists(self.save_dir):
+        
+        if self.save_dir is not None and os.path.exists(self.save_dir) and self.debug is False:
             raise ValueError("`save_dir` already exists, use another one.")
+            
         if self.ref_task_dir is None:
             self.ref_task_dir = self.task_dir
+    

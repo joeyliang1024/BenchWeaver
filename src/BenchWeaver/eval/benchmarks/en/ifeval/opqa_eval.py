@@ -59,12 +59,9 @@ class IFEvalEvaluator(OPQAEvaluator):
             self.save_data(data=self.inference_prompts, output_path=os.path.join(self.save_folder, "inference_prompts.json"))
 
         if self.inference_mode == "local":
-            inference_process = await self.server.setup_server(
+            inference_process = await self.setup_server(
                 model_path=self.model_args.inference_model_name_or_path,
                 model_name=self.inference_model_name,
-                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
-                max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
-                dtype=getattr(self.model_args, "dtype", "bfloat16"),
             )
             print("Local vLLM server setup complete.")
         else:
@@ -107,12 +104,9 @@ class IFEvalEvaluator(OPQAEvaluator):
             self.save_data(data=ques_trans_prompts, output_path=os.path.join(self.save_folder, "ques_trans_prompts.json"))
         
         if self.translation_mode == "local":
-            translation_process = await self.server.setup_server(
+            translation_process = await self.setup_server(
                 model_path=self.model_args.translation_model_name_or_path,
                 model_name=self.translation_model_name,
-                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
-                max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
-                dtype=getattr(self.model_args, "dtype", "bfloat16"),
             )
             print("Local vLLM server setup complete.")
         else:
@@ -135,12 +129,9 @@ class IFEvalEvaluator(OPQAEvaluator):
         ######################################### inference #########################################
         logger.info("============ Start inference process. ============")
         if self.inference_mode == "local":
-            inference_process = await self.server.setup_server(
+            inference_process = await self.setup_server(
                 model_path=self.model_args.inference_model_name_or_path,
                 model_name=self.inference_model_name,
-                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
-                max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
-                dtype=getattr(self.model_args, "dtype", "bfloat16"),
             )
             print("Local vLLM server setup complete.")
         else:
@@ -167,12 +158,9 @@ class IFEvalEvaluator(OPQAEvaluator):
             self.save_data(data=resp_trans_prompts, output_path=os.path.join(self.save_folder, "resp_trans_prompts.json"))
         
         if self.translation_mode == "local":
-            translation_process = await self.server.setup_server(
+            translation_process = await self.setup_server(
                 model_path=self.model_args.translation_model_name_or_path,
                 model_name=self.translation_model_name,
-                max_model_len=getattr(self.model_args, "vllm_maxlen", 4096),
-                max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
-                dtype=getattr(self.model_args, "dtype", "bfloat16"),
             )
             print("Local vLLM server setup complete.")
         else:
