@@ -159,6 +159,10 @@ class VllmArguments:
         default=True,
         metadata={"help": "Whether or not to trust the remote code when loading the model."},
     )
+    vllm_reasoning_parser: Optional[str] = field(
+        default=None,
+        metadata={"help": "The name of the reasoning parser to use in the vLLM engine."},
+    )
 
 @dataclass
 class InferenceArguments:
@@ -235,6 +239,10 @@ class ModelArguments(QuantizationArguments, ProcessorArguments, ExportArguments,
     r"""
     Arguments pertaining to which model/config/tokenizer we are going to fine-tune or infer.
     """
+    output_reasoning: bool = field(
+        default=False,
+        metadata={"help": "Whether or not to output the reasoning content in generation."},
+    )
     adapter_name_or_path: Optional[str] = field(
         default=None,
         metadata={

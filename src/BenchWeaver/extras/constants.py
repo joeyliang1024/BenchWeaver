@@ -5,7 +5,8 @@ TRANSLATION_PROMPT_PATH = os.path.join(PROJECT_BASE_PATH, "prompt", "translation
 
 # COMET model
 COMET_MODEL_NAME_OR_PATH = "Unbabel/wmt20-comet-qe-da"
-
+# Word Tokenizer
+ENABLE_INIT_TOKENIZER = False
 # MMLU
 MMLU_CHOICES = ["A", "B", "C", "D"]
 MMLU_SUBJECTS = ["Average", "STEM", "Social Sciences", "Humanities", "Other"]

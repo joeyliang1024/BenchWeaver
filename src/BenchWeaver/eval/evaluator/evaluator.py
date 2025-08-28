@@ -14,7 +14,7 @@ from ...inference.client import Client
 from ..template import AdvancedTransTemplate, get_translation_template
 from ..template.configs import EVAL_TEMPLATE_CONFIG
 from ..benchmarks.configs import BENCHMARK_CONFIG
-from ..difficulty import compute_difficulty
+# from ..difficulty import compute_difficulty
 from ...extras.logging import get_logger
 from ..metric.retrieve_score import parse_bool_score, parse_numerical_score
 load_env_variables()
@@ -216,7 +216,8 @@ class Evaluator:
             disable_log_requests=getattr(self.model_args, "vllm_disable_log_requests", True),
             disable_log_stats=getattr(self.model_args, "vllm_disable_log_stats", False),
             enforce_eager=getattr(self.model_args, "vllm_enforce_eager", False),
-            trust_remote_code=getattr(self.model_args, "vllm_trust_remote_code", True)
+            trust_remote_code=getattr(self.model_args, "vllm_trust_remote_code", True),
+            reasoning_parser=getattr(self.model_args, "vllm_reasoning_parser", None)
         )
 
     async def terminate_server(self, process: asyncio.subprocess.Process) -> None:
@@ -418,35 +419,35 @@ class Evaluator:
     
     def comput_score(self, checked_answers: Dict[str, List[str]], check_results: Dict[str, List[str]], subjects: List[str]) -> Dict[str, Any]:...
     
-    def measure_difficulty(self, inference_prompts: Dict[str, list], inference_result: Dict[str, List[str]], lang:str) -> Tuple[Dict[str, Any], Dict[str, List[float]]]:
-        """
-        Compute the difficulty score for each response based on the inference results.
-        """
-        difficulty_record = {
-            subj: [
-                compute_difficulty(question[-1]['content'], answer, lang=lang)
-                for question, answer in zip(inference_prompts[subj], inference_result[subj])
-                ]
-            for subj in inference_prompts.keys()
-        }
-        
-        # Compute scores based on records
-        difficulty_score = {
-            subj: {
-                "average": np.mean(scores),
-                "variance": np.var(scores)
-            }
-            for subj, scores in difficulty_record.items()
-        }
-        
-        # Add overall scores
-        all_scores = [score for scores in difficulty_record.values() for score in scores]
-        difficulty_score["overall"] = {
-            "average": np.mean(all_scores),
-            "variance": np.var(all_scores)
-        }
-        
-        return difficulty_score, difficulty_record
+    # def measure_difficulty(self, inference_prompts: Dict[str, list], inference_result: Dict[str, List[str]], lang:str) -> Tuple[Dict[str, Any], Dict[str, List[float]]]:
+    #     """
+    #     Compute the difficulty score for each response based on the inference results.
+    #     """
+    #     difficulty_record = {
+    #         subj: [
+    #             compute_difficulty(question[-1]['content'], answer, lang=lang)
+    #             for question, answer in zip(inference_prompts[subj], inference_result[subj])
+    #             ]
+    #         for subj in inference_prompts.keys()
+    #     }
+    #     
+    #     # Compute scores based on records
+    #     difficulty_score = {
+    #         subj: {
+    #             "average": np.mean(scores),
+    #             "variance": np.var(scores)
+    #         }
+    #         for subj, scores in difficulty_record.items()
+    #     }
+    #     
+    #     # Add overall scores
+    #     all_scores = [score for scores in difficulty_record.values() for score in scores]
+    #     difficulty_score["overall"] = {
+    #         "average": np.mean(all_scores),
+    #         "variance": np.var(all_scores)
+    #     }
+    #     
+    #     return difficulty_score, difficulty_record
     
     def eval(self) -> None:...
         # this is for same language evaluation for prob output.
@@ -517,11 +518,11 @@ class Evaluator:
         print("Check complete.")
         ####################################### compute score #######################################
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
-        difficulty_score, difficulty_record = self.measure_difficulty(inference_prompts=self.inference_prompts, inference_result=self.inference_results, lang=self.eval_args.lang)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
-        self.save_data(difficulty_score, os.path.join(self.save_folder, "difficulty_score.json"))
-        if getattr(self.eval_args, "record_all", False):
-            self.save_data(data=difficulty_record, output_path=os.path.join(self.save_folder, "difficulty_record.json"))
+        # difficulty_score, difficulty_record = self.measure_difficulty(inference_prompts=self.inference_prompts, inference_result=self.inference_results, lang=self.eval_args.lang)
+        # self.save_data(difficulty_score, os.path.join(self.save_folder, "difficulty_score.json"))
+        # if getattr(self.eval_args, "record_all", False):
+        #     self.save_data(data=difficulty_record, output_path=os.path.join(self.save_folder, "difficulty_record.json"))
             
     async def diff_lang_eval(self, choices: List[str], subjects: List[str]) -> None:
         # specific evaluation pipeline
@@ -646,11 +647,11 @@ class Evaluator:
         ####################################### compute score #######################################
         logger.info("============ Computing Score ============")
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
-        origin_difficulty_score, origin_difficulty_record = self.measure_difficulty(inference_prompts=self.inference_prompts, inference_result=self.translated_responses, lang=self.model_args.source_lang)
-        trans_difficulty_score, trans_difficulty_record = self.measure_difficulty(inference_prompts=self.translated_questions, inference_result=self.inference_results, lang=self.model_args.target_lang)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
-        self.save_data(origin_difficulty_score, os.path.join(self.save_folder, "origin_difficulty_score.json"))
-        self.save_data(trans_difficulty_score, os.path.join(self.save_folder, "trans_difficulty_score.json"))
-        if getattr(self.eval_args, "record_all", False):
-            self.save_data(data=origin_difficulty_record, output_path=os.path.join(self.save_folder, "origin_difficulty_record.json"))
-            self.save_data(data=trans_difficulty_record, output_path=os.path.join(self.save_folder, "trans_difficulty_record.json"))
+        # origin_difficulty_score, origin_difficulty_record = self.measure_difficulty(inference_prompts=self.inference_prompts, inference_result=self.translated_responses, lang=self.model_args.source_lang)
+        # trans_difficulty_score, trans_difficulty_record = self.measure_difficulty(inference_prompts=self.translated_questions, inference_result=self.inference_results, lang=self.model_args.target_lang)
+        # self.save_data(origin_difficulty_score, os.path.join(self.save_folder, "origin_difficulty_score.json"))
+        # self.save_data(trans_difficulty_score, os.path.join(self.save_folder, "trans_difficulty_score.json"))
+        # if getattr(self.eval_args, "record_all", False):
+        #   self.save_data(data=origin_difficulty_record, output_path=os.path.join(self.save_folder, "origin_difficulty_record.json"))
+        #   self.save_data(data=trans_difficulty_record, output_path=os.path.join(self.save_folder, "trans_difficulty_record.json"))

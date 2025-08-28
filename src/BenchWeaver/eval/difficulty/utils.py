@@ -4,15 +4,15 @@ import nltk
 from konlpy.tag import Okt
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from ...extras.lang_detect import detect_language
-
+from ...extras.constants import ENABLE_INIT_TOKENIZER
 nltk.download('punkt', quiet=True)
 nltk.download('punkt_tab', quiet=True)
 nltk.download('wordnet', quiet=True)
 nltk.download('stopwords', quiet=True)
 
-okt = Okt()
-lemmatizer = WordNetLemmatizer()
+if ENABLE_INIT_TOKENIZER:
+    okt = Okt()
+    lemmatizer = WordNetLemmatizer()
 
 def clean_text(text, lang):
     """Cleans and tokenizes text based on language (English, Chinese, Korean)."""

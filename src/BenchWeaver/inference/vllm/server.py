@@ -1,6 +1,7 @@
 import os
 import socket
 import asyncio
+from typing import Optional
 import psutil
 from torch.cuda import device_count
 from pathlib import Path
@@ -38,14 +39,15 @@ class VLLMServer:
         self, 
         model_path: Path, 
         model_name: str, 
-        max_model_len: int, 
-        max_num_seqs:int, 
-        dtype:str,
-        vllm_gpu_util: float,
-        disable_log_requests: bool,
-        disable_log_stats: bool,
-        enforce_eager: bool,
-        trust_remote_code: bool,
+        max_model_len: int = 8192, 
+        max_num_seqs:int = 100, 
+        dtype:str = "bfloat16",
+        vllm_gpu_util: float = 0.95,
+        disable_log_requests: bool = True,
+        disable_log_stats: bool = True,
+        enforce_eager: bool = False,
+        trust_remote_code: bool = True,
+        reasoning_parser: Optional[str] = None,
         ) -> asyncio.subprocess.Process:
         """
         Start a vLLM server with the specified parameters.
@@ -56,8 +58,8 @@ class VLLMServer:
                 "serve", str(model_path),
                 "--no-enable-chunked-prefill", # update vllm greater than 0.8.2
                 "--tensor-parallel-size", str(self.get_max_usable_devices()),
-                "--dtype", dtype,
-                "--served-model-name", model_name,
+                "--dtype", str(dtype),
+                "--served-model-name", str(model_name),
                 "--gpu-memory-utilization", str(vllm_gpu_util),
                 # disables the use of CPU swap space, which can prevent errors related to insufficient swap space.
                 "--swap-space", "0", 
@@ -75,6 +77,8 @@ class VLLMServer:
             cmd.append("--enforce-eager")
         if trust_remote_code:
             cmd.append("--trust-remote-code")
+        if reasoning_parser:
+            cmd.extend(["--reasoning-parser", str(reasoning_parser)])
         process = await asyncio.create_subprocess_exec(
             *cmd,
             env={

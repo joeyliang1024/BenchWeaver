@@ -6,9 +6,11 @@ import logging
 from typing import Any, Dict, List, Literal, Optional, Union
 from openai import AsyncOpenAI, AsyncAzureOpenAI
 from openai import RateLimitError, NotFoundError, APITimeoutError, APIConnectionError, BadRequestError
+from openai.types.chat.chat_completion import ChatCompletion
 from asyncio.subprocess import Process
 from ..extras.load_env import load_env_variables
 from ..extras.constants import GPT_NOT_SUPPORT_PARM_MODELS
+
 
 logger = logging.getLogger(__name__)
 
@@ -103,6 +105,24 @@ class Client:
             )
         else:
             raise ValueError("Invalid mode. Choose either 'api' or 'local'.")
+    
+    def _get_content(self, response: ChatCompletion, output_reasoning: bool = False) -> str:
+        """
+        Extracts and returns the content from the response object.
+        Args:
+            response: The response object from which to extract content.
+            enable_reasoning (bool): Whether to extract reasoning content if available.
+        Returns:
+            str: The extracted content as a string."""
+        if output_reasoning:
+            if self.mode == 'local': # vllm
+                if hasattr(response.choices[0].message, 'reasoning_content'):
+                    return str(response.choices[0].message.reasoning_content).strip()
+            else: # openai
+                pass 
+                # if openai has reasoning content, add here
+                # 2025/08/27: chatcompletion does not support reasoning content
+        return response.choices[0].message.content.strip()
 
     async def generate(
         self,
@@ -110,6 +130,7 @@ class Client:
         system_prompt: Optional[str],
         example: List[Dict[str, Any]],
         generating_args: Namespace,
+        output_reasoning: Optional[bool] = False,
     ) -> str:
         """
         Generate a response using the provided client and example.
@@ -148,10 +169,10 @@ class Client:
                     top_p=getattr(generating_args, "top_p", 1.0),
                     n=getattr(generating_args, "num_beams", None),
                 )
-            return c.choices[0].message.content.strip()
+            return self._get_content(c, output_reasoning)
         
-        except RateLimitError as e:
-            logger.debug("Rate limit error. Waiting for 30 seconds.")
+        except RateLimitError as _:
+            logger.info("Rate limit error. Waiting for 30 seconds.")
             await asyncio.sleep(30)
             return await self.generate(
                 model=model,
@@ -161,18 +182,19 @@ class Client:
             )
             
         except NotFoundError as e:
-            logger.debug("Model not found. Please check the model name.")
+            logger.info("Model not found. Please check the model name.")
             logger.debug(e)
             exit()
         
         except APITimeoutError as e:
-            logger.debug(f"API Timeout error: {e}. Waiting for 10 seconds.")
+            logger.info(f"API Timeout error: {e}. Waiting for 10 seconds.")
             await asyncio.sleep(10)
             return await self.generate(
                 model=model,
                 system_prompt=system_prompt,
                 example=example,
                 generating_args=generating_args,
+                output_reasoning=output_reasoning,
             )
             
         except APIConnectionError as e:
@@ -183,15 +205,15 @@ class Client:
             try:
                 error_dict = ast.literal_eval(e.response.content.decode())
                 response = ast.literal_eval(error_dict)['error']['message']
-                logger.debug(f"Bad request error: {response}")
+                logger.info(f"Bad request error: {response}")
                 return response
             except:  # noqa: E722
-                logger.debug(f"Bad request error. {e}")
+                logger.info(f"Bad request error. {e}")
                 return "The response was filtered due to the prompt triggering Azure OpenAI's content management policy."
         
         except AttributeError as e:
             # handle the return content is None
-            logger.debug(f"AttributeError: {e}")
+            logger.info(f"AttributeError: {e}")
             return "No response due to repeated AttributeErrors."
         
         except Exception as e:
