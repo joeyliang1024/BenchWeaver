@@ -163,7 +163,14 @@ class VllmArguments:
         default=None,
         metadata={"help": "The name of the reasoning parser to use in the vLLM engine."},
     )
-
+    vllm_chunked_prefill: bool = field(
+        default=False,
+        metadata={"help": "Whether or not to enable chunked prefill in the vLLM engine."},
+    )
+    vllm_swap_space: float = field(
+        default=0.0,
+        metadata={"help": "Size of the CPU swap space per GPU (in GiB). Disables the use of CPU swap space, which can prevent errors related to insufficient swap space."},
+    )
 @dataclass
 class InferenceArguments:
     inference_model_name_or_path: Optional[str] = field(

@@ -43,11 +43,13 @@ class VLLMServer:
         max_num_seqs:int = 100, 
         dtype:str = "bfloat16",
         vllm_gpu_util: float = 0.95,
+        swap_space: float = 0.0,
         disable_log_requests: bool = True,
         disable_log_stats: bool = True,
         enforce_eager: bool = False,
         trust_remote_code: bool = True,
         reasoning_parser: Optional[str] = None,
+        chunked_prefill: bool = False,
         ) -> asyncio.subprocess.Process:
         """
         Start a vLLM server with the specified parameters.
@@ -56,19 +58,21 @@ class VLLMServer:
         cmd = [
                 "vllm",
                 "serve", str(model_path),
-                "--no-enable-chunked-prefill", # update vllm greater than 0.8.2
                 "--tensor-parallel-size", str(self.get_max_usable_devices()),
                 "--dtype", str(dtype),
                 "--served-model-name", str(model_name),
                 "--gpu-memory-utilization", str(vllm_gpu_util),
-                # disables the use of CPU swap space, which can prevent errors related to insufficient swap space.
-                "--swap-space", "0", 
+                "--swap-space", str(swap_space), 
                 "--max-num-seqs", str(max_num_seqs),
                 "--uvicorn-log-level", "error",
                 "--port", str(self.port),
                 "--max-model-len", str(max_model_len),
                 "--chat-template-content-format", "string",
             ]
+        if chunked_prefill:
+            cmd.append("--no-enable-chunked-prefill")   # update vllm greater than 0.8.2
+        else:
+            cmd.append("--enable-chunked-prefill")
         if disable_log_requests:
             cmd.append("--disable-log-requests")
         if disable_log_stats:

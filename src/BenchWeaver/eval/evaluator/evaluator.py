@@ -213,11 +213,13 @@ class Evaluator:
             max_num_seqs=getattr(self.model_args, "vllm_max_concurrency", 100),
             dtype=getattr(self.model_args, "dtype", "bfloat16"),
             vllm_gpu_util=getattr(self.model_args, "vllm_gpu_util", 0.95),
+            swap_space=getattr(self.model_args, "vllm_swap_space", 0.0),
             disable_log_requests=getattr(self.model_args, "vllm_disable_log_requests", True),
             disable_log_stats=getattr(self.model_args, "vllm_disable_log_stats", False),
             enforce_eager=getattr(self.model_args, "vllm_enforce_eager", False),
             trust_remote_code=getattr(self.model_args, "vllm_trust_remote_code", True),
-            reasoning_parser=getattr(self.model_args, "vllm_reasoning_parser", None)
+            reasoning_parser=getattr(self.model_args, "vllm_reasoning_parser", None),
+            chunked_prefill=getattr(self.model_args, "vllm_chunked_prefill", False),
         )
 
     async def terminate_server(self, process: asyncio.subprocess.Process) -> None:
