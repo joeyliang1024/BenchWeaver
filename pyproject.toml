@@ -31,7 +31,7 @@ dependencies = [
     # eval difficulty
     "jieba",
     "nltk",
-    "konlpy",
+    # "konlpy",
     "langdetect",
 
     # eval translation Error
