@@ -24,14 +24,15 @@ benchmark_mode: opqa
 pipeline: same
 
 ### output
-save_dir: score/huatuo_test/zh
+save_dir: score/simple_test
 
 ### VLLM 
-vllm_maxlen: 10240
+vllm_maxlen: 8192
 vllm_max_concurrency: 30
 max_new_tokens: 2048
-dtype: float16
+dtype: float32
 ### debug
+debug: true
 testing_size: 3
 record_all: true
 # print_param_status: false

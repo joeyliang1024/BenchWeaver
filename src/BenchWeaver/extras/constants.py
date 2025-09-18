@@ -32,7 +32,8 @@ SPM_MODEL_PATH = os.path.join(PROJECT_BASE_PATH, "model", "flores_spm", "flores2
 
 # GPT NOT SUPPORT PARM MODEL
 GPT_NOT_SUPPORT_PARM_MODELS = [
-    "gpt-o3-mini"
+    "gpt-o3-mini",
+    "gpt-5-mini",
 ]
 
 CRITERIA_PROMPT = '''
