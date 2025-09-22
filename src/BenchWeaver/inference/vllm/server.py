@@ -1,4 +1,5 @@
 import os
+import math
 import socket
 import asyncio
 from typing import Optional
@@ -22,7 +23,7 @@ class VLLMServer:
             return result == 0
     
     @staticmethod
-    def get_max_usable_devices() -> int:
+    def get_max_usable_devices_by_pow() -> int:
         """
         Get the largest power of 2 less than or equal to the total available devices.
         """
@@ -34,6 +35,23 @@ class VLLMServer:
         max_usable = 2 ** (total_device_count.bit_length() - 1)
         print(f"Max usable devices: {max_usable}")
         return max_usable
+    
+    @staticmethod
+    def get_max_usable_devices(model_path: str, trust_remote_code: bool) -> int:
+        from transformers import AutoConfig
+        config = AutoConfig.from_pretrained(model_path, trust_remote_code=trust_remote_code)
+        if hasattr(config, 'num_attention_heads'):
+            num_attention_heads = config.num_attention_heads
+            max_device = math.gcd(device_count(), num_attention_heads)
+            print( "=========== Auto fitting max usable devices ===========")
+            print(f"|  Model num_attention_heads: {int(num_attention_heads):3d}                     |")
+            print(f"|Captured total device count: {int(device_count()):3d}                     |")
+            print(f"|Computed max usable devices: {int(max_device):3d}                     |")
+            print( "=======================================================")
+            return max_device
+        else:
+            return VLLMServer.get_max_usable_devices_by_pow()
+            
         
     async def setup_server(
         self, 
@@ -58,7 +76,7 @@ class VLLMServer:
         cmd = [
                 "vllm",
                 "serve", str(model_path),
-                "--tensor-parallel-size", str(self.get_max_usable_devices()),
+                "--tensor-parallel-size", str(self.get_max_usable_devices(model_path, trust_remote_code)),
                 "--dtype", str(dtype),
                 "--served-model-name", str(model_name),
                 "--gpu-memory-utilization", str(vllm_gpu_util),
