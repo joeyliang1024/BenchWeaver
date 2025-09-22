@@ -37,12 +37,20 @@ class VLLMServer:
         return max_usable
     
     @staticmethod
+    def compute_max_device(device_count: int, num_attention_heads: int) -> int:
+        # 找出 num_attention_heads 的因數中 <= device_count 的最大值
+        for d in range(device_count, 0, -1):
+            if num_attention_heads % d == 0:
+                return d
+        return 1  # 保底
+    
+    @staticmethod
     def get_max_usable_devices(model_path: str, trust_remote_code: bool) -> int:
         from transformers import AutoConfig
         config = AutoConfig.from_pretrained(model_path, trust_remote_code=trust_remote_code)
         if hasattr(config, 'num_attention_heads'):
             num_attention_heads = config.num_attention_heads
-            max_device = math.gcd(device_count(), num_attention_heads)
+            max_device = VLLMServer.compute_max_device(device_count(), num_attention_heads)
             print( "=========== Auto fitting max usable devices ===========")
             print(f"|  Model num_attention_heads: {int(num_attention_heads):3d}                     |")
             print(f"|Captured total device count: {int(device_count()):3d}                     |")
