@@ -299,6 +299,14 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
     },
+    "history": {
+        "language": "zh-tw",
+        "mode": ["opqa"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    }
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -503,5 +511,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .zh.industryinstruction.law.opqa_eval import IndustryInstructionLawEvaluator
         return {
             "opqa": IndustryInstructionLawEvaluator,
+        }
+    elif task_name == "history":
+        from .zhtw.history.opqa_eval import HistoryEvaluator
+        return {
+            "opqa": HistoryEvaluator,
         }
     return {}

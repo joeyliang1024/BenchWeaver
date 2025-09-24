@@ -34,6 +34,8 @@ SPM_MODEL_PATH = os.path.join(PROJECT_BASE_PATH, "model", "flores_spm", "flores2
 GPT_NOT_SUPPORT_PARM_MODELS = [
     "gpt-o3-mini",
     "gpt-5-mini",
+    "gpt-5",
+    "gpt-4.1"
 ]
 
 CRITERIA_PROMPT = '''
@@ -143,4 +145,43 @@ SUPPORTED_CLASS_FOR_BLOCK_DIAG_ATTN = {
     "phi3",
     "qwen2",
     "starcoder2",
+}
+
+# History 
+## 型別約束（必須符合）
+SCHEMA_TYPES = {
+    "type": "object",
+    "additionalProperties": False,
+    "required": ["annotation", "overall"],
+    "properties": {
+        "annotation": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": ["page", "text", "content"],
+                "properties": {
+                    "page": {"type": "integer", "minimum": 0},
+                    "text": {"type": "string"},
+                    "content": {"type": "string"}
+                }
+            }
+        },
+        "overall": {"type": "string"}
+    }
+}
+## 輸出範例模板
+TEMPLATE_EXAMPLE = {
+    "annotation": [
+        {
+            "page": "<該評論所對應的頁碼（整數；無法定位填 0）>",
+            "text": "<被評論的原文或段落標題>",
+            "content": (
+                "<詳細評論，務必包含：優點、缺點、具體修正建議；"
+                "若為五個核心部分之一，請在末行加入「等第：優等/中等/待加強」。"
+                "一般段落或細節評論則不要加入等第。>"
+            )
+        }
+    ],
+    "overall": "<以繁體中文撰寫的一段綜合總評，文末以（優等/中等/待加強）標註整體等第>"
 }

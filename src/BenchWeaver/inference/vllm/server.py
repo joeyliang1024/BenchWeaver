@@ -96,9 +96,12 @@ class VLLMServer:
                 "--chat-template-content-format", "string",
             ]
         if chunked_prefill:
-            cmd.append("--no-enable-chunked-prefill")   # update vllm greater than 0.8.2
-        else:
             cmd.append("--enable-chunked-prefill")
+        else:
+            cmd.extend(["--enable-chunked-prefill", "False"])
+            # cmd.append("--enable-chunked-prefill")
+            # cmd.append("--no-enable-chunked-prefill")   # update vllm greater than 0.8.2
+            # --enable-chunked-prefill=False
         if disable_log_requests:
             cmd.append("--disable-log-requests")
         if disable_log_stats:

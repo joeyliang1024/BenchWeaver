@@ -48,6 +48,7 @@ dependencies = [
 
     # others
     "fire",
+    "json-repair",
 ]
 requires-python = ">=3.10"
 

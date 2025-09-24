@@ -6,6 +6,8 @@ To add a new benchmark to the pipeline, you need to complete the following steps
 2. [New Evaluation Template](#new-evaluation-template)
 3. [New Evaluators](#new-evaluators)
 
+## Example
+You can check benchmark History as example.
 ## Formatting Your Data  
 
 ### 1. Create a Benchmark Folder  
