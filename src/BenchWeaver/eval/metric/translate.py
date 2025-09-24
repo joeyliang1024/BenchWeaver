@@ -5,7 +5,6 @@ import evaluate
 import jieba
 import torch
 import gc
-from konlpy.tag import Okt
 from comet.models.utils import Prediction
 from comet import download_model, load_from_checkpoint
 from ...extras.lang_detect import detect_language
@@ -22,6 +21,7 @@ def eval_bleu(predictions: List[str], references: List[List[str]], lang: str = N
     '''
     Evaluates BLEU score for a list of predictions and references.
     '''
+    from konlpy.tag import Okt
     bleu = evaluate.load("bleu")
     okt = Okt()
     # detect language of 10 
