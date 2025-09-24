@@ -99,7 +99,7 @@ class VLLMServer:
         if trust_remote_code:
             cmd.append("--trust-remote-code")
         # if reasoning_parser:
-        #    cmd.extend(["--reasoning-parser", str(reasoning_parser)])
+            cmd.extend(["--reasoning-parser", str(reasoning_parser)])
         process = await asyncio.create_subprocess_exec(
             *cmd,
             env={
