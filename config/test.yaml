@@ -26,7 +26,7 @@ save_dir: score/test_history
 vllm_maxlen: 12000
 vllm_max_concurrency: 30
 max_new_tokens: 2048
-dtype: float32
+dtype: float16
 ### debug
 debug: true
 record_all: true
