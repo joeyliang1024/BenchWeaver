@@ -23,7 +23,7 @@ pipeline: same
 save_dir: score/test_history
 
 ### VLLM 
-vllm_maxlen: 12000
+vllm_maxlen: 8192
 vllm_max_concurrency: 30
 max_new_tokens: 2048
 dtype: float16

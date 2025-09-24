@@ -107,7 +107,8 @@ class VLLMServer:
                 "VERBOSE": "0",
                 "UVICORN_NO_ACCESS_LOG": "1",
                 "VLLM_WORKER_MULTIPROC_METHOD": "fork", # multi-process method. Options: spawn, fork, forkserver
-                "HF_HUB_ENABLE_HF_TRANSFER": "1",       # faster download from huggingface   
+                "HF_HUB_ENABLE_HF_TRANSFER": "1",       # faster download from huggingface
+                "VLLM_USE_V1": "0"                      # use vLLM v0 engine
             },
         )
 
