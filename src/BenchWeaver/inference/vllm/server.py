@@ -23,42 +23,32 @@ class VLLMServer:
             return result == 0
     
     @staticmethod
-    def get_max_usable_devices_by_pow() -> int:
-        """
-        Get the largest power of 2 less than or equal to the total available devices.
-        """
-        total_device_count = device_count()
-        print(f"Total device count: {total_device_count}")
-        if total_device_count == 0:
-            print("Max usable devices: 0")
-            return 0
-        max_usable = 2 ** (total_device_count.bit_length() - 1)
-        print(f"Max usable devices: {max_usable}")
-        return max_usable
-    
-    @staticmethod
     def compute_max_device(device_count: int, num_key_value_heads: int) -> int:
-        # 找出 num_key_value_heads 的因數中 <= device_count 的最大值
-        for d in range(device_count, 0, -1):
-            if num_key_value_heads % d == 0:
-                return d
-        return 1  # 保底
+        # 找出 <= device_count 的最大 2 的次方數，且能整除 num_key_value_heads
+        max_device = 1  # 預設保底值
+        power = 1
+        while power <= device_count:
+            if num_key_value_heads % power == 0:
+                max_device = power
+            power <<= 1  # 等同於 power *= 2
+        return max_device
     
     @staticmethod
     def get_max_usable_devices(model_path: str, trust_remote_code: bool) -> int:
         from transformers import AutoConfig
         config = AutoConfig.from_pretrained(model_path, trust_remote_code=trust_remote_code)
+        num_device_count = device_count()
         if hasattr(config, 'num_key_value_heads'):
             num_key_value_heads = config.num_key_value_heads
-            max_device = VLLMServer.compute_max_device(device_count(), num_key_value_heads)
+            max_device = VLLMServer.compute_max_device(num_device_count, num_key_value_heads)
             print( "=========== Auto fitting max usable devices ===========")
             print(f"|  Model num_key_value_heads: {int(num_key_value_heads):3d}                     |")
-            print(f"|Captured total device count: {int(device_count()):3d}                     |")
+            print(f"|Captured total device count: {int(num_device_count):3d}                     |")
             print(f"|Computed max usable devices: {int(max_device):3d}                     |")
             print( "=======================================================")
             return max_device
         else:
-            return VLLMServer.get_max_usable_devices_by_pow()
+            return VLLMServer.compute_max_device(num_device_count, num_device_count)
             
         
     async def setup_server(
@@ -98,10 +88,8 @@ class VLLMServer:
         if chunked_prefill:
             cmd.append("--enable-chunked-prefill")
         else:
-            cmd.extend(["--enable-chunked-prefill", "False"])
-            # cmd.append("--enable-chunked-prefill")
-            # cmd.append("--no-enable-chunked-prefill")   # update vllm greater than 0.8.2
-            # --enable-chunked-prefill=False
+            cmd.append("--no-enable-chunked-prefill")
+            # cmd.extend(["--enable-chunked-prefill", "False"]) for vllm lower versions
         if disable_log_requests:
             cmd.append("--disable-log-requests")
         if disable_log_stats:

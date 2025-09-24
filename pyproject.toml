@@ -3,8 +3,8 @@ name = "bench_weaver"
 version = "0.0.0"
 dependencies = [
     # inference
-    "vllm==0.8.2",
-    "transformers>=4.50.0.dev0",
+    "vllm==0.10.2",
+    "transformers>=4.56.2",
     "datasets",
     "hf_transfer",
 
