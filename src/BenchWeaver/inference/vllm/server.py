@@ -66,6 +66,7 @@ class VLLMServer:
         trust_remote_code: bool = True,
         reasoning_parser: Optional[str] = None,
         chunked_prefill: bool = False,
+        vllm_engine_ver: int = 0,
         ) -> asyncio.subprocess.Process:
         """
         Start a vLLM server with the specified parameters.
@@ -100,6 +101,7 @@ class VLLMServer:
             cmd.append("--trust-remote-code")
         if reasoning_parser:
             cmd.extend(["--reasoning-parser", str(reasoning_parser)])
+        
         process = await asyncio.create_subprocess_exec(
             *cmd,
             env={
@@ -108,7 +110,7 @@ class VLLMServer:
                 "UVICORN_NO_ACCESS_LOG": "1",
                 "VLLM_WORKER_MULTIPROC_METHOD": "fork", # multi-process method. Options: spawn, fork, forkserver
                 "HF_HUB_ENABLE_HF_TRANSFER": "1",       # faster download from huggingface
-                "VLLM_USE_V1": "0"                      # use vLLM v0 engine
+                "VLLM_USE_V1": str(vllm_engine_ver)     # use vLLM v0 engine
             },
         )
 

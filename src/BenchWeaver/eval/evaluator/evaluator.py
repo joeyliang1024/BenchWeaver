@@ -220,6 +220,7 @@ class Evaluator:
             trust_remote_code=getattr(self.model_args, "vllm_trust_remote_code", True),
             reasoning_parser=getattr(self.model_args, "vllm_reasoning_parser", None),
             chunked_prefill=getattr(self.model_args, "vllm_chunked_prefill", False),
+            vllm_engine_ver=getattr(self.model_args, "vllm_engine_ver", 0),
         )
 
     async def terminate_server(self, process: asyncio.subprocess.Process) -> None:

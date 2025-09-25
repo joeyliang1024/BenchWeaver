@@ -2,7 +2,7 @@ import asyncio
 import os
 import re
 from typing import Any, Dict, List
-from json_repair import repair_json
+import json_repair
 import numpy as np
 from tqdm import tqdm
 from ....evaluator import OPQAEvaluator
@@ -150,7 +150,7 @@ class HistoryEvaluator(OPQAEvaluator):
         
     @staticmethod
     def retrieve_response(parse_string: str) -> str:
-        result = repair_json(parse_string)
+        result = json_repair.loads(parse_string)
         if isinstance(result, dict) and "overall" in result:
                 return result["overall"]
         return parse_string

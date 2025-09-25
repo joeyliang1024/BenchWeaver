@@ -171,6 +171,10 @@ class VllmArguments:
         default=0.0,
         metadata={"help": "Size of the CPU swap space per GPU (in GiB). Disables the use of CPU swap space, which can prevent errors related to insufficient swap space."},
     )
+    vllm_engine_ver: Literal[0, 1] = field(
+        default=0,
+        metadata={"help": "Version of the vLLM engine to use."},
+    )
 @dataclass
 class InferenceArguments:
     inference_model_name_or_path: Optional[str] = field(
