@@ -1,0 +1,30 @@
+{
+    "algebra": {
+      "name": "Algebra",
+      "category": "Algebra"
+    },
+    "counting_and_probability": {
+      "name": "Counting and Probability",
+      "category": "Counting and Probability"
+    },
+    "geometry": {
+      "name": "Geometry",
+      "category": "Geometry"
+    },
+    "intermediate_algebra": {
+      "name": "Intermediate Algebra",
+      "category": "Intermediate Algebra"
+    },
+    "number_theory": {
+      "name": "Number Theory",
+      "category": "Number Theory"
+    },
+    "prealgebra": {
+      "name": "Pre-algebra",
+      "category": "Pre-algebra"
+    },
+    "precalculus": {
+      "name": "Pre-calculus",
+      "category": "Pre-calculus"
+    }
+}

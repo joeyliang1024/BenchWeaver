@@ -13,14 +13,14 @@ checker_model_name_or_path: gpt-4o-mini
 check_mode: api
 
 ### source dataset
-task: history_test
+task: math_test
 task_dir: evaluation_data
-lang: zh-tw
+lang: en
 benchmark_mode: opqa
 pipeline: same
-
+n_shot: 3
 ### output
-save_dir: score/test_history
+save_dir: score/test_math
 
 ### VLLM 
 vllm_maxlen: 8192

@@ -306,7 +306,15 @@ BENCHMARK_CONFIG = {
         "mcqa_choices": None,
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
-    }
+    },
+    "math": {
+        "language": "en",
+        "mode": ["opqa"],
+        "display_scores": ["Algebra", "Counting and Probability", "Geometry", "Intermediate Algebra", "Number Theory", "Pre-algebra", "Pre-calculus", "Average"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -516,5 +524,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .zhtw.history.opqa_eval import HistoryEvaluator
         return {
             "opqa": HistoryEvaluator,
+        }
+    elif task_name == "math":
+        from .en.math.opqa_eval import MATHEvaluator
+        return {
+            "opqa": MATHEvaluator,
         }
     return {}
