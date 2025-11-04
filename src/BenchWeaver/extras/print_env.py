@@ -23,7 +23,7 @@ import transformers
 import yaml
 from transformers.utils import is_torch_cuda_available, is_torch_npu_available
 
-VERSION = "0.0.0"
+VERSION = "0.1.0"
 
 
 def print_env() -> None:

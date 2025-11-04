@@ -1,6 +1,6 @@
 import os
 from typing import Any, Dict, List
-from datasets import load_dataset
+from .....data.huggingface_utils import load_hf_or_local_dataset
 from tqdm import tqdm
 from ....evaluator.code.code_evaluator import CodeEvaluator
 from ....template import get_humaneval_xl_eval_template
@@ -19,8 +19,9 @@ class HumanEvalXLEvaluator(CodeEvaluator):
         '''
         sample_input, problem_input = [], []
         for subject in tqdm(self.categories.keys(), desc="Formatting MXEval Input"):
-            dataset = load_dataset(
-                    path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.eval_task),
+            dataset = load_hf_or_local_dataset(
+                    path=self.eval_args.task_dir,
+                    task_name=self.eval_task,
                     name=subject,
                     cache_dir=self.model_args.cache_dir,
                     download_mode=self.eval_args.download_mode,

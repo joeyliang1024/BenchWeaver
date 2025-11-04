@@ -1,8 +1,8 @@
 import os
 import numpy as np
 from tqdm import tqdm, trange
-from datasets import load_dataset
-from typing import Any, Dict, List, Optional
+from .....data.huggingface_utils import load_hf_or_local_dataset
+from typing import Any, Dict, Optional
 from .....extras.constants import MMLU_CHOICES, MMLU_SUBJECTS, PROJECT_BASE_PATH
 from ....template import get_ccpm_eval_template
 from ....evaluator import ProbEvaluator
@@ -23,8 +23,9 @@ class CCPMProbEvaluator(ProbEvaluator):
         pbar = tqdm(self.categories.keys(), desc="Processing subjects", position=0)
         
         for subject in pbar:
-            dataset = load_dataset(
-                path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, eval_task),
+            dataset = load_hf_or_local_dataset(
+                path=self.eval_args.task_dir,
+                task_name=eval_task,
                 name=subject,
                 cache_dir=self.model_args.cache_dir,
                 download_mode=self.eval_args.download_mode,

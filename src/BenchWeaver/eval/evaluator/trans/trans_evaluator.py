@@ -1,8 +1,7 @@
 import os
 import numpy as np
 from tqdm.auto import tqdm
-from multiprocessing import Process, Queue
-from datasets import load_dataset
+from ....data.huggingface_utils import load_hf_or_local_dataset
 from typing import Any, Dict, List, Optional
 from ..evaluator import Evaluator
 from ...template import Trans_Template
@@ -84,16 +83,18 @@ class TransEvaluator(Evaluator):
         for subject in tqdm(self.categories.keys(), desc="Loading subjects"):
             # load dataset from folder
             source_lang, target_lang = subject.split("-")
-            source_dataset = load_dataset(
-                path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.eval_task),
+            source_dataset = load_hf_or_local_dataset(
+                path=self.eval_args.task_dir,
+                task_name=self.eval_task,
                 name=source_lang,
                 cache_dir=self.model_args.cache_dir,
                 download_mode=self.eval_args.download_mode,
                 token=self.hf_token,
                 trust_remote_code=True,
             )
-            target_dataset = load_dataset(
-                path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.eval_task),
+            target_dataset = load_hf_or_local_dataset(
+                path=self.eval_args.task_dir,
+                task_name=self.eval_task,
                 name=target_lang,
                 cache_dir=self.model_args.cache_dir,
                 download_mode=self.eval_args.download_mode,

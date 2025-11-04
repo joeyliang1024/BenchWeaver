@@ -88,7 +88,7 @@ class Client:
             print(f"Using endpoint at {self.base_url}.")
             return AsyncOpenAI(
                 base_url = self.base_url,
-                api_key = os.getenv(self.endpoint_key, "EMPTY"),
+                api_key = self.endpoint_key,
                 timeout = self.timeout,
                 max_retries = self.max_retries,
             )

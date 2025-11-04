@@ -2,6 +2,7 @@ from argparse import Namespace
 import os
 import json
 import asyncio
+from huggingface_hub import hf_hub_download
 import numpy as np
 from typing import Any, Dict, List, Literal, Optional, Tuple, Union
 from tqdm.auto import tqdm
@@ -17,6 +18,7 @@ from ..benchmarks.configs import BENCHMARK_CONFIG
 # from ..difficulty import compute_difficulty
 from ...extras.logging import get_logger
 from ..metric.retrieve_score import parse_bool_score, parse_numerical_score
+from ...data.huggingface_utils import _check_huggingface_repo_exists
 load_env_variables()
 logger = get_logger(__name__)
 
@@ -40,7 +42,7 @@ class Evaluator:
         self.eval_task = self.eval_args.task.split("_")[0]
         self.eval_split = self.eval_args.task.split("_")[1]
         # load categories
-        self.categories = self.load_catagorys(self.eval_task)
+        self.categories = self.load_catagorys(self.eval_args.task_dir, self.eval_task)
         # set save folder
         self.save_folder = os.path.join(PROJECT_BASE_PATH, getattr(self.eval_args, "save_dir"))
         # set pipeline mode
@@ -60,7 +62,7 @@ class Evaluator:
         if getattr(self.model_args, "translation_model_name_or_path", None):   
             try:
                 self.ref_task = self.eval_args.ref_task
-                self.ref_categories = self.load_catagorys(self.ref_task) 
+                self.ref_categories = self.load_catagorys(self.eval_args.ref_task_dir, self.ref_task) 
                 self.ref_template = EVAL_TEMPLATE_CONFIG[self.ref_task]['func'](BENCHMARK_CONFIG[self.ref_task]['language'])    
                 self.ref_choices = BENCHMARK_CONFIG[self.ref_task]['mcqa_choices']
             except Exception as e:
@@ -78,7 +80,7 @@ class Evaluator:
             self.ref_categories = {}
             self.ref_choices = []
         # testing_size
-        self.testing_size = getattr(self.eval_args, "testing_size", 1_000_000_000)
+        self.testing_size = getattr(self.eval_args, "testing_size", 1_000_000_000)      
     
     def set_hf_token(self):
         token = os.getenv("HF_TOKEN", None)
@@ -89,13 +91,18 @@ class Evaluator:
         else:
             print("`HF_TOKEN` not found in the environment variables.")
     
-    def load_catagorys(self, eval_task: str) -> Dict[str, Dict[str, str]]:
-        mapping = cached_file(
-            path_or_repo_id=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, eval_task),
-            filename="mapping.json",
-            cache_dir=self.model_args.cache_dir,
-            token=self.hf_token,
-        )
+    def load_catagorys(self, repo_id, eval_task: str) -> Dict[str, Dict[str, str]]:
+        if _check_huggingface_repo_exists(repo_id, self.hf_token, "dataset"):
+            print(f"✅ Loading categories from Hugging Face Hub: {repo_id}")
+            mapping = hf_hub_download(repo_id=repo_id, repo_type="dataset", filename="mapping.json")
+        else:
+            print(f"📂 Loading categories from local path: {repo_id}")
+            mapping = cached_file(
+                path_or_repo_id=repo_id,
+                filename="mapping.json",
+                cache_dir=self.model_args.cache_dir,
+                token=self.hf_token,
+            )
     
         with open(mapping, "r", encoding="utf-8") as f:
             categories: Dict[str, Dict[str, str]] = json.load(f)

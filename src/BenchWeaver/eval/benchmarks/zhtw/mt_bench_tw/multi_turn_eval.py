@@ -3,7 +3,7 @@ import ast
 import random
 import numpy as np
 from typing import Any, Dict, List, Literal, Tuple
-from datasets import load_dataset
+from .....data.huggingface_utils import load_hf_or_local_dataset
 from tqdm.auto import tqdm
 from ....evaluator.multi_turn.pipeline_eval import MultiTurnEvaluator
 from ....template import get_mt_bench_tw_eval_template
@@ -41,8 +41,8 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
         # Load datasets
         for subject in tqdm(self.categories.keys(), desc="Loading subjects"):
             # load dataset from folder
-            dataset = load_dataset(
-                path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.eval_task),
+            dataset = load_hf_or_local_dataset(
+                path=self.eval_args.task_dir,
                 name=subject,
                 cache_dir=self.model_args.cache_dir,
                 download_mode=self.eval_args.download_mode,
@@ -73,8 +73,9 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
                 source_type = "response" if responses_trans else "question"
                 # load object benchmark examples
                 if self.ref_task is not None:
-                    ref_dataset = load_dataset(
-                        path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.ref_task),
+                    ref_dataset = load_hf_or_local_dataset(
+                        path=self.eval_args.ref_task_dir,
+                        task_name=self.ref_task,
                         name=random.choice(list(self.ref_categories.keys())),
                         cache_dir=self.model_args.cache_dir,
                         download_mode=self.eval_args.download_mode,

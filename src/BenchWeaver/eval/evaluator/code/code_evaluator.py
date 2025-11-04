@@ -3,7 +3,7 @@ import json
 import random
 import re
 import os
-from datasets import load_dataset
+from ....data.huggingface_utils import load_hf_or_local_dataset
 from typing import Any, Dict, List, Literal, Optional, Tuple
 
 import numpy as np
@@ -74,8 +74,9 @@ class CodeEvaluator(Evaluator):
         # Load datasets
         for subject in tqdm(self.categories.keys(), desc="Loading subjects"):
             # load dataset from folder
-            dataset = load_dataset(
-                path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.eval_task),
+            dataset = load_hf_or_local_dataset(
+                path=self.eval_args.task_dir,
+                task_name=self.eval_task,
                 name=subject,
                 cache_dir=self.model_args.cache_dir,
                 download_mode=self.eval_args.download_mode,
@@ -110,8 +111,9 @@ class CodeEvaluator(Evaluator):
                     
                 # load object benchmark examples
                 if self.ref_task is not None:
-                    ref_dataset = load_dataset(
-                        path=os.path.join(PROJECT_BASE_PATH, self.eval_args.ref_task_dir, self.ref_task),
+                    ref_dataset = load_hf_or_local_dataset(
+                        path=self.eval_args.ref_task_dir,
+                        task_name=self.eval_task,
                         name=random.choice(list(self.ref_categories.keys())),
                         cache_dir=self.model_args.cache_dir,
                         download_mode=self.eval_args.download_mode,

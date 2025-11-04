@@ -1,6 +1,7 @@
 import os
 from typing import List, Tuple, Dict
-from datasets import load_dataset, Dataset
+from datasets import Dataset
+from .....data.huggingface_utils import load_hf_or_local_dataset
 from .source_code.evaluation_main import evaluate_instruction_following
 from ....evaluator import OPQAEvaluator
 from ....template import get_ifeval_eval_template
@@ -20,8 +21,9 @@ class IFEvalEvaluator(OPQAEvaluator):
         """
         # load the input 
         # min(len(dataset[self.eval_split]), self.testing_size)
-        dataset_dict = load_dataset(
-                path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.eval_task),
+        dataset_dict = load_hf_or_local_dataset(
+                path=self.eval_args.task_dir,
+                task_name=self.eval_task,
                 name="all",
                 cache_dir=self.model_args.cache_dir,
                 download_mode=self.eval_args.download_mode,

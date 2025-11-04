@@ -34,7 +34,7 @@ class EvaluationArguments:
     )
     task_dir: str = field(
         default="evaluation_data",
-        metadata={"help": "Path to the folder containing the evaluation datasets."},
+        metadata={"help": "Path to the folder containing the evaluation datasets or HuggingFace dataset name."},
     )
     ref_task_dir: Optional[str] = field(
         default=None,
@@ -107,7 +107,7 @@ class EvaluationArguments:
     
     def __post_init__(self):
         
-        if self.save_dir is not None and os.path.exists(self.save_dir) and self.debug is False:
+        if self.save_dir is not None and os.path.exists(self.save_dir) and not self.debug:
             raise ValueError("`save_dir` already exists, use another one.")
             
         if self.ref_task_dir is None:

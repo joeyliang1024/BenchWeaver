@@ -17,7 +17,7 @@ check_mode: local
 
 ### source dataset
 task: huatuo_test
-task_dir: evaluation_data/huatuo/zh
+task_dir: joeyliang/zh_huatuo # joeyliang/zh_huatuo # evaluation_data/huatuo/zh
 lang: zh
 n_shot: 5
 benchmark_mode: opqa

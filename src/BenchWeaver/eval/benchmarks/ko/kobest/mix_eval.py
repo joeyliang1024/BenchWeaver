@@ -1,9 +1,8 @@
 import asyncio
-import json
 import os
 import random
-from typing import Any, Dict, List, Literal, Tuple, Union
-from datasets import load_dataset
+from typing import Any, Dict, List, Literal, Tuple
+from .....data.huggingface_utils import load_hf_or_local_dataset
 import numpy as np
 from tqdm.auto import tqdm
 from ....evaluator import Evaluator
@@ -31,8 +30,9 @@ class KoBestEvaluator(Evaluator):
         # Load datasets
         for data_type in tqdm(self.categories.keys(), desc="Loading subjects"):
             # load dataset from folder
-            dataset = load_dataset(
-                path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.eval_task),
+            dataset = load_hf_or_local_dataset(
+                path=self.eval_args.task_dir,
+                task_name=self.eval_task,
                 name=data_type,
                 cache_dir=self.model_args.cache_dir,
                 download_mode=self.eval_args.download_mode,
@@ -88,7 +88,7 @@ class KoBestEvaluator(Evaluator):
                     
                 # load object benchmark examples
                 if self.ref_task is not None:
-                    ref_dataset = load_dataset(
+                    ref_dataset = load_hf_or_local_dataset(
                         path=os.path.join(PROJECT_BASE_PATH, self.eval_args.task_dir, self.ref_task),
                         name=random.choice(list(self.ref_categories.keys())),
                         cache_dir=self.model_args.cache_dir,
