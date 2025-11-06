@@ -37,7 +37,6 @@ pip install -e .
 
 ## Documentation 📚📝
 Access detailed documentation through these links:
-
 | Component          | Description                         | Link                                                          |
 |--------------------|-------------------------------------|---------------------------------------------------------------|
 | CLI                | Command-line interface guide        | [CLI](./doc/cli.md)                                           |
@@ -61,4 +60,22 @@ For pipeline execution, you can run the configurations for each part as listed b
 For checking the translation quality, you can execute the following code for reproduce:
 ```bash
 bash scripts/bash/eval_trans.sh
+```
+
+## Enhancement
+- [X] Allow using local deplyment model endpoint. (Now support Gemini models as well!)
+- [X] Allow using Hugging Face hub dataset.
+  - The datasets in [`evaluation_data`](/evaluation_data/) will be upload to my [Hugging Face](https://huggingface.co/joeyliang) in future.
+  - Newer version of datasets will not appear in the [`evaluation_data`](/evaluation_data/).
+- [ ] Update the Documation.
+
+## Reference
+Since the thesis has not yet been included in the [National Digital Library of Theses and Dissertations in Taiwan](https://ndltd.ncl.edu.tw/), the following temporary citation format is provided:
+```bibtex
+@misc{benchweaver,
+    title        = {BenchWeaver: An Automated Multilingual Evaluation Framework with LLM-as-Judge and Translation Prompting for Low-Resource Languages},
+    author       = {梁致銓 (Joey Liang)},
+    howpublished = {\url{https://github.com/joeyliang1024/BenchWeaver}},
+    year         = {2025}
+}
 ```
