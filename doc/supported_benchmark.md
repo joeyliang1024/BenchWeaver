@@ -48,3 +48,10 @@ The table below lists the benchmarks supported by our system along with various 
 | awesome-taiwan-knowledge  | zh-tw    | opqa                     | 0                 | False |
 | mt-bench-tw               | zh-tw    | multi-turn               | 0                 | False |
 | taide-bench               | zh-tw    | opqa                     | 0                 | False |
+
+
+## Can use Hugging Face Repo
+- financeqa: sweatSmile/FinanceQA
+- huatuo: joeyliang/zh_tw_huatuo
+- gsm8k: 
+- insdustryinstruction-finance

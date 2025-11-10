@@ -486,7 +486,6 @@ class Evaluator:
         # ensure save folder exists
         os.makedirs(self.save_folder, exist_ok=True)
         print(f"Data path created: {self.save_folder}")
-        exit()
         ######################################### inference #########################################
         _, self.inference_prompts = self.load_data(mode="inference", choices=choices)
         if getattr(self.eval_args, "record_all", False): 
