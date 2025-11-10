@@ -2,7 +2,7 @@ import numpy as np
 from tqdm.auto import tqdm
 from typing import Any, Dict, List
 from ....evaluator import OPQAEvaluator
-from ....template import get_huatuo_eval_template
+from ....template.eval.huatuo_template import get_huatuo_eval_template
 
 class HuatuoEvaluator(OPQAEvaluator):
     def __init__(self, args):

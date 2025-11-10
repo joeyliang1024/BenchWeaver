@@ -67,11 +67,11 @@ class OQEvaluator(Evaluator):
             # Prepare examples for evaluation
             if mode == "inference":
                 for i in range(min(len(dataset[self.eval_split]), self.testing_size)): 
-                    if dataset.get("train"):
+                    if dataset.get(self.train_split):
                         support_set = (
-                            dataset["train"]
+                            dataset[self.train_split]
+                            .select(range(min(self.eval_args.n_shot, len(dataset[self.train_split]))))
                             .shuffle()
-                            .select(range(min(self.eval_args.n_shot, len(dataset["train"]))))
                         )
                     else:
                         support_set = None
@@ -117,9 +117,9 @@ class OQEvaluator(Evaluator):
                         trust_remote_code=True,
                     )
                     support_set = (
-                            ref_dataset["test"]
+                            ref_dataset[self.eval_split]
                             .shuffle()
-                            .select(range(min(self.eval_args.n_shot, len(ref_dataset["test"]))))
+                            .select(range(min(self.eval_args.n_shot, len(ref_dataset[self.eval_split]))))
                         )
                 else:
                     support_set = None

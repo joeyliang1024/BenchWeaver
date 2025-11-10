@@ -1,5 +1,5 @@
 from ....evaluator import OPQAEvaluator
-from ....template import get_cmath_eval_template
+from ....template.eval.cmath_template import get_cmath_eval_template
 
 class CMATHEvaluator(OPQAEvaluator):
     def __init__(self, args):

@@ -1,5 +1,5 @@
 from ....evaluator import OPQAEvaluator
-from ....template import get_math_eval_template
+from ....template.eval.math_template import get_math_eval_template
 
 class MATHEvaluator(OPQAEvaluator):
     def __init__(self, args):

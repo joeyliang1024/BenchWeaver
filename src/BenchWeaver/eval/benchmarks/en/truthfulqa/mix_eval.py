@@ -1,5 +1,4 @@
 import asyncio
-import json
 import os
 import random
 from typing import Any, Dict, List, Literal, Tuple, Union
@@ -7,8 +6,8 @@ from .....data.huggingface_utils import load_hf_or_local_dataset
 import numpy as np
 from tqdm.auto import tqdm
 from ....evaluator import Evaluator
-from .....extras.constants import PROJECT_BASE_PATH, TRUTHFULQA_SCORES
-from ....template import get_truthfulqa_eval_template
+from .....extras.constants import TRUTHFULQA_SCORES
+from ....template.eval.truthfulqa_template import get_truthfulqa_eval_template
 
 class TruthfulQAEvaluator(Evaluator):
     server_process: asyncio.subprocess.Process
@@ -44,11 +43,11 @@ class TruthfulQAEvaluator(Evaluator):
             # Prepare examples for evaluation
             if mode == "inference":
                 for i in range(min(len(dataset[self.eval_split]), self.testing_size)): 
-                    if dataset.get("train"):
+                    if dataset.get(self.train_split) is not None:
                         support_set = (
-                            dataset["train"]
+                            dataset[self.train_split]
+                            .select(range(min(self.eval_args.n_shot, len(dataset[self.train_split]))))
                             .shuffle()
-                            .select(range(min(self.eval_args.n_shot, len(dataset["train"]))))
                         )
                     else:
                         support_set = None
@@ -100,9 +99,9 @@ class TruthfulQAEvaluator(Evaluator):
                         trust_remote_code=True,
                     )
                     support_set = (
-                            ref_dataset["test"]
+                            ref_dataset[self.eval_split]
                             .shuffle()
-                            .select(range(min(self.eval_args.n_shot, len(ref_dataset["test"]))))
+                            .select(range(min(self.eval_args.n_shot, len(ref_dataset[self.eval_split]))))
                         )
                 else:
                     support_set = None

@@ -39,7 +39,7 @@ from .eval.huatuo_template import get_huatuo_eval_template
 from .eval.industryinstruction_template import get_industryinstruction_aerospace_eval_template, get_industryinstruction_finance_eval_template, get_industryinstruction_law_eval_template
 from .eval.history_template import History_Template, get_history_eval_template
 from .eval.math_template import get_math_eval_template
-
+from .eval.financeqa_template import FinanceQA_Template, get_financeqa_eval_template
 __all__ = [
     # class
     "EvalTemplate",
@@ -65,6 +65,7 @@ __all__ = [
     "LogicKor_Template",
     "KoBest_Template",
     "History_Template",
+    "FinanceQA_Template",
     # function
     "get_mmlu_eval_template",
     "get_arc_challenge_eval_template",
@@ -101,6 +102,7 @@ __all__ = [
     "get_industryinstruction_law_eval_template",
     "get_history_eval_template",
     "get_math_eval_template",
+    "get_financeqa_eval_template",
     # translation
     "get_translation_template",
     # register

@@ -1,5 +1,5 @@
 from ....evaluator import OPQAEvaluator
-from ....template import get_gpqa_eval_template
+from ....template.eval.gpqa_template import get_gpqa_eval_template
 
 class GPQAEvaluator(OPQAEvaluator):
     def __init__(self, args):

@@ -4,7 +4,7 @@ from tqdm import tqdm, trange
 from .....data.huggingface_utils import load_hf_or_local_dataset
 from typing import Any, Dict, Optional
 from .....extras.constants import MMLU_CHOICES, MMLU_SUBJECTS, PROJECT_BASE_PATH
-from ....template import get_ccpm_eval_template
+from ....template.eval.ccpm_template import get_ccpm_eval_template
 from ....evaluator import ProbEvaluator
 
 class CCPMProbEvaluator(ProbEvaluator):

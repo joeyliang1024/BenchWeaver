@@ -1,5 +1,4 @@
 from argparse import Namespace
-import json
 import os
 import ast
 import random
@@ -9,9 +8,8 @@ from .....data.huggingface_utils import load_hf_or_local_dataset
 from tqdm.auto import tqdm
 from .....data.data_utils import Role
 from ....evaluator.multi_turn.pipeline_eval import MultiTurnEvaluator
-from ....template import get_logickor_eval_template
+from ....template.eval.logickor_template import get_logickor_eval_template
 from ....template.source.logickor_template import PROMPT_STRATEGY
-from .....extras.constants import PROJECT_BASE_PATH
 from .....extras.logging import get_logger
 
 logger = get_logger(__name__)

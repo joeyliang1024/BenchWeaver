@@ -13,9 +13,10 @@ The table below lists the benchmarks supported by our system along with various 
   - **code**: Designed for evaluating code-related benchmarks.
 - **Suggest num shots**: The number of shots (examples) suggest to use for few-shot inference.
 - **Cot (Chain of thought)**: Indicates if the benchmark supports chain of thought reasoning.
+- **Hugging Face Repo**: The repo on the Hugging Face if Provided
 
 
-
+##  This is the old version
 | Supported Benchmark       | Language | Evaluators              | Suggest num shots | Cot   |
 |---------------------------|----------|--------------------------|-------------------|-------|
 | mmlu                      | en       | mcqa-prob, mcqa-oq       | 5                 | True  |

@@ -102,15 +102,15 @@ class TransEvaluator(Evaluator):
                 trust_remote_code=True,
             )
             # prepare support set
-            if source_dataset.get("train") and target_dataset.get("train"):
+            if source_dataset.get(self.train_split) and target_dataset.get(self.train_split):
                 # Determine how many examples you can safely sample
-                n_shot = min(self.eval_args.n_shot, len(source_dataset["train"]), len(target_dataset["train"]))
+                n_shot = min(self.eval_args.n_shot, len(source_dataset[self.train_split]), len(target_dataset[self.train_split]))
                 # Shuffle the source dataset to decide which IDs to sample
-                shuffled_source = source_dataset["train"].shuffle()
+                shuffled_source = source_dataset[self.train_split].shuffle()
                 selected_ids = set(shuffled_source.select(range(n_shot))["id"])
                 # Filter both datasets to only those selected IDs
-                source_support_set = source_dataset["train"].filter(lambda example: example["id"] in selected_ids)
-                target_support_set = target_dataset["train"].filter(lambda example: example["id"] in selected_ids)
+                source_support_set = source_dataset[self.train_split].filter(lambda example: example["id"] in selected_ids)
+                target_support_set = target_dataset[self.train_split].filter(lambda example: example["id"] in selected_ids)
                 # Optionally: sort both sets by id to maintain alignment
                 source_support_set = source_support_set.sort("id")
                 target_support_set = target_support_set.sort("id")

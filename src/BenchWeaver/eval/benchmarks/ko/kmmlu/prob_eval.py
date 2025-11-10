@@ -4,7 +4,7 @@ from tqdm import tqdm, trange
 from .....data.huggingface_utils import load_hf_or_local_dataset
 from typing import Any, Dict, Optional
 from .....extras.constants import MMLU_CHOICES, KMMLU_SUBJECTS
-from ....template import get_mmlu_eval_template
+from ....template.eval.mmlu_template import get_mmlu_eval_template
 from ....evaluator import ProbEvaluator
 
 class KMMLUProbEvaluator(ProbEvaluator):
@@ -36,7 +36,7 @@ class KMMLUProbEvaluator(ProbEvaluator):
             inputs, outputs, labels = [], [], []
             for i in trange(len(dataset[eval_split]), desc="Formatting batches", position=1, leave=False):
                 support_set = (
-                    dataset["train"].shuffle().select(range(min(self.eval_args.n_shot, len(dataset["train"]))))
+                    dataset[self.train_split].shuffle().select(range(min(self.eval_args.n_shot, len(dataset[self.train_split]))))
                 )
                 messages = self.eval_template.format_example(
                     target_data=dataset[eval_split][i],

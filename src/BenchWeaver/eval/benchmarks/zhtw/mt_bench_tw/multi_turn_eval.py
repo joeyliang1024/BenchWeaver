@@ -1,4 +1,3 @@
-import os
 import ast
 import random
 import numpy as np
@@ -6,8 +5,7 @@ from typing import Any, Dict, List, Literal, Tuple
 from .....data.huggingface_utils import load_hf_or_local_dataset
 from tqdm.auto import tqdm
 from ....evaluator.multi_turn.pipeline_eval import MultiTurnEvaluator
-from ....template import get_mt_bench_tw_eval_template
-from .....extras.constants import PROJECT_BASE_PATH
+from ....template.eval.mt_bench_tw_template import get_mt_bench_tw_eval_template
 
 class MTBenchTWEvaluator(MultiTurnEvaluator):
     def __init__(self, args):

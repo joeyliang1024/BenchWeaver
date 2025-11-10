@@ -1,5 +1,5 @@
 from ....evaluator.code.code_evaluator import CodeEvaluator
-from ....template import get_mbpp_eval_template
+from ....template.eval.mbpp_template import get_mbpp_eval_template
 
 class MBPPEvaluator(CodeEvaluator):
     def __init__(self, args):

@@ -1,16 +1,15 @@
-import os
 import numpy as np
 from tqdm import tqdm, trange
 from .....data.huggingface_utils import load_hf_or_local_dataset
-from typing import Any, Dict, List, Optional
-from .....extras.constants import ARC_CHALLENGE_CHOICES, ARC_CHALLENGE_SUBJECTS, PROJECT_BASE_PATH
-from ....template import get_mmlu_eval_template
+from typing import Any, Dict, Optional
+from .....extras.constants import ARC_CHALLENGE_CHOICES, ARC_CHALLENGE_SUBJECTS
+from ....template.eval.arc_challenge_template import get_arc_challenge_eval_template
 from ....evaluator import ProbEvaluator
 
 class ArcChallengeProbEvaluator(ProbEvaluator):
     def __init__(self, args: Optional[Dict[str, Any]] = None) -> None:
         super().__init__(args=args)
-        self.eval_template = get_mmlu_eval_template(self.eval_args.lang)
+        self.eval_template = get_arc_challenge_eval_template(self.eval_args.lang)
         self.choice_inputs = [self.tokenizer.encode(ch, add_special_tokens=False)[-1] for ch in ARC_CHALLENGE_CHOICES]
     
     def eval(self) -> None:
@@ -36,7 +35,7 @@ class ArcChallengeProbEvaluator(ProbEvaluator):
             inputs, outputs, labels = [], [], []
             for i in trange(len(dataset[eval_split]), desc="Formatting batches", position=1, leave=False):
                 support_set = (
-                    dataset["train"].shuffle().select(range(min(self.eval_args.n_shot, len(dataset["train"]))))
+                    dataset[self.train_split].shuffle().select(range(min(self.eval_args.n_shot, len(dataset[self.train_split]))))
                 )
                 messages = self.eval_template.format_example(
                     target_data=dataset[eval_split][i],

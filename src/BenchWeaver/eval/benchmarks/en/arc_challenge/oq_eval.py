@@ -1,7 +1,5 @@
-import os
-from .....extras.constants import ARC_CHALLENGE_SUBJECTS, ARC_CHALLENGE_CHOICES
 from ....evaluator import OQEvaluator
-from ....template import get_arc_challenge_eval_template
+from ....template.eval.arc_challenge_template import get_arc_challenge_eval_template
 
 class ArcChallengeOQEvaluator(OQEvaluator):
     def __init__(self, args):

@@ -1,5 +1,5 @@
 from ....evaluator import OPQAEvaluator
-from ....template import get_awesome_taiwan_knowledge_eval_template
+from ....template.eval.awesome_taiwan_knowledge_template import get_awesome_taiwan_knowledge_eval_template
 
 class AwesomeTaiwanKnowledgeEvaluator(OPQAEvaluator):
     def __init__(self, args):

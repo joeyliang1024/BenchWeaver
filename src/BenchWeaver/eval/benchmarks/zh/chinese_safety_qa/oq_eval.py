@@ -1,5 +1,5 @@
 from ....evaluator import OQEvaluator
-from ....template import get_chinese_safety_qa_eval_template
+from ....template.eval.chinese_safety_qa_template import get_chinese_safety_qa_eval_template
 
 class ChineseSafetyQAOQEvaluator(OQEvaluator):
     def __init__(self, args):

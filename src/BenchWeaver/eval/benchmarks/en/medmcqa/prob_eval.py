@@ -3,8 +3,8 @@ import numpy as np
 from tqdm import tqdm, trange
 from .....data.huggingface_utils import load_hf_or_local_dataset
 from typing import Any, Dict, Optional
-from .....extras.constants import MMLU_CHOICES, PROJECT_BASE_PATH
-from ....template import get_medmcqa_eval_template
+from .....extras.constants import MMLU_CHOICES
+from ....template.eval.medmcqa_template import get_medmcqa_eval_template
 from ....evaluator import ProbEvaluator
 
 class MedMCQAProbEvaluator(ProbEvaluator):
@@ -36,7 +36,7 @@ class MedMCQAProbEvaluator(ProbEvaluator):
             inputs, outputs, labels = [], [], []
             for i in trange(len(dataset[eval_split]), desc="Formatting batches", position=1, leave=False):
                 support_set = (
-                    dataset["train"].shuffle().select(range(min(self.eval_args.n_shot, len(dataset["train"]))))
+                    dataset[self.train_split].shuffle().select(range(min(self.eval_args.n_shot, len(dataset[self.train_split]))))
                 )
                 messages = self.eval_template.format_example(
                     target_data=dataset[eval_split][i],

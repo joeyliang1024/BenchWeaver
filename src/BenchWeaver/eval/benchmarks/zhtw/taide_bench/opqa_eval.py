@@ -1,12 +1,10 @@
-import os
 import random
 import numpy as np
 from typing import Any, Dict, List, Literal, Tuple
 from .....data.huggingface_utils import load_hf_or_local_dataset
 from tqdm.auto import tqdm
 from ....evaluator import OPQAEvaluator
-from .....extras.constants import PROJECT_BASE_PATH
-from ....template import get_taide_bench_eval_template
+from ....template.eval.taide_bench_template import get_taide_bench_eval_template
 
 class TaideBenchEvaluator(OPQAEvaluator):
     def __init__(self, args):

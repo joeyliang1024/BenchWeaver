@@ -1,5 +1,5 @@
 from ....evaluator import OQEvaluator
-from ....template import get_tmlu_eval_template
+from ....template.eval.tmlu_template import get_tmlu_eval_template
 
 class TMLUEvaluator(OQEvaluator):
     def __init__(self, args):

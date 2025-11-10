@@ -1,5 +1,5 @@
 from ....evaluator import OQEvaluator
-from ....template import get_mmlu_eval_template
+from ....template.eval.mmlu_template import get_mmlu_eval_template
 
 class MMLUOQEvaluator(OQEvaluator):
     def __init__(self, args):

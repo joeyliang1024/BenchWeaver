@@ -1,5 +1,5 @@
 from ....evaluator import OPQAEvaluator
-from ....template import get_gsm8k_eval_template
+from ....template.eval.gsm8k_template import get_gsm8k_eval_template
 
 class GSM8KEvaluator(OPQAEvaluator):
     def __init__(self, args):

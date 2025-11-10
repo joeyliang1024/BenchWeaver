@@ -1,5 +1,5 @@
 from ....evaluator import OPQAEvaluator
-from ....template import get_drcd_eval_template
+from ....template.eval.drcd_template import get_drcd_eval_template
 
 class DRCDEvaluator(OPQAEvaluator):
     def __init__(self, args):

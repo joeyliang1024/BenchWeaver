@@ -6,7 +6,7 @@ import json_repair
 import numpy as np
 from tqdm import tqdm
 from ....evaluator import OPQAEvaluator
-from ....template import get_history_eval_template
+from ....template.eval.history_template import get_history_eval_template
 
 class HistoryEvaluator(OPQAEvaluator):
     def __init__(self, args):

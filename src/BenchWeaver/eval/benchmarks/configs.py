@@ -315,6 +315,14 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 0,
         "support_chain_of_thought": False,
     },
+    "financeqa": {
+        "language": "en",
+        "mode": ["opqa"],
+        "display_scores": ["Average", "all"],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 5,
+        "support_chain_of_thought": False,
+    },
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -529,5 +537,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .en.math.opqa_eval import MATHEvaluator
         return {
             "opqa": MATHEvaluator,
+        }
+    elif task_name == "financeqa":
+        from .en.financeqa.opqa_eval import GPQAEvaluator
+        return {
+            "opqa": GPQAEvaluator,
         }
     return {}

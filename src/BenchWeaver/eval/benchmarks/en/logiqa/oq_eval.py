@@ -1,5 +1,5 @@
 from ....evaluator import OQEvaluator
-from ....template import get_logiqa_eval_template
+from ....template.eval.logiqa_template import get_logiqa_eval_template
 
 class LogiQAEvaluator(OQEvaluator):
     def __init__(self, args):

@@ -1,5 +1,5 @@
 from ....evaluator import OQEvaluator
-from ....template import get_click_eval_template
+from ....template.eval.click_template import get_click_eval_template
 
 class CLIcKEvaluator(OQEvaluator):
     def __init__(self, args):

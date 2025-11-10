@@ -4,8 +4,7 @@ from datasets import Dataset
 from .....data.huggingface_utils import load_hf_or_local_dataset
 from .source_code.evaluation_main import evaluate_instruction_following
 from ....evaluator import OPQAEvaluator
-from ....template import get_ifeval_eval_template
-from .....extras.constants import PROJECT_BASE_PATH
+from ....template.eval.ifeval_template import get_ifeval_eval_template
 from .....extras.logging import get_logger
 
 logger = get_logger(__name__)

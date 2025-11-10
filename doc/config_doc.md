@@ -1,3 +1,4 @@
+## The parameters here are the old version, will be update soon.
 ### OpenAI Source
 
 | Parameter       | Value                                                     |

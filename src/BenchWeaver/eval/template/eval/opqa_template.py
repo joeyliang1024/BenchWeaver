@@ -59,12 +59,13 @@ class OPQA_Template(EvalTemplate):
                 ,ValueError("Criteria prompt format incorrect, must contain '{answer}', '{question}', and '{llm_response}'")
             self.criteria_prompt = criteria_prompt
         assert self.criteria_prompt is not None, ValueError("`criteria_prompt` should not be empty.")
+        answer, question = self._parse_example(target_data)
         return [
                 {
                     "role": Role.USER.value, 
                     "content": self.criteria_prompt.format(
-                        answer=target_data['answer'],
-                        question=target_data['question'],
+                        answer=answer,
+                        question=question,
                         llm_response=llm_response,
                         )
                 }

@@ -1,11 +1,9 @@
-import os
 from typing import Any, Dict, List
 from .....data.huggingface_utils import load_hf_or_local_dataset
 from tqdm import tqdm
 from ....evaluator.code.code_evaluator import CodeEvaluator
-from ....template import get_humaneval_xl_eval_template
+from ....template.eval.humaneval_xl_template import get_humaneval_xl_eval_template
 from ....metric.mxeval import evaluate_functional_correctness
-from .....extras.constants import PROJECT_BASE_PATH
 
 class HumanEvalXLEvaluator(CodeEvaluator):
     def __init__(self, args):

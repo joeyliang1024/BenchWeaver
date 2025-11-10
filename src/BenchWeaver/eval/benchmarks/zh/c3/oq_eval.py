@@ -1,5 +1,5 @@
 from ....evaluator import OQEvaluator
-from ....template import get_c3_eval_template
+from ....template.eval.c3_template import get_c3_eval_template
 
 class C3OQEvaluator(OQEvaluator):
     def __init__(self, args):

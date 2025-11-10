@@ -1,5 +1,5 @@
 from ....evaluator import OQEvaluator
-from ....template import get_medmcqa_eval_template
+from ....template.eval.medmcqa_template import get_medmcqa_eval_template
 
 class MedMCQAOQEvaluator(OQEvaluator):
     def __init__(self, args):

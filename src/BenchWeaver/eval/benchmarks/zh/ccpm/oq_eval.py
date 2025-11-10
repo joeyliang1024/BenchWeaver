@@ -1,5 +1,5 @@
 from ....evaluator import OQEvaluator
-from ....template import get_ccpm_eval_template
+from ....template.eval.ccpm_template import get_ccpm_eval_template
 
 class CCPMOQEvaluator(OQEvaluator):
     def __init__(self, args):

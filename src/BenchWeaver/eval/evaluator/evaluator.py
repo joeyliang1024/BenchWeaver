@@ -2,8 +2,7 @@ from argparse import Namespace
 import os
 import json
 import asyncio
-from huggingface_hub import hf_hub_download
-import numpy as np
+from huggingface_hub import hf_hub_download, file_exists
 from typing import Any, Dict, List, Literal, Optional, Tuple, Union
 from tqdm.auto import tqdm
 from transformers.utils import cached_file
@@ -19,6 +18,7 @@ from ..benchmarks.configs import BENCHMARK_CONFIG
 from ...extras.logging import get_logger
 from ..metric.retrieve_score import parse_bool_score, parse_numerical_score
 from ...data.huggingface_utils import _check_huggingface_repo_exists
+
 load_env_variables()
 logger = get_logger(__name__)
 
@@ -27,6 +27,8 @@ class Evaluator:
     inference_prompt: Dict[str, List[Any]]
     inference_results: Dict[str, List[Any]]
     translated_responses: Dict[str, List[Any]]
+    train_split: str = "train"
+    
     def __init__(self, args: Optional[Dict[str, Any]] = None) -> None:
         # laod args
         (
@@ -93,8 +95,23 @@ class Evaluator:
     
     def load_catagorys(self, repo_id, eval_task: str) -> Dict[str, Dict[str, str]]:
         if _check_huggingface_repo_exists(repo_id, self.hf_token, "dataset"):
-            print(f"✅ Loading categories from Hugging Face Hub: {repo_id}")
-            mapping = hf_hub_download(repo_id=repo_id, repo_type="dataset", filename="mapping.json")
+            if file_exists(repo_id=repo_id, repo_type="dataset", filename="mapping.json", token=self.hf_token):
+                print(f"✅ Loading categories from Hugging Face Hub: {repo_id}")
+                mapping = hf_hub_download(repo_id=repo_id, repo_type="dataset", filename="mapping.json")
+            else:
+                print(f"❌ `mapping.json` not found in {repo_id} on Hugging Face Hub. Falling back to local path.")
+                if os.path.exists(os.path.join(PROJECT_BASE_PATH, repo_id, "mapping.json")):
+                    mapping_dir = os.path.join(PROJECT_BASE_PATH, repo_id)
+                elif os.path.exists(os.path.join(PROJECT_BASE_PATH, "mapping", eval_task)):
+                    mapping_dir = os.path.join(PROJECT_BASE_PATH, "mapping", eval_task)
+                else:
+                    mapping_dir = os.path.join(PROJECT_BASE_PATH, "mapping", "default")
+                
+                print(f"📂 Loading categories from local path: {mapping_dir}")
+                mapping = cached_file(
+                path_or_repo_id=mapping_dir,
+                filename="mapping.json",
+            )
         else:
             print(f"📂 Loading categories from local path: {repo_id}")
             mapping = cached_file(
@@ -469,6 +486,7 @@ class Evaluator:
         # ensure save folder exists
         os.makedirs(self.save_folder, exist_ok=True)
         print(f"Data path created: {self.save_folder}")
+        exit()
         ######################################### inference #########################################
         _, self.inference_prompts = self.load_data(mode="inference", choices=choices)
         if getattr(self.eval_args, "record_all", False): 

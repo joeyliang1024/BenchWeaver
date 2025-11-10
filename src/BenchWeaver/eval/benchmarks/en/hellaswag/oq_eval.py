@@ -1,5 +1,5 @@
 from ....evaluator import OQEvaluator
-from ....template import get_hellaswag_eval_template
+from ....template.eval.hellaswag_template import get_hellaswag_eval_template
 
 class HellaSwagOQEvaluator(OQEvaluator):
     def __init__(self, args):

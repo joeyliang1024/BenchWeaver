@@ -2,7 +2,7 @@ import numpy as np
 from tqdm.auto import tqdm
 from typing import Any, Dict, List
 from .....evaluator import OPQAEvaluator
-from .....template import get_industryinstruction_aerospace_eval_template
+from .....template.eval.industryinstruction_template import get_industryinstruction_aerospace_eval_template
 
 class IndustryInstructionAerospaceEvaluator(OPQAEvaluator):
     def __init__(self, args):

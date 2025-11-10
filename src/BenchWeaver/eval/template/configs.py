@@ -35,6 +35,7 @@ from .eval.huatuo_template import get_huatuo_eval_template
 from .eval.industryinstruction_template import get_industryinstruction_aerospace_eval_template, get_industryinstruction_finance_eval_template, get_industryinstruction_law_eval_template
 from .eval.history_template import History_Template, get_history_eval_template
 from .eval.math_template import get_math_eval_template
+from .eval.financeqa_template import FinanceQA_Template, get_financeqa_eval_template
 
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
@@ -188,5 +189,9 @@ EVAL_TEMPLATE_CONFIG = {
     "math": {
         "class": OPQA_Template,
         "func": get_math_eval_template,
+        },
+    "financeqa": {
+        "class": FinanceQA_Template,
+        "func": get_financeqa_eval_template,
         },
 }
