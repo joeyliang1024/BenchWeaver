@@ -1,32 +1,43 @@
-# Evaluation Method
+# Evaluation Methods
 
-## Multiple Choice Question Answering (MCQA)
+The available evaluation modes are: `"trans"`, `"code"`, `"multi-turn"`, `"mcqa-prob"`, `"mcqa-oq"`, `"opqa"`, `"mix"`.
 
-### Open Question (OQ)
-The LLM fully responds to the question, selects an option, and a checker model evaluates the response.
+**Translation (Trans)**  
+Evaluates the model's ability to translate text from a source language to a target language. The quality can be assessed using automatic metrics or a checker model.
 
-### Probability Score (Prob)
-The predicted answer is the option (A, B, C, or D) with the highest softmax score from the model's output.
+**Code (Code)**  
+Evaluates the model on code generation or reasoning tasks, such as generating code solutions for given prompts or exercises.
 
-## Open-Ended Question Answering (OPQA)
-The LLM fully responds to the question, and a checker model evaluates the response.
+**Multi-Turn (Multi-turn)**  
+Evaluates the model's performance in multi-turn dialogues or conversations, testing consistency, coherence, and context retention across multiple turns.
 
-## Mixed Evaluation
-This method is used for multiple tasks benchmarks, including BBH and TruthfulQA. It incorporates both MCQA and OPQA evaluation methods.
+**Multiple Choice Question Answering (MCQA)**  
+- **Open Question (OQ):** The LLM fully generates a response to the question, selects an option (A, B, C, or D), and a **checker model** evaluates the response.  
+- **Probability Score (Prob):** The predicted answer is the option with the highest softmax probability according to the model's output. No checker model is used.
+
+**Open-Ended Question Answering (OPQA)**  
+The LLM generates a full response to the question, and a **checker model** evaluates the quality or correctness of the response.
+
+**Mixed Evaluation (Mix)**  
+Used for multi-task benchmarks such as **BBH** and **TruthfulQA**. Combines MCQA, OPQA, and potentially other evaluation types for a comprehensive assessment.
 
 ## Comparison Table
 
-| Method      | Description                                                                 | Evaluation Model |
-|-------------|:----------------------------------------------------------------------------|:----------------:|
-| MCQA - Open | LLM responds to the question and selects an option, evaluated by checker model | Checker Model    |
-| MCQA - Prob | Uses the highest softmax score of options A, B, C, or D as the predicted answer | None             |
-| OPQA        | LLM responds to the question, evaluated by checker model                    | Checker Model    |
-| Mix         | Combines multiple tasks including BBH and TruthfulQA, using MCQA and OPQA   | Checker Model    |
+| Method       | Description                                                                  | Evaluation Method |
+|--------------|------------------------------------------------------------------------------|-------------------|
+| Trans        | Evaluates translation quality from source to target language                 |     BLEU, CHRF    |
+| Code         | Evaluates code generation or reasoning tasks                                 |      Pass@k       |
+| Multi-turn   | Evaluates multi-turn dialogue performance                                    |   Checker Model   |
+| MCQA - OQ    | LLM responds and selects an option; evaluated by checker model               |   Checker Model   |
+| MCQA - Prob  | Uses the option with the highest softmax probability as the predicted answer |        None       |
+| OPQA         | LLM generates a full response; evaluated by checker model                    |   Checker Model   |
+| Mix          | Combines multiple tasks including BBH and TruthfulQA, using MCQA and OPQA    |   Checker Model   |
 
-## Output Format
-There are two output formats, depending on whether a checker model is included in the evaluation method.
+## Output Format Example
 
-If a checker model is included, the output files are:
+Below lists two output format including `"mcqa-prob"`, `"mcqa-oq"`.
+
+### MCQA - OQ 
 - `check_results.json`
     ```json
     {
@@ -58,7 +69,7 @@ If a checker model is included, the output files are:
     }
     ```
 
-If a checker model is not included, the output files are:
+### MCQA - Prob
 - `results.json`
     ```json
     {
