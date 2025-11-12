@@ -68,7 +68,7 @@ bash scripts/bash/eval_trans.sh
   - The datasets in [`evaluation_data`](/evaluation_data/) will be upload to my [Hugging Face](https://huggingface.co/joeyliang) in future.
   - Newer version of datasets will not appear in the [`evaluation_data`](/evaluation_data/).
 - [ ] Update the Documation.
-  - [ ] Update [config_doc.md](/doc/config_doc.md)
+  - [X] Update [config_doc.md](/doc/config_doc.md)
   - [ ] Update [supported_benchmark.md](/doc/supported_benchmark.md)
 
 ## Reference
