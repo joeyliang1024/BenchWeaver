@@ -29,6 +29,7 @@ class BigBenchHardEvaluator(Evaluator):
             costume_eval_template = get_big_bench_hard_eval_template(name=subject)
             # load dataset from folder
             dataset = load_hf_or_local_dataset(
+                exists_on_hf=self.exists_on_hf,
                 path=self.eval_args.task_dir,
                 task_name=self.eval_task,
                 name=subject,
@@ -89,6 +90,7 @@ class BigBenchHardEvaluator(Evaluator):
                 # load object benchmark examples
                 if self.ref_task is not None:
                     ref_dataset = load_hf_or_local_dataset(
+                        exists_on_hf=self.exists_on_hf,
                         path=self.eval_args.ref_task_dir,
                         task_name=self.eval_task,
                         name=random.choice(list(self.ref_categories.keys())),

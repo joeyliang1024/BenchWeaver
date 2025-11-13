@@ -18,6 +18,7 @@ class HumanEvalXLEvaluator(CodeEvaluator):
         sample_input, problem_input = [], []
         for subject in tqdm(self.categories.keys(), desc="Formatting MXEval Input"):
             dataset = load_hf_or_local_dataset(
+                    exists_on_hf=self.exists_on_hf,
                     path=self.eval_args.task_dir,
                     task_name=self.eval_task,
                     name=subject,

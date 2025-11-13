@@ -18,6 +18,7 @@
 import logging
 import os
 import sys
+import http.client
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
@@ -87,6 +88,32 @@ def _get_library_name() -> str:
 def _get_library_root_logger() -> "logging.Logger":
     return logging.getLogger(_get_library_name())
 
+def _suppress_external_logs():
+    """Reduce verbosity of external libraries like httpx and huggingface_hub."""
+    # --- NUCLEAR FIX START ---
+    # 1. Force current debug level to 0 (off)
+    http.client.HTTPConnection.debuglevel = 0
+
+    # 2. Monkey Patch: Overwrite the function that turns debugging on.
+    # This prevents external libraries (like huggingface_hub) from re-enabling it later.
+    def no_op(*args, **kwargs):
+        pass
+    
+    http.client.HTTPConnection.set_debuglevel = no_op
+    # --- NUCLEAR FIX END ---
+    noisy_libs = [
+        "httpx",
+        "httpcore",
+        "urllib3",
+        "huggingface_hub",
+        "datasets",
+        "requests",
+    ]
+    for name in noisy_libs:
+        logger = logging.getLogger(name)
+        logger.handlers.clear()          # remove any attached handlers
+        logger.propagate = False         # stop bubbling up to root
+        logger.setLevel(logging.CRITICAL + 1)  # 🔇 absolutely silent
 
 def _configure_library_root_logger() -> None:
     r"""
@@ -108,7 +135,7 @@ def _configure_library_root_logger() -> None:
         library_root_logger.addHandler(_default_handler)
         library_root_logger.setLevel(_get_default_logging_level())
         library_root_logger.propagate = False
-
+        _suppress_external_logs()
 
 def get_logger(name: Optional[str] = None) -> "logging.Logger":
     r"""

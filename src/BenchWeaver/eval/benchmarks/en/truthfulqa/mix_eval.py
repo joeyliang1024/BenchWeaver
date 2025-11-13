@@ -32,6 +32,7 @@ class TruthfulQAEvaluator(Evaluator):
         for data_type in tqdm(self.categories, desc="Loading subjects"):
             # load dataset from folder
             dataset = load_hf_or_local_dataset(
+                exists_on_hf=self.exists_on_hf,
                 path=self.eval_args.task_dir,
                 task_name=self.eval_task,
                 name="merge",
@@ -90,6 +91,7 @@ class TruthfulQAEvaluator(Evaluator):
                 # load object benchmark examples
                 if self.ref_task is not None:
                     ref_dataset = load_hf_or_local_dataset(
+                        exists_on_hf=self.exists_on_hf,
                         path=self.eval_args.ref_task_dir,
                         task_name=self.ref_task,
                         name=random.choice(list(self.ref_categories.keys())),

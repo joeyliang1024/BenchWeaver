@@ -84,6 +84,7 @@ class TransEvaluator(Evaluator):
             # load dataset from folder
             source_lang, target_lang = subject.split("-")
             source_dataset = load_hf_or_local_dataset(
+                exists_on_hf=self.exists_on_hf,
                 path=self.eval_args.task_dir,
                 task_name=self.eval_task,
                 name=source_lang,
@@ -93,6 +94,7 @@ class TransEvaluator(Evaluator):
                 trust_remote_code=True,
             )
             target_dataset = load_hf_or_local_dataset(
+                exists_on_hf=self.exists_on_hf,
                 path=self.eval_args.task_dir,
                 task_name=self.eval_task,
                 name=target_lang,

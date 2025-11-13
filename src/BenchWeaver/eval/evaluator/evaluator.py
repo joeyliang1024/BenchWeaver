@@ -17,7 +17,7 @@ from ..benchmarks.configs import BENCHMARK_CONFIG
 # from ..difficulty import compute_difficulty
 from ...extras.logging import get_logger
 from ..metric.retrieve_score import parse_bool_score, parse_numerical_score
-from ...data.huggingface_utils import _check_huggingface_repo_exists
+from ...data.huggingface_utils import check_huggingface_repo_exists
 
 load_env_variables()
 logger = get_logger(__name__)
@@ -43,6 +43,12 @@ class Evaluator:
         # laod task
         self.eval_task = self.eval_args.task.split("_")[0]
         self.eval_split = self.eval_args.task.split("_")[1]
+        # check huggingface repo existence
+        self.exists_on_hf = check_huggingface_repo_exists(self.eval_args.task_dir, token=self.hf_token, repo_type="dataset")
+        if self.exists_on_hf: # '\033[92mInference complete.\033[0m'
+            logger.info(f"✅ Loading dataset from Hugging Face Hub: {self.eval_args.task_dir}")
+        else:
+            logger.info(f"📂 Loading dataset from local path: {self.eval_args.task_dir}")
         # load categories
         self.categories = self.load_catagorys(self.eval_args.task_dir, self.eval_task)
         # set save folder
@@ -83,7 +89,7 @@ class Evaluator:
             self.ref_choices = []
         # testing_size
         self.testing_size = getattr(self.eval_args, "testing_size", 1_000_000_000)      
-    
+        
     def set_hf_token(self):
         token = os.getenv("HF_TOKEN", None)
         if token:
@@ -94,12 +100,12 @@ class Evaluator:
             print("`HF_TOKEN` not found in the environment variables.")
     
     def load_catagorys(self, repo_id, eval_task: str) -> Dict[str, Dict[str, str]]:
-        if _check_huggingface_repo_exists(repo_id, self.hf_token, "dataset"):
+        if self.exists_on_hf:
             if file_exists(repo_id=repo_id, repo_type="dataset", filename="mapping.json", token=self.hf_token):
-                print(f"✅ Loading categories from Hugging Face Hub: {repo_id}")
+                logger.info(f"✅ Loading categories from Hugging Face Hub: {repo_id}")
                 mapping = hf_hub_download(repo_id=repo_id, repo_type="dataset", filename="mapping.json")
             else:
-                print(f"❌ `mapping.json` not found in {repo_id} on Hugging Face Hub. Falling back to local path.")
+                logger.info(f"❌ `mapping.json` not found in {repo_id} on Hugging Face Hub. Falling back to local path.")
                 if os.path.exists(os.path.join(PROJECT_BASE_PATH, repo_id, "mapping.json")):
                     mapping_dir = os.path.join(PROJECT_BASE_PATH, repo_id)
                 elif os.path.exists(os.path.join(PROJECT_BASE_PATH, "mapping", eval_task)):
@@ -107,13 +113,13 @@ class Evaluator:
                 else:
                     mapping_dir = os.path.join(PROJECT_BASE_PATH, "mapping", "default")
                 
-                print(f"📂 Loading categories from local path: {mapping_dir}")
+                logger.info(f"📂 Loading categories from local path: {mapping_dir}")
                 mapping = cached_file(
                 path_or_repo_id=mapping_dir,
                 filename="mapping.json",
             )
         else:
-            print(f"📂 Loading categories from local path: {repo_id}")
+            logger.info(f"📂 Loading categories from local path: {repo_id}")
             mapping = cached_file(
                 path_or_repo_id=os.path.join(PROJECT_BASE_PATH, repo_id, eval_task),
                 filename="mapping.json",
@@ -485,24 +491,24 @@ class Evaluator:
         """Perform evaluation using inference and checker models with a progress bar."""
         # ensure save folder exists
         os.makedirs(self.save_folder, exist_ok=True)
-        print(f"Data path created: {self.save_folder}")
+        logger.info(f"Data path created: {self.save_folder}")
         ######################################### inference #########################################
         _, self.inference_prompts = self.load_data(mode="inference", choices=choices)
         if getattr(self.eval_args, "record_all", False): 
             self.save_data(data=self.inference_prompts, output_path=os.path.join(self.save_folder, "inference_prompts.json"))
-
+            
         if self.inference_mode == "local":
             inference_process = await self.setup_server(
                 model_path=self.model_args.inference_model_name_or_path,
                 model_name=self.inference_model_name,
             )
-            print("Local vLLM server setup complete.")
+            logger.info("Local vLLM server setup complete.")
         else:
             inference_process = None
-            print("Using OpenAI API or local endpoint for inference.")
+            logger.info("Using OpenAI API or local endpoint for inference.")
 
         self.set_client(mode="inference")
-        print("Client setup complete.")
+        logger.info("Client setup complete.")
 
         self.inference_results = await self.process_subjects(
             server_process=inference_process,
@@ -513,7 +519,7 @@ class Evaluator:
             progress_desc="Inference Progress",
         )
 
-        print("Inference complete.")
+        logger.info('\033[92mInference complete.\033[0m')
         ########################################### check ###########################################
         checked_answers, checked_prompts = self.load_data(mode="check", choices=choices)
         if getattr(self.eval_args, "record_all", False): 
@@ -525,13 +531,13 @@ class Evaluator:
                 model_path=self.model_args.checker_model_name_or_path,
                 model_name=self.checker_model_name,
             )
-            print("Local vLLM server setup complete.")
+            logger.info("Local vLLM server setup complete.")
         else:
             checker_process = None
-            print("Using OpenAI API or local endpoint for checking.")
+            logger.info("Using OpenAI API or local endpoint for checking.")
 
         self.set_client(mode="check")
-        print("Client setup complete.")
+        logger.info("Client setup complete.")
 
         check_results = await self.process_subjects(
             server_process=checker_process,
@@ -542,7 +548,7 @@ class Evaluator:
             progress_desc="Check Progress",
         )
 
-        print("Check complete.")
+        logger.info('\033[96mCheck complete.\033[0m')
         ####################################### compute score #######################################
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)
         self.save_data(score_dict, os.path.join(self.save_folder, "score.json"))
@@ -556,7 +562,7 @@ class Evaluator:
         # need: trranslator model, inference model, checker model
         # ensure save folder exists
         os.makedirs(self.save_folder, exist_ok=True)
-        print(f"Data path created: {self.save_folder}")
+        logger.info(f"Data path created: {self.save_folder}")
         ######################################## translation ########################################
         logger.info("============ Start question translation process. ============")
         _, self.inference_prompts = self.load_data(mode="inference", choices=choices)
@@ -570,13 +576,13 @@ class Evaluator:
                 model_path=self.model_args.translation_model_name_or_path,
                 model_name=self.translation_model_name,
             )
-            print("Local vLLM server setup complete.")
+            logger.info("Local vLLM server setup complete.")
         else:
             translation_process = None
-            print("Using OpenAI API or local endpoint for translation.")
+            logger.info("Using OpenAI API or local endpoint for translation.")
 
         self.set_client(mode="translation")
-        print("Client setup complete.")
+        logger.info("Client setup complete.")
         
         self.translated_questions = await self.translation(
             server_process=translation_process,
@@ -586,7 +592,7 @@ class Evaluator:
             progress_desc="Trans Question Progress",
         )
 
-        print("Question translated complete.")
+        logger.info('\033[92mQuestion translated complete.\033[0m')
         
         ######################################### inference #########################################
         logger.info("============ Start inference process. ============")
@@ -595,13 +601,13 @@ class Evaluator:
                 model_path=self.model_args.inference_model_name_or_path,
                 model_name=self.inference_model_name,
             )
-            print("Local vLLM server setup complete.")
+            logger.info("Local vLLM server setup complete.")
         else:
             inference_process = None
-            print("Using OpenAI API or local endpoint for inference.")
+            logger.info("Using OpenAI API or local endpoint for inference.")
 
         self.set_client(mode="inference")
-        print("Client setup complete.")
+        logger.info("Client setup complete.")
 
         self.inference_results = await self.process_subjects(
             server_process=inference_process,
@@ -612,7 +618,7 @@ class Evaluator:
             progress_desc="Inference Progress",
         )
 
-        print("Inference complete.")
+        logger.info('\033[92mInference complete.\033[0m')
         ######################################## translation ########################################
         logger.info("============ Start response translation process. ============")
         _, resp_trans_prompts = self.load_data(mode="translation", choices=choices, responses_trans=True)
@@ -624,13 +630,13 @@ class Evaluator:
                 model_path=self.model_args.translation_model_name_or_path,
                 model_name=self.translation_model_name,
             )
-            print("Local vLLM server setup complete.")
+            logger.info("Local vLLM server setup complete.")
         else:
             translation_process = None
-            print("Using OpenAI API or local endpoint for translation.")
+            logger.info("Using OpenAI API or local endpoint for translation.")
 
         self.set_client(mode="translation")
-        print("Client setup complete.")
+        logger.info("Client setup complete.")
         
         self.translated_responses = await self.translation(
             server_process=translation_process,
@@ -640,7 +646,7 @@ class Evaluator:
             progress_desc="Trans Response Progress",
         )
 
-        print("Question translated complete.")
+        logger.info('\033[92mQuestion translated complete.\033[0m')
         ########################################### check ###########################################
         logger.info("============ Start checking process. ============")
         checked_answers, checked_prompts = self.load_data(mode="check", choices=choices, check_source="translated")
@@ -653,13 +659,13 @@ class Evaluator:
                 model_path=self.model_args.checker_model_name_or_path,
                 model_name=self.checker_model_name,
             )
-            print("Local vLLM server setup complete.")
+            logger.info("Local vLLM server setup complete.")
         else:
             checker_process = None
-            print("Using OpenAI API or local endpoint for checking.")
+            logger.info("Using OpenAI API or local endpoint for checking.")
 
         self.set_client(mode="check")
-        print("Client setup complete.")
+        logger.info("Client setup complete.")
 
         check_results = await self.process_subjects(
             server_process=checker_process,
@@ -670,7 +676,7 @@ class Evaluator:
             progress_desc="Check Progress",
         )
 
-        print("Check complete.")
+        logger.info('\033[96mCheck complete.\033[0m')
         ####################################### compute score #######################################
         logger.info("============ Computing Score ============")
         score_dict = self.comput_score(checked_answers=checked_answers, check_results=check_results, subjects=subjects)

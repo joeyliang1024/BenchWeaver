@@ -21,6 +21,7 @@ class IFEvalEvaluator(OPQAEvaluator):
         # load the input 
         # min(len(dataset[self.eval_split]), self.testing_size)
         dataset_dict = load_hf_or_local_dataset(
+                exists_on_hf=self.exists_on_hf,
                 path=self.eval_args.task_dir,
                 task_name=self.eval_task,
                 name="all",

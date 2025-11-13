@@ -24,6 +24,7 @@ class MedMCQAProbEvaluator(ProbEvaluator):
         
         for subject in pbar:
             dataset = load_hf_or_local_dataset(
+                exists_on_hf=self.exists_on_hf,
                 path=self.eval_args.task_dir,
                 task_name=eval_task,
                 name=subject,

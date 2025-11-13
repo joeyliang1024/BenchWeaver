@@ -56,6 +56,7 @@ class OQEvaluator(Evaluator):
         for subject in tqdm(self.categories.keys(), desc="Loading subjects"):
             # load dataset from folder
             dataset = load_hf_or_local_dataset(
+                exists_on_hf=self.exists_on_hf,
                 path=self.eval_args.task_dir,
                 task_name=self.eval_task,
                 name=subject,
@@ -108,6 +109,7 @@ class OQEvaluator(Evaluator):
                 # load object benchmark examples
                 if self.ref_task is not None:
                     ref_dataset = load_hf_or_local_dataset(
+                        exists_on_hf=self.exists_on_hf,
                         path=self.eval_args.ref_task_dir,
                         task_name=self.eval_task,
                         name=random.choice(list(self.ref_categories.keys())),
