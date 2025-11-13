@@ -115,7 +115,7 @@ class Evaluator:
         else:
             print(f"📂 Loading categories from local path: {repo_id}")
             mapping = cached_file(
-                path_or_repo_id=repo_id,
+                path_or_repo_id=os.path.join(PROJECT_BASE_PATH, repo_id, eval_task),
                 filename="mapping.json",
                 cache_dir=self.model_args.cache_dir,
                 token=self.hf_token,
