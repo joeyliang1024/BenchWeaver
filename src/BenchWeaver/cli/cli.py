@@ -14,6 +14,7 @@ USAGE = [
     ["bench-weaver-cli version", "Show version info"],
     ["bench-weaver-cli benchmark", "Show supported benchmarks"],
     ["bench-weaver-cli env", "Show dependency info"],
+    ["bench-weaver-cli setup_code_env", "Setup code environment"],
     ["bench-weaver-cli help", "Show CLI usage"]
 ]
 

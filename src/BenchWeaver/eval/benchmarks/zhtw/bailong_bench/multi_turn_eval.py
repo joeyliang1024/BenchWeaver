@@ -5,9 +5,9 @@ from typing import Any, Dict, List, Literal, Tuple
 from .....data.huggingface_utils import load_hf_or_local_dataset
 from tqdm.auto import tqdm
 from ....evaluator.multi_turn.pipeline_eval import MultiTurnEvaluator
-from ....template.eval.mt_bench_tw_template import get_mt_bench_tw_eval_template
+from ....template.eval.bailong_bench_template import get_bailong_bench_eval_template
 
-class MTBenchTWEvaluator(MultiTurnEvaluator):
+class BailongBenchEvaluator(MultiTurnEvaluator):
     def __init__(self, args):
         super().__init__(args=args)
         
@@ -15,8 +15,9 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
         category_corrects = {subj: [] for subj in subjects}
         for subj in check_results.keys():
             for check_string in check_results[subj]:
+                subj_name = self.categories[subj]['name']
                 score = self.retrieve_answer(text=check_string, numerical=True)
-                category_corrects[subj].append(score)
+                category_corrects[subj_name].append(score)
                 category_corrects['Average'].append(score)
         # average score
         for subj in category_corrects.keys():
@@ -50,7 +51,7 @@ class MTBenchTWEvaluator(MultiTurnEvaluator):
                 trust_remote_code=True,
             )
             # load template
-            eval_template = get_mt_bench_tw_eval_template(name=subject)
+            eval_template = get_bailong_bench_eval_template(name=subject)
             # Prepare examples for evaluation
             if mode == "inference":
                 for i in range(min(len(dataset[self.eval_split]), self.testing_size)): 

@@ -36,6 +36,7 @@ from .eval.industryinstruction_template import get_industryinstruction_aerospace
 from .eval.history_template import History_Template, get_history_eval_template
 from .eval.math_template import get_math_eval_template
 from .eval.financeqa_template import FinanceQA_Template, get_financeqa_eval_template
+from .eval.bailong_bench_template import Bailong_Bench_Template, get_bailong_bench_eval_template
 
 EVAL_TEMPLATE_CONFIG = {
     "mmlu":{
@@ -193,5 +194,9 @@ EVAL_TEMPLATE_CONFIG = {
     "financeqa": {
         "class": FinanceQA_Template,
         "func": get_financeqa_eval_template,
+        },
+    "bailong-bench": {
+        "class": Bailong_Bench_Template,
+        "func": get_bailong_bench_eval_template,
         },
 }

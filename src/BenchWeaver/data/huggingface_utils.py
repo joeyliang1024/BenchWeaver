@@ -44,7 +44,7 @@ def load_hf_or_local_dataset(exists_on_hf:bool, path:str, task_name:str, token: 
         DatasetDict or Dataset
     """
     if exists_on_hf:
-        dataset = load_dataset(path=path, token=token, trust_remote_code=True)
+        dataset = load_dataset(path=path, token=token, name=kwargs.get("name", None), trust_remote_code=True)
     else:
         # print(f"📂 Loading dataset from local path: {path}")
         local_path = os.path.join(PROJECT_BASE_PATH, path, task_name)

@@ -323,6 +323,14 @@ BENCHMARK_CONFIG = {
         "sugguest_num_shots": 5,
         "support_chain_of_thought": False,
     },
+    "bailong-bench": {
+        "language": "zh-tw",
+        "mode": ["multi-turn"],
+        "display_scores": ["Average", 'Creative writing', 'Mail assistant', 'Health consultation', 'Translation', 'Copywriting generation', 'Knowledge-based question', 'Summarization', 'Proofreading', 'Open question', 'Morality and Ethics', 'General', 'English instruction', 'Arithmetic', 'Multi-turn'],
+        "mcqa_choices": None,
+        "sugguest_num_shots": 0,
+        "support_chain_of_thought": False,
+    },
 }
 
 def get_evaluators(task_name:str) -> Dict[str, Any]:
@@ -542,5 +550,10 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
         from .en.financeqa.opqa_eval import GPQAEvaluator
         return {
             "opqa": GPQAEvaluator,
+        }
+    elif task_name == "bailong-bench":
+        from .zhtw.bailong_bench.multi_turn_eval import BailongBenchEvaluator
+        return {
+            "multi-turn": BailongBenchEvaluator,
         }
     return {}

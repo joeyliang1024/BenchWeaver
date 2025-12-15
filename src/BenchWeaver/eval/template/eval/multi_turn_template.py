@@ -13,8 +13,9 @@ class Multi_Turn_Template(EvalTemplate):
         self.response = response
         
     def _parse_example(self, example: Dict[str, str], **kwargs) -> Tuple[list, list]:
-        question_turns = ast.literal_eval(example["question_turns"])
-        answer_turns = ast.literal_eval(example["answer_turns"])
+        
+        question_turns = ast.literal_eval(example["question_turns"]) if isinstance(example["question_turns"], str) else example["question_turns"]
+        answer_turns = ast.literal_eval(example["answer_turns"]) if isinstance(example["answer_turns"], str) else example["answer_turns"]
         return question_turns, answer_turns
     
     def get_inference_quesitons(self, example: Dict[str, str], **kwargs) -> List[str]:
