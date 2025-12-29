@@ -1,12 +1,9 @@
-import json
-import os
 import asyncio
 import random
 from typing import Any, Dict, List, Literal, Tuple
 import numpy as np
 from ....data.huggingface_utils import load_hf_or_local_dataset
 from tqdm.auto import tqdm
-from ....extras.constants import PROJECT_BASE_PATH
 from ..evaluator import Evaluator
 from ...template import MCQA_Template
 
@@ -15,30 +12,68 @@ class OQEvaluator(Evaluator):
     server_process: asyncio.subprocess.Process
     def __init__(self, args):
         super().__init__(args=args)
-    
+        self.options_per_question = None
+        
     def comput_score(self, checked_answers: Dict[str, List[Any]], check_results: Dict[str, List[Any]], subjects: List[str]) -> Dict[str, float]:
-        category_corrects = {score: {"corrects": 0, "true_mask_count": 0} for score in subjects}
+        category_corrects = {score: {"corrects": 0, "true_mask_count": 0, "total_questions": 0} for score in subjects}
+        if "Average" not in category_corrects:
+            category_corrects["Average"] = {"corrects": 0, "true_mask_count": 0, "total_questions": 0}
 
         for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
             category_name = self.categories[subject]["category"]
+            if category_name not in category_corrects:
+                category_corrects[category_name] = {"corrects": 0, "true_mask_count": 0, "total_questions": 0}
+
             answers = np.array(checked_answers[subject])
             predictions = np.array([self.retrieve_answer(ans) for ans in check_results[subject]])
-            # Mask for when the answer is 'true'
-            true_mask: np.ndarray = answers == 'true'
-            # Compare predictions and answers, only where answer is 'true'
-            corrects: np.ndarray = (predictions == 'true') & true_mask  # correct when answer is 'true' and prediction is 'true'
-            # Update the corrects and true_mask counts
-            if category_name not in category_corrects:
-                category_corrects[category_name] = {"corrects": 0, "true_mask_count": 0}
-            category_corrects[category_name]["corrects"] += corrects.sum()
-            category_corrects[category_name]["true_mask_count"] += true_mask.sum()
-            category_corrects["Average"]['corrects'] += corrects.sum()
-            category_corrects["Average"]['true_mask_count'] += true_mask.sum()
-        
-        return {
-            category_name: round(100 * (record_dict['corrects'] / record_dict['true_mask_count']), 4)
-                for category_name, record_dict in category_corrects.items() if record_dict['true_mask_count'] > 0
-        }
+
+            # --- 情況 A: 單選題模式 (self.options_per_question 不為 None) ---
+            if getattr(self, 'options_per_question', None) is not None:
+                num_options = len(answers)
+                num_questions = num_options // self.options_per_question
+
+                # Reshape 成 (題目數, 選項數)
+                reshaped_answers = answers[:num_questions * self.options_per_question].reshape(num_questions, self.options_per_question)
+                reshaped_preds = predictions[:num_questions * self.options_per_question].reshape(num_questions, self.options_per_question)
+
+                correct_count = 0
+                for i in range(num_questions):
+                    true_indices_in_ans = np.where(reshaped_answers[i] == 'true')[0]
+                    true_indices_in_pred = np.where(reshaped_preds[i] == 'true')[0]
+
+                    # 嚴格判定：模型必須「只選一個」且「選對那個」
+                    if len(true_indices_in_pred) == 1 and len(true_indices_in_ans) == 1:
+                        if true_indices_in_pred[0] == true_indices_in_ans[0]:
+                            correct_count += 1
+
+                category_corrects[category_name]["corrects"] += correct_count
+                category_corrects[category_name]["total_questions"] += num_questions
+                category_corrects["Average"]['corrects'] += correct_count
+                category_corrects["Average"]['total_questions'] += num_questions
+
+            # --- 情況 B: 原始多選模式 (self.options_per_question 為 None) ---
+            else:
+                true_mask = (answers == 'true')
+                corrects = (predictions == 'true') & true_mask
+
+                category_corrects[category_name]["corrects"] += corrects.sum()
+                category_corrects[category_name]["true_mask_count"] += true_mask.sum()
+                category_corrects["Average"]['corrects'] += corrects.sum()
+                category_corrects["Average"]['true_mask_count'] += true_mask.sum()
+
+        # --- 計算最終得分 ---
+        result = {}
+        for cat, data in category_corrects.items():
+            if getattr(self, 'options_per_question', None) is not None:
+                # 單選模式分母是總題數
+                if data['total_questions'] > 0:
+                    result[cat] = round(100 * (data['corrects'] / data['total_questions']), 4)
+            else:
+                # 多選模式分母是 true 的總個數
+                if data['true_mask_count'] > 0:
+                    result[cat] = round(100 * (data['corrects'] / data['true_mask_count']), 4)
+
+        return result
         
     def load_data(self, 
                   mode = Literal['inference', 'check', 'translation'],
@@ -166,3 +201,27 @@ class OQEvaluator(Evaluator):
             return checker_answers, checker_prompts
         elif mode == "translation":
             return None, translate_prompts
+        
+    #def comput_score(self, checked_answers: Dict[str, List[Any]], check_results: Dict[str, List[Any]], subjects: List[str]) -> Dict[str, float]:
+    #    category_corrects = {score: {"corrects": 0, "true_mask_count": 0} for score in subjects}
+    #
+    #    for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
+    #        category_name = self.categories[subject]["category"]
+    #        answers = np.array(checked_answers[subject])
+    #        predictions = np.array([self.retrieve_answer(ans) for ans in check_results[subject]])
+    #        # Mask for when the answer is 'true'
+    #        true_mask: np.ndarray = answers == 'true'
+    #        # Compare predictions and answers, only where answer is 'true'
+    #        corrects: np.ndarray = (predictions == 'true') & true_mask  # correct when answer is 'true' and prediction is 'true'
+    #        # Update the corrects and true_mask counts
+    #        if category_name not in category_corrects:
+    #            category_corrects[category_name] = {"corrects": 0, "true_mask_count": 0}
+    #        category_corrects[category_name]["corrects"] += corrects.sum()
+    #        category_corrects[category_name]["true_mask_count"] += true_mask.sum()
+    #        category_corrects["Average"]['corrects'] += corrects.sum()
+    #        category_corrects["Average"]['true_mask_count'] += true_mask.sum()
+    #    
+    #    return {
+    #        category_name: round(100 * (record_dict['corrects'] / record_dict['true_mask_count']), 4)
+    #            for category_name, record_dict in category_corrects.items() if record_dict['true_mask_count'] > 0
+    #    }

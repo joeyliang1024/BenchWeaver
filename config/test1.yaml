@@ -10,15 +10,15 @@ checker_model_name_or_path: meta-llama/Llama-3.1-8B-Instruct
 check_mode: local
 
 ### source dataset
-task: math_test
-task_dir: joeyliang/en_math
+task: medmcqa_test
+task_dir: evaluation_data
 lang: en
-benchmark_mode: opqa
+benchmark_mode: mcqa-oq
 pipeline: same
 n_shot: 0
 cot: false
 ### output
-save_dir: score/test_math
+save_dir: score/medmcqa_test
 
 ### VLLM 
 vllm_maxlen: 8192
