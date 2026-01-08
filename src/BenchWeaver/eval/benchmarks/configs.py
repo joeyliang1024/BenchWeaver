@@ -245,7 +245,7 @@ BENCHMARK_CONFIG = {
     },
     "medqa": {
         "language": "en",
-        "mode": ["mcqa-prob", "mcqa-oq"],
+        "mode": ["opqa"],
         "display_scores": ["Average", "all"],
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 0,
@@ -498,11 +498,9 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
             "multi-turn": LogicKorEvaluator,
         }
     elif task_name == "medqa":
-        from .en.medqa.prob_eval import MedQAProbEvaluator
-        from .en.medqa.oq_eval import MedQAOQEvaluator
+        from .en.medqa.opqa_eval import MedQAOPQAEvaluator
         return {
-            "mcqa-prob": MedQAProbEvaluator,
-            "mcqa-oq": MedQAOQEvaluator,
+            "opqa": MedQAOPQAEvaluator,
         }
     elif task_name == "medmcqa":
         from .en.medmcqa.prob_eval import MedMCQAProbEvaluator

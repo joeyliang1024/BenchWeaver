@@ -80,6 +80,7 @@ class OPQAEvaluator(Evaluator):
                         target_data=dataset[self.eval_split][i],
                         llm_response=self.inference_results[subject][i] if check_source == "original" else self.translated_responses[subject][i],
                         criteria_prompt=self.eval_args.criteria_prompt,
+                        choices=choices,
                     )
                     checker_prompts[subject].append(check_msg_list)
 

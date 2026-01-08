@@ -50,7 +50,7 @@ class OPQA_Template(EvalTemplate):
         return messages
 
     def format_checker_example(
-        self, target_data: Dict[str, str], llm_response: str, criteria_prompt:str
+        self, target_data: Dict[str, str], llm_response: str, criteria_prompt:str, choices: List[str]=[]
     ) -> List[Dict[str, str]]:
         if criteria_prompt:
             assert "{answer}" in criteria_prompt and \
@@ -59,7 +59,7 @@ class OPQA_Template(EvalTemplate):
                 ,ValueError("Criteria prompt format incorrect, must contain '{answer}', '{question}', and '{llm_response}'")
             self.criteria_prompt = criteria_prompt
         assert self.criteria_prompt is not None, ValueError("`criteria_prompt` should not be empty.")
-        answer, question = self._parse_example(target_data)
+        question, answer = self._parse_example(target_data, choices)
         return [
                 {
                     "role": Role.USER.value, 
