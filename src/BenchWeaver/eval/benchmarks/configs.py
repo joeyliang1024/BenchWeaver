@@ -61,7 +61,7 @@ BENCHMARK_CONFIG = {
     },
     "hae-rae-bench": {
         "language": "ko",
-        "mode": ["mix"],
+        "mode": ["opqa"],
         "display_scores": ['Average', 'lyrics_denoising', 'proverbs_denoising', 'correct_definition_matching', 'csat_geo', 'csat_law', 'csat_socio', 'date_understanding', 'general_knowledge', 'history', 'loan_words', 'rare_words', 'standard_nomenclature', 'reading_comprehension'],
         "mcqa_choices": ["A", "B", "C", "D", "E"],
         "sugguest_num_shots": 0,
@@ -253,7 +253,7 @@ BENCHMARK_CONFIG = {
     },
     "medmcqa": {
         "language": "en",
-        "mode": ["mcqa-prob", "mcqa-oq"],
+        "mode": ["opqa"],
         "display_scores": ["Average", "all"],
         "mcqa_choices": ["A", "B", "C", "D"],
         "sugguest_num_shots": 0,
@@ -375,9 +375,9 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
             "mcqa-oq": CLIcKEvaluator,
         }
     elif task_name == "hae-rae-bench":
-        from .ko.hae_rae_bench.mix_eval import HAE_RAE_BENCHEvaluator
+        from .ko.hae_rae_bench.opqa_eval import HAE_RAE_BENCHEvaluator
         return {
-            "mix": HAE_RAE_BENCHEvaluator,
+            "opqa": HAE_RAE_BENCHEvaluator,
         }
     elif task_name == "kmmlu":
         from .en.mmlu import MMLUProbEvaluator, MMLUOQEvaluator
@@ -503,11 +503,9 @@ def get_evaluators(task_name:str) -> Dict[str, Any]:
             "opqa": MedQAOPQAEvaluator,
         }
     elif task_name == "medmcqa":
-        from .en.medmcqa.prob_eval import MedMCQAProbEvaluator
-        from .en.medmcqa.oq_eval import MedMCQAOQEvaluator
+        from .en.medmcqa.opqa_eval import MedMCQAEvaluator
         return {
-            "mcqa-prob": MedMCQAProbEvaluator,
-            "mcqa-oq": MedMCQAOQEvaluator,
+            "opqa": MedMCQAEvaluator,
         }
     elif task_name == "kobest":
         from .ko.kobest.mix_eval import KoBestEvaluator

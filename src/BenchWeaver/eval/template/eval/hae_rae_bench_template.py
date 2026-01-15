@@ -39,37 +39,47 @@ class HAE_RAE_BENCH_Template(EvalTemplate):
             List[Dict[str, str]],
             Tuple[List[List[Dict[str, str]]], List[str]]
             ]:
-        # mcqa
-        if target_data.get('categories', None) == 'mcqa':
-            check_msg_list = []
-            answer_list = []
-            for idx in range(len(choices)):
-                check_msg_list.append([
-                    {
-                        "role": Role.USER.value, 
-                        "content": self.mcqa_criteria_prompt.format(
-                            option=target_data[chr(ord("A") + idx)],
-                            question=target_data['question'],
-                            llm_response=llm_response,
-                            )
-                    }
-                ])
-                answer_list.append(
-                    "True".lower() if chr(ord("A") + idx) == target_data["answer"] else "False".lower()
-                )
-            return check_msg_list, answer_list
-        # opqa
-        else:
-            return [
-                 {
-                     "role": Role.USER.value, 
-                     "content": self.opqa_criteria_prompt.format(
-                         answer=target_data['answer'],
-                         question=target_data['question'],
-                         llm_response=llm_response,
-                         )
-                 }
-             ]
+        # # mcqa
+        # if target_data.get('categories', None) == 'mcqa':
+        #     check_msg_list = []
+        #     answer_list = []
+        #     for idx in range(len(choices)):
+        #         check_msg_list.append([
+        #             {
+        #                 "role": Role.USER.value, 
+        #                 "content": self.mcqa_criteria_prompt.format(
+        #                     option=target_data[chr(ord("A") + idx)],
+        #                     question=target_data['question'],
+        #                     llm_response=llm_response,
+        #                     )
+        #             }
+        #         ])
+        #         answer_list.append(
+        #             "True".lower() if chr(ord("A") + idx) == target_data["answer"] else "False".lower()
+        #         )
+        #     return check_msg_list, answer_list
+        # # opqa
+        # else:
+        #     return [
+        #          {
+        #              "role": Role.USER.value, 
+        #              "content": self.opqa_criteria_prompt.format(
+        #                  answer=target_data['answer'],
+        #                  question=target_data['question'],
+        #                  llm_response=llm_response,
+        #                  )
+        #          }
+        #      ]
+        return [
+                  {
+                      "role": Role.USER.value, 
+                      "content": self.opqa_criteria_prompt.format(
+                          answer=target_data['answer'],
+                          question=target_data['question'],
+                          llm_response=llm_response,
+                          )
+                  }
+              ]
            
 hae_rae_bench_eval_templates: Dict[str, "HAE_RAE_BENCH_Template"] = {}
 

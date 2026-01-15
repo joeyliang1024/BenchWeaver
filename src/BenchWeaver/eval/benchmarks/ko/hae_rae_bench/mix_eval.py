@@ -151,53 +151,22 @@ class HAE_RAE_BENCHEvaluator(Evaluator):
         # 初始化統計，確保所有 category 都有位置
         category_corrects = {}
 
-        options_per_q = getattr(self, 'options_per_question', 5) # 建議在外面設定好
-
         for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
             category_name = self.categories[subject]["category"]
             if category_name not in category_corrects:
                 category_corrects[category_name] = {"corrects": 0, "true_mask_count": 0, "total_questions": 0}
 
-            raw_preds = [self.retrieve_answer(ans) for ans in check_results[subject]]
-
-            if subject in ['lyrics_denoising', 'proverbs_denoising']:
-                # --- OPQA 邏輯 (逐項計分) ---
-                preds_arr = np.array(raw_preds)
-                corrects = (preds_arr == 'true')
-                category_corrects[category_name]["corrects"] += corrects.sum()
-                category_corrects[category_name]["true_mask_count"] += len(preds_arr)
-            else:
-                # --- MCQA 邏輯 (按題計分) ---
-                answers = np.array(checked_answers[subject])
-                predictions = np.array(raw_preds)
-
-                num_questions = len(answers) // options_per_q
-                reshaped_ans = answers.reshape(num_questions, options_per_q)
-                reshaped_preds = predictions.reshape(num_questions, options_per_q)
-
-                q_correct_count = 0
-                for i in range(num_questions):
-                    ans_idx = np.where(reshaped_ans[i] == 'true')[0]
-                    pred_idx = np.where(reshaped_preds[i] == 'true')[0]
-
-                    # 嚴格判定：僅當模型只選一個且選對時
-                    if len(pred_idx) == 1 and len(ans_idx) == 1:
-                        if pred_idx[0] == ans_idx[0]:
-                            q_correct_count += 1
-
-                category_corrects[category_name]["corrects"] += q_correct_count
-                category_corrects[category_name]["total_questions"] += num_questions
-
+            preds_arr = np.array([self.retrieve_answer(ans) for ans in check_results[subject]])
+            corrects = (preds_arr == 'true')
+            category_corrects[category_name]["corrects"] += corrects.sum()
+            category_corrects[category_name]["true_mask_count"] += len(preds_arr)
+        
         # 產出結果
         final_results = {}
         avg_num, avg_den = 0, 0
 
         for cat_name, record in category_corrects.items():
-            # 自動判斷分母：如果有 total_questions (MCQA) 則優先使用，否則使用 true_mask_count (OPQA)
-            if record["total_questions"] > 0:
-                denominator = record["total_questions"]
-            else:
-                denominator = record["true_mask_count"]
+            denominator = record["true_mask_count"]
 
             if denominator > 0:
                 score = round(100 * (record["corrects"] / denominator), 4)
@@ -209,6 +178,68 @@ class HAE_RAE_BENCHEvaluator(Evaluator):
             final_results["Average"] = round(100 * (avg_num / avg_den), 4)
 
         return final_results
+    # def comput_score(self, checked_answers: Dict[str, List[Any]], check_results: Dict[str, List[Any]], subjects: List[str]) -> Dict[str, float]:
+    #     # 初始化統計，確保所有 category 都有位置
+    #     category_corrects = {}
+    # 
+    #     options_per_q = getattr(self, 'options_per_question', 5) # 建議在外面設定好
+    # 
+    #     for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
+    #         category_name = self.categories[subject]["category"]
+    #         if category_name not in category_corrects:
+    #             category_corrects[category_name] = {"corrects": 0, "true_mask_count": 0, "total_questions": 0}
+    # 
+    #         raw_preds = [self.retrieve_answer(ans) for ans in check_results[subject]]
+    # 
+    #         if subject in ['lyrics_denoising', 'proverbs_denoising']:
+    #             # --- OPQA 邏輯 (逐項計分) ---
+    #             preds_arr = np.array(raw_preds)
+    #             corrects = (preds_arr == 'true')
+    #             category_corrects[category_name]["corrects"] += corrects.sum()
+    #             category_corrects[category_name]["true_mask_count"] += len(preds_arr)
+    #         else:
+    #             # --- MCQA 邏輯 (按題計分) ---
+    #             answers = np.array(checked_answers[subject])
+    #             predictions = np.array(raw_preds)
+    # 
+    #             num_questions = len(answers) // options_per_q
+    #             reshaped_ans = answers.reshape(num_questions, options_per_q)
+    #             reshaped_preds = predictions.reshape(num_questions, options_per_q)
+    # 
+    #             q_correct_count = 0
+    #             for i in range(num_questions):
+    #                 ans_idx = np.where(reshaped_ans[i] == 'true')[0]
+    #                 pred_idx = np.where(reshaped_preds[i] == 'true')[0]
+    # 
+    #                 # 嚴格判定：僅當模型只選一個且選對時
+    #                 if len(pred_idx) == 1 and len(ans_idx) == 1:
+    #                     if pred_idx[0] == ans_idx[0]:
+    #                         q_correct_count += 1
+    # 
+    #             category_corrects[category_name]["corrects"] += q_correct_count
+    #             category_corrects[category_name]["total_questions"] += num_questions
+    # 
+    #     # 產出結果
+    #     final_results = {}
+    #     avg_num, avg_den = 0, 0
+    # 
+    #     for cat_name, record in category_corrects.items():
+    #         # 自動判斷分母：如果有 total_questions (MCQA) 則優先使用，否則使用 true_mask_count (OPQA)
+    #         if record["total_questions"] > 0:
+    #             denominator = record["total_questions"]
+    #         else:
+    #             denominator = record["true_mask_count"]
+    # 
+    #         if denominator > 0:
+    #             score = round(100 * (record["corrects"] / denominator), 4)
+    #             final_results[cat_name] = score
+    #             avg_num += record["corrects"]
+    #             avg_den += denominator
+    # 
+    #     if avg_den > 0:
+    #         final_results["Average"] = round(100 * (avg_num / avg_den), 4)
+    # 
+    #     return final_results
 
     # def compute_score(self, checked_answers: Dict[str, List[Any]], check_results: Dict[str, List[Any]], subjects: List[str]) -> Dict[str, float]:
     #     category_corrects = {score: {"corrects": 0, "true_mask_count": 0} for score in subjects}
@@ -234,3 +265,5 @@ class HAE_RAE_BENCHEvaluator(Evaluator):
     #         category_name: round(100 * (record_dict['corrects'] / record_dict['true_mask_count']), 4)
     #             for category_name, record_dict in category_corrects.items() if record_dict['true_mask_count'] > 0
     #     }
+    
+    

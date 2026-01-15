@@ -1,41 +1,24 @@
-import os
 import random
-from typing import Any, Dict, List, Literal, Tuple
-import numpy as np
-from tqdm.auto import tqdm
-from ....data.huggingface_utils import load_hf_or_local_dataset
-from ..evaluator import Evaluator
-from ...template import OPQA_Template
+from typing import Dict, Literal, Tuple
+from tqdm import tqdm
+from .....data.huggingface_utils import load_hf_or_local_dataset
+from ....template import get_hae_rae_bench_eval_template
+from ....evaluator import OPQAEvaluator
 
-class OPQAEvaluator(Evaluator):
-    eval_template: OPQA_Template
+class HAE_RAE_BENCHEvaluator(OPQAEvaluator):
     def __init__(self, args):
         super().__init__(args=args)
+        self.eval_template = get_hae_rae_bench_eval_template(self.eval_args.lang)
     
-    def comput_score(self, check_results: Dict[str, List[Any]], subjects: List[str], checked_answers=None) -> Dict[str, float]:
-        category_corrects = {subj: np.array([], dtype="bool") for subj in subjects}
-
-        for subject in tqdm(self.categories.keys(), desc="Compute subjects"):
-            category_name = self.categories[subject]["category"]
-            corrects = np.array(['true'] * len(check_results[subject])) == np.array([self.retrieve_answer(answer) for answer in check_results[subject]])
-            if category_name not in category_corrects:
-                category_corrects[category_name] = np.array([], dtype="bool")
-            category_corrects[category_name] = np.concatenate([category_corrects[category_name], corrects], axis=0)
-            category_corrects["Average"] = np.concatenate([category_corrects["Average"], corrects], axis=0)
-            
-        return {category_name: round(100 * np.mean(category_array), 4) 
-                for category_name, category_array in category_corrects.items()}
-            
     def load_data(self, 
                   mode = Literal['inference', 'check', 'translation'],
-                  choices = None, 
+                  choices = None,
                   responses_trans: bool = False,
-                  check_source: Literal['original', 'translated'] = "original",
+                  check_source: Literal['original', 'translated'] = "original"
                   ) -> Tuple[Dict[str, list], Dict[str, list]]:
-        """Load and format data for evaluation."""
         # init data
         inference_prompts = {subj: [] for subj in self.categories.keys()}
-        checker_prompts   = {subj: [] for subj in self.categories.keys()}
+        checker_prompts = {subj: [] for subj in self.categories.keys()}
         translate_prompts = {subj: [] for subj in self.categories.keys()}
         # Load datasets
         for subject in tqdm(self.categories.keys(), desc="Loading subjects"):
@@ -53,7 +36,7 @@ class OPQAEvaluator(Evaluator):
             # Prepare examples for evaluation
             if mode == "inference":
                 for i in range(min(len(dataset[self.eval_split]), self.testing_size)): 
-                    if dataset.get(self.train_split, None) is not None:
+                    if dataset.get(self.train_split) is not None:
                         support_set = (
                             dataset[self.train_split]
                             .select(range(min(self.eval_args.n_shot, len(dataset[self.train_split]))))
@@ -61,28 +44,25 @@ class OPQAEvaluator(Evaluator):
                         )
                     else:
                         support_set = None
-                    # format inference example
                     messages = self.eval_template.format_inference_example(
                         target_data=dataset[self.eval_split][i],
                         support_set=support_set,
-                        subject_name=self.categories[subject]["name"],
                         user_prompt=self.eval_args.user_prompt,
                         use_cot=self.eval_args.cot,
                     )
                     inference_prompts[subject].append(messages)
-                        
+             
             elif mode == "check":
-                # answers are already in the check prompts
                 assert self.inference_results is not None
+                # opqa
                 for i in range(min(len(dataset[self.eval_split]), self.testing_size)):
                     check_msg_list = self.eval_template.format_checker_example(
                         target_data=dataset[self.eval_split][i],
+                        choices=["A", "B", "C", "D", "E"],
                         llm_response=self.inference_results[subject][i] if check_source == "original" else self.translated_responses[subject][i],
-                        criteria_prompt=self.eval_args.criteria_prompt,
-                        choices=choices,
                     )
                     checker_prompts[subject].append(check_msg_list)
-
+                
             elif mode == "translation":
                 # check is question or repsponse translation
                 if responses_trans:
@@ -96,7 +76,7 @@ class OPQAEvaluator(Evaluator):
                     ref_dataset = load_hf_or_local_dataset(
                         exists_on_hf=self.exists_on_hf,
                         path=self.eval_args.ref_task_dir,
-                        task_name=self.eval_task,
+                        task_name=self.ref_task,
                         name=random.choice(list(self.ref_categories.keys())),
                         cache_dir=self.model_args.cache_dir,
                         download_mode=self.eval_args.download_mode,
@@ -150,4 +130,3 @@ class OPQAEvaluator(Evaluator):
             return None, checker_prompts
         elif mode == "translation":
             return None, translate_prompts
-    
